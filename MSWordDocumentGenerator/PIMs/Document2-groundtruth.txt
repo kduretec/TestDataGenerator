@@ -1,0 +1,4 @@
+wordcount 1016
+paragraphcount 105
+pagecount 3
+tablecount 7

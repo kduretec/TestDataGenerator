@@ -1,0 +1,16 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses MSWord2007('http://benchmarkdp.documentgenerator.PIM');
+	
+
+transformation ChangeTextSize(inout model:PIM);
+
+main() {
+	var texts:= model.objectsOfType(Word); 
+	texts->asSequence()->at(getRandom(texts->size()))->map ChangeSize()
+	
+}
+
+mapping inout Word::ChangeSize() {
+	size:= getRandom(50)
+}

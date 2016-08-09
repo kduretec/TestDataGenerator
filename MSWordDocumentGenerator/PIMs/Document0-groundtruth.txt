@@ -1,0 +1,4 @@
+wordcount 9
+paragraphcount 3
+pagecount 2
+tablecount 2

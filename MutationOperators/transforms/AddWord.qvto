@@ -1,0 +1,20 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses MSWord2007('http://benchmarkdp.documentgenerator.PIM');
+	
+
+transformation AddWord(inout model:PIM);
+
+main() {
+	var paragraphs:= model.objectsOfKind(TextContainer);
+	paragraphs->asSequence()->at(getRandom(paragraphs->size()))->map AddWord()
+}
+
+
+mapping inout TextContainer::AddWord() {
+	var t := object Word {
+		value := getRandomWord();
+		size := 10;
+	}; 
+	words += t;
+}

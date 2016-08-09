@@ -1,0 +1,4 @@
+wordcount 2621
+paragraphcount 41
+pagecount 6
+tablecount 1

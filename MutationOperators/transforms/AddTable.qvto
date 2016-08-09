@@ -1,0 +1,45 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses MSWord2007('http://benchmarkdp.documentgenerator.PIM');
+	
+
+transformation AddParagraph(inout model:PIM);
+
+main() {
+	var pages:= model.objectsOfType(Page); 
+	pages->asSequence()->at(getRandom(pages->size()))->map AddTable()
+	
+}
+
+
+mapping inout Page::AddTable() {
+	var c11 := object Cell {
+		
+	};
+	var c12 := object Cell {
+		
+	};
+	var c21 := object Cell {
+		
+	};
+	var c22 := object Cell {
+		
+	};
+
+	var r1 := object Row {
+		cell += c11;
+		cell += c12;
+	};
+	var r2 := object Row {
+		cell += c21;
+		cell += c22;
+	};
+
+	var tab := object Table {
+		row += r1;
+		row += r2;
+		numRows := 2;
+		numCol := 2;
+	}; 
+	elements += tab;
+}

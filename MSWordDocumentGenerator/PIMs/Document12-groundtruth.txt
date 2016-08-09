@@ -1,0 +1,4 @@
+wordcount 260
+paragraphcount 10
+pagecount 1
+tablecount 0

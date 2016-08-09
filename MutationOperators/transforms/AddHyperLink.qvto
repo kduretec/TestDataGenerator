@@ -1,0 +1,20 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses MSWord2007('http://benchmarkdp.documentgenerator.PIM');
+	
+
+transformation AddHyperLink(inout model:PIM);
+
+main() {
+	var paragraphs:= model.objectsOfType(Paragraph); 
+	paragraphs->asSequence()->at(getRandom(paragraphs->size()))->map AddHyperLink()
+}
+
+
+mapping inout Paragraph::AddHyperLink() {
+	var t := object Hyperlink {
+		value := getRandomWord();
+		url := "https://www.google.com";
+	}; 
+	words += t;
+}

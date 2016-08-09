@@ -1,0 +1,4 @@
+wordcount 3143
+paragraphcount 101
+pagecount 10
+tablecount 0

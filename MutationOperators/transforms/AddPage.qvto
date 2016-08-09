@@ -1,0 +1,18 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses MSWord2007('http://benchmarkdp.documentgenerator.PIM');
+	
+
+transformation AddPage(inout model:PIM);
+
+main() {
+	var doc:= model.objectsOfType(Document); 
+	doc->map AddPage();
+}
+
+
+mapping inout Document::AddPage() {
+	var pag := object Page {
+	}; 
+	pages += pag;
+}

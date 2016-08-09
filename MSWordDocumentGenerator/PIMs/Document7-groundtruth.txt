@@ -1,0 +1,4 @@
+wordcount 175
+paragraphcount 10
+pagecount 1
+tablecount 0

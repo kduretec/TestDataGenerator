@@ -1,0 +1,16 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses MSWord2007('http://benchmarkdp.documentgenerator.PIM');
+
+	
+transformation ChangeTextColor(inout model:PIM);
+
+main() {
+	var texts:= model.objectsOfType(Word)->select(color="black"); 
+	texts->asSequence()->at(getRandom(texts->size()))->map ChangeColor()
+	
+}
+
+mapping inout Word::ChangeColor() {
+	color:="Red"
+}	

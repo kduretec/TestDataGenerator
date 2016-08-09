@@ -1,0 +1,4 @@
+wordcount 17039
+paragraphcount 2011
+pagecount 79
+tablecount 3
