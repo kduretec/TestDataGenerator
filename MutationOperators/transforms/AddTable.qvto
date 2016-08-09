@@ -1,6 +1,6 @@
 import m2m.qvt.oml.ExampleJavaLib;
 
-modeltype PIM uses MSWord2007('http://benchmarkdp.documentgenerator.PIM');
+modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 
 transformation AddParagraph(inout model:PIM);

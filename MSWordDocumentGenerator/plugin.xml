@@ -9,8 +9,8 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated PIM -->
       <package
-            uri="http://benchmarkdp.documentgenerator.PIM"
-            class="benchmarkdp.documentgenerator.MSWord2007.MSWordPackage"
+            uri="http://benchmarkdp.datagenerator.model.PIM"
+            class="benchmarkdp.datagenerator.model.PIM.PIMPackage"
             genModel="model/PIM.genmodel"/>
    </extension>
 
