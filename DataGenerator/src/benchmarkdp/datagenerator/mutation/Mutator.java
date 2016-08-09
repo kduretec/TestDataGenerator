@@ -127,61 +127,7 @@ public class Mutator {
 			System.out.println("Done");
 		}
 
-		// Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-		// MSWordPackage mwp = MSWordPackage.eINSTANCE;
-		// Map<String, Object> m = reg.getExtensionToFactoryMap();
-		// m.put("xmi", new XMIResourceFactoryImpl());
-		//
-		// ResourceSet resourceSet = new ResourceSetImpl();
-		//
-		// Map<String, Object> opts = new HashMap<String, Object>();
-		// opts.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
-		//
-		// Resource inResource =
-		// resourceSet.getResource(URI.createURI("PIMs/Document.xmi"), true);
-		// EList<EObject> inObjects = inResource.getContents();
-		//
-		// // create the input extent with its initial contents
-		// ModelExtent input = new BasicModelExtent(inObjects);
-		// // create an empty extent to catch the output
-		// ModelExtent output = new BasicModelExtent();
-		//
-		// // setup the execution environment details ->
-		// // configuration properties, logger, monitor object etc.
-		// ExecutionContextImpl context = new ExecutionContextImpl();
-		// context.setConfigProperty("keepModeling", true);
-		//
-		// // run the transformation assigned to the executor with the given
-		// // input and output and execution context -> ChangeTheWorld(in, out)
-		// // Remark: variable arguments count is supported
-		// ExecutionDiagnostic result = executor.execute(context, input,
-		// output);
-		// output = input;
-		// // check the result for success
-		// if (result.getSeverity() == Diagnostic.OK) {
-		// // the output objects got captured in the output extent
-		// List<EObject> outObjects = output.getContents();
-		// // let's persist them using a resource
-		// ResourceSet resourceSet2 = new ResourceSetImpl();
-		// Resource outResource =
-		// resourceSet2.createResource(URI.createURI("PIMs/Document1.xmi"));
-		// outResource.getContents().addAll(outObjects);
-		// try {
-		// outResource.save(opts);
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		// } else {
-		// // turn the result diagnostic into status and send it to error
-		// // log
-		// IStatus status = BasicDiagnostic.toIStatus(result);
-		// // Activator.getDefault().getLog().log(status);
-		// System.out.println(status.getMessage());
-		// for (IStatus st : status.getChildren()) {
-		// System.out.println(st.getMessage());
-		// }
-		// }
+			
 		System.out.println("Transformation done");
 
 	}
