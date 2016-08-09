@@ -1,4 +1,0 @@
-wordcount 666
-paragraphcount 27
-pagecount 2
-tablecount 0

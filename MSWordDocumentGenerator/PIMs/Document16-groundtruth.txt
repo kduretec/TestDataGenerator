@@ -1,4 +1,0 @@
-wordcount 381
-paragraphcount 29
-pagecount 1
-tablecount 1

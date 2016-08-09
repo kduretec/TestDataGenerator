@@ -1,4 +1,0 @@
-wordcount 62056
-paragraphcount 399
-pagecount 123
-tablecount 0
