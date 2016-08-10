@@ -37,7 +37,7 @@ public class DocumentHolder {
 
 	private String generatedCode;
 
-	public DocumentHolder(String name, String initDocument, String format, String code) {
+	public DocumentHolder(String name, String initDocument) {
 		documentName = name;
 		documentURI = URI.createURI(initDocument);
 
@@ -47,9 +47,6 @@ public class DocumentHolder {
 		documentObjects = documentResource.getContents();
 		documentModel = new BasicModelExtent(documentObjects);
 
-		Document d = (Document) documentObjects.get(0);
-		d.setFormat(format);
-		d.setFormatCode(code);
 
 		groundTruth = new HashMap<String, String>();
 	}

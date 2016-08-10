@@ -40,15 +40,6 @@ public interface PIMFactory extends EFactory {
 	Element createElement();
 
 	/**
-	 * Returns a new object of class '<em>Word</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Word</em>'.
-	 * @generated
-	 */
-	Word createWord();
-
-	/**
 	 * Returns a new object of class '<em>Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -103,40 +94,13 @@ public interface PIMFactory extends EFactory {
 	Page createPage();
 
 	/**
-	 * Returns a new object of class '<em>Text</em>'.
+	 * Returns a new object of class '<em>Word</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text</em>'.
+	 * @return a new object of class '<em>Word</em>'.
 	 * @generated
 	 */
-	Text createText();
-
-	/**
-	 * Returns a new object of class '<em>Hyperlink</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Hyperlink</em>'.
-	 * @generated
-	 */
-	Hyperlink createHyperlink();
-
-	/**
-	 * Returns a new object of class '<em>Text Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text Container</em>'.
-	 * @generated
-	 */
-	TextContainer createTextContainer();
-
-	/**
-	 * Returns a new object of class '<em>Text Box</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text Box</em>'.
-	 * @generated
-	 */
-	TextBox createTextBox();
+	Word createWord();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,94 +20,31 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl#getSize <em>Size</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl#getColor <em>Color</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl#getBackground <em>Background</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl#getFontFamily <em>Font Family</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class WordImpl extends TextImpl implements Word {
+public class WordImpl extends MinimalEObjectImpl.Container implements Word {
 	/**
-	 * The default value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSize()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int SIZE_EDEFAULT = 0;
+	protected static final String VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSize() <em>Size</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSize()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected int size = SIZE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getColor() <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COLOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getColor() <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getColor()
-	 * @generated
-	 * @ordered
-	 */
-	protected String color = COLOR_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getBackground() <em>Background</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBackground()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String BACKGROUND_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getBackground() <em>Background</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getBackground()
-	 * @generated
-	 * @ordered
-	 */
-	protected String background = BACKGROUND_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFontFamily()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FONT_FAMILY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFontFamily()
-	 * @generated
-	 * @ordered
-	 */
-	protected String fontFamily = FONT_FAMILY_EDEFAULT;
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,8 +70,8 @@ public class WordImpl extends TextImpl implements Word {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getSize() {
-		return size;
+	public String getValue() {
+		return value;
 	}
 
 	/**
@@ -141,74 +79,11 @@ public class WordImpl extends TextImpl implements Word {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSize(int newSize) {
-		int oldSize = size;
-		size = newSize;
+	public void setValue(String newValue) {
+		String oldValue = value;
+		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.WORD__SIZE, oldSize, size));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getColor() {
-		return color;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setColor(String newColor) {
-		String oldColor = color;
-		color = newColor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.WORD__COLOR, oldColor, color));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getBackground() {
-		return background;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setBackground(String newBackground) {
-		String oldBackground = background;
-		background = newBackground;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.WORD__BACKGROUND, oldBackground, background));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFontFamily() {
-		return fontFamily;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFontFamily(String newFontFamily) {
-		String oldFontFamily = fontFamily;
-		fontFamily = newFontFamily;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.WORD__FONT_FAMILY, oldFontFamily, fontFamily));
+			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.WORD__VALUE, oldValue, value));
 	}
 
 	/**
@@ -219,14 +94,8 @@ public class WordImpl extends TextImpl implements Word {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PIMPackage.WORD__SIZE:
-				return getSize();
-			case PIMPackage.WORD__COLOR:
-				return getColor();
-			case PIMPackage.WORD__BACKGROUND:
-				return getBackground();
-			case PIMPackage.WORD__FONT_FAMILY:
-				return getFontFamily();
+			case PIMPackage.WORD__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -239,17 +108,8 @@ public class WordImpl extends TextImpl implements Word {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PIMPackage.WORD__SIZE:
-				setSize((Integer)newValue);
-				return;
-			case PIMPackage.WORD__COLOR:
-				setColor((String)newValue);
-				return;
-			case PIMPackage.WORD__BACKGROUND:
-				setBackground((String)newValue);
-				return;
-			case PIMPackage.WORD__FONT_FAMILY:
-				setFontFamily((String)newValue);
+			case PIMPackage.WORD__VALUE:
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -263,17 +123,8 @@ public class WordImpl extends TextImpl implements Word {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PIMPackage.WORD__SIZE:
-				setSize(SIZE_EDEFAULT);
-				return;
-			case PIMPackage.WORD__COLOR:
-				setColor(COLOR_EDEFAULT);
-				return;
-			case PIMPackage.WORD__BACKGROUND:
-				setBackground(BACKGROUND_EDEFAULT);
-				return;
-			case PIMPackage.WORD__FONT_FAMILY:
-				setFontFamily(FONT_FAMILY_EDEFAULT);
+			case PIMPackage.WORD__VALUE:
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -287,14 +138,8 @@ public class WordImpl extends TextImpl implements Word {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PIMPackage.WORD__SIZE:
-				return size != SIZE_EDEFAULT;
-			case PIMPackage.WORD__COLOR:
-				return COLOR_EDEFAULT == null ? color != null : !COLOR_EDEFAULT.equals(color);
-			case PIMPackage.WORD__BACKGROUND:
-				return BACKGROUND_EDEFAULT == null ? background != null : !BACKGROUND_EDEFAULT.equals(background);
-			case PIMPackage.WORD__FONT_FAMILY:
-				return FONT_FAMILY_EDEFAULT == null ? fontFamily != null : !FONT_FAMILY_EDEFAULT.equals(fontFamily);
+			case PIMPackage.WORD__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -309,14 +154,8 @@ public class WordImpl extends TextImpl implements Word {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (size: ");
-		result.append(size);
-		result.append(", color: ");
-		result.append(color);
-		result.append(", background: ");
-		result.append(background);
-		result.append(", fontFamily: ");
-		result.append(fontFamily);
+		result.append(" (value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}

@@ -1,0 +1,51 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
+modeltype PSM uses PSMDoc('http://benchmarkdp.datagenerator.model.PSMDoc');
+	
+
+transformation PIM2Doc(in source:PIM, out target:PSM);
+
+main() {
+	source.rootObjects()[Document].map DocumentToDocument();
+}
+
+
+mapping PIM::Document::DocumentToDocument():PSM::Document {
+	name := self.name;
+	author := self.author;
+	format := "doc";
+	formatCode := "0";
+	numColum := getRandom(3);
+	self.pages->forEach(p) {
+		p->map PageToPage();
+	}
+}
+
+mapping PIM::Page::PageToPage():PSM::Page {
+	self.elements->forEach(e) {
+	if (e.oclIsTypeOf(PIM::Paragraph)) {
+		var temp:Real := getRandomReal();
+		if (temp <=0.95) {
+			e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
+		} else {
+			e->oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
+		}
+	};
+	}
+}
+
+mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
+	paragraphSpacing := 1.0;
+	lineSpacing := 1.0;
+	indent := 1.0;
+	var i:Integer := 0;
+	while (i<self.words->asSequence()->size()) {
+	 
+	}
+	
+	}
+
+mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
+	
+}

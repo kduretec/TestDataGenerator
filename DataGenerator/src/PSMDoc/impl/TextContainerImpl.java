@@ -1,10 +1,10 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM.impl;
+package PSMDoc.impl;
 
-import benchmarkdp.datagenerator.model.PIM.PIMPackage;
-import benchmarkdp.datagenerator.model.PIM.Paragraph;
-import benchmarkdp.datagenerator.model.PIM.Word;
+import PSMDoc.PSMDocPackage;
+import PSMDoc.Text;
+import PSMDoc.TextContainer;
 
 import java.util.Collection;
 
@@ -20,18 +20,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Paragraph</b></em>'.
+ * An implementation of the model object '<em><b>Text Container</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.ParagraphImpl#getWords <em>Words</em>}</li>
+ *   <li>{@link PSMDoc.impl.TextContainerImpl#getWords <em>Words</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ParagraphImpl extends ElementImpl implements Paragraph {
+public class TextContainerImpl extends ElementImpl implements TextContainer {
 	/**
 	 * The cached value of the '{@link #getWords() <em>Words</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -40,14 +40,14 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Word> words;
+	protected EList<Text> words;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ParagraphImpl() {
+	protected TextContainerImpl() {
 		super();
 	}
 
@@ -58,7 +58,7 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PIMPackage.Literals.PARAGRAPH;
+		return PSMDocPackage.Literals.TEXT_CONTAINER;
 	}
 
 	/**
@@ -66,9 +66,9 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Word> getWords() {
+	public EList<Text> getWords() {
 		if (words == null) {
-			words = new EObjectContainmentEList<Word>(Word.class, this, PIMPackage.PARAGRAPH__WORDS);
+			words = new EObjectContainmentEList<Text>(Text.class, this, PSMDocPackage.TEXT_CONTAINER__WORDS);
 		}
 		return words;
 	}
@@ -81,7 +81,7 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
+			case PSMDocPackage.TEXT_CONTAINER__WORDS:
 				return ((InternalEList<?>)getWords()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -95,7 +95,7 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
+			case PSMDocPackage.TEXT_CONTAINER__WORDS:
 				return getWords();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -110,9 +110,9 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
+			case PSMDocPackage.TEXT_CONTAINER__WORDS:
 				getWords().clear();
-				getWords().addAll((Collection<? extends Word>)newValue);
+				getWords().addAll((Collection<? extends Text>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,7 +126,7 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
+			case PSMDocPackage.TEXT_CONTAINER__WORDS:
 				getWords().clear();
 				return;
 		}
@@ -141,10 +141,10 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
+			case PSMDocPackage.TEXT_CONTAINER__WORDS:
 				return words != null && !words.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ParagraphImpl
+} //TextContainerImpl

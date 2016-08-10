@@ -2,6 +2,7 @@
  */
 package benchmarkdp.datagenerator.model.PIM;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,119 +13,38 @@ package benchmarkdp.datagenerator.model.PIM;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Word#getSize <em>Size</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Word#getColor <em>Color</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Word#getBackground <em>Background</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Word#getFontFamily <em>Font Family</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.Word#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getWord()
- * @model
+ * @model extendedMetaData="name='Text'"
  * @generated
  */
-public interface Word extends Text {
+public interface Word extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Size</b></em>' attribute.
+	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Size</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Size</em>' attribute.
-	 * @see #setSize(int)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getWord_Size()
+	 * @return the value of the '<em>Value</em>' attribute.
+	 * @see #setValue(String)
+	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getWord_Value()
 	 * @model
 	 * @generated
 	 */
-	int getSize();
+	String getValue();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Word#getSize <em>Size</em>}' attribute.
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Word#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Size</em>' attribute.
-	 * @see #getSize()
+	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @see #getValue()
 	 * @generated
 	 */
-	void setSize(int value);
-
-	/**
-	 * Returns the value of the '<em><b>Color</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Color</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Color</em>' attribute.
-	 * @see #setColor(String)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getWord_Color()
-	 * @model
-	 * @generated
-	 */
-	String getColor();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Word#getColor <em>Color</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Color</em>' attribute.
-	 * @see #getColor()
-	 * @generated
-	 */
-	void setColor(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Background</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Background</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Background</em>' attribute.
-	 * @see #setBackground(String)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getWord_Background()
-	 * @model
-	 * @generated
-	 */
-	String getBackground();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Word#getBackground <em>Background</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Background</em>' attribute.
-	 * @see #getBackground()
-	 * @generated
-	 */
-	void setBackground(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Font Family</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Font Family</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Font Family</em>' attribute.
-	 * @see #setFontFamily(String)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getWord_FontFamily()
-	 * @model
-	 * @generated
-	 */
-	String getFontFamily();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Word#getFontFamily <em>Font Family</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Font Family</em>' attribute.
-	 * @see #getFontFamily()
-	 * @generated
-	 */
-	void setFontFamily(String value);
+	void setValue(String value);
 
 } // Word

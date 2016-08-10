@@ -2,6 +2,7 @@
  */
 package benchmarkdp.datagenerator.model.PIM;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -12,92 +13,28 @@ package benchmarkdp.datagenerator.model.PIM;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getParagraphSpacing <em>Paragraph Spacing</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getLineSpacing <em>Line Spacing</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getIndent <em>Indent</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getWords <em>Words</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getParagraph()
  * @model
  * @generated
  */
-public interface Paragraph extends TextContainer {
+public interface Paragraph extends Element {
 	/**
-	 * Returns the value of the '<em><b>Paragraph Spacing</b></em>' attribute.
+	 * Returns the value of the '<em><b>Words</b></em>' containment reference list.
+	 * The list contents are of type {@link benchmarkdp.datagenerator.model.PIM.Word}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Paragraph Spacing</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Words</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Paragraph Spacing</em>' attribute.
-	 * @see #setParagraphSpacing(double)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getParagraph_ParagraphSpacing()
-	 * @model
+	 * @return the value of the '<em>Words</em>' containment reference list.
+	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getParagraph_Words()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	double getParagraphSpacing();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getParagraphSpacing <em>Paragraph Spacing</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Paragraph Spacing</em>' attribute.
-	 * @see #getParagraphSpacing()
-	 * @generated
-	 */
-	void setParagraphSpacing(double value);
-
-	/**
-	 * Returns the value of the '<em><b>Line Spacing</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Line Spacing</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Line Spacing</em>' attribute.
-	 * @see #setLineSpacing(double)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getParagraph_LineSpacing()
-	 * @model
-	 * @generated
-	 */
-	double getLineSpacing();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getLineSpacing <em>Line Spacing</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Line Spacing</em>' attribute.
-	 * @see #getLineSpacing()
-	 * @generated
-	 */
-	void setLineSpacing(double value);
-
-	/**
-	 * Returns the value of the '<em><b>Indent</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Indent</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Indent</em>' attribute.
-	 * @see #setIndent(double)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getParagraph_Indent()
-	 * @model
-	 * @generated
-	 */
-	double getIndent();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getIndent <em>Indent</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Indent</em>' attribute.
-	 * @see #getIndent()
-	 * @generated
-	 */
-	void setIndent(double value);
+	EList<Word> getWords();
 
 } // Paragraph

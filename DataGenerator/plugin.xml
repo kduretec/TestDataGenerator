@@ -14,4 +14,12 @@
             genModel="model/PIM.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated PSMDoc -->
+      <package
+            uri="http://benchmarkdp.datagenerator.model.PSMDoc"
+            class="PSMDoc.PSMDocPackage"
+            genModel="model/PSMDoc.genmodel"/>
+   </extension>
+
 </plugin>

@@ -94,40 +94,13 @@ public interface PIMPackage extends EPackage {
 	int DOCUMENT__PAGES = 2;
 
 	/**
-	 * The feature id for the '<em><b>Num Colum</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__NUM_COLUM = 3;
-
-	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__FORMAT = 4;
-
-	/**
-	 * The feature id for the '<em><b>Format Code</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__FORMAT_CODE = 5;
-
-	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = 6;
+	int DOCUMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -176,116 +149,6 @@ public interface PIMPackage extends EPackage {
 	int ELEMENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TextImpl <em>Text</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.TextImpl
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getText()
-	 * @generated
-	 */
-	int TEXT = 9;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT__VALUE = 0;
-
-	/**
-	 * The number of structural features of the '<em>Text</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Text</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl <em>Word</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.WordImpl
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getWord()
-	 * @generated
-	 */
-	int WORD = 2;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORD__VALUE = TEXT__VALUE;
-
-	/**
-	 * The feature id for the '<em><b>Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORD__SIZE = TEXT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Color</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORD__COLOR = TEXT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Background</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORD__BACKGROUND = TEXT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORD__FONT_FAMILY = TEXT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Word</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORD_FEATURE_COUNT = TEXT_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of operations of the '<em>Word</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORD_OPERATION_COUNT = TEXT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl <em>Table</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -293,7 +156,7 @@ public interface PIMPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getTable()
 	 * @generated
 	 */
-	int TABLE = 3;
+	int TABLE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
@@ -350,52 +213,6 @@ public interface PIMPackage extends EPackage {
 	int TABLE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl <em>Text Container</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getTextContainer()
-	 * @generated
-	 */
-	int TEXT_CONTAINER = 11;
-
-	/**
-	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_CONTAINER__ALIGNMENT = ELEMENT__ALIGNMENT;
-
-	/**
-	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_CONTAINER__WORDS = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Text Container</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_CONTAINER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Text Container</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_CONTAINER_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.ParagraphImpl <em>Paragraph</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -403,7 +220,7 @@ public interface PIMPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getParagraph()
 	 * @generated
 	 */
-	int PARAGRAPH = 4;
+	int PARAGRAPH = 3;
 
 	/**
 	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
@@ -412,7 +229,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__ALIGNMENT = TEXT_CONTAINER__ALIGNMENT;
+	int PARAGRAPH__ALIGNMENT = ELEMENT__ALIGNMENT;
 
 	/**
 	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
@@ -421,34 +238,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__WORDS = TEXT_CONTAINER__WORDS;
-
-	/**
-	 * The feature id for the '<em><b>Paragraph Spacing</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAGRAPH__PARAGRAPH_SPACING = TEXT_CONTAINER_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Line Spacing</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAGRAPH__LINE_SPACING = TEXT_CONTAINER_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Indent</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAGRAPH__INDENT = TEXT_CONTAINER_FEATURE_COUNT + 2;
+	int PARAGRAPH__WORDS = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Paragraph</em>' class.
@@ -457,7 +247,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 3;
+	int PARAGRAPH_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Paragraph</em>' class.
@@ -466,7 +256,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
+	int PARAGRAPH_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.ImageImpl <em>Image</em>}' class.
@@ -476,7 +266,7 @@ public interface PIMPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getImage()
 	 * @generated
 	 */
-	int IMAGE = 5;
+	int IMAGE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
@@ -540,7 +330,7 @@ public interface PIMPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getRow()
 	 * @generated
 	 */
-	int ROW = 6;
+	int ROW = 5;
 
 	/**
 	 * The feature id for the '<em><b>Cell</b></em>' containment reference list.
@@ -577,7 +367,7 @@ public interface PIMPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getCell()
 	 * @generated
 	 */
-	int CELL = 7;
+	int CELL = 6;
 
 	/**
 	 * The feature id for the '<em><b>Element</b></em>' containment reference list.
@@ -614,7 +404,7 @@ public interface PIMPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getPage()
 	 * @generated
 	 */
-	int PAGE = 8;
+	int PAGE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
@@ -644,14 +434,14 @@ public interface PIMPackage extends EPackage {
 	int PAGE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.HyperlinkImpl <em>Hyperlink</em>}' class.
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl <em>Word</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.HyperlinkImpl
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getHyperlink()
+	 * @see benchmarkdp.datagenerator.model.PIM.impl.WordImpl
+	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getWord()
 	 * @generated
 	 */
-	int HYPERLINK = 10;
+	int WORD = 8;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -660,80 +450,25 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int HYPERLINK__VALUE = TEXT__VALUE;
+	int WORD__VALUE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Url</b></em>' attribute.
+	 * The number of structural features of the '<em>Word</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HYPERLINK__URL = TEXT_FEATURE_COUNT + 0;
+	int WORD_FEATURE_COUNT = 1;
 
 	/**
-	 * The number of structural features of the '<em>Hyperlink</em>' class.
+	 * The number of operations of the '<em>Word</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HYPERLINK_FEATURE_COUNT = TEXT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Hyperlink</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int HYPERLINK_OPERATION_COUNT = TEXT_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TextBoxImpl <em>Text Box</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.TextBoxImpl
-	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getTextBox()
-	 * @generated
-	 */
-	int TEXT_BOX = 12;
-
-	/**
-	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__ALIGNMENT = TEXT_CONTAINER__ALIGNMENT;
-
-	/**
-	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__WORDS = TEXT_CONTAINER__WORDS;
-
-	/**
-	 * The number of structural features of the '<em>Text Box</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Text Box</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
+	int WORD_OPERATION_COUNT = 0;
 
 
 	/**
@@ -780,39 +515,6 @@ public interface PIMPackage extends EPackage {
 	EReference getDocument_Pages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Document#getNumColum <em>Num Colum</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Num Colum</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Document#getNumColum()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_NumColum();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Document#getFormat <em>Format</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Format</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Document#getFormat()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_Format();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Document#getFormatCode <em>Format Code</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Format Code</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Document#getFormatCode()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_FormatCode();
-
-	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Element <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -832,60 +534,6 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getElement_Alignment();
-
-	/**
-	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Word <em>Word</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Word</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Word
-	 * @generated
-	 */
-	EClass getWord();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Word#getSize <em>Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Word#getSize()
-	 * @see #getWord()
-	 * @generated
-	 */
-	EAttribute getWord_Size();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Word#getColor <em>Color</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Color</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Word#getColor()
-	 * @see #getWord()
-	 * @generated
-	 */
-	EAttribute getWord_Color();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Word#getBackground <em>Background</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Background</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Word#getBackground()
-	 * @see #getWord()
-	 * @generated
-	 */
-	EAttribute getWord_Background();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Word#getFontFamily <em>Font Family</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Font Family</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Word#getFontFamily()
-	 * @see #getWord()
-	 * @generated
-	 */
-	EAttribute getWord_FontFamily();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Table <em>Table</em>}'.
@@ -941,37 +589,15 @@ public interface PIMPackage extends EPackage {
 	EClass getParagraph();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getParagraphSpacing <em>Paragraph Spacing</em>}'.
+	 * Returns the meta object for the containment reference list '{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getWords <em>Words</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Paragraph Spacing</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Paragraph#getParagraphSpacing()
+	 * @return the meta object for the containment reference list '<em>Words</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Paragraph#getWords()
 	 * @see #getParagraph()
 	 * @generated
 	 */
-	EAttribute getParagraph_ParagraphSpacing();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getLineSpacing <em>Line Spacing</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Line Spacing</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Paragraph#getLineSpacing()
-	 * @see #getParagraph()
-	 * @generated
-	 */
-	EAttribute getParagraph_LineSpacing();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Paragraph#getIndent <em>Indent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Indent</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Paragraph#getIndent()
-	 * @see #getParagraph()
-	 * @generated
-	 */
-	EAttribute getParagraph_Indent();
+	EReference getParagraph_Words();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Image <em>Image</em>}'.
@@ -1080,77 +706,25 @@ public interface PIMPackage extends EPackage {
 	EReference getPage_Elements();
 
 	/**
-	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Text <em>Text</em>}'.
+	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Word <em>Word</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Text</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Text
+	 * @return the meta object for class '<em>Word</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Word
 	 * @generated
 	 */
-	EClass getText();
+	EClass getWord();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Text#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Word#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Text#getValue()
-	 * @see #getText()
+	 * @see benchmarkdp.datagenerator.model.PIM.Word#getValue()
+	 * @see #getWord()
 	 * @generated
 	 */
-	EAttribute getText_Value();
-
-	/**
-	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Hyperlink <em>Hyperlink</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Hyperlink</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Hyperlink
-	 * @generated
-	 */
-	EClass getHyperlink();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Hyperlink#getUrl <em>Url</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Url</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Hyperlink#getUrl()
-	 * @see #getHyperlink()
-	 * @generated
-	 */
-	EAttribute getHyperlink_Url();
-
-	/**
-	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.TextContainer <em>Text Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Text Container</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.TextContainer
-	 * @generated
-	 */
-	EClass getTextContainer();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link benchmarkdp.datagenerator.model.PIM.TextContainer#getWords <em>Words</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Words</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.TextContainer#getWords()
-	 * @see #getTextContainer()
-	 * @generated
-	 */
-	EReference getTextContainer_Words();
-
-	/**
-	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.TextBox <em>Text Box</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Text Box</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.TextBox
-	 * @generated
-	 */
-	EClass getTextBox();
+	EAttribute getWord_Value();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1210,30 +784,6 @@ public interface PIMPackage extends EPackage {
 		EReference DOCUMENT__PAGES = eINSTANCE.getDocument_Pages();
 
 		/**
-		 * The meta object literal for the '<em><b>Num Colum</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__NUM_COLUM = eINSTANCE.getDocument_NumColum();
-
-		/**
-		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__FORMAT = eINSTANCE.getDocument_Format();
-
-		/**
-		 * The meta object literal for the '<em><b>Format Code</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__FORMAT_CODE = eINSTANCE.getDocument_FormatCode();
-
-		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.ElementImpl <em>Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1250,48 +800,6 @@ public interface PIMPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ELEMENT__ALIGNMENT = eINSTANCE.getElement_Alignment();
-
-		/**
-		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl <em>Word</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.WordImpl
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getWord()
-		 * @generated
-		 */
-		EClass WORD = eINSTANCE.getWord();
-
-		/**
-		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute WORD__SIZE = eINSTANCE.getWord_Size();
-
-		/**
-		 * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute WORD__COLOR = eINSTANCE.getWord_Color();
-
-		/**
-		 * The meta object literal for the '<em><b>Background</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute WORD__BACKGROUND = eINSTANCE.getWord_Background();
-
-		/**
-		 * The meta object literal for the '<em><b>Font Family</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute WORD__FONT_FAMILY = eINSTANCE.getWord_FontFamily();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl <em>Table</em>}' class.
@@ -1338,28 +846,12 @@ public interface PIMPackage extends EPackage {
 		EClass PARAGRAPH = eINSTANCE.getParagraph();
 
 		/**
-		 * The meta object literal for the '<em><b>Paragraph Spacing</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Words</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute PARAGRAPH__PARAGRAPH_SPACING = eINSTANCE.getParagraph_ParagraphSpacing();
-
-		/**
-		 * The meta object literal for the '<em><b>Line Spacing</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAGRAPH__LINE_SPACING = eINSTANCE.getParagraph_LineSpacing();
-
-		/**
-		 * The meta object literal for the '<em><b>Indent</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAGRAPH__INDENT = eINSTANCE.getParagraph_Indent();
+		EReference PARAGRAPH__WORDS = eINSTANCE.getParagraph_Words();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.ImageImpl <em>Image</em>}' class.
@@ -1450,14 +942,14 @@ public interface PIMPackage extends EPackage {
 		EReference PAGE__ELEMENTS = eINSTANCE.getPage_Elements();
 
 		/**
-		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TextImpl <em>Text</em>}' class.
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.WordImpl <em>Word</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.TextImpl
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getText()
+		 * @see benchmarkdp.datagenerator.model.PIM.impl.WordImpl
+		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getWord()
 		 * @generated
 		 */
-		EClass TEXT = eINSTANCE.getText();
+		EClass WORD = eINSTANCE.getWord();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1465,53 +957,7 @@ public interface PIMPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TEXT__VALUE = eINSTANCE.getText_Value();
-
-		/**
-		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.HyperlinkImpl <em>Hyperlink</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.HyperlinkImpl
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getHyperlink()
-		 * @generated
-		 */
-		EClass HYPERLINK = eINSTANCE.getHyperlink();
-
-		/**
-		 * The meta object literal for the '<em><b>Url</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute HYPERLINK__URL = eINSTANCE.getHyperlink_Url();
-
-		/**
-		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl <em>Text Container</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getTextContainer()
-		 * @generated
-		 */
-		EClass TEXT_CONTAINER = eINSTANCE.getTextContainer();
-
-		/**
-		 * The meta object literal for the '<em><b>Words</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEXT_CONTAINER__WORDS = eINSTANCE.getTextContainer_Words();
-
-		/**
-		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TextBoxImpl <em>Text Box</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.TextBoxImpl
-		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getTextBox()
-		 * @generated
-		 */
-		EClass TEXT_BOX = eINSTANCE.getTextBox();
+		EAttribute WORD__VALUE = eINSTANCE.getWord_Value();
 
 	}
 

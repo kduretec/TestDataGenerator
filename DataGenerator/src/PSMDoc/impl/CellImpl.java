@@ -1,10 +1,10 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM.impl;
+package PSMDoc.impl;
 
-import benchmarkdp.datagenerator.model.PIM.PIMPackage;
-import benchmarkdp.datagenerator.model.PIM.Paragraph;
-import benchmarkdp.datagenerator.model.PIM.Word;
+import PSMDoc.Cell;
+import PSMDoc.Element;
+import PSMDoc.PSMDocPackage;
 
 import java.util.Collection;
 
@@ -15,39 +15,41 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Paragraph</b></em>'.
+ * An implementation of the model object '<em><b>Cell</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.ParagraphImpl#getWords <em>Words</em>}</li>
+ *   <li>{@link PSMDoc.impl.CellImpl#getElements <em>Elements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ParagraphImpl extends ElementImpl implements Paragraph {
+public class CellImpl extends MinimalEObjectImpl.Container implements Cell {
 	/**
-	 * The cached value of the '{@link #getWords() <em>Words</em>}' containment reference list.
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWords()
+	 * @see #getElements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Word> words;
+	protected EList<Element> elements;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ParagraphImpl() {
+	protected CellImpl() {
 		super();
 	}
 
@@ -58,7 +60,7 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PIMPackage.Literals.PARAGRAPH;
+		return PSMDocPackage.Literals.CELL;
 	}
 
 	/**
@@ -66,11 +68,11 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Word> getWords() {
-		if (words == null) {
-			words = new EObjectContainmentEList<Word>(Word.class, this, PIMPackage.PARAGRAPH__WORDS);
+	public EList<Element> getElements() {
+		if (elements == null) {
+			elements = new EObjectContainmentEList<Element>(Element.class, this, PSMDocPackage.CELL__ELEMENTS);
 		}
-		return words;
+		return elements;
 	}
 
 	/**
@@ -81,8 +83,8 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
-				return ((InternalEList<?>)getWords()).basicRemove(otherEnd, msgs);
+			case PSMDocPackage.CELL__ELEMENTS:
+				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +97,8 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
-				return getWords();
+			case PSMDocPackage.CELL__ELEMENTS:
+				return getElements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,9 +112,9 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
-				getWords().clear();
-				getWords().addAll((Collection<? extends Word>)newValue);
+			case PSMDocPackage.CELL__ELEMENTS:
+				getElements().clear();
+				getElements().addAll((Collection<? extends Element>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +128,8 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
-				getWords().clear();
+			case PSMDocPackage.CELL__ELEMENTS:
+				getElements().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,10 +143,10 @@ public class ParagraphImpl extends ElementImpl implements Paragraph {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PIMPackage.PARAGRAPH__WORDS:
-				return words != null && !words.isEmpty();
+			case PSMDocPackage.CELL__ELEMENTS:
+				return elements != null && !elements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //ParagraphImpl
+} //CellImpl

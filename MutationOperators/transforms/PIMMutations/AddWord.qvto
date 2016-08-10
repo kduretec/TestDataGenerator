@@ -6,15 +6,14 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 transformation AddWord(inout model:PIM);
 
 main() {
-	var paragraphs:= model.objectsOfKind(TextContainer);
+	var paragraphs:= model.objectsOfType(Paragraph);
 	paragraphs->asSequence()->at(getRandom(paragraphs->size()))->map AddWord()
 }
 
 
-mapping inout TextContainer::AddWord() {
+mapping inout Paragraph::AddWord() {
 	var t := object Word {
 		value := getRandomWord();
-		size := 10;
 	}; 
 	words += t;
 }

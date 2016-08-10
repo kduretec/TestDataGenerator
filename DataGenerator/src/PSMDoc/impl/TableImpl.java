@@ -1,10 +1,10 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM.impl;
+package PSMDoc.impl;
 
-import benchmarkdp.datagenerator.model.PIM.PIMPackage;
-import benchmarkdp.datagenerator.model.PIM.Text;
-import benchmarkdp.datagenerator.model.PIM.TextContainer;
+import PSMDoc.PSMDocPackage;
+import PSMDoc.Row;
+import PSMDoc.Table;
 
 import java.util.Collection;
 
@@ -20,34 +20,34 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Text Container</b></em>'.
+ * An implementation of the model object '<em><b>Table</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl#getWords <em>Words</em>}</li>
+ *   <li>{@link PSMDoc.impl.TableImpl#getRow <em>Row</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TextContainerImpl extends ElementImpl implements TextContainer {
+public class TableImpl extends ElementImpl implements Table {
 	/**
-	 * The cached value of the '{@link #getWords() <em>Words</em>}' containment reference list.
+	 * The cached value of the '{@link #getRow() <em>Row</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWords()
+	 * @see #getRow()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Text> words;
+	protected EList<Row> row;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TextContainerImpl() {
+	protected TableImpl() {
 		super();
 	}
 
@@ -58,7 +58,7 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PIMPackage.Literals.TEXT_CONTAINER;
+		return PSMDocPackage.Literals.TABLE;
 	}
 
 	/**
@@ -66,11 +66,11 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Text> getWords() {
-		if (words == null) {
-			words = new EObjectContainmentEList<Text>(Text.class, this, PIMPackage.TEXT_CONTAINER__WORDS);
+	public EList<Row> getRow() {
+		if (row == null) {
+			row = new EObjectContainmentEList<Row>(Row.class, this, PSMDocPackage.TABLE__ROW);
 		}
-		return words;
+		return row;
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PIMPackage.TEXT_CONTAINER__WORDS:
-				return ((InternalEList<?>)getWords()).basicRemove(otherEnd, msgs);
+			case PSMDocPackage.TABLE__ROW:
+				return ((InternalEList<?>)getRow()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +95,8 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PIMPackage.TEXT_CONTAINER__WORDS:
-				return getWords();
+			case PSMDocPackage.TABLE__ROW:
+				return getRow();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,9 +110,9 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PIMPackage.TEXT_CONTAINER__WORDS:
-				getWords().clear();
-				getWords().addAll((Collection<? extends Text>)newValue);
+			case PSMDocPackage.TABLE__ROW:
+				getRow().clear();
+				getRow().addAll((Collection<? extends Row>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +126,8 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PIMPackage.TEXT_CONTAINER__WORDS:
-				getWords().clear();
+			case PSMDocPackage.TABLE__ROW:
+				getRow().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,10 +141,10 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PIMPackage.TEXT_CONTAINER__WORDS:
-				return words != null && !words.isEmpty();
+			case PSMDocPackage.TABLE__ROW:
+				return row != null && !row.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //TextContainerImpl
+} //TableImpl

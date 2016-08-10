@@ -1,8 +1,8 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM.util;
+package PSMDoc.util;
 
-import benchmarkdp.datagenerator.model.PIM.*;
+import PSMDoc.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -16,17 +16,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see benchmarkdp.datagenerator.model.PIM.PIMPackage
+ * @see PSMDoc.PSMDocPackage
  * @generated
  */
-public class PIMAdapterFactory extends AdapterFactoryImpl {
+public class PSMDocAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static PIMPackage modelPackage;
+	protected static PSMDocPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -34,9 +34,9 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PIMAdapterFactory() {
+	public PSMDocAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = PIMPackage.eINSTANCE;
+			modelPackage = PSMDocPackage.eINSTANCE;
 		}
 	}
 
@@ -65,27 +65,51 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PIMSwitch<Adapter> modelSwitch =
-		new PIMSwitch<Adapter>() {
+	protected PSMDocSwitch<Adapter> modelSwitch =
+		new PSMDocSwitch<Adapter>() {
 			@Override
 			public Adapter caseDocument(Document object) {
 				return createDocumentAdapter();
+			}
+			@Override
+			public Adapter casePage(Page object) {
+				return createPageAdapter();
 			}
 			@Override
 			public Adapter caseElement(Element object) {
 				return createElementAdapter();
 			}
 			@Override
+			public Adapter caseTextContainer(TextContainer object) {
+				return createTextContainerAdapter();
+			}
+			@Override
+			public Adapter caseText(Text object) {
+				return createTextAdapter();
+			}
+			@Override
 			public Adapter caseTable(Table object) {
 				return createTableAdapter();
+			}
+			@Override
+			public Adapter caseImage(Image object) {
+				return createImageAdapter();
+			}
+			@Override
+			public Adapter caseTextBox(TextBox object) {
+				return createTextBoxAdapter();
 			}
 			@Override
 			public Adapter caseParagraph(Paragraph object) {
 				return createParagraphAdapter();
 			}
 			@Override
-			public Adapter caseImage(Image object) {
-				return createImageAdapter();
+			public Adapter caseSimpleText(SimpleText object) {
+				return createSimpleTextAdapter();
+			}
+			@Override
+			public Adapter caseHyperLink(HyperLink object) {
+				return createHyperLinkAdapter();
 			}
 			@Override
 			public Adapter caseRow(Row object) {
@@ -94,14 +118,6 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCell(Cell object) {
 				return createCellAdapter();
-			}
-			@Override
-			public Adapter casePage(Page object) {
-				return createPageAdapter();
-			}
-			@Override
-			public Adapter caseWord(Word object) {
-				return createWordAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -124,13 +140,13 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Document <em>Document</em>}'.
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Document <em>Document</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Document
+	 * @see PSMDoc.Document
 	 * @generated
 	 */
 	public Adapter createDocumentAdapter() {
@@ -138,13 +154,27 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Element <em>Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Page <em>Page</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Element
+	 * @see PSMDoc.Page
+	 * @generated
+	 */
+	public Adapter createPageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Element <em>Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see PSMDoc.Element
 	 * @generated
 	 */
 	public Adapter createElementAdapter() {
@@ -152,27 +182,41 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Word <em>Word</em>}'.
+	 * Creates a new adapter for an object of class '{@link PSMDoc.TextContainer <em>Text Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Word
+	 * @see PSMDoc.TextContainer
 	 * @generated
 	 */
-	public Adapter createWordAdapter() {
+	public Adapter createTextContainerAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Table <em>Table</em>}'.
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Text <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Table
+	 * @see PSMDoc.Text
+	 * @generated
+	 */
+	public Adapter createTextAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Table <em>Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see PSMDoc.Table
 	 * @generated
 	 */
 	public Adapter createTableAdapter() {
@@ -180,27 +224,13 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Paragraph <em>Paragraph</em>}'.
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Image <em>Image</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Paragraph
-	 * @generated
-	 */
-	public Adapter createParagraphAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Image <em>Image</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Image
+	 * @see PSMDoc.Image
 	 * @generated
 	 */
 	public Adapter createImageAdapter() {
@@ -208,13 +238,69 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Row <em>Row</em>}'.
+	 * Creates a new adapter for an object of class '{@link PSMDoc.TextBox <em>Text Box</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Row
+	 * @see PSMDoc.TextBox
+	 * @generated
+	 */
+	public Adapter createTextBoxAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Paragraph <em>Paragraph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see PSMDoc.Paragraph
+	 * @generated
+	 */
+	public Adapter createParagraphAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link PSMDoc.SimpleText <em>Simple Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see PSMDoc.SimpleText
+	 * @generated
+	 */
+	public Adapter createSimpleTextAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link PSMDoc.HyperLink <em>Hyper Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see PSMDoc.HyperLink
+	 * @generated
+	 */
+	public Adapter createHyperLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Row <em>Row</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see PSMDoc.Row
 	 * @generated
 	 */
 	public Adapter createRowAdapter() {
@@ -222,30 +308,16 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Cell <em>Cell</em>}'.
+	 * Creates a new adapter for an object of class '{@link PSMDoc.Cell <em>Cell</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Cell
+	 * @see PSMDoc.Cell
 	 * @generated
 	 */
 	public Adapter createCellAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Page <em>Page</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Page
-	 * @generated
-	 */
-	public Adapter createPageAdapter() {
 		return null;
 	}
 
@@ -261,4 +333,4 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //PIMAdapterFactory
+} //PSMDocAdapterFactory

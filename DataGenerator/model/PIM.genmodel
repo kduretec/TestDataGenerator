@@ -11,18 +11,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/author"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//Document/pages"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/numColum"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/format"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/formatCode"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Element">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/alignment"/>
-    </genClasses>
-    <genClasses ecoreClass="PIM.ecore#//Word">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Word/size"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Word/color"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Word/background"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Word/fontFamily"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Table">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Table/numRows"/>
@@ -30,9 +21,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//Table/row"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Paragraph">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Paragraph/paragraphSpacing"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Paragraph/lineSpacing"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Paragraph/indent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//Paragraph/words"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Image">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Image/height"/>
@@ -48,15 +37,8 @@
     <genClasses ecoreClass="PIM.ecore#//Page">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//Page/elements"/>
     </genClasses>
-    <genClasses ecoreClass="PIM.ecore#//Text">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Text/value"/>
+    <genClasses ecoreClass="PIM.ecore#//Word">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Word/value"/>
     </genClasses>
-    <genClasses ecoreClass="PIM.ecore#//Hyperlink">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Hyperlink/url"/>
-    </genClasses>
-    <genClasses ecoreClass="PIM.ecore#//TextContainer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//TextContainer/words"/>
-    </genClasses>
-    <genClasses ecoreClass="PIM.ecore#//TextBox"/>
   </genPackages>
 </genmodel:GenModel>

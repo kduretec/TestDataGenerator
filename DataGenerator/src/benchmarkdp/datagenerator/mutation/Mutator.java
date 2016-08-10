@@ -32,7 +32,7 @@ public class Mutator {
 
 	private CodeGenerator codeGenerator;
 
-	private String basePath = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/";
+	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/";
 
 	public Mutator() {
 
@@ -47,27 +47,12 @@ public class Mutator {
 		m.put("xmi", new XMIResourceFactoryImpl());
 
 		mutations = new ArrayList<MutationOperatorInterface>();
-		mutations.add(new MutationOperator("AddPage", basePath + "AddPage.qvto"));
-
-		/*
-		 * MutationOperatorHolder mHolderTC = new
-		 * MutationOperatorHolder("AddTextContainer");
-		 * mHolderTC.addMutationOperator(new MutationOperator("AddParagraph",
-		 * basePath + "AddParagraph.qvto"), 0.85);
-		 * mHolderTC.addMutationOperator(new MutationOperator("AddTextBox",
-		 * basePath + "AddTextBox.qvto"), 0.15); mutations.add(mHolderTC);
-		 */
-
-		mutations.add(new MutationOperator("AddParagraph", basePath + "AddParagraph.qvto"));
-		mutations.add(new MutationOperator("AddTable", basePath + "AddTable.qvto"));
-
-		MutationOperatorHolder mHolder = new MutationOperatorHolder("AddText");
-		mHolder.addMutationOperator(new MutationOperator("AddWord", basePath + "AddWord.qvto"), 0.99);
-		mHolder.addMutationOperator(new MutationOperator("AddHyperLink", basePath + "AddHyperLink.qvto"), 0.01);
-		mutations.add(mHolder);
-		mutations.add(new MutationOperator("ChangeColumnNumber", basePath + "ChangeColumnNumber.qvto"));
-		mutations.add(new MutationOperator("AddTextBox", basePath + "AddTextBox.qvto"));
-
+		
+		mutations.add(new MutationOperator("AddPage", basePathPIMTransform + "AddPage.qvto"));
+		mutations.add(new MutationOperator("AddParagraph", basePathPIMTransform + "AddParagraph.qvto"));
+		mutations.add(new MutationOperator("AddTable", basePathPIMTransform + "AddTable.qvto"));
+		mutations.add(new MutationOperator("AddWord", basePathPIMTransform + "AddWord.qvto"));
+		
 		docMut = new ArrayList<DocumentMutator>();
 
 		evaluators = new ArrayList<OCLEvaluator>();
@@ -98,15 +83,10 @@ public class Mutator {
 
 			for (int i = 0; i < n; i++) {
 				DocumentMutator dm = new DocumentMutator(
-						new DocumentHolder("Document" + cnt, "PIMs/Document.xmi", formats[f], formatCodes[f]));
+						new DocumentHolder("Document" + cnt, "PIMs/Document.xmi"));
 				cnt++;
 				boolean control = false;
 				for (int j = 0; j < m; j++) {
-
-					if (j > 0 && control == false) {
-						dm.addMutation(mutations.get(5), 1);
-						control = true;
-					}
 					dm.addMutation(mutations.get(j), featureDist[i][j]);
 				}
 				dm.addMutation(mutations.get(4), 1);

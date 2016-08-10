@@ -1,8 +1,8 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM.util;
+package PSMDoc.util;
 
-import benchmarkdp.datagenerator.model.PIM.*;
+import PSMDoc.*;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see benchmarkdp.datagenerator.model.PIM.PIMPackage
+ * @see PSMDoc.PSMDocPackage
  * @generated
  */
-public class PIMSwitch<T> extends Switch<T> {
+public class PSMDocSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static PIMPackage modelPackage;
+	protected static PSMDocPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -37,9 +37,9 @@ public class PIMSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PIMSwitch() {
+	public PSMDocSwitch() {
 		if (modelPackage == null) {
-			modelPackage = PIMPackage.eINSTANCE;
+			modelPackage = PSMDocPackage.eINSTANCE;
 		}
 	}
 
@@ -66,60 +66,90 @@ public class PIMSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case PIMPackage.DOCUMENT: {
+			case PSMDocPackage.DOCUMENT: {
 				Document document = (Document)theEObject;
 				T result = caseDocument(document);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PIMPackage.ELEMENT: {
+			case PSMDocPackage.PAGE: {
+				Page page = (Page)theEObject;
+				T result = casePage(page);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocPackage.ELEMENT: {
 				Element element = (Element)theEObject;
 				T result = caseElement(element);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PIMPackage.TABLE: {
+			case PSMDocPackage.TEXT_CONTAINER: {
+				TextContainer textContainer = (TextContainer)theEObject;
+				T result = caseTextContainer(textContainer);
+				if (result == null) result = caseElement(textContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocPackage.TEXT: {
+				Text text = (Text)theEObject;
+				T result = caseText(text);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocPackage.TABLE: {
 				Table table = (Table)theEObject;
 				T result = caseTable(table);
 				if (result == null) result = caseElement(table);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PIMPackage.PARAGRAPH: {
-				Paragraph paragraph = (Paragraph)theEObject;
-				T result = caseParagraph(paragraph);
-				if (result == null) result = caseElement(paragraph);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PIMPackage.IMAGE: {
+			case PSMDocPackage.IMAGE: {
 				Image image = (Image)theEObject;
 				T result = caseImage(image);
 				if (result == null) result = caseElement(image);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PIMPackage.ROW: {
+			case PSMDocPackage.TEXT_BOX: {
+				TextBox textBox = (TextBox)theEObject;
+				T result = caseTextBox(textBox);
+				if (result == null) result = caseTextContainer(textBox);
+				if (result == null) result = caseElement(textBox);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocPackage.PARAGRAPH: {
+				Paragraph paragraph = (Paragraph)theEObject;
+				T result = caseParagraph(paragraph);
+				if (result == null) result = caseTextContainer(paragraph);
+				if (result == null) result = caseElement(paragraph);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocPackage.SIMPLE_TEXT: {
+				SimpleText simpleText = (SimpleText)theEObject;
+				T result = caseSimpleText(simpleText);
+				if (result == null) result = caseText(simpleText);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocPackage.HYPER_LINK: {
+				HyperLink hyperLink = (HyperLink)theEObject;
+				T result = caseHyperLink(hyperLink);
+				if (result == null) result = caseText(hyperLink);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocPackage.ROW: {
 				Row row = (Row)theEObject;
 				T result = caseRow(row);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PIMPackage.CELL: {
+			case PSMDocPackage.CELL: {
 				Cell cell = (Cell)theEObject;
 				T result = caseCell(cell);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PIMPackage.PAGE: {
-				Page page = (Page)theEObject;
-				T result = casePage(page);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case PIMPackage.WORD: {
-				Word word = (Word)theEObject;
-				T result = caseWord(word);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -143,6 +173,21 @@ public class PIMSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Page</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Page</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePage(Page object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -158,17 +203,32 @@ public class PIMSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Word</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Text Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Word</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Text Container</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseWord(Word object) {
+	public T caseTextContainer(TextContainer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Text</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Text</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseText(Text object) {
 		return null;
 	}
 
@@ -188,6 +248,36 @@ public class PIMSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Image</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Image</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImage(Image object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Text Box</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Text Box</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTextBox(TextBox object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Paragraph</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -203,17 +293,32 @@ public class PIMSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Image</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Simple Text</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Image</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Simple Text</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImage(Image object) {
+	public T caseSimpleText(SimpleText object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Hyper Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Hyper Link</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseHyperLink(HyperLink object) {
 		return null;
 	}
 
@@ -248,21 +353,6 @@ public class PIMSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Page</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Page</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePage(Page object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -278,4 +368,4 @@ public class PIMSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //PIMSwitch
+} //PSMDocSwitch

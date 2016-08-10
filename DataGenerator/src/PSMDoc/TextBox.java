@@ -1,6 +1,6 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM;
+package PSMDoc;
 
 
 /**
@@ -9,7 +9,7 @@ package benchmarkdp.datagenerator.model.PIM;
  * <!-- end-user-doc -->
  *
  *
- * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getTextBox()
+ * @see PSMDoc.PSMDocPackage#getTextBox()
  * @model
  * @generated
  */

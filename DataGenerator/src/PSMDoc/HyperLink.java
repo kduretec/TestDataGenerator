@@ -1,25 +1,25 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM;
+package PSMDoc;
 
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Hyperlink</b></em>'.
+ * A representation of the model object '<em><b>Hyper Link</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Hyperlink#getUrl <em>Url</em>}</li>
+ *   <li>{@link PSMDoc.HyperLink#getUrl <em>Url</em>}</li>
  * </ul>
  *
- * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getHyperlink()
- * @model extendedMetaData="name='HyperLink'"
+ * @see PSMDoc.PSMDocPackage#getHyperLink()
+ * @model
  * @generated
  */
-public interface Hyperlink extends Text {
+public interface HyperLink extends Text {
 	/**
 	 * Returns the value of the '<em><b>Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -30,14 +30,14 @@ public interface Hyperlink extends Text {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Url</em>' attribute.
 	 * @see #setUrl(String)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getHyperlink_Url()
+	 * @see PSMDoc.PSMDocPackage#getHyperLink_Url()
 	 * @model
 	 * @generated
 	 */
 	String getUrl();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Hyperlink#getUrl <em>Url</em>}' attribute.
+	 * Sets the value of the '{@link PSMDoc.HyperLink#getUrl <em>Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Url</em>' attribute.
@@ -46,4 +46,4 @@ public interface Hyperlink extends Text {
 	 */
 	void setUrl(String value);
 
-} // Hyperlink
+} // HyperLink

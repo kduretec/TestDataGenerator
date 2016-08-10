@@ -67,6 +67,10 @@ public class UtilitiesLibrary {
 		return r.nextInt(num) + 1;
 	}
 	
+	public static double getRandomReal() {
+		return r.nextDouble();
+	}
+	
 	public static String getRandomWord() {
 		if (words==null) {
 			try {

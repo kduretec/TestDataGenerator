@@ -1,9 +1,9 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM.impl;
+package PSMDoc.impl;
 
-import benchmarkdp.datagenerator.model.PIM.PIMPackage;
-import benchmarkdp.datagenerator.model.PIM.TextBox;
+import PSMDoc.PSMDocPackage;
+import PSMDoc.TextBox;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -31,7 +31,7 @@ public class TextBoxImpl extends TextContainerImpl implements TextBox {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PIMPackage.Literals.TEXT_BOX;
+		return PSMDocPackage.Literals.TEXT_BOX;
 	}
 
 } //TextBoxImpl

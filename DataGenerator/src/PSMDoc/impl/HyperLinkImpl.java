@@ -1,9 +1,9 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM.impl;
+package PSMDoc.impl;
 
-import benchmarkdp.datagenerator.model.PIM.Hyperlink;
-import benchmarkdp.datagenerator.model.PIM.PIMPackage;
+import PSMDoc.HyperLink;
+import PSMDoc.PSMDocPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -13,18 +13,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Hyperlink</b></em>'.
+ * An implementation of the model object '<em><b>Hyper Link</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.HyperlinkImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link PSMDoc.impl.HyperLinkImpl#getUrl <em>Url</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class HyperlinkImpl extends TextImpl implements Hyperlink {
+public class HyperLinkImpl extends TextImpl implements HyperLink {
 	/**
 	 * The default value of the '{@link #getUrl() <em>Url</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,7 +50,7 @@ public class HyperlinkImpl extends TextImpl implements Hyperlink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected HyperlinkImpl() {
+	protected HyperLinkImpl() {
 		super();
 	}
 
@@ -61,7 +61,7 @@ public class HyperlinkImpl extends TextImpl implements Hyperlink {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PIMPackage.Literals.HYPERLINK;
+		return PSMDocPackage.Literals.HYPER_LINK;
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class HyperlinkImpl extends TextImpl implements Hyperlink {
 		String oldUrl = url;
 		url = newUrl;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.HYPERLINK__URL, oldUrl, url));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocPackage.HYPER_LINK__URL, oldUrl, url));
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class HyperlinkImpl extends TextImpl implements Hyperlink {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PIMPackage.HYPERLINK__URL:
+			case PSMDocPackage.HYPER_LINK__URL:
 				return getUrl();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -107,7 +107,7 @@ public class HyperlinkImpl extends TextImpl implements Hyperlink {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PIMPackage.HYPERLINK__URL:
+			case PSMDocPackage.HYPER_LINK__URL:
 				setUrl((String)newValue);
 				return;
 		}
@@ -122,7 +122,7 @@ public class HyperlinkImpl extends TextImpl implements Hyperlink {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PIMPackage.HYPERLINK__URL:
+			case PSMDocPackage.HYPER_LINK__URL:
 				setUrl(URL_EDEFAULT);
 				return;
 		}
@@ -137,7 +137,7 @@ public class HyperlinkImpl extends TextImpl implements Hyperlink {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PIMPackage.HYPERLINK__URL:
+			case PSMDocPackage.HYPER_LINK__URL:
 				return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 		}
 		return super.eIsSet(featureID);
@@ -159,4 +159,4 @@ public class HyperlinkImpl extends TextImpl implements Hyperlink {
 		return result.toString();
 	}
 
-} //HyperlinkImpl
+} //HyperLinkImpl

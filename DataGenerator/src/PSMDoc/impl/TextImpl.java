@@ -1,9 +1,9 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PIM.impl;
+package PSMDoc.impl;
 
-import benchmarkdp.datagenerator.model.PIM.PIMPackage;
-import benchmarkdp.datagenerator.model.PIM.Text;
+import PSMDoc.PSMDocPackage;
+import PSMDoc.Text;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.TextImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link PSMDoc.impl.TextImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -62,7 +62,7 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PIMPackage.Literals.TEXT;
+		return PSMDocPackage.Literals.TEXT;
 	}
 
 	/**
@@ -83,7 +83,7 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.TEXT__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocPackage.TEXT__VALUE, oldValue, value));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PIMPackage.TEXT__VALUE:
+			case PSMDocPackage.TEXT__VALUE:
 				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -108,7 +108,7 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PIMPackage.TEXT__VALUE:
+			case PSMDocPackage.TEXT__VALUE:
 				setValue((String)newValue);
 				return;
 		}
@@ -123,7 +123,7 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PIMPackage.TEXT__VALUE:
+			case PSMDocPackage.TEXT__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
 		}
@@ -138,7 +138,7 @@ public class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PIMPackage.TEXT__VALUE:
+			case PSMDocPackage.TEXT__VALUE:
 				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);

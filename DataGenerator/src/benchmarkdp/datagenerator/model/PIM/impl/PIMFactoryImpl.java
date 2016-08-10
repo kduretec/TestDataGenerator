@@ -58,17 +58,13 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 		switch (eClass.getClassifierID()) {
 			case PIMPackage.DOCUMENT: return createDocument();
 			case PIMPackage.ELEMENT: return createElement();
-			case PIMPackage.WORD: return createWord();
 			case PIMPackage.TABLE: return createTable();
 			case PIMPackage.PARAGRAPH: return createParagraph();
 			case PIMPackage.IMAGE: return createImage();
 			case PIMPackage.ROW: return createRow();
 			case PIMPackage.CELL: return createCell();
 			case PIMPackage.PAGE: return createPage();
-			case PIMPackage.TEXT: return createText();
-			case PIMPackage.HYPERLINK: return createHyperlink();
-			case PIMPackage.TEXT_CONTAINER: return createTextContainer();
-			case PIMPackage.TEXT_BOX: return createTextBox();
+			case PIMPackage.WORD: return createWord();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -92,16 +88,6 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 	public Element createElement() {
 		ElementImpl element = new ElementImpl();
 		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Word createWord() {
-		WordImpl word = new WordImpl();
-		return word;
 	}
 
 	/**
@@ -169,39 +155,9 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Text createText() {
-		TextImpl text = new TextImpl();
-		return text;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Hyperlink createHyperlink() {
-		HyperlinkImpl hyperlink = new HyperlinkImpl();
-		return hyperlink;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TextContainer createTextContainer() {
-		TextContainerImpl textContainer = new TextContainerImpl();
-		return textContainer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TextBox createTextBox() {
-		TextBoxImpl textBox = new TextBoxImpl();
-		return textBox;
+	public Word createWord() {
+		WordImpl word = new WordImpl();
+		return word;
 	}
 
 	/**

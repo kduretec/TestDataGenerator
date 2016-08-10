@@ -5,7 +5,6 @@ package benchmarkdp.datagenerator.model.PIM.impl;
 import benchmarkdp.datagenerator.model.PIM.Cell;
 import benchmarkdp.datagenerator.model.PIM.Document;
 import benchmarkdp.datagenerator.model.PIM.Element;
-import benchmarkdp.datagenerator.model.PIM.Hyperlink;
 import benchmarkdp.datagenerator.model.PIM.Image;
 import benchmarkdp.datagenerator.model.PIM.PIMFactory;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
@@ -13,9 +12,6 @@ import benchmarkdp.datagenerator.model.PIM.Page;
 import benchmarkdp.datagenerator.model.PIM.Paragraph;
 import benchmarkdp.datagenerator.model.PIM.Row;
 import benchmarkdp.datagenerator.model.PIM.Table;
-import benchmarkdp.datagenerator.model.PIM.Text;
-import benchmarkdp.datagenerator.model.PIM.TextBox;
-import benchmarkdp.datagenerator.model.PIM.TextContainer;
 import benchmarkdp.datagenerator.model.PIM.Word;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -45,13 +41,6 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * @generated
 	 */
 	private EClass elementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass wordEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,28 +89,7 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass textEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass hyperlinkEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass textContainerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass textBoxEClass = null;
+	private EClass wordEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -225,33 +193,6 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDocument_NumColum() {
-		return (EAttribute)documentEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDocument_Format() {
-		return (EAttribute)documentEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDocument_FormatCode() {
-		return (EAttribute)documentEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getElement() {
 		return elementEClass;
 	}
@@ -263,51 +204,6 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 */
 	public EAttribute getElement_Alignment() {
 		return (EAttribute)elementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getWord() {
-		return wordEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getWord_Size() {
-		return (EAttribute)wordEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getWord_Color() {
-		return (EAttribute)wordEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getWord_Background() {
-		return (EAttribute)wordEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getWord_FontFamily() {
-		return (EAttribute)wordEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -360,26 +256,8 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParagraph_ParagraphSpacing() {
-		return (EAttribute)paragraphEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getParagraph_LineSpacing() {
-		return (EAttribute)paragraphEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getParagraph_Indent() {
-		return (EAttribute)paragraphEClass.getEStructuralFeatures().get(2);
+	public EReference getParagraph_Words() {
+		return (EReference)paragraphEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -477,8 +355,8 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getText() {
-		return textEClass;
+	public EClass getWord() {
+		return wordEClass;
 	}
 
 	/**
@@ -486,53 +364,8 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getText_Value() {
-		return (EAttribute)textEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getHyperlink() {
-		return hyperlinkEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getHyperlink_Url() {
-		return (EAttribute)hyperlinkEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTextContainer() {
-		return textContainerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getTextContainer_Words() {
-		return (EReference)textContainerEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getTextBox() {
-		return textBoxEClass;
+	public EAttribute getWord_Value() {
+		return (EAttribute)wordEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -567,18 +400,9 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		createEAttribute(documentEClass, DOCUMENT__NAME);
 		createEAttribute(documentEClass, DOCUMENT__AUTHOR);
 		createEReference(documentEClass, DOCUMENT__PAGES);
-		createEAttribute(documentEClass, DOCUMENT__NUM_COLUM);
-		createEAttribute(documentEClass, DOCUMENT__FORMAT);
-		createEAttribute(documentEClass, DOCUMENT__FORMAT_CODE);
 
 		elementEClass = createEClass(ELEMENT);
 		createEAttribute(elementEClass, ELEMENT__ALIGNMENT);
-
-		wordEClass = createEClass(WORD);
-		createEAttribute(wordEClass, WORD__SIZE);
-		createEAttribute(wordEClass, WORD__COLOR);
-		createEAttribute(wordEClass, WORD__BACKGROUND);
-		createEAttribute(wordEClass, WORD__FONT_FAMILY);
 
 		tableEClass = createEClass(TABLE);
 		createEAttribute(tableEClass, TABLE__NUM_ROWS);
@@ -586,9 +410,7 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		createEReference(tableEClass, TABLE__ROW);
 
 		paragraphEClass = createEClass(PARAGRAPH);
-		createEAttribute(paragraphEClass, PARAGRAPH__PARAGRAPH_SPACING);
-		createEAttribute(paragraphEClass, PARAGRAPH__LINE_SPACING);
-		createEAttribute(paragraphEClass, PARAGRAPH__INDENT);
+		createEReference(paragraphEClass, PARAGRAPH__WORDS);
 
 		imageEClass = createEClass(IMAGE);
 		createEAttribute(imageEClass, IMAGE__HEIGHT);
@@ -604,16 +426,8 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		pageEClass = createEClass(PAGE);
 		createEReference(pageEClass, PAGE__ELEMENTS);
 
-		textEClass = createEClass(TEXT);
-		createEAttribute(textEClass, TEXT__VALUE);
-
-		hyperlinkEClass = createEClass(HYPERLINK);
-		createEAttribute(hyperlinkEClass, HYPERLINK__URL);
-
-		textContainerEClass = createEClass(TEXT_CONTAINER);
-		createEReference(textContainerEClass, TEXT_CONTAINER__WORDS);
-
-		textBoxEClass = createEClass(TEXT_BOX);
+		wordEClass = createEClass(WORD);
+		createEAttribute(wordEClass, WORD__VALUE);
 	}
 
 	/**
@@ -644,31 +458,18 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		wordEClass.getESuperTypes().add(this.getText());
 		tableEClass.getESuperTypes().add(this.getElement());
-		paragraphEClass.getESuperTypes().add(this.getTextContainer());
+		paragraphEClass.getESuperTypes().add(this.getElement());
 		imageEClass.getESuperTypes().add(this.getElement());
-		hyperlinkEClass.getESuperTypes().add(this.getText());
-		textContainerEClass.getESuperTypes().add(this.getElement());
-		textBoxEClass.getESuperTypes().add(this.getTextContainer());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDocument_Name(), ecorePackage.getEString(), "name", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_Author(), ecorePackage.getEString(), "author", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Pages(), this.getPage(), null, "pages", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDocument_NumColum(), ecorePackage.getEInt(), "numColum", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDocument_Format(), ecorePackage.getEString(), "format", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDocument_FormatCode(), ecorePackage.getEString(), "formatCode", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElement_Alignment(), ecorePackage.getEString(), "alignment", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(wordEClass, Word.class, "Word", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getWord_Size(), ecorePackage.getEInt(), "size", null, 0, 1, Word.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWord_Color(), ecorePackage.getEString(), "color", null, 0, 1, Word.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWord_Background(), ecorePackage.getEString(), "background", null, 0, 1, Word.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWord_FontFamily(), ecorePackage.getEString(), "fontFamily", null, 0, 1, Word.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTable_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -676,9 +477,7 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		initEReference(getTable_Row(), this.getRow(), null, "row", null, 1, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(paragraphEClass, Paragraph.class, "Paragraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getParagraph_ParagraphSpacing(), ecorePackage.getEDouble(), "paragraphSpacing", null, 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getParagraph_LineSpacing(), ecorePackage.getEDouble(), "lineSpacing", null, 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getParagraph_Indent(), ecorePackage.getEDouble(), "indent", null, 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParagraph_Words(), this.getWord(), null, "words", null, 1, -1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getImage_Height(), ecorePackage.getEInt(), "height", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -694,16 +493,8 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		initEClass(pageEClass, Page.class, "Page", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPage_Elements(), this.getElement(), null, "elements", null, 0, -1, Page.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getText_Value(), ecorePackage.getEString(), "value", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(hyperlinkEClass, Hyperlink.class, "Hyperlink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getHyperlink_Url(), ecorePackage.getEString(), "url", null, 0, 1, Hyperlink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(textContainerEClass, TextContainer.class, "TextContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTextContainer_Words(), this.getText(), null, "words", null, 1, -1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(textBoxEClass, TextBox.class, "TextBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(wordEClass, Word.class, "Word", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWord_Value(), ecorePackage.getEString(), "value", null, 0, 1, Word.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -722,16 +513,10 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	protected void createExtendedMetaDataAnnotations() {
 		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";	
 		addAnnotation
-		  (textEClass, 
+		  (wordEClass, 
 		   source, 
 		   new String[] {
 			 "name", "Text"
-		   });	
-		addAnnotation
-		  (hyperlinkEClass, 
-		   source, 
-		   new String[] {
-			 "name", "HyperLink"
 		   });
 	}
 

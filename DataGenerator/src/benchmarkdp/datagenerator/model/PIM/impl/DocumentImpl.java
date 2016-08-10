@@ -33,9 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getPages <em>Pages</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getNumColum <em>Num Colum</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getFormat <em>Format</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getFormatCode <em>Format Code</em>}</li>
  * </ul>
  *
  * @generated
@@ -90,66 +87,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @ordered
 	 */
 	protected EList<Page> pages;
-
-	/**
-	 * The default value of the '{@link #getNumColum() <em>Num Colum</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNumColum()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int NUM_COLUM_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getNumColum() <em>Num Colum</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNumColum()
-	 * @generated
-	 * @ordered
-	 */
-	protected int numColum = NUM_COLUM_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFormat()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FORMAT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFormat()
-	 * @generated
-	 * @ordered
-	 */
-	protected String format = FORMAT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getFormatCode() <em>Format Code</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFormatCode()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FORMAT_CODE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFormatCode() <em>Format Code</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFormatCode()
-	 * @generated
-	 * @ordered
-	 */
-	protected String formatCode = FORMAT_CODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -229,69 +166,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumColum() {
-		return numColum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNumColum(int newNumColum) {
-		int oldNumColum = numColum;
-		numColum = newNumColum;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.DOCUMENT__NUM_COLUM, oldNumColum, numColum));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFormat() {
-		return format;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFormat(String newFormat) {
-		String oldFormat = format;
-		format = newFormat;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.DOCUMENT__FORMAT, oldFormat, format));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFormatCode() {
-		return formatCode;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFormatCode(String newFormatCode) {
-		String oldFormatCode = formatCode;
-		formatCode = newFormatCode;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.DOCUMENT__FORMAT_CODE, oldFormatCode, formatCode));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -315,12 +189,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getAuthor();
 			case PIMPackage.DOCUMENT__PAGES:
 				return getPages();
-			case PIMPackage.DOCUMENT__NUM_COLUM:
-				return getNumColum();
-			case PIMPackage.DOCUMENT__FORMAT:
-				return getFormat();
-			case PIMPackage.DOCUMENT__FORMAT_CODE:
-				return getFormatCode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -344,15 +212,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				getPages().clear();
 				getPages().addAll((Collection<? extends Page>)newValue);
 				return;
-			case PIMPackage.DOCUMENT__NUM_COLUM:
-				setNumColum((Integer)newValue);
-				return;
-			case PIMPackage.DOCUMENT__FORMAT:
-				setFormat((String)newValue);
-				return;
-			case PIMPackage.DOCUMENT__FORMAT_CODE:
-				setFormatCode((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -374,15 +233,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PIMPackage.DOCUMENT__PAGES:
 				getPages().clear();
 				return;
-			case PIMPackage.DOCUMENT__NUM_COLUM:
-				setNumColum(NUM_COLUM_EDEFAULT);
-				return;
-			case PIMPackage.DOCUMENT__FORMAT:
-				setFormat(FORMAT_EDEFAULT);
-				return;
-			case PIMPackage.DOCUMENT__FORMAT_CODE:
-				setFormatCode(FORMAT_CODE_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -401,12 +251,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
 			case PIMPackage.DOCUMENT__PAGES:
 				return pages != null && !pages.isEmpty();
-			case PIMPackage.DOCUMENT__NUM_COLUM:
-				return numColum != NUM_COLUM_EDEFAULT;
-			case PIMPackage.DOCUMENT__FORMAT:
-				return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT.equals(format);
-			case PIMPackage.DOCUMENT__FORMAT_CODE:
-				return FORMAT_CODE_EDEFAULT == null ? formatCode != null : !FORMAT_CODE_EDEFAULT.equals(formatCode);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -425,12 +269,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		result.append(name);
 		result.append(", author: ");
 		result.append(author);
-		result.append(", numColum: ");
-		result.append(numColum);
-		result.append(", format: ");
-		result.append(format);
-		result.append(", formatCode: ");
-		result.append(formatCode);
 		result.append(')');
 		return result.toString();
 	}
