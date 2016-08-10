@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<benchmarkdp.documentgenerator.PIM:Document
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:benchmarkdp.documentgenerator.PIM="http://benchmarkdp.documentgenerator.PIM"
-    xsi:schemaLocation="http://benchmarkdp.documentgenerator.PIM ../model/PIM.ecore">
-
-</benchmarkdp.documentgenerator.PIM:Document>
+<benchmarkdp.datagenerator.model.PIM:Document xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:benchmarkdp.datagenerator.model.PIM="http://benchmarkdp.datagenerator.model.PIM"
+    xsi:schemaLocation="http://benchmarkdp.datagenerator.model.PIM ../model/PIM.ecore"/>
