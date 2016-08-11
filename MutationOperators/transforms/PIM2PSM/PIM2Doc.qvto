@@ -39,12 +39,25 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 	paragraphSpacing := 1.0;
 	lineSpacing := 1.0;
 	indent := 1.0;
-	var i:Integer := 0;
-	while (i<self.words->asSequence()->size()) {
+	var i:Integer := 1;
+	var size:Integer := self.words->asSequence()->size(); 
+	
+	while (i <= size) {
+	 var pos:Integer := getRandomBetween(i,size);
+	 var text := self.words->asSequence()->subSequence(i,pos);
+	 i := pos + 1;
+	 
+	 var sT := object SimpleText {
+	 	size := 10;
+	 	color := Color::BLACK;
+	 	value := turnSeqToString(text.value); 
+	 };
+	 
+	 words += sT;
 	 
 	}
 	
-	}
+}
 
 mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
 	

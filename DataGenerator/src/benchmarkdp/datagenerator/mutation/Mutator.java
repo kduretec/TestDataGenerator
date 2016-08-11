@@ -95,12 +95,17 @@ public class Mutator {
 
 		}
 
+		
 		for (int i = 0; i < docMut.size(); i++) {
 			DocumentMutator mutator = docMut.get(i);
+			// PIM mutations 
 			mutator.mutate();
+			// ground truth extraction 
 			for (int j = 0; j < evaluators.size(); j++) {
 				evaluators.get(j).evaluateDocument(mutator.getDocumentHolder());
 			}
+			// PIM2PSM translation 
+			
 			codeGenerator.generateCode(mutator.getDocumentHolder());
 			mutator.getDocumentHolder().saveToFile(
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");

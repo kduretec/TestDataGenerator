@@ -67,6 +67,10 @@ public class UtilitiesLibrary {
 		return r.nextInt(num) + 1;
 	}
 	
+	public static int getRandomBetween(int a, int b){
+		return a + r.nextInt(b - a + 1);
+	}
+	
 	public static double getRandomReal() {
 		return r.nextDouble();
 	}
@@ -91,5 +95,14 @@ public class UtilitiesLibrary {
 		}
 		String w = words.get(getRandom(words.size())-1);
 		return w;
+	}
+	
+	
+	public static String turnSeqToString(List<String> elements) {
+		StringBuilder sb = new StringBuilder("");
+		for (String s:elements) {
+			sb.append(s);
+		}
+		return sb.toString();
 	}
 }
