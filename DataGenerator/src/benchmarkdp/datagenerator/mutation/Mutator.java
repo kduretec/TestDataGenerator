@@ -48,23 +48,23 @@ public class Mutator {
 
 		mutations = new ArrayList<MutationOperatorInterface>();
 
-		mutations.add(new MutationOperator("AddPage", "PIM", "PSM", basePathPIMTransform + "AddPage.qvto"));
-		mutations.add(new MutationOperator("AddParagraph", "PIM", "PSM", basePathPIMTransform + "AddParagraph.qvto"));
-		mutations.add(new MutationOperator("AddTable", "PIM", "PSM", basePathPIMTransform + "AddTable.qvto"));
-		mutations.add(new MutationOperator("AddWord", "PIM", "PSM", basePathPIMTransform + "AddWord.qvto"));
+		mutations.add(new MutationOperator("AddPage", ModelType.PIM, ModelType.PSMDoc, basePathPIMTransform + "AddPage.qvto"));
+		mutations.add(new MutationOperator("AddParagraph", ModelType.PIM, ModelType.PSMDoc, basePathPIMTransform + "AddParagraph.qvto"));
+		mutations.add(new MutationOperator("AddTable", ModelType.PIM, ModelType.PSMDoc, basePathPIMTransform + "AddTable.qvto"));
+		mutations.add(new MutationOperator("AddWord", ModelType.PIM, ModelType.PSMDoc, basePathPIMTransform + "AddWord.qvto"));
 
 		docMut = new ArrayList<DocumentMutator>();
 
 		evaluators = new ArrayList<OCLEvaluator>();
 
-		evaluators.add(new OCLEvaluator("pagecount", "PIM", "self.pages->size()"));
-		evaluators.add(new OCLEvaluator("tablecount", "PIM", "self.pages.elements->selectByKind(Table)->size()"));
-		evaluators.add(new OCLEvaluator("paragraphcount", "PIM", "self.pages.elements->selectByKind(Paragraph)->size()"));
-		evaluators.add(new OCLEvaluator("wordcount", "PIM", "self.pages.elements->selectByKind(TextContainer).words->size()"));
-		evaluators.add(new OCLEvaluator("words", "PIM", "self.pages.elements->selectByKind(TextContainer).words.value"));
-		evaluators.add(new OCLEvaluator("words-textbox", "PIM", "self.pages.elements->selectByKind(TextBox).words.value"));
-		evaluators.add(new OCLEvaluator("format", "PIM", "self.format"));
-		evaluators.add(new OCLEvaluator("columns", "PIM", "self.numColum"));
+		evaluators.add(new OCLEvaluator("pagecount", ModelType.PIM, "self.pages->size()"));
+		evaluators.add(new OCLEvaluator("tablecount", ModelType.PIM, "self.pages.elements->selectByKind(Table)->size()"));
+		evaluators.add(new OCLEvaluator("paragraphcount", ModelType.PIM, "self.pages.elements->selectByKind(Paragraph)->size()"));
+		evaluators.add(new OCLEvaluator("wordcount", ModelType.PIM, "self.pages.elements->selectByKind(TextContainer).words->size()"));
+		evaluators.add(new OCLEvaluator("words", ModelType.PIM, "self.pages.elements->selectByKind(TextContainer).words.value"));
+		evaluators.add(new OCLEvaluator("words-textbox", ModelType.PIM, "self.pages.elements->selectByKind(TextBox).words.value"));
+		evaluators.add(new OCLEvaluator("format", ModelType.PIM, "self.format"));
+		evaluators.add(new OCLEvaluator("columns", ModelType.PIM, "self.numColum"));
 		codeGenerator = new CodeGenerator();
 
 	}
@@ -105,11 +105,11 @@ public class Mutator {
 			// PIM2PSM translation
 
 			codeGenerator.generateCode(mutator.getDocumentHolder());
-			mutator.getDocumentHolder().saveToFile("PIM",
+			mutator.getDocumentHolder().saveToFile(ModelType.PIM,
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");
 			mutator.getDocumentHolder().exportGroundTruth(
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/");
-			mutator.getDocumentHolder().saveGeneratedCode("PSM",
+			mutator.getDocumentHolder().saveGeneratedCode(ModelType.PSMDoc,
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
 
 			System.out.println("Done");

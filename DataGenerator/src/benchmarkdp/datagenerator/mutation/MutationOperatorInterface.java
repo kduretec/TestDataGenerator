@@ -8,7 +8,7 @@ public interface MutationOperatorInterface {
 	
 	public String getName();
 	
-	public String getSourceModel();
+	public ModelType getSourceModel();
 	
-	public String getDestinationModel();
+	public ModelType getDestinationModel();
 }

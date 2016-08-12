@@ -17,14 +17,14 @@ import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 public class OCLEvaluator {
 
 	private String groundTruthKey; 
-	private String model;
+	private ModelType model;
 	private String expression;
 
 	private OCLExpression<EClassifier> query;
 
 	private Query eval;
 
-	public OCLEvaluator(String key, String mo, String exp) {
+	public OCLEvaluator(String key, ModelType mo, String exp) {
 		groundTruthKey = key;
 		model = mo;
 		expression = exp;

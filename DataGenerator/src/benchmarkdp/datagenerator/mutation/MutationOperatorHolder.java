@@ -9,13 +9,13 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 public class MutationOperatorHolder implements MutationOperatorInterface{
 
 	private String name;
-	private String source; 
-	private String destination;
+	private ModelType source; 
+	private ModelType destination;
 	
 	List<MutationOperator> operators;
 	List<Double> percentages;
 	
-	public MutationOperatorHolder(String n, String so, String des) {
+	public MutationOperatorHolder(String n, ModelType so, ModelType des) {
 		name = n;
 		source = so;
 		destination = des;
@@ -51,12 +51,12 @@ public class MutationOperatorHolder implements MutationOperatorInterface{
 	}
 
 	@Override
-	public String getSourceModel() {
+	public ModelType getSourceModel() {
 		return source;
 	}
 
 	@Override
-	public String getDestinationModel() {
+	public ModelType getDestinationModel() {
 		return destination;
 	}
 

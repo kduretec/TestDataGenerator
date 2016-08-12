@@ -13,8 +13,8 @@ public class CodeGenerator {
 	}
 	
 	public void generateCode(DocumentHolder dH) {
-		Document d = (Document)dH.getDocumentObjects("PSM").get(0);
+		Document d = (Document)dH.getDocumentObjects(ModelType.PSMDoc).get(0);
 		String s = codeGenerator.compile(d);
-		dH.setGeneratedCode("PSM", s);
+		dH.setGeneratedCode(ModelType.PSMDoc, s);
 	}
 }

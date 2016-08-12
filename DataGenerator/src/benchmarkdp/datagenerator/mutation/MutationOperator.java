@@ -6,14 +6,14 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 public class MutationOperator implements MutationOperatorInterface {
 
 	private String name;
-	private String source;
-	private String destination;
+	private ModelType source;
+	private ModelType destination;
 	
 	private URI transformationURI;
 	
 	TransformationExecutor executor;
 	
-	public MutationOperator(String n, String s, String d, String link) {
+	public MutationOperator(String n, ModelType s, ModelType d, String link) {
 		name = n;
 		source = s;
 		destination = d;
@@ -29,11 +29,11 @@ public class MutationOperator implements MutationOperatorInterface {
 		return name;
 	}
 
-	public String getSourceModel() {
+	public ModelType getSourceModel() {
 		return source;
 	}
 
-	public String getDestinationModel() {
+	public ModelType getDestinationModel() {
 		return destination;
 	}
 	

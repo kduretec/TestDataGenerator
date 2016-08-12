@@ -45,13 +45,13 @@ public class DocumentMutator {
 		context.setLog(log);
 		for (int i = 0; i < mutations.size(); i++) {
 			MutationOperatorInterface m = mutations.get(i);
-			String sourceModel = m.getSourceModel();
-			String destinationModel = m.getDestinationModel();
+			ModelType sourceModel = m.getSourceModel();
+			ModelType destinationModel = m.getDestinationModel();
 			TransformationExecutor executor = m.getTransformationExecutor();
 			ModelExtent input = doc.getModelExtent(sourceModel);
 			ModelExtent output = new BasicModelExtent();
 			ExecutionDiagnostic result = executor.execute(context, input, output);
-			if (sourceModel.compareTo(destinationModel) == 0) {
+			if (sourceModel == destinationModel) {
 				output = input;
 			}
 			if (result.getSeverity() == Diagnostic.OK) {
