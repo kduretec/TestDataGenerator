@@ -29,7 +29,7 @@ public class DocumentMutator {
 	public DocumentHolder getDocumentHolder() {
 		return doc;
 	}
-	
+
 	public void addMutation(MutationOperatorInterface mut, int num) {
 		for (int i = 0; i < num; i++) {
 			mutations.add(mut);
@@ -45,13 +45,17 @@ public class DocumentMutator {
 		context.setLog(log);
 		for (int i = 0; i < mutations.size(); i++) {
 			MutationOperatorInterface m = mutations.get(i);
+			String sourceModel = m.getSourceModel();
+			String destinationModel = m.getDestinationModel();
 			TransformationExecutor executor = m.getTransformationExecutor();
-			ModelExtent input = doc.getModelExtent();
+			ModelExtent input = doc.getModelExtent(sourceModel);
 			ModelExtent output = new BasicModelExtent();
 			ExecutionDiagnostic result = executor.execute(context, input, output);
-			output = input;
+			if (sourceModel.compareTo(destinationModel) == 0) {
+				output = input;
+			}
 			if (result.getSeverity() == Diagnostic.OK) {
-				doc.setModelExtent(output);
+				doc.setModelExtent(destinationModel, output);
 			} else {
 				// turn the result diagnostic into status and send it to error
 				// log

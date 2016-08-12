@@ -47,24 +47,24 @@ public class Mutator {
 		m.put("xmi", new XMIResourceFactoryImpl());
 
 		mutations = new ArrayList<MutationOperatorInterface>();
-		
-		mutations.add(new MutationOperator("AddPage", basePathPIMTransform + "AddPage.qvto"));
-		mutations.add(new MutationOperator("AddParagraph", basePathPIMTransform + "AddParagraph.qvto"));
-		mutations.add(new MutationOperator("AddTable", basePathPIMTransform + "AddTable.qvto"));
-		mutations.add(new MutationOperator("AddWord", basePathPIMTransform + "AddWord.qvto"));
-		
+
+		mutations.add(new MutationOperator("AddPage", "PIM", "PSM", basePathPIMTransform + "AddPage.qvto"));
+		mutations.add(new MutationOperator("AddParagraph", "PIM", "PSM", basePathPIMTransform + "AddParagraph.qvto"));
+		mutations.add(new MutationOperator("AddTable", "PIM", "PSM", basePathPIMTransform + "AddTable.qvto"));
+		mutations.add(new MutationOperator("AddWord", "PIM", "PSM", basePathPIMTransform + "AddWord.qvto"));
+
 		docMut = new ArrayList<DocumentMutator>();
 
 		evaluators = new ArrayList<OCLEvaluator>();
 
-		evaluators.add(new OCLEvaluator("pagecount", "self.pages->size()"));
-		evaluators.add(new OCLEvaluator("tablecount", "self.pages.elements->selectByKind(Table)->size()"));
-		evaluators.add(new OCLEvaluator("paragraphcount", "self.pages.elements->selectByKind(Paragraph)->size()"));
-		evaluators.add(new OCLEvaluator("wordcount", "self.pages.elements->selectByKind(TextContainer).words->size()"));
-		evaluators.add(new OCLEvaluator("words", "self.pages.elements->selectByKind(TextContainer).words.value"));
-		evaluators.add(new OCLEvaluator("words-textbox", "self.pages.elements->selectByKind(TextBox).words.value"));
-		evaluators.add(new OCLEvaluator("format", "self.format"));
-		evaluators.add(new OCLEvaluator("columns", "self.numColum"));
+		evaluators.add(new OCLEvaluator("pagecount", "PIM", "self.pages->size()"));
+		evaluators.add(new OCLEvaluator("tablecount", "PIM", "self.pages.elements->selectByKind(Table)->size()"));
+		evaluators.add(new OCLEvaluator("paragraphcount", "PIM", "self.pages.elements->selectByKind(Paragraph)->size()"));
+		evaluators.add(new OCLEvaluator("wordcount", "PIM", "self.pages.elements->selectByKind(TextContainer).words->size()"));
+		evaluators.add(new OCLEvaluator("words", "PIM", "self.pages.elements->selectByKind(TextContainer).words.value"));
+		evaluators.add(new OCLEvaluator("words-textbox", "PIM", "self.pages.elements->selectByKind(TextBox).words.value"));
+		evaluators.add(new OCLEvaluator("format", "PIM", "self.format"));
+		evaluators.add(new OCLEvaluator("columns", "PIM", "self.numColum"));
 		codeGenerator = new CodeGenerator();
 
 	}
@@ -82,8 +82,7 @@ public class Mutator {
 		for (int f = 0; f < formats.length; f++) {
 
 			for (int i = 0; i < n; i++) {
-				DocumentMutator dm = new DocumentMutator(
-						new DocumentHolder("Document" + cnt, "PIMs/Document.xmi"));
+				DocumentMutator dm = new DocumentMutator(new DocumentHolder("Document" + cnt, "PIMs/Document.xmi"));
 				cnt++;
 				boolean control = false;
 				for (int j = 0; j < m; j++) {
@@ -95,23 +94,22 @@ public class Mutator {
 
 		}
 
-		
 		for (int i = 0; i < docMut.size(); i++) {
 			DocumentMutator mutator = docMut.get(i);
-			// PIM mutations 
+			// PIM mutations
 			mutator.mutate();
-			// ground truth extraction 
+			// ground truth extraction
 			for (int j = 0; j < evaluators.size(); j++) {
 				evaluators.get(j).evaluateDocument(mutator.getDocumentHolder());
 			}
-			// PIM2PSM translation 
-			
+			// PIM2PSM translation
+
 			codeGenerator.generateCode(mutator.getDocumentHolder());
-			mutator.getDocumentHolder().saveToFile(
+			mutator.getDocumentHolder().saveToFile("PIM",
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");
 			mutator.getDocumentHolder().exportGroundTruth(
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/");
-			mutator.getDocumentHolder().saveGeneratedCode(
+			mutator.getDocumentHolder().saveGeneratedCode("PSM",
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
 
 			System.out.println("Done");
@@ -135,7 +133,7 @@ public class Mutator {
 				line = br.readLine();
 				spl = line.split("\t");
 				for (int j = 0; j < m; j++) {
-					mat[i][j] = Integer.parseInt(spl[j+1]);
+					mat[i][j] = Integer.parseInt(spl[j + 1]);
 				}
 			}
 			return mat;

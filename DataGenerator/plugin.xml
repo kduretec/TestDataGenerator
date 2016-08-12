@@ -18,7 +18,7 @@
       <!-- @generated PSMDoc -->
       <package
             uri="http://benchmarkdp.datagenerator.model.PSMDoc"
-            class="PSMDoc.PSMDocPackage"
+            class="benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage"
             genModel="model/PSMDoc.genmodel"/>
    </extension>
 

@@ -17,14 +17,16 @@ import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 public class OCLEvaluator {
 
 	private String groundTruthKey; 
+	private String model;
 	private String expression;
 
 	private OCLExpression<EClassifier> query;
 
 	private Query eval;
 
-	public OCLEvaluator(String key, String exp) {
+	public OCLEvaluator(String key, String mo, String exp) {
 		groundTruthKey = key;
+		model = mo;
 		expression = exp;
 
 		OCL ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
@@ -42,7 +44,7 @@ public class OCLEvaluator {
 	}
 	
 	public void evaluateDocument(DocumentHolder dH) {
-		EList<EObject> objects = dH.getDocumentObjects();
+		EList<EObject> objects = dH.getDocumentObjects(model);
 		Document doc = (Document) objects.get(0);
 		
 		Object value = eval.evaluate(doc);

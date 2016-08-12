@@ -1,6 +1,6 @@
 package benchmarkdp.datagenerator.mutation;
 
-import benchmarkdp.datagenerator.model.PIM.Document;
+import benchmarkdp.datagenerator.model.PSMDoc.Document;
 
 public class CodeGenerator {
 
@@ -13,8 +13,8 @@ public class CodeGenerator {
 	}
 	
 	public void generateCode(DocumentHolder dH) {
-		Document d = (Document)dH.getDocumentObjects().get(0);
+		Document d = (Document)dH.getDocumentObjects("PSM").get(0);
 		String s = codeGenerator.compile(d);
-		dH.setGeneratedCode(s);
+		dH.setGeneratedCode("PSM", s);
 	}
 }

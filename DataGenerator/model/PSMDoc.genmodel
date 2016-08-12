@@ -5,7 +5,8 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>PSMDoc.ecore</foreignModel>
-  <genPackages prefix="PSMDoc" disposableProviderFactory="true" ecorePackage="PSMDoc.ecore#/">
+  <genPackages prefix="PSMDoc" basePackage="benchmarkdp.datagenerator.model" disposableProviderFactory="true"
+      ecorePackage="PSMDoc.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="PSMDoc.ecore#//FontFamily">
       <genEnumLiterals ecoreEnumLiteral="PSMDoc.ecore#//FontFamily/CALIBRI"/>
       <genEnumLiterals ecoreEnumLiteral="PSMDoc.ecore#//FontFamily/CENTURY"/>
@@ -39,6 +40,8 @@
     </genClasses>
     <genClasses ecoreClass="PSMDoc.ecore#//Table">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDoc.ecore#//Table/row"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDoc.ecore#//Table/numRows"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDoc.ecore#//Table/numCol"/>
     </genClasses>
     <genClasses ecoreClass="PSMDoc.ecore#//Image">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDoc.ecore#//Image/height"/>

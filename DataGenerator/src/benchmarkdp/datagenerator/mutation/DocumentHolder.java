@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -18,8 +19,6 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 
-import benchmarkdp.datagenerator.model.PIM.Document;
-
 
 
 public class DocumentHolder {
@@ -29,62 +28,67 @@ public class DocumentHolder {
 
 	private Resource documentResource;
 
-	EList<EObject> documentObjects;
+	private Map<String,EList<EObject>> documentObjects;
 
-	ModelExtent documentModel;
+	private Map<String,ModelExtent> documentModels;
 
 	private Map<String, String> groundTruth;
 
-	private String generatedCode;
+	private Map<String , String> generatedCode;
 
 	public DocumentHolder(String name, String initDocument) {
 		documentName = name;
 		documentURI = URI.createURI(initDocument);
 
+		documentObjects = new HashMap<String, EList<EObject>>();
+		documentModels = new HashMap<String, ModelExtent>();
+		generatedCode = new HashMap<String, String>();
+		
 		ResourceSet resourceSet = new ResourceSetImpl();
 		documentResource = resourceSet.getResource(documentURI, true);
 
-		documentObjects = documentResource.getContents();
-		documentModel = new BasicModelExtent(documentObjects);
-
+		EList<EObject> tmpObjects = documentResource.getContents();
+		documentObjects.put("PIM", tmpObjects); 
+		documentModels.put("PIM", new BasicModelExtent(tmpObjects));
 
 		groundTruth = new HashMap<String, String>();
+		generatedCode = new HashMap<String, String>();
+		
 	}
 
 	public String getName() {
 		return documentName;
 	}
 
-	public ModelExtent getModelExtent() {
-		return documentModel;
+	public ModelExtent getModelExtent(String name) {
+		return documentModels.get(name);
 	}
 
-	public EList<EObject> getDocumentObjects() {
-		return documentObjects;
+	public EList<EObject> getDocumentObjects(String name) {
+		return documentObjects.get(name);
 	}
 
-	public void setModelExtent(ModelExtent me) {
-		documentModel = me;
-		documentObjects = new BasicEList<EObject>(documentModel.getContents());
+	public void setModelExtent(String name, ModelExtent me) {
+		List<EObject> meCont = me.getContents();
+		documentModels.put(name, me);
+		documentObjects.put(name, new BasicEList<EObject>(meCont));
 	}
 
 	public void addGroundTruth(String key, String value) {
-
 		groundTruth.put(key, value);
-
 	}
 
-	public void setGeneratedCode(String s) {
-		generatedCode = s;
+	public void setGeneratedCode(String name, String code) {
+		generatedCode.put(name, code);
 	}
 
-	public void saveToFile(String path) {
+	public void saveToFile(String name, String path) {
 		Map<String, Object> opts = new HashMap<String, Object>();
 		opts.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
 
 		ResourceSet resourceSetOut = new ResourceSetImpl();
-		Resource outResource = resourceSetOut.createResource(URI.createURI(path + documentName + ".xmi"));
-		outResource.getContents().addAll(documentObjects);
+		Resource outResource = resourceSetOut.createResource(URI.createURI(path + documentName + "_" + name + ".xmi"));
+		outResource.getContents().addAll(documentObjects.get(name));
 		try {
 			outResource.save(opts);
 		} catch (IOException e) {
@@ -143,11 +147,11 @@ public class DocumentHolder {
 		}
 	}
 	
-	public void saveGeneratedCode(String path) {
+	public void saveGeneratedCode(String name, String path) {
 		try {
-			File f = new File(path + documentName + ".vbs");
+			File f = new File(path + documentName + "_" + name + ".vbs");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-			bw.write(generatedCode + "\n");
+			bw.write(generatedCode.get(name) + "\n");
 			bw.close();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

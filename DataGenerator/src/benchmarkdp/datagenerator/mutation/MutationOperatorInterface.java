@@ -7,4 +7,8 @@ public interface MutationOperatorInterface {
 	public TransformationExecutor getTransformationExecutor();
 	
 	public String getName();
+	
+	public String getSourceModel();
+	
+	public String getDestinationModel();
 }

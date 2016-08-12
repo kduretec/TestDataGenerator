@@ -1,14 +1,14 @@
 package benchmarkdp.datagenerator.mutation
 
-import benchmarkdp.datagenerator.model.PIM.Document
-import benchmarkdp.datagenerator.model.PIM.Element
-import benchmarkdp.datagenerator.model.PIM.Hyperlink
-import benchmarkdp.datagenerator.model.PIM.Page
-import benchmarkdp.datagenerator.model.PIM.Paragraph
-import benchmarkdp.datagenerator.model.PIM.Table
-import benchmarkdp.datagenerator.model.PIM.Text
-import benchmarkdp.datagenerator.model.PIM.TextBox
 import benchmarkdp.datagenerator.model.PIM.Word
+import benchmarkdp.datagenerator.model.PSMDoc.Document
+import benchmarkdp.datagenerator.model.PSMDoc.Element
+import benchmarkdp.datagenerator.model.PSMDoc.Page
+import benchmarkdp.datagenerator.model.PSMDoc.Paragraph
+import benchmarkdp.datagenerator.model.PSMDoc.Table
+import benchmarkdp.datagenerator.model.PSMDoc.Text
+import benchmarkdp.datagenerator.model.PSMDoc.TextBox
+import benchmarkdp.datagenerator.model.PSMDoc.HyperLink
 
 class VBCodeGenerator {
 
@@ -88,7 +88,7 @@ class VBCodeGenerator {
 		for (Text txt : par.words) {
 			temp = temp + switch txt {
 				Word : " oSelection.TypeText(\" " + txt.value + "\")\n"
-				Hyperlink : compileHyperLink(txt)
+				HyperLink : compileHyperLink(txt)
 			}
 			
 			
@@ -110,7 +110,7 @@ class VBCodeGenerator {
 		for (Text txt : tb.words) {
 			temp = temp + switch txt {
 				Word : " " + txt.value
-				Hyperlink : compileHyperLink(txt)
+				HyperLink : compileHyperLink(txt)
 			}
 			
 			
@@ -139,7 +139,7 @@ class VBCodeGenerator {
 		return temp
 	}
 	
-	def compileHyperLink(Hyperlink h) {
+	def compileHyperLink(HyperLink h) {
 		var temp = '''
 		Set oRange = oSelection.Range
 		oDoc.Hyperlinks.Add oRange, "«h.url»", , , " «h.value»"
