@@ -4,7 +4,7 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 
 transformation AddWord(inout model:PIM);
-
+configuration property test:String;
 main() {
 	var paragraphs:= model.objectsOfType(Paragraph);
 	paragraphs->asSequence()->at(getRandom(paragraphs->size()))->map AddWord()

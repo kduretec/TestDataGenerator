@@ -1,5 +1,8 @@
 package benchmarkdp.datagenerator.mutation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 
@@ -13,12 +16,15 @@ public class MutationOperator implements MutationOperatorInterface {
 	
 	TransformationExecutor executor;
 	
-	public MutationOperator(String n, ModelType s, ModelType d, String link) {
+	private List<String> features; 
+	
+	public MutationOperator(String n, ModelType s, ModelType d, String link, List<String> f) {
 		name = n;
 		source = s;
 		destination = d;
 		transformationURI = URI.createURI(link);
-		executor = new TransformationExecutor(transformationURI);	
+		executor = new TransformationExecutor(transformationURI);
+		features = f;
 	}
 	
 	public TransformationExecutor getTransformationExecutor() {
@@ -37,4 +43,7 @@ public class MutationOperator implements MutationOperatorInterface {
 		return destination;
 	}
 	
+	public List<String> getFeatures() {
+		return features;
+	}
 }

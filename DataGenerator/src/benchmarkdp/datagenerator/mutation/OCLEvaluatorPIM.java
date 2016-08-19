@@ -14,19 +14,19 @@ import benchmarkdp.datagenerator.model.PIM.Document;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 
 
-public class OCLEvaluator {
+public class OCLEvaluatorPIM implements OCLEvaluatorInterface {
 
 	private String groundTruthKey; 
-	private ModelType model;
+	private ModelType modelType;
 	private String expression;
 
 	private OCLExpression<EClassifier> query;
 
 	private Query eval;
 
-	public OCLEvaluator(String key, ModelType mo, String exp) {
+	public OCLEvaluatorPIM(String key, String exp) {
 		groundTruthKey = key;
-		model = mo;
+		modelType = ModelType.PIM;
 		expression = exp;
 
 		OCL ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
@@ -43,13 +43,16 @@ public class OCLEvaluator {
 		eval = ocl.createQuery(query);
 	}
 	
-	public void evaluateDocument(DocumentHolder dH) {
-		EList<EObject> objects = dH.getDocumentObjects(model);
+	public ModelType getModelType() {
+		return modelType;
+	}
+	public void evaluateTestModel(TestModel tm) {
+		EList<EObject> objects = tm.getModelObjects();
 		Document doc = (Document) objects.get(0);
 		
 		Object value = eval.evaluate(doc);
 		System.out.println("Evaluated " + groundTruthKey + " " + value.toString());
-		dH.addGroundTruth(groundTruthKey, value.toString());
+		tm.getGroundTruth().put(groundTruthKey, value.toString());
 
 	}
 }
