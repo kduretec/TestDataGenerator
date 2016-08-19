@@ -1,5 +1,6 @@
 package benchmarkdp.datagenerator.mutation;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -11,6 +12,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 
 public class TestModel {
@@ -100,6 +103,7 @@ public class TestModel {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource documentResource = resourceSet.getResource(documentURI, true);
 		modelObjects = documentResource.getContents(); 
+		modelExtent = new BasicModelExtent(modelObjects);
 	}
 	
 	public void initialize(TestModel tm) {
@@ -109,5 +113,20 @@ public class TestModel {
 		this.setModelType(tm.getModelType());
 		this.setParent(tm);
 		this.setTestFeature(tm.getTestFeature());
+	}
+	
+	public void saveModelToFile(String path) {
+		Map<String, Object> opts = new HashMap<String, Object>();
+		opts.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
+
+		ResourceSet resourceSetOut = new ResourceSetImpl();
+		Resource outResource = resourceSetOut.createResource(URI.createURI(path + testFeature.getName() + ".xmi"));
+		outResource.getContents().addAll(modelObjects);
+		try {
+			outResource.save(opts);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

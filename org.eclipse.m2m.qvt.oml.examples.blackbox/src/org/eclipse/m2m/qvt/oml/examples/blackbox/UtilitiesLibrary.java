@@ -105,4 +105,12 @@ public class UtilitiesLibrary {
 		}
 		return sb.toString();
 	}
+	
+	public static int stringToInt(String s) {
+		return Integer.parseInt(s);
+	}
+	
+	public static double stringToDouble(String s) {
+		return Double.parseDouble(s);
+	}
 }

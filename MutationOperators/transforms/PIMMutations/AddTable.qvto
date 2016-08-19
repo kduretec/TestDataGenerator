@@ -4,15 +4,22 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 
 transformation AddParagraph(inout model:PIM);
-
+configuration property tablecount : String;
 main() {
+	var tc := stringToInt(tablecount);
 	var pages:= model.objectsOfType(Page); 
-	pages->asSequence()->at(getRandom(pages->size()))->map AddTable()
+	
+	while (tc > 0) {
+		var pos := getRandom(pages->size());
+		var page := pages->asSequence()->at(pos);
+		page->map AddTable(tc);
+		tc := tc - 1;		
+	}
 	
 }
 
 
-mapping inout Page::AddTable() {
+mapping inout PIM::Page::AddTable(inout i:Integer) {
 	var c11 := object Cell {
 		
 	};
@@ -41,5 +48,7 @@ mapping inout Page::AddTable() {
 		numRows := 2;
 		numCol := 2;
 	}; 
-	elements += tab;
+	var pos := getRandom(self.elements->size());
+	//self.elements += tab;
+	self.elements := self.elements->asSequence()->insertAt(pos,tab);
 }

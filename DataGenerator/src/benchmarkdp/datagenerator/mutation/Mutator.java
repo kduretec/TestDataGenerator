@@ -29,8 +29,8 @@ import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 
 public class Mutator {
 
-	int n;
-	int m;
+	int n = 2;
+	int m = 4;
 
 	private List<MutationOperatorInterface> mutationsPIM;
 	private List<MutationOperatorInterface> mutationsPIM2PSM;
@@ -42,7 +42,7 @@ public class Mutator {
 
 	private CodeGenerator codeGenerator;
 
-	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/";
+	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIMMutations/";
 
 	public Mutator() {
 
@@ -67,6 +67,7 @@ public class Mutator {
 
 		for (int i = 0; i < n; i++) {
 			TestModel tm = new TestModel();
+			tm.setModelType(ModelType.PIM);
 			if (i < testFeatures.size()) {
 				TestFeature tf = testFeatures.get(i);
 				tm.setTestFeature(tf);
@@ -82,10 +83,8 @@ public class Mutator {
 		evaluators.add(new OCLEvaluatorPIM("pagecount", "self.pages->size()"));
 		evaluators.add(new OCLEvaluatorPIM("tablecount", "self.pages.elements->selectByKind(Table)->size()"));
 		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByKind(Paragraph)->size()"));
-		evaluators.add(
-				new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByKind(TextContainer).words->size()"));
-		evaluators.add(new OCLEvaluatorPIM("words", "self.pages.elements->selectByKind(TextContainer).words.value"));
-		evaluators.add(new OCLEvaluatorPIM("words-textbox", "self.pages.elements->selectByKind(TextBox).words.value"));
+		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByKind(Paragraph).words->size()"));
+		evaluators.add(new OCLEvaluatorPIM("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
 
 		codeGenerator = new CodeGenerator();
 
@@ -102,7 +101,7 @@ public class Mutator {
 		System.out.println("Starting the transformation");
 		int cnt = 0;
 
-		// PIM mutations 
+		// PIM mutations
 		for (int i = 0; i < testModels.size(); i++) {
 			TestModel tm = testModels.get(i);
 			for (int j = 0; j < mutationsPIM.size(); j++) {
@@ -112,43 +111,39 @@ public class Mutator {
 				}
 			}
 		}
-/*
-		for (int f = 0; f < formats.length; f++) {
-
-			for (int i = 0; i < n; i++) {
-				DocumentMutator dm = new DocumentMutator(new DocumentHolder("Document" + cnt, "PIMs/Document.xmi"));
-				cnt++;
-				boolean control = false;
-				for (int j = 0; j < m; j++) {
-					dm.addMutation(mutations.get(j), featureDist[i][j]);
-				}
-				dm.addMutation(mutations.get(4), 1);
-				docMut.add(dm);
-			}
-
+		System.out.println("Size of models " + testModels.size());
+		for (TestModel tm : testModels) {
+			tm.saveModelToFile("PIMs/");
 		}
 
-		for (int i = 0; i < docMut.size(); i++) {
-			DocumentMutator mutator = docMut.get(i);
-			// PIM mutations
-			mutator.mutate();
-			// ground truth extraction
-			for (int j = 0; j < evaluators.size(); j++) {
-				evaluators.get(j).evaluateDocument(mutator.getDocumentHolder());
-			}
-			// PIM2PSM translation
-
-			codeGenerator.generateCode(mutator.getDocumentHolder());
-			mutator.getDocumentHolder().saveToFile(ModelType.PIM,
-					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");
-			mutator.getDocumentHolder().exportGroundTruth(
-					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/");
-			mutator.getDocumentHolder().saveGeneratedCode(ModelType.PSMDoc,
-					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
-
-			System.out.println("Done");
-		}
-*/
+		/*
+		 * for (int f = 0; f < formats.length; f++) {
+		 * 
+		 * for (int i = 0; i < n; i++) { DocumentMutator dm = new
+		 * DocumentMutator(new DocumentHolder("Document" + cnt,
+		 * "PIMs/Document.xmi")); cnt++; boolean control = false; for (int j =
+		 * 0; j < m; j++) { dm.addMutation(mutations.get(j), featureDist[i][j]);
+		 * } dm.addMutation(mutations.get(4), 1); docMut.add(dm); }
+		 * 
+		 * }
+		 * 
+		 * for (int i = 0; i < docMut.size(); i++) { DocumentMutator mutator =
+		 * docMut.get(i); // PIM mutations mutator.mutate(); // ground truth
+		 * extraction for (int j = 0; j < evaluators.size(); j++) {
+		 * evaluators.get(j).evaluateDocument(mutator.getDocumentHolder()); } //
+		 * PIM2PSM translation
+		 * 
+		 * codeGenerator.generateCode(mutator.getDocumentHolder());
+		 * mutator.getDocumentHolder().saveToFile(ModelType.PIM,
+		 * "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/"
+		 * ); mutator.getDocumentHolder().exportGroundTruth(
+		 * "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/"
+		 * ); mutator.getDocumentHolder().saveGeneratedCode(ModelType.PSMDoc,
+		 * "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/"
+		 * );
+		 * 
+		 * System.out.println("Done"); }
+		 */
 		System.out.println("Transformation done");
 
 	}
@@ -205,15 +200,20 @@ public class Mutator {
 
 	private void mutateModel(TestModel tm, MutationOperatorInterface mo) {
 
+		System.out.println("Mutating model " + tm.getTestFeature().getName() + "_" + tm.getID());
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true);
+		OutputStreamWriter outStream = new OutputStreamWriter(System.out);
+		Log log = new WriterLog(outStream);
+		context.setLog(log);
 		if (tm.getModelType() == mo.getSourceModel()) {
-
+			
 			// set the transformation parameters
 			for (String feature : mo.getFeatures()) {
 				Object value = null;
 				if (tm.getTestFeature().isFeatureAvailable(feature)) {
 					value = tm.getTestFeature().getFeature(feature);
+					System.out.println(feature + " " + value.toString());
 				}
 				context.setConfigProperty(feature, value);
 			}
@@ -224,7 +224,8 @@ public class Mutator {
 			ExecutionDiagnostic result = executor.execute(context, input, output);
 			if (result.getSeverity() == Diagnostic.OK) {
 				if (mo.getSourceModel() == mo.getDestinationModel()) {
-					tm.setModelExtent(output);
+					System.out.println("Match");
+					tm.setModelExtent(input);
 				} else {
 					TestModel nTM = new TestModel();
 					nTM.initialize(tm);

@@ -4,7 +4,8 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 
 transformation AddPage(inout model:PIM);
-
+configuration property pagecount : String;
+	
 main() {
 	var doc:= model.objectsOfType(Document); 
 	doc->map AddPage();
@@ -12,7 +13,11 @@ main() {
 
 
 mapping inout Document::AddPage() {
-	var pag := object Page {
-	}; 
-	pages += pag;
+	var pc := stringToInt(pagecount);
+	while (pc > 0) {
+		var pag := object Page {
+		}; 
+		pages += pag;
+		pc := pc - 1;	
+	}
 }
