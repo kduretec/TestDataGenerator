@@ -45,6 +45,7 @@ public class Mutator {
 
 	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM/";
 	private String basePathPIM2PSMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM2PSM/";
+	private String basePathPSMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDoc/";
 
 	public Mutator() {
 
@@ -81,13 +82,8 @@ public class Mutator {
 			testModels.add(tm);
 		}
 
-		evaluators = new ArrayList<OCLEvaluatorInterface>();
-
-		evaluators.add(new OCLEvaluatorPIM("pagecount", "self.pages->size()"));
-		evaluators.add(new OCLEvaluatorPIM("tablecount", "self.pages.elements->selectByKind(Table)->size()"));
-		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByKind(Paragraph)->size()"));
-		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByKind(Paragraph).words->size()"));
-		evaluators.add(new OCLEvaluatorPIM("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
+		initializeEvaluators();
+		
 
 		codeGenerator = new CodeGenerator();
 
@@ -114,24 +110,35 @@ public class Mutator {
 				}
 			}
 		}
-		
-		//PIM2PSM mutations
+
+		// PIM2PSM mutations
 		System.out.println("Starting PIM2PSM");
 		for (int i = 0; i < testModels.size(); i++) {
 			TestModel tm = testModels.get(i);
 			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
 				MutationOperatorInterface mo = mutationsPIM2PSM.get(j);
-				if (tm.getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM && mo.getDestinationModel()!=ModelType.PIM) {
+				if (tm.getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
+						&& mo.getDestinationModel() != ModelType.PIM) {
+					mutateModel(tm, mo);
+				}
+			}
+		}
+
+		// PSM mutations 
+		for (int i = 0; i < testModels.size(); i++) {
+			TestModel tm = testModels.get(i);
+			for (int j = 0; j < mutationsPSM.size(); j++) {
+				MutationOperatorInterface mo = mutationsPSM.get(j);
+				if (tm.getModelType() == ModelType.PSMDoc && mo.getSourceModel() == ModelType.PSMDoc) {
 					mutateModel(tm, mo);
 				}
 			}
 		}
 		
-		
 		System.out.println("Size of models " + testModels.size());
 		for (TestModel tm : testModels) {
-			if (tm.getModelType()==ModelType.PIM) {
-				tm.saveModelToFile("PIMs/");				
+			if (tm.getModelType() == ModelType.PIM) {
+				tm.saveModelToFile("PIMs/");
 			} else {
 				tm.saveModelToFile("PSMs/");
 			}
@@ -217,9 +224,22 @@ public class Mutator {
 	}
 
 	private void initializeMutationsPSM() {
+		mutationsPSM.add(new MutationOperator("ChangeTextColor", ModelType.PSMDoc, ModelType.PSMDoc,
+				basePathPSMTransform + "ChangeTextColor.qvto", Arrays.asList("textcolor")));
+		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDoc, ModelType.PSMDoc,
+				basePathPSMTransform + "ChangeTextSize.qvto", Arrays.asList("textsize")));
 
 	}
 
+	private void initializeEvaluators() {
+		evaluators = new ArrayList<OCLEvaluatorInterface>();
+
+		evaluators.add(new OCLEvaluatorPIM("pagecount", "self.pages->size()"));
+		evaluators.add(new OCLEvaluatorPIM("tablecount", "self.pages.elements->selectByKind(Table)->size()"));
+		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByKind(Paragraph)->size()"));
+		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByKind(Paragraph).words->size()"));
+		evaluators.add(new OCLEvaluatorPIM("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
+	}
 	private void mutateModel(TestModel tm, MutationOperatorInterface mo) {
 
 		ExecutionContextImpl context = new ExecutionContextImpl();
