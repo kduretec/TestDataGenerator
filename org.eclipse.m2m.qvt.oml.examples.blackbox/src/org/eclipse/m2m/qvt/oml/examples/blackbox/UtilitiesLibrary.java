@@ -101,7 +101,7 @@ public class UtilitiesLibrary {
 	public static String turnSeqToString(List<String> elements) {
 		StringBuilder sb = new StringBuilder("");
 		for (String s:elements) {
-			sb.append(s);
+			sb.append(s + " ");
 		}
 		return sb.toString();
 	}

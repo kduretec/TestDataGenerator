@@ -48,7 +48,12 @@ mapping inout PIM::Page::AddTable(inout i:Integer) {
 		numRows := 2;
 		numCol := 2;
 	}; 
-	var pos := getRandom(self.elements->size());
+	var pos:Integer;
+	if (self.elements->size()=0) {
+		pos:=1;
+	} else {
+		pos := getRandom(self.elements->size());
+	};
 	//self.elements += tab;
 	self.elements := self.elements->asSequence()->insertAt(pos,tab);
 }

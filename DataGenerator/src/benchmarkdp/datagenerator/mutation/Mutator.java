@@ -26,6 +26,7 @@ import org.eclipse.m2m.qvt.oml.util.Log;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
+import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 
 public class Mutator {
 
@@ -42,7 +43,8 @@ public class Mutator {
 
 	private CodeGenerator codeGenerator;
 
-	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIMMutations/";
+	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM/";
+	private String basePathPIM2PSMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM2PSM/";
 
 	public Mutator() {
 
@@ -51,6 +53,7 @@ public class Mutator {
 
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		PIMPackage mwp = PIMPackage.eINSTANCE;
+		PSMDocPackage pwp = PSMDocPackage.eINSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("xmi", new XMIResourceFactoryImpl());
 
@@ -111,9 +114,27 @@ public class Mutator {
 				}
 			}
 		}
+		
+		//PIM2PSM mutations
+		System.out.println("Starting PIM2PSM");
+		for (int i = 0; i < testModels.size(); i++) {
+			TestModel tm = testModels.get(i);
+			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
+				MutationOperatorInterface mo = mutationsPIM2PSM.get(j);
+				if (tm.getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM && mo.getDestinationModel()!=ModelType.PIM) {
+					mutateModel(tm, mo);
+				}
+			}
+		}
+		
+		
 		System.out.println("Size of models " + testModels.size());
 		for (TestModel tm : testModels) {
-			tm.saveModelToFile("PIMs/");
+			if (tm.getModelType()==ModelType.PIM) {
+				tm.saveModelToFile("PIMs/");				
+			} else {
+				tm.saveModelToFile("PSMs/");
+			}
 		}
 
 		/*
@@ -191,7 +212,8 @@ public class Mutator {
 	}
 
 	private void initializeMutationsPIM2PSM() {
-
+		mutationsPIM2PSM.add(new MutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
+				basePathPIM2PSMTransform + "PIM2Doc.qvto", Arrays.asList("textbox", "controlbox")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -200,20 +222,18 @@ public class Mutator {
 
 	private void mutateModel(TestModel tm, MutationOperatorInterface mo) {
 
-		System.out.println("Mutating model " + tm.getTestFeature().getName() + "_" + tm.getID());
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true);
 		OutputStreamWriter outStream = new OutputStreamWriter(System.out);
 		Log log = new WriterLog(outStream);
 		context.setLog(log);
 		if (tm.getModelType() == mo.getSourceModel()) {
-			
+
 			// set the transformation parameters
 			for (String feature : mo.getFeatures()) {
 				Object value = null;
 				if (tm.getTestFeature().isFeatureAvailable(feature)) {
 					value = tm.getTestFeature().getFeature(feature);
-					System.out.println(feature + " " + value.toString());
 				}
 				context.setConfigProperty(feature, value);
 			}
@@ -224,7 +244,6 @@ public class Mutator {
 			ExecutionDiagnostic result = executor.execute(context, input, output);
 			if (result.getSeverity() == Diagnostic.OK) {
 				if (mo.getSourceModel() == mo.getDestinationModel()) {
-					System.out.println("Match");
 					tm.setModelExtent(input);
 				} else {
 					TestModel nTM = new TestModel();
