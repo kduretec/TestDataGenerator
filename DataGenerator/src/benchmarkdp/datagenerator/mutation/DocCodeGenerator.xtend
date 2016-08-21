@@ -3,25 +3,42 @@ package benchmarkdp.datagenerator.mutation
 import benchmarkdp.datagenerator.model.PIM.Word
 import benchmarkdp.datagenerator.model.PSMDoc.Document
 import benchmarkdp.datagenerator.model.PSMDoc.Element
+import benchmarkdp.datagenerator.model.PSMDoc.HyperLink
 import benchmarkdp.datagenerator.model.PSMDoc.Page
 import benchmarkdp.datagenerator.model.PSMDoc.Paragraph
 import benchmarkdp.datagenerator.model.PSMDoc.Table
 import benchmarkdp.datagenerator.model.PSMDoc.Text
 import benchmarkdp.datagenerator.model.PSMDoc.TextBox
-import benchmarkdp.datagenerator.model.PSMDoc.HyperLink
 
-class VBCodeGenerator {
+class DocCodeGenerator implements CodeGeneratorInterface {
 
-		int parag = 1;
-		int documentNumber = 0;
+	ModelType modelType = ModelType::PSMDoc;
+	int parag = 1;
+	int documentNumber = 0;
+
+
+	new() {
 		
+	}
+	
+	override getModelType() {
+		return modelType;
+	}
+
+	override generateCode(TestModel tm) {
+		var d = tm.modelObjects.get(0) as Document;
+		var s = compile(d);
+		tm.generatedCode = s;   
+	}
+
 	def String compile(Document d) {
 		var String co = compileDocument(d).toString()
-		documentNumber++ 
+		documentNumber++
 		return co;
 	}
 
-	def compileDocument(Document d) '''
+	def compileDocument(
+		Document d) '''
 		
 		Const END_OF_STORY = 6 
 		Set objWord = CreateObject("Word.Application") 
@@ -50,7 +67,7 @@ class VBCodeGenerator {
 
 	def compileDocumentElements(Document d) {
 		var temp = ''''''
-		var check = false 
+		var check = false
 		for (Page p : d.pages) {
 			if (check) {
 				temp = temp + "oSelection.InsertBreak(7)\n"
@@ -71,80 +88,77 @@ class VBCodeGenerator {
 			}
 
 		}
-		
+
 		return temp
 
 	}
-	
+
 	def compileParagraph(Paragraph par) {
 		var temp = '''
 		'''
-		if (parag>1) {
+		if (parag > 1) {
 			temp = temp + '''
-			oSelection.TypeParagraph()
+				oSelection.TypeParagraph()
 			'''
 		}
 		parag = parag + 1
 		for (Text txt : par.words) {
 			temp = temp + switch txt {
-				Word : " oSelection.TypeText(\" " + txt.value + "\")\n"
-				HyperLink : compileHyperLink(txt)
+				Word: " oSelection.TypeText(\" " + txt.value + "\")\n"
+				HyperLink: compileHyperLink(txt)
 			}
-			
-			
+
 		}
 		temp = temp + '''
-		i = i + 1
+			i = i + 1
 		'''
 		return temp
 	}
-	
+
 	def compileTextBox(TextBox tb) {
-		
+
 		var temp = '''
 		tBox = tBox + 1
 		oDoc.Shapes.AddTextbox 1, 80, 100, 500, 32
 		Set textBox = oDoc.Shapes(tBox)'''
-		temp = temp + "\ntextBox.TextFrame.TextRange.Text = \"" 
+		temp = temp + "\ntextBox.TextFrame.TextRange.Text = \""
 
 		for (Text txt : tb.words) {
 			temp = temp + switch txt {
-				Word : " " + txt.value
-				HyperLink : compileHyperLink(txt)
+				Word: " " + txt.value
+				HyperLink: compileHyperLink(txt)
 			}
-			
-			
+
 		}
-		
+
 		temp = temp + "\"\n"
 		return temp
 	}
-	
-	
+
 	def compileTable(Table t) {
 		var numR = t.numRows
 		var numC = t.numCol
-	
+
 		var temp = '''
-		oSelection.TypeParagraph()
-		Set oRange = oSelection.Range
-		oDoc.Tables.Add oRange, «numR», «numC»
-		Set objTable = oDoc.Tables(tableIndex)
-		objTable.AutoFormat(16)
-		tableIndex = tableIndex + 1
-		oSelection.EndKey END_OF_STORY
-		oSelection.TypeParagraph()
-		i= i + 1
+			oSelection.TypeParagraph()
+			Set oRange = oSelection.Range
+			oDoc.Tables.Add oRange, «numR», «numC»
+			Set objTable = oDoc.Tables(tableIndex)
+			objTable.AutoFormat(16)
+			tableIndex = tableIndex + 1
+			oSelection.EndKey END_OF_STORY
+			oSelection.TypeParagraph()
+			i= i + 1
 		'''
 		return temp
 	}
-	
+
 	def compileHyperLink(HyperLink h) {
 		var temp = '''
-		Set oRange = oSelection.Range
-		oDoc.Hyperlinks.Add oRange, "«h.url»", , , " «h.value»"
+			Set oRange = oSelection.Range
+			oDoc.Hyperlinks.Add oRange, "«h.url»", , , " «h.value»"
 		'''
 		return temp
 	}
-	
+
 }
