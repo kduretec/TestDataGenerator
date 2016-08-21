@@ -1,5 +1,8 @@
 package benchmarkdp.datagenerator.mutation;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -127,6 +130,18 @@ public class TestModel {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+	}
+	
+	public void saveGeneratedCodeToFile(String path) {
+		try {
+			File f = new File(path + testFeature.getName() + "_" + modelType + ".vbs");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			bw.write(generatedCode + "\n");
+			bw.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	}
 }

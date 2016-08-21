@@ -16,7 +16,6 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 	int parag = 1;
 	int documentNumber = 0;
 
-
 	new() {
 		
 	}
@@ -37,8 +36,7 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		return co;
 	}
 
-	def compileDocument(
-		Document d) '''
+	def compileDocument(Document d) '''
 		
 		Const END_OF_STORY = 6 
 		Set objWord = CreateObject("Word.Application") 

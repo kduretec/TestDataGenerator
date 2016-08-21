@@ -157,12 +157,14 @@ public class Mutator {
 			}
 		}
 		
+		
 		System.out.println("Size of models " + testModels.size());
 		for (TestModel tm : testModels) {
 			if (tm.getModelType() == ModelType.PIM) {
 				tm.saveModelToFile("PIMs/");
 			} else {
 				tm.saveModelToFile("PSMs/");
+				tm.saveGeneratedCodeToFile("/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
 			}
 		}
 
