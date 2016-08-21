@@ -1,0 +1,128 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
+modeltype PSM uses PSMDocx('http://benchmarkdp.datagenerator.model.PSMDocx');
+	
+
+transformation PIM2Docx(in source:PIM, out target:PSM);
+
+main() {
+	log("Translating from PIM to PSM");
+	source.rootObjects()[Document].map DocumentToDocument();
+}
+
+
+mapping PIM::Document::DocumentToDocument():PSM::Document {
+	name := self.name;
+	author := self.author;
+	format := "doc";
+	formatCode := "0";
+	numColum := getRandom(3);
+	self.pages->forEach(p) {
+		pages += p->map PageToPage();
+	}
+}
+
+mapping PIM::Page::PageToPage():PSM::Page {
+	self.elements->forEach(e) {
+		if (e.oclIsTypeOf(PIM::Paragraph)) {
+			var temp:Real := getRandomReal();
+			if (temp <=0.85) {
+				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
+			} else if (temp<=0.95) {
+				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
+			} else {
+				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToControlBox();
+			}
+		};
+		if (e.oclIsTypeOf(PIM::Table)) {
+			elements += e.oclAsType(PIM::Table)->map TableToTable();
+		}
+	}
+}
+
+mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
+	paragraphSpacing := 1.0;
+	lineSpacing := 1.0;
+	indent := 1.0;
+	var i:Integer := 1;
+	var si:Integer := self.words->asSequence()->size(); 
+	while (i <= si) {
+	 var pos:Integer := getRandomBetween(i,si);
+	 var tt := self.words->asSequence()->subSequence(i,pos);
+	 var tSize := tt->size();
+	 i := pos + 1;
+	 var stVal:String := turnSeqToString(tt.value->asList());
+	 var temp:Real := getRandomReal();
+	 var sT:Text := null;
+	 if (temp < 0.95) {
+	 	sT := object SimpleText {
+	 		size := 10;
+	 		color := Color::BLACK;
+	 		value := stVal;
+	 	};
+	 } else {
+	 	sT := object HyperLink {
+			value := stVal;
+			url := "http://www.google.com"	 		
+	 	}
+	 };
+	 
+	 words += sT;
+	 
+	}
+}
+
+mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
+	var i:Integer := 1;
+	var si:Integer := self.words->asSequence()->size(); 
+	while (i <= si) {
+	 var pos:Integer := getRandomBetween(i,si);
+	 var tt := self.words->asSequence()->subSequence(i,pos);
+	 var tSize := tt->size();
+	 i := pos + 1;
+	 var stVal:String := turnSeqToString(tt.value->asList());
+	 var sT := object SimpleText {
+	 	size := 10;
+	 	color := Color::BLACK;
+	 	value :=  stVal;
+	 };
+	 
+	 words += sT;
+	 
+	}
+}
+
+mapping PIM::Paragraph::ParagraphToControlBox():PSM::TextBox {
+	var i:Integer := 1;
+	var si:Integer := self.words->asSequence()->size(); 
+	while (i <= si) {
+	 var pos:Integer := getRandomBetween(i,si);
+	 var tt := self.words->asSequence()->subSequence(i,pos);
+	 var tSize := tt->size();
+	 i := pos + 1;
+	 var stVal:String := turnSeqToString(tt.value->asList());
+	 var sT := object SimpleText {
+	 	size := 10;
+	 	color := Color::BLACK;
+	 	value :=  stVal;
+	 };
+	 
+	 words += sT;
+	 
+	}
+}
+
+mapping PIM::Table::TableToTable():PSM::Table {
+	numRows := self.numRows;
+	numCol := self.numCol;
+	row := self.row->map RowToRow();
+}
+
+mapping PIM::Row::RowToRow():PSM::Row {
+	cell := self.cell->map CellToCell();
+}
+
+mapping PIM::Cell::CellToCell():PSM::Cell {
+	
+}

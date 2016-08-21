@@ -45,7 +45,7 @@ public class Mutator {
 
 	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM/";
 	private String basePathPIM2PSMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM2PSM/";
-	private String basePathPSMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDoc/";
+	private String basePathPSMDocTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDoc/";
 
 	public Mutator() {
 
@@ -147,8 +147,7 @@ public class Mutator {
 
 		}
 
-		
-		// code generation 
+		// code generation
 		for (TestModel tm : testModels) {
 			for (CodeGeneratorInterface cg : codeGenerator) {
 				if (tm.getModelType() == cg.getModelType()) {
@@ -156,15 +155,15 @@ public class Mutator {
 				}
 			}
 		}
-		
-		
+
 		System.out.println("Size of models " + testModels.size());
 		for (TestModel tm : testModels) {
 			if (tm.getModelType() == ModelType.PIM) {
 				tm.saveModelToFile("PIMs/");
 			} else {
 				tm.saveModelToFile("PSMs/");
-				tm.saveGeneratedCodeToFile("/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
+				tm.saveGeneratedCodeToFile(
+						"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
 			}
 		}
 
@@ -244,14 +243,16 @@ public class Mutator {
 
 	private void initializeMutationsPIM2PSM() {
 		mutationsPIM2PSM.add(new MutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
-				basePathPIM2PSMTransform + "PIM2Doc.qvto", Arrays.asList("textbox", "controlbox")));
+				basePathPIM2PSMTransform + "PIM2Doc.qvto", Arrays.asList("textbox")));
+		mutationsPIM2PSM.add(new MutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+				basePathPIM2PSMTransform + "PIM2Docx.qvto", Arrays.asList("textbox", "controlbox")));
 	}
 
 	private void initializeMutationsPSM() {
 		mutationsPSM.add(new MutationOperator("ChangeTextColor", ModelType.PSMDoc, ModelType.PSMDoc,
-				basePathPSMTransform + "ChangeTextColor.qvto", Arrays.asList("textcolor")));
+				basePathPSMDocTransform + "ChangeTextColor.qvto", Arrays.asList("textcolor")));
 		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDoc, ModelType.PSMDoc,
-				basePathPSMTransform + "ChangeTextSize.qvto", Arrays.asList("textsize")));
+				basePathPSMDocTransform + "ChangeTextSize.qvto", Arrays.asList("textsize")));
 
 	}
 
@@ -268,8 +269,9 @@ public class Mutator {
 	private void initializeCodeGenerator() {
 		codeGenerator = new ArrayList<CodeGeneratorInterface>();
 		codeGenerator.add(new DocCodeGenerator());
+		codeGenerator.add(new DocxCodeGenerator());
 	}
-	
+
 	private void mutateModel(TestModel tm, MutationOperatorInterface mo) {
 
 		ExecutionContextImpl context = new ExecutionContextImpl();

@@ -1,19 +1,18 @@
 package benchmarkdp.datagenerator.mutation
 
+import benchmarkdp.datagenerator.model.PSMDocx.Document
+import benchmarkdp.datagenerator.model.PSMDocx.Element
+import benchmarkdp.datagenerator.model.PSMDocx.HyperLink
+import benchmarkdp.datagenerator.model.PSMDocx.Page
+import benchmarkdp.datagenerator.model.PSMDocx.Paragraph
+import benchmarkdp.datagenerator.model.PSMDocx.SimpleText
+import benchmarkdp.datagenerator.model.PSMDocx.Table
+import benchmarkdp.datagenerator.model.PSMDocx.Text
+import benchmarkdp.datagenerator.model.PSMDocx.TextBox
 
-import benchmarkdp.datagenerator.model.PSMDoc.Document
-import benchmarkdp.datagenerator.model.PSMDoc.Element
-import benchmarkdp.datagenerator.model.PSMDoc.HyperLink
-import benchmarkdp.datagenerator.model.PSMDoc.Page
-import benchmarkdp.datagenerator.model.PSMDoc.Paragraph
-import benchmarkdp.datagenerator.model.PSMDoc.SimpleText
-import benchmarkdp.datagenerator.model.PSMDoc.Table
-import benchmarkdp.datagenerator.model.PSMDoc.Text
-import benchmarkdp.datagenerator.model.PSMDoc.TextBox
-
-class DocCodeGenerator implements CodeGeneratorInterface {
-
-	ModelType modelType = ModelType::PSMDoc;
+class DocxCodeGenerator implements CodeGeneratorInterface {
+	
+	ModelType modelType = ModelType::PSMDocx;
 	int parag = 1;
 	int documentNumber = 0;
 
@@ -30,7 +29,7 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		var s = compile(d);
 		tm.generatedCode = s;   
 	}
-
+	
 	def String compile(Document d) {
 		var String co = compileDocument(d).toString()
 		documentNumber++
@@ -159,5 +158,5 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		'''
 		return temp
 	}
-
+	
 }

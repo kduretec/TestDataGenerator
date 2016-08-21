@@ -12,7 +12,10 @@ Export-Package: benchmarkdp.datagenerator.model.PIM,
  benchmarkdp.datagenerator.model.PIM.util,
  benchmarkdp.datagenerator.model.PSMDoc,
  benchmarkdp.datagenerator.model.PSMDoc.impl,
- benchmarkdp.datagenerator.model.PSMDoc.util
+ benchmarkdp.datagenerator.model.PSMDoc.util,
+ benchmarkdp.datagenerator.model.PSMDocx,
+ benchmarkdp.datagenerator.model.PSMDocx.impl,
+ benchmarkdp.datagenerator.model.PSMDocx.util
 Require-Bundle: org.eclipse.m2m.qvt.oml;bundle-version="3.6.0",
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

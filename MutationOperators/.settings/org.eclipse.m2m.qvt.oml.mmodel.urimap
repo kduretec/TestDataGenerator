@@ -2,4 +2,5 @@
 <uriMap:MappingContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:uriMap="http:///www.eclipse.org/m2m/qvt/oml/MModelUriMap/1.0.0">
   <mapping sourceURI="http://benchmarkdp.datagenerator.model.PIM" targetURI="platform:/resource/DataGenerator/model/PIM.ecore"/>
   <mapping sourceURI="http://benchmarkdp.datagenerator.model.PSMDoc" targetURI="platform:/resource/DataGenerator/model/PSMDoc.ecore"/>
+  <mapping sourceURI="http://benchmarkdp.datagenerator.model.PSMDocx" targetURI="platform:/resource/DataGenerator/model/PSMDocx.ecore"/>
 </uriMap:MappingContainer>

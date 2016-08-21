@@ -1,14 +1,14 @@
 package benchmarkdp.datagenerator.mutation;
 
-import benchmarkdp.datagenerator.model.PSMDoc.Document;
-import benchmarkdp.datagenerator.model.PSMDoc.Element;
-import benchmarkdp.datagenerator.model.PSMDoc.HyperLink;
-import benchmarkdp.datagenerator.model.PSMDoc.Page;
-import benchmarkdp.datagenerator.model.PSMDoc.Paragraph;
-import benchmarkdp.datagenerator.model.PSMDoc.SimpleText;
-import benchmarkdp.datagenerator.model.PSMDoc.Table;
-import benchmarkdp.datagenerator.model.PSMDoc.Text;
-import benchmarkdp.datagenerator.model.PSMDoc.TextBox;
+import benchmarkdp.datagenerator.model.PSMDocx.Document;
+import benchmarkdp.datagenerator.model.PSMDocx.Element;
+import benchmarkdp.datagenerator.model.PSMDocx.HyperLink;
+import benchmarkdp.datagenerator.model.PSMDocx.Page;
+import benchmarkdp.datagenerator.model.PSMDocx.Paragraph;
+import benchmarkdp.datagenerator.model.PSMDocx.SimpleText;
+import benchmarkdp.datagenerator.model.PSMDocx.Table;
+import benchmarkdp.datagenerator.model.PSMDocx.Text;
+import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
 import benchmarkdp.datagenerator.mutation.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.mutation.ModelType;
 import benchmarkdp.datagenerator.mutation.TestModel;
@@ -17,14 +17,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
-public class DocCodeGenerator implements CodeGeneratorInterface {
-  private ModelType modelType = ModelType.PSMDoc;
+public class DocxCodeGenerator implements CodeGeneratorInterface {
+  private ModelType modelType = ModelType.PSMDocx;
   
   private int parag = 1;
   
   private int documentNumber = 0;
   
-  public DocCodeGenerator() {
+  public DocxCodeGenerator() {
   }
   
   @Override
