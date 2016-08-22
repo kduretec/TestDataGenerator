@@ -5,9 +5,13 @@ modeltype PSM uses PSMDocx('http://benchmarkdp.datagenerator.model.PSMDocx');
 	
 
 transformation PIM2Docx(in source:PIM, out target:PSM);
-
+configuration property textbox : String;
+configuration property controlbox : String;
+configuration property format : String;
+configuration property formatCode : String;
+configuration property platform : String;
 main() {
-	log("Translating from PIM to PSM");
+	log("Translating from PIM to PSMDocx");
 	source.rootObjects()[Document].map DocumentToDocument();
 }
 
@@ -15,9 +19,10 @@ main() {
 mapping PIM::Document::DocumentToDocument():PSM::Document {
 	name := self.name;
 	author := self.author;
-	format := "doc";
-	formatCode := "0";
-	numColum := getRandom(3);
+	documentFormat := format;
+	documentFormatCode := formatCode;
+	documentPlatform := platform;
+	result.numColum := getRandom(3);
 	self.pages->forEach(p) {
 		pages += p->map PageToPage();
 	}

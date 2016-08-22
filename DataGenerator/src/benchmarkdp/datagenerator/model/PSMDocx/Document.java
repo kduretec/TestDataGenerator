@@ -18,9 +18,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getNumColum <em>Num Colum</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getFormat <em>Format</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getFormatCode <em>Format Code</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentFormat <em>Document Format</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentFormatCode <em>Document Format Code</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getPages <em>Pages</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentPlatform <em>Document Platform</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument()
@@ -107,56 +108,56 @@ public interface Document extends EObject {
 	void setNumColum(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Format</b></em>' attribute.
+	 * Returns the value of the '<em><b>Document Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Format</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Document Format</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Format</em>' attribute.
-	 * @see #setFormat(String)
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument_Format()
+	 * @return the value of the '<em>Document Format</em>' attribute.
+	 * @see #setDocumentFormat(String)
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument_DocumentFormat()
 	 * @model
 	 * @generated
 	 */
-	String getFormat();
+	String getDocumentFormat();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getFormat <em>Format</em>}' attribute.
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentFormat <em>Document Format</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Format</em>' attribute.
-	 * @see #getFormat()
+	 * @param value the new value of the '<em>Document Format</em>' attribute.
+	 * @see #getDocumentFormat()
 	 * @generated
 	 */
-	void setFormat(String value);
+	void setDocumentFormat(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Format Code</b></em>' attribute.
+	 * Returns the value of the '<em><b>Document Format Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Format Code</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Document Format Code</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Format Code</em>' attribute.
-	 * @see #setFormatCode(String)
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument_FormatCode()
+	 * @return the value of the '<em>Document Format Code</em>' attribute.
+	 * @see #setDocumentFormatCode(String)
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument_DocumentFormatCode()
 	 * @model
 	 * @generated
 	 */
-	String getFormatCode();
+	String getDocumentFormatCode();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getFormatCode <em>Format Code</em>}' attribute.
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentFormatCode <em>Document Format Code</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Format Code</em>' attribute.
-	 * @see #getFormatCode()
+	 * @param value the new value of the '<em>Document Format Code</em>' attribute.
+	 * @see #getDocumentFormatCode()
 	 * @generated
 	 */
-	void setFormatCode(String value);
+	void setDocumentFormatCode(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Pages</b></em>' containment reference list.
@@ -173,5 +174,31 @@ public interface Document extends EObject {
 	 * @generated
 	 */
 	EList<Page> getPages();
+
+	/**
+	 * Returns the value of the '<em><b>Document Platform</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Document Platform</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Document Platform</em>' attribute.
+	 * @see #setDocumentPlatform(String)
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument_DocumentPlatform()
+	 * @model
+	 * @generated
+	 */
+	String getDocumentPlatform();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentPlatform <em>Document Platform</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Document Platform</em>' attribute.
+	 * @see #getDocumentPlatform()
+	 * @generated
+	 */
+	void setDocumentPlatform(String value);
 
 } // Document

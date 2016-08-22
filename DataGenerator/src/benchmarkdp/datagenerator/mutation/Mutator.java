@@ -27,6 +27,7 @@ import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
+import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class Mutator {
 
@@ -55,6 +56,7 @@ public class Mutator {
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		PIMPackage mwp = PIMPackage.eINSTANCE;
 		PSMDocPackage pwp = PSMDocPackage.eINSTANCE;
+		PSMDocxPackage pwd = PSMDocxPackage.eINSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("xmi", new XMIResourceFactoryImpl());
 
@@ -106,7 +108,10 @@ public class Mutator {
 				for (int j = 0; j < mutationsPIM.size(); j++) {
 					MutationOperatorInterface mo = mutationsPIM.get(j);
 					if (mo.getSourceModel() == ModelType.PIM) {
-						mutateModel(tm, mo);
+						List<TestModel> newModels = mo.mutateModel(tm);
+						if (newModels.size() > 0) {
+							testModels.addAll(newModels);
+						}
 					}
 				}
 				for (OCLEvaluatorInterface oE : evaluators) {
@@ -125,7 +130,10 @@ public class Mutator {
 				MutationOperatorInterface mo = mutationsPIM2PSM.get(j);
 				if (tm.getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 						&& mo.getDestinationModel() != ModelType.PIM) {
-					mutateModel(tm, mo);
+					List<TestModel> newModels = mo.mutateModel(tm);
+					if (newModels.size() > 0) {
+						testModels.addAll(newModels);
+					}
 				}
 			}
 		}
@@ -136,7 +144,10 @@ public class Mutator {
 			if (tm.getModelType() != ModelType.PIM) {
 				for (int j = 0; j < mutationsPSM.size(); j++) {
 					MutationOperatorInterface mo = mutationsPSM.get(j);
-					mutateModel(tm, mo);
+					List<TestModel> newModels = mo.mutateModel(tm);
+					if (newModels.size() > 0) {
+						testModels.addAll(newModels);
+					}
 				}
 				for (OCLEvaluatorInterface oE : evaluators) {
 					if (oE.getModelType() == tm.getModelType()) {
@@ -158,13 +169,10 @@ public class Mutator {
 
 		System.out.println("Size of models " + testModels.size());
 		for (TestModel tm : testModels) {
-			if (tm.getModelType() == ModelType.PIM) {
-				tm.saveModelToFile("PIMs/");
-			} else {
-				tm.saveModelToFile("PSMs/");
-				tm.saveGeneratedCodeToFile(
-						"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
-			}
+			tm.saveModelToFile(
+					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");
+			tm.saveGeneratedCodeToFile(
+					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
 		}
 
 		/*
@@ -242,10 +250,13 @@ public class Mutator {
 	}
 
 	private void initializeMutationsPIM2PSM() {
-		mutationsPIM2PSM.add(new MutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
-				basePathPIM2PSMTransform + "PIM2Doc.qvto", Arrays.asList("textbox")));
-		mutationsPIM2PSM.add(new MutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-				basePathPIM2PSMTransform + "PIM2Docx.qvto", Arrays.asList("textbox", "controlbox")));
+		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
+				basePathPIM2PSMTransform + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
+				Arrays.asList("doc"), Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+				basePathPIM2PSMTransform + "PIM2Docx.qvto",
+				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx"),
+				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -272,50 +283,4 @@ public class Mutator {
 		codeGenerator.add(new DocxCodeGenerator());
 	}
 
-	private void mutateModel(TestModel tm, MutationOperatorInterface mo) {
-
-		ExecutionContextImpl context = new ExecutionContextImpl();
-		context.setConfigProperty("keepModeling", true);
-		OutputStreamWriter outStream = new OutputStreamWriter(System.out);
-		Log log = new WriterLog(outStream);
-		context.setLog(log);
-		if (tm.getModelType() == mo.getSourceModel()) {
-
-			// set the transformation parameters
-			for (String feature : mo.getFeatures()) {
-				Object value = null;
-				if (tm.getTestFeature().isFeatureAvailable(feature)) {
-					value = tm.getTestFeature().getFeature(feature);
-				}
-				context.setConfigProperty(feature, value);
-			}
-
-			TransformationExecutor executor = mo.getTransformationExecutor();
-			ModelExtent input = tm.getModelExtent();
-			ModelExtent output = new BasicModelExtent();
-			ExecutionDiagnostic result = executor.execute(context, input, output);
-			if (result.getSeverity() == Diagnostic.OK) {
-				if (mo.getSourceModel() == mo.getDestinationModel()) {
-					tm.setModelExtent(input);
-				} else {
-					TestModel nTM = new TestModel();
-					nTM.initialize(tm);
-					nTM.setModelExtent(output);
-					nTM.setModelType(mo.getDestinationModel());
-					testModels.add(nTM);
-				}
-			} else {
-				// turn the result diagnostic into status and send it to error
-				// log
-				IStatus status = BasicDiagnostic.toIStatus(result);
-				// Activator.getDefault().getLog().log(status);
-				System.out.println(status.getMessage());
-				for (IStatus st : status.getChildren()) {
-					System.out.println(st.getMessage());
-				}
-			}
-
-		}
-
-	}
 }

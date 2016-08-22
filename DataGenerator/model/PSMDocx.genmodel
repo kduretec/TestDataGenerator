@@ -24,9 +24,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/author"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/numColum"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/format"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/formatCode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentFormat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentFormatCode"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Document/pages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentPlatform"/>
     </genClasses>
     <genClasses ecoreClass="PSMDocx.ecore#//Page">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Page/elements"/>

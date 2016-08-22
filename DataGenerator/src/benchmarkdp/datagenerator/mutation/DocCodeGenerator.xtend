@@ -1,6 +1,5 @@
 package benchmarkdp.datagenerator.mutation
 
-
 import benchmarkdp.datagenerator.model.PSMDoc.Document
 import benchmarkdp.datagenerator.model.PSMDoc.Element
 import benchmarkdp.datagenerator.model.PSMDoc.HyperLink
@@ -13,22 +12,24 @@ import benchmarkdp.datagenerator.model.PSMDoc.TextBox
 
 class DocCodeGenerator implements CodeGeneratorInterface {
 
+	
 	ModelType modelType = ModelType::PSMDoc;
 	int parag = 1;
 	int documentNumber = 0;
-
-	new() {
-		
-	}
+	String documentName;
 	
+	new() {
+	}
+
 	override getModelType() {
 		return modelType;
 	}
 
 	override generateCode(TestModel tm) {
+		documentName = tm.testFeature.name
 		var d = tm.modelObjects.get(0) as Document;
 		var s = compile(d);
-		tm.generatedCode = s;   
+		tm.generatedCode = s;
 	}
 
 	def String compile(Document d) {
@@ -37,7 +38,8 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		return co;
 	}
 
-	def compileDocument(Document d) '''
+	def compileDocument(
+		Document d) '''
 		
 		Const END_OF_STORY = 6 
 		Set objWord = CreateObject("Word.Application") 
@@ -50,9 +52,9 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		tableIndex = 1
 		tBox = 0
 		«compileDocumentElements(d)»
-		oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\Document«documentNumber».«d.format»", «d.formatCode»
+		oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«documentName»_«d.documentFormat»_«d.documentPlatform».«d.documentFormat»", «d.documentFormatCode»
 		
-		grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\Document«documentNumber»-wordgroundtruth.txt" 
+		grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\«documentName»_«d.documentFormat»_«d.documentPlatform»-wordgroundtruth.txt" 
 		
 		Set objFSO = CreateObject("Scripting.FileSystemObject")
 		Set objFile = objFSO.CreateTextFile(grFile, True)

@@ -22,26 +22,30 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 public class TestModel {
 
 	private String ID;
-	
+
 	private ModelType modelType;
-	
-	private TestModel parent; 
-	
-	private EList<EObject> modelObjects; 
-	
+
+	private TestModel parent;
+
+	private EList<EObject> modelObjects;
+
 	private ModelExtent modelExtent;
-	
-	private Map<String, String> groundTruth; 
-	
+
+	private Map<String, String> groundTruth;
+
 	private String generatedCode;
-	
-	private TestFeature testFeature; 
+
+	private TestFeature testFeature;
+
+	private String format;
+
+	private String platform;
 
 	public TestModel() {
 		ID = UUID.randomUUID().toString();
 		groundTruth = new HashMap<String, String>();
 	}
-	
+
 	public ModelType getModelType() {
 		return modelType;
 	}
@@ -53,7 +57,6 @@ public class TestModel {
 	public EList<EObject> getModelObjects() {
 		return modelObjects;
 	}
-
 
 	public ModelExtent getModelExtent() {
 		return modelExtent;
@@ -90,8 +93,8 @@ public class TestModel {
 
 	public void setParent(TestModel parent) {
 		this.parent = parent;
-	} 
-	
+	}
+
 	public TestFeature getTestFeature() {
 		return testFeature;
 	}
@@ -99,16 +102,32 @@ public class TestModel {
 	public void setTestFeature(TestFeature testFeature) {
 		this.testFeature = testFeature;
 	}
-	
+
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public String getPlatform() {
+		return platform;
+	}
+
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
 	public void initialize(String initModel) {
 		URI documentURI = URI.createURI(initModel);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource documentResource = resourceSet.getResource(documentURI, true);
-		modelObjects = documentResource.getContents(); 
+		modelObjects = documentResource.getContents();
 		modelExtent = new BasicModelExtent(modelObjects);
 	}
-	
+
 	public void initialize(TestModel tm) {
 		this.setGeneratedCode(tm.getGeneratedCode());
 		this.setGroundTruth(tm.getGroundTruth());
@@ -117,13 +136,23 @@ public class TestModel {
 		this.setParent(tm);
 		this.setTestFeature(tm.getTestFeature());
 	}
-	
+
 	public void saveModelToFile(String path) {
 		Map<String, Object> opts = new HashMap<String, Object>();
 		opts.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
 
 		ResourceSet resourceSetOut = new ResourceSetImpl();
-		Resource outResource = resourceSetOut.createResource(URI.createURI(path + testFeature.getName() + ".xmi"));
+
+		String file = path;
+		if (modelType == ModelType.PIM) {
+			file += "PIM/";
+			file += testFeature.getName() + ".xmi";
+		} else {
+			file += "PSM/";
+			file += testFeature.getName() + "_" + format + "_" + platform + ".xmi";
+		}
+
+		Resource outResource = resourceSetOut.createResource(URI.createURI(file));
 		outResource.getContents().addAll(modelObjects);
 		try {
 			outResource.save(opts);
@@ -132,16 +161,21 @@ public class TestModel {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void saveGeneratedCodeToFile(String path) {
-		try {
-			File f = new File(path + testFeature.getName() + "_" + modelType + ".vbs");
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-			bw.write(generatedCode + "\n");
-			bw.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		if (generatedCode != null) {
+			try {
+				String file = path + "/" + platform + "/" + testFeature.getName() + "_" + format + "_" + platform
+						+ ".vbs";
+				File f = new File(file);
+				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+				bw.write(generatedCode + "\n");
+				bw.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
+
 	}
 }

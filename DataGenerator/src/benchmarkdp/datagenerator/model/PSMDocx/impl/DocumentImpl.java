@@ -33,9 +33,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getNumColum <em>Num Colum</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getFormat <em>Format</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getFormatCode <em>Format Code</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentFormat <em>Document Format</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentFormatCode <em>Document Format Code</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getPages <em>Pages</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentPlatform <em>Document Platform</em>}</li>
  * </ul>
  *
  * @generated
@@ -102,44 +103,44 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	protected int numColum = NUM_COLUM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFormat() <em>Format</em>}' attribute.
+	 * The default value of the '{@link #getDocumentFormat() <em>Document Format</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFormat()
+	 * @see #getDocumentFormat()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FORMAT_EDEFAULT = null;
+	protected static final String DOCUMENT_FORMAT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFormat() <em>Format</em>}' attribute.
+	 * The cached value of the '{@link #getDocumentFormat() <em>Document Format</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFormat()
+	 * @see #getDocumentFormat()
 	 * @generated
 	 * @ordered
 	 */
-	protected String format = FORMAT_EDEFAULT;
+	protected String documentFormat = DOCUMENT_FORMAT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFormatCode() <em>Format Code</em>}' attribute.
+	 * The default value of the '{@link #getDocumentFormatCode() <em>Document Format Code</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFormatCode()
+	 * @see #getDocumentFormatCode()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FORMAT_CODE_EDEFAULT = null;
+	protected static final String DOCUMENT_FORMAT_CODE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFormatCode() <em>Format Code</em>}' attribute.
+	 * The cached value of the '{@link #getDocumentFormatCode() <em>Document Format Code</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFormatCode()
+	 * @see #getDocumentFormatCode()
 	 * @generated
 	 * @ordered
 	 */
-	protected String formatCode = FORMAT_CODE_EDEFAULT;
+	protected String documentFormatCode = DOCUMENT_FORMAT_CODE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getPages() <em>Pages</em>}' containment reference list.
@@ -150,6 +151,26 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @ordered
 	 */
 	protected EList<Page> pages;
+
+	/**
+	 * The default value of the '{@link #getDocumentPlatform() <em>Document Platform</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentPlatform()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DOCUMENT_PLATFORM_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDocumentPlatform() <em>Document Platform</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentPlatform()
+	 * @generated
+	 * @ordered
+	 */
+	protected String documentPlatform = DOCUMENT_PLATFORM_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -238,8 +259,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFormat() {
-		return format;
+	public String getDocumentFormat() {
+		return documentFormat;
 	}
 
 	/**
@@ -247,11 +268,11 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFormat(String newFormat) {
-		String oldFormat = format;
-		format = newFormat;
+	public void setDocumentFormat(String newDocumentFormat) {
+		String oldDocumentFormat = documentFormat;
+		documentFormat = newDocumentFormat;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__FORMAT, oldFormat, format));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT, oldDocumentFormat, documentFormat));
 	}
 
 	/**
@@ -259,8 +280,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFormatCode() {
-		return formatCode;
+	public String getDocumentFormatCode() {
+		return documentFormatCode;
 	}
 
 	/**
@@ -268,11 +289,11 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFormatCode(String newFormatCode) {
-		String oldFormatCode = formatCode;
-		formatCode = newFormatCode;
+	public void setDocumentFormatCode(String newDocumentFormatCode) {
+		String oldDocumentFormatCode = documentFormatCode;
+		documentFormatCode = newDocumentFormatCode;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__FORMAT_CODE, oldFormatCode, formatCode));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT_CODE, oldDocumentFormatCode, documentFormatCode));
 	}
 
 	/**
@@ -285,6 +306,27 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			pages = new EObjectContainmentEList<Page>(Page.class, this, PSMDocxPackage.DOCUMENT__PAGES);
 		}
 		return pages;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDocumentPlatform() {
+		return documentPlatform;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDocumentPlatform(String newDocumentPlatform) {
+		String oldDocumentPlatform = documentPlatform;
+		documentPlatform = newDocumentPlatform;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM, oldDocumentPlatform, documentPlatform));
 	}
 
 	/**
@@ -315,12 +357,14 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getAuthor();
 			case PSMDocxPackage.DOCUMENT__NUM_COLUM:
 				return getNumColum();
-			case PSMDocxPackage.DOCUMENT__FORMAT:
-				return getFormat();
-			case PSMDocxPackage.DOCUMENT__FORMAT_CODE:
-				return getFormatCode();
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
+				return getDocumentFormat();
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT_CODE:
+				return getDocumentFormatCode();
 			case PSMDocxPackage.DOCUMENT__PAGES:
 				return getPages();
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM:
+				return getDocumentPlatform();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -343,15 +387,18 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMDocxPackage.DOCUMENT__NUM_COLUM:
 				setNumColum((Integer)newValue);
 				return;
-			case PSMDocxPackage.DOCUMENT__FORMAT:
-				setFormat((String)newValue);
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
+				setDocumentFormat((String)newValue);
 				return;
-			case PSMDocxPackage.DOCUMENT__FORMAT_CODE:
-				setFormatCode((String)newValue);
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT_CODE:
+				setDocumentFormatCode((String)newValue);
 				return;
 			case PSMDocxPackage.DOCUMENT__PAGES:
 				getPages().clear();
 				getPages().addAll((Collection<? extends Page>)newValue);
+				return;
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM:
+				setDocumentPlatform((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -374,14 +421,17 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMDocxPackage.DOCUMENT__NUM_COLUM:
 				setNumColum(NUM_COLUM_EDEFAULT);
 				return;
-			case PSMDocxPackage.DOCUMENT__FORMAT:
-				setFormat(FORMAT_EDEFAULT);
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
+				setDocumentFormat(DOCUMENT_FORMAT_EDEFAULT);
 				return;
-			case PSMDocxPackage.DOCUMENT__FORMAT_CODE:
-				setFormatCode(FORMAT_CODE_EDEFAULT);
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT_CODE:
+				setDocumentFormatCode(DOCUMENT_FORMAT_CODE_EDEFAULT);
 				return;
 			case PSMDocxPackage.DOCUMENT__PAGES:
 				getPages().clear();
+				return;
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM:
+				setDocumentPlatform(DOCUMENT_PLATFORM_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -401,12 +451,14 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
 			case PSMDocxPackage.DOCUMENT__NUM_COLUM:
 				return numColum != NUM_COLUM_EDEFAULT;
-			case PSMDocxPackage.DOCUMENT__FORMAT:
-				return FORMAT_EDEFAULT == null ? format != null : !FORMAT_EDEFAULT.equals(format);
-			case PSMDocxPackage.DOCUMENT__FORMAT_CODE:
-				return FORMAT_CODE_EDEFAULT == null ? formatCode != null : !FORMAT_CODE_EDEFAULT.equals(formatCode);
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
+				return DOCUMENT_FORMAT_EDEFAULT == null ? documentFormat != null : !DOCUMENT_FORMAT_EDEFAULT.equals(documentFormat);
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT_CODE:
+				return DOCUMENT_FORMAT_CODE_EDEFAULT == null ? documentFormatCode != null : !DOCUMENT_FORMAT_CODE_EDEFAULT.equals(documentFormatCode);
 			case PSMDocxPackage.DOCUMENT__PAGES:
 				return pages != null && !pages.isEmpty();
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM:
+				return DOCUMENT_PLATFORM_EDEFAULT == null ? documentPlatform != null : !DOCUMENT_PLATFORM_EDEFAULT.equals(documentPlatform);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -427,10 +479,12 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		result.append(author);
 		result.append(", numColum: ");
 		result.append(numColum);
-		result.append(", format: ");
-		result.append(format);
-		result.append(", formatCode: ");
-		result.append(formatCode);
+		result.append(", documentFormat: ");
+		result.append(documentFormat);
+		result.append(", documentFormatCode: ");
+		result.append(documentFormatCode);
+		result.append(", documentPlatform: ");
+		result.append(documentPlatform);
 		result.append(')');
 		return result.toString();
 	}

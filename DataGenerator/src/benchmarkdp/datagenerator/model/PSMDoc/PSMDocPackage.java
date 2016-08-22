@@ -95,22 +95,22 @@ public interface PSMDocPackage extends EPackage {
 	int DOCUMENT__NUM_COLUM = 2;
 
 	/**
-	 * The feature id for the '<em><b>Format</b></em>' attribute.
+	 * The feature id for the '<em><b>Document Format</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__FORMAT = 3;
+	int DOCUMENT__DOCUMENT_FORMAT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Format Code</b></em>' attribute.
+	 * The feature id for the '<em><b>Document Format Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__FORMAT_CODE = 4;
+	int DOCUMENT__DOCUMENT_FORMAT_CODE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Pages</b></em>' containment reference list.
@@ -122,13 +122,22 @@ public interface PSMDocPackage extends EPackage {
 	int DOCUMENT__PAGES = 5;
 
 	/**
+	 * The feature id for the '<em><b>Document Platform</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__DOCUMENT_PLATFORM = 6;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = 6;
+	int DOCUMENT_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -747,26 +756,26 @@ public interface PSMDocPackage extends EPackage {
 	EAttribute getDocument_NumColum();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDoc.Document#getFormat <em>Format</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDoc.Document#getDocumentFormat <em>Document Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Format</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDoc.Document#getFormat()
+	 * @return the meta object for the attribute '<em>Document Format</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDoc.Document#getDocumentFormat()
 	 * @see #getDocument()
 	 * @generated
 	 */
-	EAttribute getDocument_Format();
+	EAttribute getDocument_DocumentFormat();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDoc.Document#getFormatCode <em>Format Code</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDoc.Document#getDocumentFormatCode <em>Document Format Code</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Format Code</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDoc.Document#getFormatCode()
+	 * @return the meta object for the attribute '<em>Document Format Code</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDoc.Document#getDocumentFormatCode()
 	 * @see #getDocument()
 	 * @generated
 	 */
-	EAttribute getDocument_FormatCode();
+	EAttribute getDocument_DocumentFormatCode();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link benchmarkdp.datagenerator.model.PSMDoc.Document#getPages <em>Pages</em>}'.
@@ -778,6 +787,17 @@ public interface PSMDocPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDocument_Pages();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDoc.Document#getDocumentPlatform <em>Document Platform</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Document Platform</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDoc.Document#getDocumentPlatform()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_DocumentPlatform();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDoc.Page <em>Page</em>}'.
@@ -1186,20 +1206,20 @@ public interface PSMDocPackage extends EPackage {
 		EAttribute DOCUMENT__NUM_COLUM = eINSTANCE.getDocument_NumColum();
 
 		/**
-		 * The meta object literal for the '<em><b>Format</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Document Format</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DOCUMENT__FORMAT = eINSTANCE.getDocument_Format();
+		EAttribute DOCUMENT__DOCUMENT_FORMAT = eINSTANCE.getDocument_DocumentFormat();
 
 		/**
-		 * The meta object literal for the '<em><b>Format Code</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Document Format Code</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DOCUMENT__FORMAT_CODE = eINSTANCE.getDocument_FormatCode();
+		EAttribute DOCUMENT__DOCUMENT_FORMAT_CODE = eINSTANCE.getDocument_DocumentFormatCode();
 
 		/**
 		 * The meta object literal for the '<em><b>Pages</b></em>' containment reference list feature.
@@ -1208,6 +1228,14 @@ public interface PSMDocPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DOCUMENT__PAGES = eINSTANCE.getDocument_Pages();
+
+		/**
+		 * The meta object literal for the '<em><b>Document Platform</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__DOCUMENT_PLATFORM = eINSTANCE.getDocument_DocumentPlatform();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDoc.impl.PageImpl <em>Page</em>}' class.
