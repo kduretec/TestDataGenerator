@@ -31,7 +31,7 @@ mapping PIM::Page::PageToPage():PSM::Page {
 	self.elements->forEach(e) {
 		if (e.oclIsTypeOf(PIM::Paragraph)) {
 			var temp:Real := getRandomReal();
-			if (temp <=0.55) {
+			if (temp <=0.95) {
 				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
 			} else {
 				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
@@ -62,6 +62,7 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 	 		size := 10;
 	 		color := Color::BLACK;
 	 		value := stVal;
+	 		background := Color::WHITE;
 	 	};
 	 } else {
 	 	sT := object HyperLink {

@@ -47,6 +47,7 @@ public class Mutator {
 	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM/";
 	private String basePathPIM2PSMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM2PSM/";
 	private String basePathPSMDocTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDoc/";
+	private String basePathPSMDocxTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDocx/";
 
 	public Mutator() {
 
@@ -264,6 +265,8 @@ public class Mutator {
 				basePathPSMDocTransform + "ChangeTextColor.qvto", Arrays.asList("textcolor")));
 		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDoc, ModelType.PSMDoc,
 				basePathPSMDocTransform + "ChangeTextSize.qvto", Arrays.asList("textsize")));
+		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDocx, ModelType.PSMDocx,
+				basePathPSMDocxTransform + "ChangeTextColorDocx.qvto", Arrays.asList("textcolor")));
 
 	}
 

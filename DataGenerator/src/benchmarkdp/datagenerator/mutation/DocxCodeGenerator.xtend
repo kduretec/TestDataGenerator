@@ -1,5 +1,6 @@
 package benchmarkdp.datagenerator.mutation
 
+import benchmarkdp.datagenerator.model.PSMDocx.Color
 import benchmarkdp.datagenerator.model.PSMDocx.Document
 import benchmarkdp.datagenerator.model.PSMDocx.Element
 import benchmarkdp.datagenerator.model.PSMDocx.HyperLink
@@ -9,6 +10,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.SimpleText
 import benchmarkdp.datagenerator.model.PSMDocx.Table
 import benchmarkdp.datagenerator.model.PSMDocx.Text
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox
+import benchmarkdp.datagenerator.model.PSMDocx.ControlBox
 
 class DocxCodeGenerator implements CodeGeneratorInterface {
 
@@ -50,6 +52,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		i = 1 
 		tableIndex = 1
 		tBox = 0
+		cBox = 0
 		«compileDocumentElements(d)»
 		oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«documentName»_«d.documentFormat»_«d.documentPlatform».«d.documentFormat»", «d.documentFormatCode»
 				
@@ -83,6 +86,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		for (Element e : p.elements) {
 			temp = temp + switch e {
 				Paragraph: compileParagraph(e)
+				ControlBox : compileControlBox(e)
 				TextBox: compileTextBox(e)
 				Table: compileTable(e)
 			}
@@ -104,7 +108,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		parag = parag + 1
 		for (Text txt : par.words) {
 			temp = temp + switch txt {
-				SimpleText: " oSelection.TypeText(\" " + txt.value + "\")\n"
+				SimpleText: compileSimpleText(txt)
 				HyperLink: compileHyperLink(txt)
 			}
 
@@ -116,7 +120,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 	}
 
 	def compileTextBox(TextBox tb) {
-
+		System.out.println("Text box is compiled")
 		var temp = '''
 		tBox = tBox + 1
 		oDoc.Shapes.AddTextbox 1, 80, 100, 500, 32
@@ -132,6 +136,27 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		}
 
 		temp = temp + "\"\n"
+		return temp
+	}
+
+	def compileControlBox(ControlBox cb) {
+		System.out.println("Content control is compiled")
+		var temp = '''
+		cBox = cBox +1
+		Set oRange = oSelection.Range
+		oDoc.ContentControls.Add 0, oRange
+		Set oControl = oDoc.ContentControls(cBox)
+		oControl.Range.Text = "'''
+		  
+		for (Text txt : cb.words) {
+			temp = temp + switch txt {
+				SimpleText : "" + txt.value
+				HyperLink : compileHyperLink(txt)
+			}
+		}
+		
+		temp = temp + "\"\n"
+		temp = temp + "oSelection.Start = oControl.Range.End + 1 \n"
 		return temp
 	}
 
@@ -161,4 +186,31 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		return temp
 	}
 
+	def compileSimpleText(SimpleText t) {
+		var temp = '''
+			oSelection.Font.Color = «compileColor(t.color)» 
+			oSelection.Shading.BackgroundPatternColor =«compileColor(t.background)»
+			oSelection.Font.Size = «t.size»
+			oSelection.TypeText(" «t.value» ")
+		'''
+		return temp
+	}
+
+	def compileColor(Color c) {
+		var temp = '''RGB('''
+		if (c == Color::BLACK) {
+			temp = temp + "0,0,0"
+		}
+		if (c == Color::WHITE) {
+			temp = temp + "255,255,255"
+		}
+		if (c == Color::RED) {
+			temp = temp + "255,0,0"
+		}
+		if (c == Color::BLUE) {
+			temp = temp + "0,0,255"
+		}
+		temp = temp + ''')'''
+	}
+	
 }

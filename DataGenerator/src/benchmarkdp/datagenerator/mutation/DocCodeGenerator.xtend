@@ -9,6 +9,7 @@ import benchmarkdp.datagenerator.model.PSMDoc.SimpleText
 import benchmarkdp.datagenerator.model.PSMDoc.Table
 import benchmarkdp.datagenerator.model.PSMDoc.Text
 import benchmarkdp.datagenerator.model.PSMDoc.TextBox
+import benchmarkdp.datagenerator.model.PSMDoc.Color
 
 class DocCodeGenerator implements CodeGeneratorInterface {
 
@@ -105,7 +106,7 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		parag = parag + 1
 		for (Text txt : par.words) {
 			temp = temp + switch txt {
-				SimpleText: " oSelection.TypeText(\" " + txt.value + "\")\n"
+				SimpleText: compileSimpleText(txt)
 				HyperLink: compileHyperLink(txt)
 			}
 
@@ -161,5 +162,31 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		'''
 		return temp
 	}
+	
+	def compileSimpleText(SimpleText t) {
+		var temp = '''
+			oSelection.Font.Color = «compileColor(t.color)» 
+			oSelection.Shading.BackgroundPatternColor =«compileColor(t.background)»
+			oSelection.Font.Size = «t.size»
+			oSelection.TypeText(" «t.value» ")
+		'''
+		return temp
+	}
 
+	def compileColor(Color c) {
+		var temp = '''RGB('''
+		if (c == Color::BLACK) {
+			temp = temp + "0,0,0"
+		}
+		if (c == Color::WHITE) {
+			temp = temp + "255,255,255"
+		}
+		if (c == Color::RED) {
+			temp = temp + "255,0,0"
+		}
+		if (c == Color::BLUE) {
+			temp = temp + "0,0,255"
+		}
+		temp = temp + ''')'''
+	}
 }

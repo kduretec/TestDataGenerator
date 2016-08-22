@@ -1,0 +1,16 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PSM uses PSMDocx('http://benchmarkdp.datagenerator.model.PSMDocx');
+
+	
+transformation ChangeTextColor(inout model:PSM);
+
+main() {
+	var texts:= model.objectsOfType(SimpleText); 
+	texts->asSequence()->at(getRandom(texts->size()))->map ChangeColor()
+	
+}
+
+mapping inout SimpleText::ChangeColor() { 
+	color:=Color::BLUE;
+}	

@@ -1,5 +1,7 @@
 package benchmarkdp.datagenerator.mutation;
 
+import benchmarkdp.datagenerator.model.PSMDocx.Color;
+import benchmarkdp.datagenerator.model.PSMDocx.ControlBox;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.HyperLink;
@@ -13,6 +15,7 @@ import benchmarkdp.datagenerator.mutation.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.mutation.ModelType;
 import benchmarkdp.datagenerator.mutation.TestFeature;
 import benchmarkdp.datagenerator.mutation.TestModel;
+import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -78,6 +81,8 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     _builder.append("tableIndex = 1");
     _builder.newLine();
     _builder.append("tBox = 0");
+    _builder.newLine();
+    _builder.append("cBox = 0");
     _builder.newLine();
     String _compileDocumentElements = this.compileDocumentElements(d);
     _builder.append(_compileDocumentElements, "");
@@ -161,6 +166,12 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
         _switchResult = this.compileParagraph(((Paragraph)e));
       }
       if (!_matched) {
+        if (e instanceof ControlBox) {
+          _matched=true;
+          _switchResult = this.compileControlBox(((ControlBox)e));
+        }
+      }
+      if (!_matched) {
         if (e instanceof TextBox) {
           _matched=true;
           _switchResult = this.compileTextBox(((TextBox)e));
@@ -195,9 +206,7 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
       boolean _matched = false;
       if (txt instanceof SimpleText) {
         _matched=true;
-        String _value = ((SimpleText)txt).getValue();
-        String _plus_1 = (" oSelection.TypeText(\" " + _value);
-        _switchResult = (_plus_1 + "\")\n");
+        _switchResult = this.compileSimpleText(((SimpleText)txt));
       }
       if (!_matched) {
         if (txt instanceof HyperLink) {
@@ -217,6 +226,7 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
   }
   
   public String compileTextBox(final TextBox tb) {
+    System.out.println("Text box is compiled");
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("tBox = tBox + 1");
     _builder.newLine();
@@ -244,6 +254,42 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
       temp = _plus;
     }
     temp = (temp + "\"\n");
+    return temp;
+  }
+  
+  public String compileControlBox(final ControlBox cb) {
+    System.out.println("Content control is compiled");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("cBox = cBox +1");
+    _builder.newLine();
+    _builder.append("Set oRange = oSelection.Range");
+    _builder.newLine();
+    _builder.append("oDoc.ContentControls.Add 0, oRange");
+    _builder.newLine();
+    _builder.append("Set oControl = oDoc.ContentControls(cBox)");
+    _builder.newLine();
+    _builder.append("oControl.Range.Text = \"");
+    String temp = _builder.toString();
+    EList<Text> _words = cb.getWords();
+    for (final Text txt : _words) {
+      String _switchResult = null;
+      boolean _matched = false;
+      if (txt instanceof SimpleText) {
+        _matched=true;
+        String _value = ((SimpleText)txt).getValue();
+        _switchResult = ("" + _value);
+      }
+      if (!_matched) {
+        if (txt instanceof HyperLink) {
+          _matched=true;
+          _switchResult = this.compileHyperLink(((HyperLink)txt));
+        }
+      }
+      String _plus = (temp + _switchResult);
+      temp = _plus;
+    }
+    temp = (temp + "\"\n");
+    temp = (temp + "oSelection.Start = oControl.Range.End + 1 \n");
     return temp;
   }
   
@@ -290,5 +336,61 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     _builder.newLineIfNotEmpty();
     String temp = _builder.toString();
     return temp;
+  }
+  
+  public String compileSimpleText(final SimpleText t) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("oSelection.Font.Color = ");
+    Color _color = t.getColor();
+    String _compileColor = this.compileColor(_color);
+    _builder.append(_compileColor, "");
+    _builder.append(" ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("oSelection.Shading.BackgroundPatternColor =");
+    Color _background = t.getBackground();
+    String _compileColor_1 = this.compileColor(_background);
+    _builder.append(_compileColor_1, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("oSelection.Font.Size = ");
+    int _size = t.getSize();
+    _builder.append(_size, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("oSelection.TypeText(\" ");
+    String _value = t.getValue();
+    _builder.append(_value, "");
+    _builder.append(" \")");
+    _builder.newLineIfNotEmpty();
+    String temp = _builder.toString();
+    return temp;
+  }
+  
+  public String compileColor(final Color c) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("RGB(");
+      String temp = _builder.toString();
+      boolean _equals = Objects.equal(c, Color.BLACK);
+      if (_equals) {
+        temp = (temp + "0,0,0");
+      }
+      boolean _equals_1 = Objects.equal(c, Color.WHITE);
+      if (_equals_1) {
+        temp = (temp + "255,255,255");
+      }
+      boolean _equals_2 = Objects.equal(c, Color.RED);
+      if (_equals_2) {
+        temp = (temp + "255,0,0");
+      }
+      boolean _equals_3 = Objects.equal(c, Color.BLUE);
+      if (_equals_3) {
+        temp = (temp + "0,0,255");
+      }
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append(")");
+      String _plus = (temp + _builder_1);
+      _xblockexpression = temp = _plus;
+    }
+    return _xblockexpression;
   }
 }
