@@ -13,7 +13,7 @@ import org.eclipse.ocl.helper.OCLHelper;
 import benchmarkdp.datagenerator.model.PSMDoc.Document;
 import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 
-public class OCLEvaluatorPSM implements OCLEvaluatorInterface {
+public class OCLEvaluatorPSMDoc implements OCLEvaluatorInterface {
 
 	private String groundTruthKey; 
 	private ModelType modelType;
@@ -23,7 +23,7 @@ public class OCLEvaluatorPSM implements OCLEvaluatorInterface {
 	
 	private Query eval;
 	
-	public OCLEvaluatorPSM(String key, String exp) {
+	public OCLEvaluatorPSMDoc(String key, String exp) {
 		groundTruthKey = key;
 		modelType = ModelType.PSMDoc;
 		expression = exp;
@@ -54,8 +54,7 @@ public class OCLEvaluatorPSM implements OCLEvaluatorInterface {
 		Document doc = (Document) objects.get(0);
 		
 		Object value = eval.evaluate(doc);
-		System.out.println("Evaluated " + groundTruthKey + " " + value.toString());
-		tm.getGroundTruth().put(groundTruthKey, value.toString());
+		tm.getGroundTruth().put(groundTruthKey, value);
 		
 	}
 

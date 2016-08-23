@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public class TestModel {
 
 	private ModelExtent modelExtent;
 
-	private Map<String, String> groundTruth;
+	private Map<String, Object> groundTruth;
 
 	private String generatedCode;
 
@@ -43,7 +44,7 @@ public class TestModel {
 
 	public TestModel() {
 		ID = UUID.randomUUID().toString();
-		groundTruth = new HashMap<String, String>();
+		groundTruth = new HashMap<String, Object>();
 	}
 
 	public ModelType getModelType() {
@@ -67,12 +68,14 @@ public class TestModel {
 		modelObjects = new BasicEList<EObject>(modelExtent.getContents());
 	}
 
-	public Map<String, String> getGroundTruth() {
+	public Map<String, Object> getGroundTruth() {
 		return groundTruth;
 	}
 
-	public void setGroundTruth(Map<String, String> groundTruth) {
-		this.groundTruth = groundTruth;
+	public void setGroundTruth(Map<String, Object> groundTruth) {
+		for (Map.Entry<String, Object> e : groundTruth.entrySet()) {
+			this.groundTruth.put(e.getKey(), e.getValue());
+		}
 	}
 
 	public String getGeneratedCode() {
@@ -176,6 +179,74 @@ public class TestModel {
 				e1.printStackTrace();
 			}
 		}
+	}
+
+	public void saveGroundTruth(String path) {
+		try {
+			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "_groundtruthAll.txt";
+			File f = new File(file);
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			bw.write("platform = " + platform + "\n");
+			bw.write("format = " + format + "\n");
+
+			for (Map.Entry<String, Object> e : groundTruth.entrySet()) {
+				if (e.getKey().compareTo("words") == 0) {
+					exportWords(path, e.getValue());
+				} else if (e.getKey().compareTo("words-textbox") == 0) {
+					exportTextBoxWords(path, e.getValue());
+				} else if (e.getKey().compareTo("words-controlbox") == 0) {
+					exportControlBoxWords(path, e.getValue());
+				} else {
+					bw.write(e.getKey() + " = " + e.getValue() + "\n");
+				}
+			}
+
+			bw.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+	private void exportWords(String path, Object words) {
+		try {
+			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "_groundtruthWords.txt";
+			File f = new File(file);
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			List<String> list = (List<String>) words;
+			for (String w: list) {
+				bw.write(w + " ");
+			}
+			bw.write("\n");
+			bw.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+	private void exportTextBoxWords(String path, Object words) {
+		try {
+			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "_groundtruthTextBoxWords.txt";
+			File f = new File(file);
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			List<Object> list = (List<Object>) words;
+			for (Object l: list) {
+				List<String> ls = (List<String>) l;
+				for (String w: ls) {
+					bw.write(w + " ");	
+				}
+				bw.write("\n");
+			}
+			bw.write("\n");
+			bw.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+	private void exportControlBoxWords(String path, Object words) {
 
 	}
 }

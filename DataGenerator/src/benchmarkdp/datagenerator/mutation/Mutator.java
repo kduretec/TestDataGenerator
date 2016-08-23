@@ -31,7 +31,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class Mutator {
 
-	int n = 2;
+	int n = 20;
 	int m = 4;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -174,6 +174,10 @@ public class Mutator {
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");
 			tm.saveGeneratedCodeToFile(
 					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
+			if (tm.getModelType() != ModelType.PIM) {
+				tm.saveGroundTruth(
+						"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/");
+			}
 		}
 
 		/*
@@ -280,6 +284,8 @@ public class Mutator {
 		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByKind(Paragraph)->size()"));
 		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByKind(Paragraph).words->size()"));
 		evaluators.add(new OCLEvaluatorPIM("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
+		
+		evaluators.add(new OCLEvaluatorPSMDoc("words-textbox", "self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
 	}
 
 	private void initializeCodeGenerator() {
