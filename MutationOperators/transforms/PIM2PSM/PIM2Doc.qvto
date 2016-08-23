@@ -39,7 +39,10 @@ mapping PIM::Page::PageToPage():PSM::Page {
 		};
 		if (e.oclIsTypeOf(PIM::Table)) {
 			elements += e.oclAsType(PIM::Table)->map TableToTable();
-		}
+		};
+		if (e.oclIsTypeOf(PIM::Image)) {
+			elements += e.oclAsType(PIM::Image)->map ImageToImage();
+		};
 	}
 }
 
@@ -107,5 +110,13 @@ mapping PIM::Row::RowToRow():PSM::Row {
 }
 
 mapping PIM::Cell::CellToCell():PSM::Cell {
-	
+	self.element->forEach(e) {
+		elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
+	}
+}
+
+mapping PIM::Image::ImageToImage():PSM::Image {
+	height := self.height;
+	width  := self.width;
+	type   := self.type;
 }

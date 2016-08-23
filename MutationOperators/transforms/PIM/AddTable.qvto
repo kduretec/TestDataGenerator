@@ -3,7 +3,7 @@ import m2m.qvt.oml.ExampleJavaLib;
 modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 
-transformation AddParagraph(inout model:PIM);
+transformation AddTable(inout model:PIM);
 configuration property tablecount : String;
 main() {
 	var tc := stringToInt(tablecount);
@@ -20,34 +20,38 @@ main() {
 
 
 mapping inout PIM::Page::AddTable(inout i:Integer) {
-	var c11 := object Cell {
-		
-	};
-	var c12 := object Cell {
-		
-	};
-	var c21 := object Cell {
-		
-	};
-	var c22 := object Cell {
-		
-	};
 
-	var r1 := object Row {
-		cell += c11;
-		cell += c12;
-	};
-	var r2 := object Row {
-		cell += c21;
-		cell += c22;
-	};
-
+	var nR:Integer := getRandomBetween(2,15);
+	var nC:Integer := getRandomBetween(2,8);
+	
+	var r:Integer := 1;
+	
 	var tab := object Table {
-		row += r1;
-		row += r2;
-		numRows := 2;
-		numCol := 2;
+		numRows := nR;
+		numCol := nC;
+		while (r <= nR) {
+			var c:Integer := 1;
+			var tmpRow := object Row {
+				while (c <= nC) {
+					var tmpCell := object Cell {
+				 		var parag := object Paragraph {};
+				 		if (r=1) {
+				 			map AddWord(parag);
+				 		} else {
+				 			map AddNumber(parag);
+				 		};
+				 		element += parag;
+					};
+					c := c + 1;
+					cell += tmpCell;
+				};
+			};
+			row += tmpRow;
+			r := r + 1;
+		};
 	}; 
+
+ 
 	var pos:Integer;
 	if (self.elements->size()=0) {
 		pos:=1;
@@ -56,4 +60,19 @@ mapping inout PIM::Page::AddTable(inout i:Integer) {
 	};
 	//self.elements += tab;
 	self.elements := self.elements->asSequence()->insertAt(pos,tab);
+}
+
+
+mapping AddWord(inout par:PIM::Paragraph) {
+	var w := object Word {
+		value := getRandomWord();
+	};
+	par.words += w;
+}
+
+mapping AddNumber(inout par:PIM::Paragraph) {
+	var w := object Word {
+		value := getRandom(100).toString();
+	};
+	par.words += w;
 }

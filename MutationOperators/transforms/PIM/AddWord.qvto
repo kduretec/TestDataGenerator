@@ -7,7 +7,8 @@ transformation AddWord(inout model:PIM);
 configuration property wordcount:String;
 main() {
 	var wc := stringToInt(wordcount);
-	var paragraphs:= model.objectsOfType(Paragraph);
+	var paragraphs := model.rootObjects()[Document].pages.elements->selectByType(Paragraph);
+	//var paragraphs:= model.objectsOfType(Paragraph);
 	
 	while (wc > 0) {
 		var pos := getRandom(paragraphs->size());
@@ -17,7 +18,6 @@ main() {
 	}
 	
 }
-
 
 mapping inout PIM::Paragraph::AddWord(inout i:Integer) {
 	var t := object Word {

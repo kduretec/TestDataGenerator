@@ -1,11 +1,14 @@
 package benchmarkdp.datagenerator.mutation;
 
+import benchmarkdp.datagenerator.model.PSMDoc.Cell;
 import benchmarkdp.datagenerator.model.PSMDoc.Color;
 import benchmarkdp.datagenerator.model.PSMDoc.Document;
 import benchmarkdp.datagenerator.model.PSMDoc.Element;
 import benchmarkdp.datagenerator.model.PSMDoc.HyperLink;
+import benchmarkdp.datagenerator.model.PSMDoc.Image;
 import benchmarkdp.datagenerator.model.PSMDoc.Page;
 import benchmarkdp.datagenerator.model.PSMDoc.Paragraph;
+import benchmarkdp.datagenerator.model.PSMDoc.Row;
 import benchmarkdp.datagenerator.model.PSMDoc.SimpleText;
 import benchmarkdp.datagenerator.model.PSMDoc.Table;
 import benchmarkdp.datagenerator.model.PSMDoc.Text;
@@ -172,6 +175,12 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
           _switchResult = this.compileTable(((Table)e));
         }
       }
+      if (!_matched) {
+        if (e instanceof Image) {
+          _matched=true;
+          _switchResult = this.compileImage(((Image)e));
+        }
+      }
       String _plus = (temp + _switchResult);
       temp = _plus;
     }
@@ -262,6 +271,9 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
     _builder.newLine();
     _builder.append("objTable.AutoFormat(16)");
     _builder.newLine();
+    String _compileTableElements = this.compileTableElements(t);
+    _builder.append(_compileTableElements, "");
+    _builder.newLineIfNotEmpty();
     _builder.append("tableIndex = tableIndex + 1");
     _builder.newLine();
     _builder.append("oSelection.EndKey END_OF_STORY");
@@ -272,6 +284,58 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
     _builder.newLine();
     String temp = _builder.toString();
     return temp;
+  }
+  
+  public String compileTableElements(final Table t) {
+    StringConcatenation _builder = new StringConcatenation();
+    String temp = _builder.toString();
+    for (int i = 1; (i <= t.getNumRows()); i++) {
+      for (int j = 1; (j <= t.getNumCol()); j++) {
+        {
+          temp = (((((temp + "objTable.Cell(") + Integer.valueOf(i)) + ",") + Integer.valueOf(j)) + ").Select\n");
+          EList<Row> _row = t.getRow();
+          Row _get = _row.get((i - 1));
+          EList<Cell> _cell = _get.getCell();
+          Cell _get_1 = _cell.get((j - 1));
+          EList<Element> _elements = _get_1.getElements();
+          for (final Element e : _elements) {
+            String _switchResult = null;
+            boolean _matched = false;
+            if (e instanceof Paragraph) {
+              _matched=true;
+              _switchResult = this.compileParagraph(((Paragraph)e));
+            }
+            String _plus = (temp + _switchResult);
+            temp = _plus;
+          }
+        }
+      }
+    }
+    return temp;
+  }
+  
+  public String compileImage(final Image img) {
+    String _xblockexpression = null;
+    {
+      StringConcatenation _builder = new StringConcatenation();
+      String temp = _builder.toString();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Set oImg = oSelection.InlineShapes.AddPicture(\"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\Macro\\Images\\Desert.jpg\")");
+      _builder_1.newLine();
+      _builder_1.append("\t\t");
+      _builder_1.append("oImg.Height = ");
+      int _height = img.getHeight();
+      _builder_1.append(_height, "\t\t");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("\t\t");
+      _builder_1.append("oImg.Width = ");
+      int _width = img.getWidth();
+      _builder_1.append(_width, "\t\t");
+      _builder_1.newLineIfNotEmpty();
+      String _plus = (temp + _builder_1);
+      _xblockexpression = temp = _plus;
+    }
+    return _xblockexpression;
   }
   
   public String compileHyperLink(final HyperLink h) {

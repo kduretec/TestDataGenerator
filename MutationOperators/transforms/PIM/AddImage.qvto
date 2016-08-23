@@ -1,0 +1,30 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
+	
+
+transformation AddParagraph(inout model:PIM);
+configuration property imagecount : String;
+main() {
+	var pages:= model.objectsOfType(Page);
+	if (pages->size() > 5) {
+		var ic:Integer := getRandomBetween(1,5); 
+		while (ic > 0) {
+			var pos := getRandom(pages->size());
+			var page := pages->asSequence()->at(pos);
+			page->map AddImage(ic);
+			ic := ic - 1;		
+		}	
+	} 
+	
+
+}
+
+mapping inout PIM::Page::AddImage(inout i:Integer) {
+	var img := object Image {
+		height := 100;
+		width := 200;
+		type := "jpg";
+	};
+	self.elements += img;
+}

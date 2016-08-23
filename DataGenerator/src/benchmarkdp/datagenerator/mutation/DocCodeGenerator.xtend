@@ -1,15 +1,16 @@
 package benchmarkdp.datagenerator.mutation
 
+import benchmarkdp.datagenerator.model.PSMDoc.Color
 import benchmarkdp.datagenerator.model.PSMDoc.Document
 import benchmarkdp.datagenerator.model.PSMDoc.Element
 import benchmarkdp.datagenerator.model.PSMDoc.HyperLink
+import benchmarkdp.datagenerator.model.PSMDoc.Image
 import benchmarkdp.datagenerator.model.PSMDoc.Page
 import benchmarkdp.datagenerator.model.PSMDoc.Paragraph
 import benchmarkdp.datagenerator.model.PSMDoc.SimpleText
 import benchmarkdp.datagenerator.model.PSMDoc.Table
 import benchmarkdp.datagenerator.model.PSMDoc.Text
 import benchmarkdp.datagenerator.model.PSMDoc.TextBox
-import benchmarkdp.datagenerator.model.PSMDoc.Color
 
 class DocCodeGenerator implements CodeGeneratorInterface {
 
@@ -87,6 +88,7 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 				Paragraph: compileParagraph(e)
 				TextBox: compileTextBox(e)
 				Table: compileTable(e)
+				Image: compileImage(e)
 			}
 
 		}
@@ -147,6 +149,7 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 			oDoc.Tables.Add oRange, «numR», «numC»
 			Set objTable = oDoc.Tables(tableIndex)
 			objTable.AutoFormat(16)
+			«compileTableElements(t)»
 			tableIndex = tableIndex + 1
 			oSelection.EndKey END_OF_STORY
 			oSelection.TypeParagraph()
@@ -154,6 +157,31 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		'''
 		return temp
 	}
+
+	def compileTableElements(Table t) {
+		var temp = ''''''
+		for (var i = 1; i <= t.numRows; i++) {
+			for (var j = 1; j <= t.numCol; j++) {
+				temp = temp + "objTable.Cell(" + i +"," + j +").Select\n"
+				for (Element e: t.row.get(i-1).cell.get(j-1).elements) {
+					temp = temp + switch e {
+							Paragraph : compileParagraph(e)
+						}
+				}
+				
+			}
+		}
+		return temp
+	}
+
+	def compileImage(Image img) {
+		var temp = ''''''
+		temp = temp + '''Set oImg = oSelection.InlineShapes.AddPicture("c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Macro\Images\Desert.jpg")
+		oImg.Height = «img.height»
+		oImg.Width = «img.width»
+		'''
+	}
+
 
 	def compileHyperLink(HyperLink h) {
 		var temp = '''

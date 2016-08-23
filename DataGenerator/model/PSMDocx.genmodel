@@ -66,6 +66,10 @@
     <genClasses ecoreClass="PSMDocx.ecore#//Cell">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Cell/elements"/>
     </genClasses>
-    <genClasses ecoreClass="PSMDocx.ecore#//Image"/>
+    <genClasses ecoreClass="PSMDocx.ecore#//Image">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Image/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Image/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Image/type"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

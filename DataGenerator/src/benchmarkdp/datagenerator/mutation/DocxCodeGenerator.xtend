@@ -1,16 +1,17 @@
 package benchmarkdp.datagenerator.mutation
 
 import benchmarkdp.datagenerator.model.PSMDocx.Color
+import benchmarkdp.datagenerator.model.PSMDocx.ControlBox
 import benchmarkdp.datagenerator.model.PSMDocx.Document
 import benchmarkdp.datagenerator.model.PSMDocx.Element
 import benchmarkdp.datagenerator.model.PSMDocx.HyperLink
+import benchmarkdp.datagenerator.model.PSMDocx.Image
 import benchmarkdp.datagenerator.model.PSMDocx.Page
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph
 import benchmarkdp.datagenerator.model.PSMDocx.SimpleText
 import benchmarkdp.datagenerator.model.PSMDocx.Table
 import benchmarkdp.datagenerator.model.PSMDocx.Text
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox
-import benchmarkdp.datagenerator.model.PSMDocx.ControlBox
 
 class DocxCodeGenerator implements CodeGeneratorInterface {
 
@@ -89,6 +90,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 				ControlBox : compileControlBox(e)
 				TextBox: compileTextBox(e)
 				Table: compileTable(e)
+				Image: compileImage(e)
 			}
 
 		}
@@ -170,6 +172,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 			oDoc.Tables.Add oRange, «numR», «numC»
 			Set objTable = oDoc.Tables(tableIndex)
 			objTable.AutoFormat(16)
+			«compileTableElements(t)»
 			tableIndex = tableIndex + 1
 			oSelection.EndKey END_OF_STORY
 			oSelection.TypeParagraph()
@@ -178,6 +181,32 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		return temp
 	}
 
+	def compileTableElements(Table t) {
+		var temp = ''''''
+		for (var i = 1; i <= t.numRows; i++) {
+			for (var j = 1; j <= t.numCol; j++) {
+				temp = temp + "objTable.Cell(" + i +"," + j +").Select\n"
+				for (Element e: t.row.get(i-1).cell.get(j-1).elements) {
+					temp = temp + switch e {
+							Paragraph : compileParagraph(e)
+						}
+				}
+				
+			}
+		}
+		return temp
+	}
+	
+	
+	def compileImage(Image img) {
+		var temp = ''''''
+		temp = temp + '''Set oImg = oSelection.InlineShapes.AddPicture("c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Macro\Images\Desert.jpg")
+		oImg.Height = «img.height»
+		oImg.Width = «img.width»
+		'''
+	}
+	
+	
 	def compileHyperLink(HyperLink h) {
 		var temp = '''
 			Set oRange = oSelection.Range

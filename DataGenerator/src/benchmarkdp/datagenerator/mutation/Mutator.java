@@ -246,6 +246,8 @@ public class Mutator {
 				basePathPIMTransform + "AddParagraph.qvto", Arrays.asList("paragraphcount")));
 		mutationsPIM.add(new MutationOperator("AddTable", ModelType.PIM, ModelType.PIM,
 				basePathPIMTransform + "AddTable.qvto", Arrays.asList("tablecount")));
+		mutationsPIM.add(new MutationOperator("AddImage", ModelType.PIM, ModelType.PIM,
+				basePathPIMTransform + "AddImage.qvto", Arrays.asList("imagecount")));
 		mutationsPIM.add(new MutationOperator("AddWord", ModelType.PIM, ModelType.PIM,
 				basePathPIMTransform + "AddWord.qvto", Arrays.asList("wordcount")));
 	}

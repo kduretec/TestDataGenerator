@@ -647,7 +647,7 @@ public interface PSMDocxPackage extends EPackage {
 	int CELL = 12;
 
 	/**
-	 * The feature id for the '<em><b>Elements</b></em>' containment reference.
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -684,13 +684,40 @@ public interface PSMDocxPackage extends EPackage {
 	int IMAGE = 13;
 
 	/**
+	 * The feature id for the '<em><b>Width</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__WIDTH = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Height</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__HEIGHT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__TYPE = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Image</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
+	int IMAGE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Image</em>' class.
@@ -1095,10 +1122,10 @@ public interface PSMDocxPackage extends EPackage {
 	EClass getCell();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link benchmarkdp.datagenerator.model.PSMDocx.Cell#getElements <em>Elements</em>}'.
+	 * Returns the meta object for the containment reference list '{@link benchmarkdp.datagenerator.model.PSMDocx.Cell#getElements <em>Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Elements</em>'.
+	 * @return the meta object for the containment reference list '<em>Elements</em>'.
 	 * @see benchmarkdp.datagenerator.model.PSMDocx.Cell#getElements()
 	 * @see #getCell()
 	 * @generated
@@ -1114,6 +1141,39 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getImage();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Image#getWidth <em>Width</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Width</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Image#getWidth()
+	 * @see #getImage()
+	 * @generated
+	 */
+	EAttribute getImage_Width();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Image#getHeight <em>Height</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Height</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Image#getHeight()
+	 * @see #getImage()
+	 * @generated
+	 */
+	EAttribute getImage_Height();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Image#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Image#getType()
+	 * @see #getImage()
+	 * @generated
+	 */
+	EAttribute getImage_Type();
 
 	/**
 	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMDocx.FontFamily <em>Font Family</em>}'.
@@ -1465,7 +1525,7 @@ public interface PSMDocxPackage extends EPackage {
 		EClass CELL = eINSTANCE.getCell();
 
 		/**
-		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1481,6 +1541,30 @@ public interface PSMDocxPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IMAGE = eINSTANCE.getImage();
+
+		/**
+		 * The meta object literal for the '<em><b>Width</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE__WIDTH = eINSTANCE.getImage_Width();
+
+		/**
+		 * The meta object literal for the '<em><b>Height</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE__HEIGHT = eINSTANCE.getImage_Height();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMAGE__TYPE = eINSTANCE.getImage_Type();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.FontFamily <em>Font Family</em>}' enum.
