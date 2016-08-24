@@ -21,8 +21,8 @@ main() {
 
 mapping inout PIM::Page::AddTable(inout i:Integer) {
 
-	var nR:Integer := getRandomBetween(2,15);
-	var nC:Integer := getRandomBetween(2,8);
+	var nR:Integer := getRandomBetween(2,7);
+	var nC:Integer := getRandomBetween(2,5);
 	
 	var r:Integer := 1;
 	

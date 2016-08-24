@@ -284,8 +284,13 @@ public class Mutator {
 		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByKind(Paragraph)->size()"));
 		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByKind(Paragraph).words->size()"));
 		evaluators.add(new OCLEvaluatorPIM("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
-		
-		evaluators.add(new OCLEvaluatorPSMDoc("words-textbox", "self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
+
+		evaluators.add(new OCLEvaluatorPSMDoc("words-textbox",
+				"self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
+		evaluators.add(new OCLEvaluatorPSMDocx("words-textbox",
+				"self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
+		evaluators.add(new OCLEvaluatorPSMDocx("words-controlbox",
+				"self.pages.elements->selectByType(ControlBox)->asSequence()->collectNested(words.value->asSequence())"));
 	}
 
 	private void initializeCodeGenerator() {

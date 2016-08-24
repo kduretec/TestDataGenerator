@@ -247,6 +247,23 @@ public class TestModel {
 	}
 
 	private void exportControlBoxWords(String path, Object words) {
-
+		try {
+			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "_groundtruthControlBoxWords.txt";
+			File f = new File(file);
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			List<Object> list = (List<Object>) words;
+			for (Object l: list) {
+				List<String> ls = (List<String>) l;
+				for (String w: ls) {
+					bw.write(w + " ");	
+				}
+				bw.write("\n");
+			}
+			bw.write("\n");
+			bw.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }

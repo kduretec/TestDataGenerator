@@ -86,7 +86,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		var temp = ''''''
 		for (Element e : p.elements) {
 			temp = temp + switch e {
-				Paragraph: compileParagraph(e)
+				Paragraph: compileParagraph(e, false)
 				ControlBox : compileControlBox(e)
 				TextBox: compileTextBox(e)
 				Table: compileTable(e)
@@ -99,10 +99,10 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 
 	}
 
-	def compileParagraph(Paragraph par) {
+	def compileParagraph(Paragraph par, boolean inTable) {
 		var temp = '''
 		'''
-		if (parag > 1) {
+		if (parag > 1 && !inTable) {
 			temp = temp + '''
 				oSelection.TypeParagraph()
 			'''
@@ -188,7 +188,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 				temp = temp + "objTable.Cell(" + i +"," + j +").Select\n"
 				for (Element e: t.row.get(i-1).cell.get(j-1).elements) {
 					temp = temp + switch e {
-							Paragraph : compileParagraph(e)
+							Paragraph : compileParagraph(e, true)
 						}
 				}
 				

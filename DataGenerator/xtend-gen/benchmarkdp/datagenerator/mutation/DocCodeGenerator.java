@@ -161,7 +161,7 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
       boolean _matched = false;
       if (e instanceof Paragraph) {
         _matched=true;
-        _switchResult = this.compileParagraph(((Paragraph)e));
+        _switchResult = this.compileParagraph(((Paragraph)e), false);
       }
       if (!_matched) {
         if (e instanceof TextBox) {
@@ -187,10 +187,10 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
     return temp;
   }
   
-  public String compileParagraph(final Paragraph par) {
+  public String compileParagraph(final Paragraph par, final boolean inTable) {
     StringConcatenation _builder = new StringConcatenation();
     String temp = _builder.toString();
-    if ((this.parag > 1)) {
+    if (((this.parag > 1) && (!inTable))) {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("oSelection.TypeParagraph()");
       _builder_1.newLine();
@@ -303,7 +303,7 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
             boolean _matched = false;
             if (e instanceof Paragraph) {
               _matched=true;
-              _switchResult = this.compileParagraph(((Paragraph)e));
+              _switchResult = this.compileParagraph(((Paragraph)e), true);
             }
             String _plus = (temp + _switchResult);
             temp = _plus;
