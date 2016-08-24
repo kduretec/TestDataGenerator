@@ -183,7 +183,7 @@ public class TestModel {
 
 	public void saveGroundTruth(String path) {
 		try {
-			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "_groundtruthAll.txt";
+			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "-groundtruthAll.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			bw.write("platform = " + platform + "\n");
@@ -210,7 +210,7 @@ public class TestModel {
 
 	private void exportWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "_groundtruthWords.txt";
+			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "-groundtruthWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			List<String> list = (List<String>) words;
@@ -227,7 +227,7 @@ public class TestModel {
 
 	private void exportTextBoxWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "_groundtruthTextBoxWords.txt";
+			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "-groundtruthTextBoxWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			List<Object> list = (List<Object>) words;
@@ -248,7 +248,7 @@ public class TestModel {
 
 	private void exportControlBoxWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "_groundtruthControlBoxWords.txt";
+			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "-groundtruthControlBoxWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			List<Object> list = (List<Object>) words;

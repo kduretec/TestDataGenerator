@@ -10,7 +10,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -22,21 +25,16 @@ import org.xml.sax.SAXException;
 
 public class Unifier {
 
-	private String path = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/ToolOutput/";
+	private String basePath = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/";
+	private String docPath = basePath + "Documents/";
 
-	private String pathGroundTruth = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/";
+	private String path = basePath + "ToolOutput/";
 
-	private String pathVBResults = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/ToolOutput/VBScript/";
+	private List<String> names;
 
-	private String pathNLNZResults = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/ToolOutput/NLNZMetadataExtractor3.4/";
-
-	private String pathExifResults = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/ToolOutput/NLNZMetadataExtractor3.6/";
-
-	private String pathTikaResults = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/ToolOutput/ApacheTika/";
-
-	private String pathTextUtilsResults = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/ToolOutput/TextUtil/";
-
-	private int num = 40;
+	public Unifier() {
+		names = new ArrayList<String>();
+	}
 
 	public static void main(String[] args) {
 		Unifier unifier = new Unifier();
@@ -44,80 +42,78 @@ public class Unifier {
 	}
 
 	public void execute() {
+
 		try {
-			File f = new File(path + "results.tsv");
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			File fResults = new File(path + "results.tsv");
+			BufferedWriter bw = new BufferedWriter(new FileWriter(fResults));
 
-			bw.write(
-					"DocumentName\tGT-FORMAT\tGT-COLUMNS\tGT-PC\tGT-PARC\tGT-TC\tGT-WC\tGTVB-PC\tGTVB-PARC\tGTVB-WC\tVB-PC\tVB-PARC\tVB-WC\tVB-TC\tNLNZ-PC\tNLNZ-WC\tEXIF-PC\tEXIF-PARC\tEXIF-WC\tTIKA-PC\tTIKA-WC\t"
-							+ "TIKA-TXT\tTEXTUTILS-DIFF\tTIKA-TXTBX\tTEXTUTILS-TXTBX\t" + "\n");
+			File f = new File(docPath);
+			File[] documents = f.listFiles();
+			boolean header = true;
+			for (File dF : documents) {
+				if (dF.getName().compareTo(".DS_Store") == 0)
+					continue;
+				int pos = dF.getName().indexOf(".");
+				String fileName = dF.getName().substring(0, pos);
+				System.out.println(fileName);
+				Map<String, String> mapDoc = new HashMap<String, String>();
 
-			for (int i = 0; i < num; i++) {
-				bw.write("Document" + i + "\t");
-				Map<String, String> m = getGroundTruth(i);
-				bw.write(m.get("format") + "\t");
-				bw.write(m.get("columns") + "\t");
-				bw.write(m.get("pagecount") + "\t");
-				bw.write(m.get("paragraphcount") + "\t");
-				bw.write(m.get("tablecount") + "\t");
-				bw.write(m.get("wordcount") + "\t");
+				Map<String, String> tmp = getGroundTruth(fileName, names);
+				mapDoc.putAll(tmp);
 
-				m = getGroundTruthVB(i);
-				bw.write(m.get("pagecount") + "\t");
-				bw.write(m.get("paragraphcount") + "\t");
-				bw.write(m.get("wordcount") + "\t");
+				tmp = getGroundTruthVB(fileName, names);
+				mapDoc.putAll(tmp);
 
-				m = getVBResults(i);
-				bw.write(m.get("pagecount") + "\t");
-				bw.write(m.get("paragraphcount") + "\t");
-				bw.write(m.get("wordcount") + "\t");
-				bw.write(m.get("tablecount") + "\t");
+				tmp = getVBMetadata(fileName, names);
+				mapDoc.putAll(tmp);
 
-				m = getNLNZResults(i);
-				bw.write(m.get("pagecount") + "\t");
-				bw.write(m.get("wordcount") + "\t");
+				tmp = getNLNZResults(fileName, names);
+				mapDoc.putAll(tmp);
 
-				m = getExifResults(i);
-				bw.write(m.get("pagecount") + "\t");
-				bw.write(m.get("paragraphcount") + "\t");
-				bw.write(m.get("wordcount") + "\t");
+				tmp = getExifResults(fileName, names);
+				mapDoc.putAll(tmp);
 
-				m = getTikaMetadata(i);
-				bw.write(m.get("pagecount") + "\t");
-				bw.write(m.get("wordcount") + "\t");
+				tmp = getTika(fileName, names);
+				mapDoc.putAll(tmp);
 
-				m = getTikaDiff(i);
-				bw.write(m.get("diff") + "\t");
+				tmp = getUtils(fileName, names);
+				mapDoc.putAll(tmp);
 
-				m = getUtilsDiff(i);
-				bw.write(m.get("diff") + "\t");
-
-				m = getTikaTxtBx(i);
-				bw.write(m.get("present") + "\t");
-				m = getTextUtilsTxtBx(i);
-				bw.write(m.get("present") + "\t");
-
+				if (header) {
+					bw.write("Name");
+					for (int i = 0; i < names.size(); i++) {
+						bw.write("\t" + names.get(i));
+					}
+					header = false;
+				}
 				bw.write("\n");
+				bw.write(fileName);
+				for (int i = 0; i < names.size(); i++) {
+					bw.write("\t" + mapDoc.get(names.get(i)));
+				}
+				mapDoc.clear();
+				names.clear();
 			}
-			System.out.println("Done");
 			bw.close();
 
-		} catch (IOException e1) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}
 
-	public Map<String, String> getGroundTruth(int ind) {
+	public Map<String, String> getGroundTruth(String file, List<String> names) {
+		String pathGroundTruth = basePath + "GroundTruth/";
 		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathGroundTruth + "Document" + ind + "-groundtruth.txt");
+		File f = new File(pathGroundTruth + file + "-groundtruthAll.txt");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] elem = line.split(" ");
-				values.put(elem[0], elem[2]);
+				names.add("GT-" + elem[0]);
+				values.put("GT-" + elem[0], elem[2]);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -129,20 +125,25 @@ public class Unifier {
 		return values;
 	}
 
-	public Map<String, String> getGroundTruthVB(int ind) {
+	public Map<String, String> getGroundTruthVB(String file, List<String> names) {
+		String pathGroundTruth = basePath + "GroundTruth/";
 		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathGroundTruth + "Document" + ind + "-wordgroundtruth.txt");
+		File f = new File(pathGroundTruth + file + "-wordgroundtruth.txt");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] elem = line.split(" ");
-				values.put(elem[0], elem[1]);
+				names.add("GTVB-" + elem[0]);
+				values.put("GTVB-" + elem[0], elem[1]);
 			}
 		} catch (FileNotFoundException e) {
-			values.put("pagecount", "null");
-			values.put("paragraphcount", "null");
-			values.put("wordcount", "null");
+			names.add("GTVB-pagecount");
+			names.add("GTVB-paragraphcount");
+			names.add("GTVB-wordcount");
+			values.put("GTVB-pagecount", "null");
+			values.put("GTVB-paragraphcount", "null");
+			values.put("GTVB-wordcount", "null");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -151,21 +152,27 @@ public class Unifier {
 		return values;
 	}
 
-	public Map<String, String> getVBResults(int ind) {
+	public Map<String, String> getVBMetadata(String file, List<String> names) {
+		String pathVBMetadata = path + "VBScript/metadata/";
 		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathVBResults + "Document" + ind + ".txt");
+		File f = new File(pathVBMetadata + file + ".txt");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] elem = line.split(" ");
-				values.put(elem[0], elem[1]);
+				names.add("VBRES-" + elem[0]);
+				values.put("VBRES-" + elem[0], elem[1]);
 			}
 		} catch (FileNotFoundException e) {
-			values.put("pagecount", "null");
-			values.put("paragraphcount", "null");
-			values.put("wordcount", "null");
-			values.put("tablecount", "null");
+			names.add("VBRES-pagecount");
+			names.add("VBRES-paragraphcount");
+			names.add("VBRES-wordcount");
+			names.add("VBRES-tablecount");
+			values.put("VBRES-pagecount", "null");
+			values.put("VBRES-paragraphcount", "null");
+			values.put("VBRES-wordcount", "null");
+			values.put("VBRES-tablecount", "null");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,9 +180,10 @@ public class Unifier {
 		return values;
 	}
 
-	public Map<String, String> getNLNZResults(int ind) {
+	public Map<String, String> getNLNZResults(String file, List<String> names) {
+		String pathNLNZ34Metadata = path + "NLNZMetadataExtractor3.4/metadata/";
 		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathNLNZResults + "Document" + ind + ".fits");
+		File f = new File(pathNLNZ34Metadata + file + ".fits");
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -193,12 +201,16 @@ public class Unifier {
 			} else {
 				wC = doc.getElementsByTagName("wordCount").item(0).getTextContent();
 			}
-			values.put("pagecount", pC);
-			values.put("wordcount", wC);
+			names.add("NLNZ34-pagecount");
+			names.add("NLNZ34-wordcount");
+			values.put("NLNZ34-pagecount", pC);
+			values.put("NLNZ34-wordcount", wC);
 
 		} catch (FileNotFoundException e) {
-			values.put("pagecount", "null");
-			values.put("wordcount", "null");
+			names.add("NLNZ34-pagecount");
+			names.add("NLNZ34-wordcount");
+			values.put("NLNZ34-pagecount", "null");
+			values.put("NLNZ34-wordcount", "null");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -212,24 +224,30 @@ public class Unifier {
 		return values;
 	}
 
-	public Map<String, String> getExifResults(int ind) {
+	public Map<String, String> getExifResults(String file, List<String> names) {
+		String pathExifResults = path + "NLNZMetadataExtractor3.6/";
 		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathExifResults + "Document" + ind + ".fits");
+		File f = new File(pathExifResults + file + ".fits");
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(f);
 
 			doc.getDocumentElement().normalize();
-
-			values.put("pagecount", doc.getElementsByTagName("pageCount").item(0).getTextContent());
-			values.put("wordcount", doc.getElementsByTagName("wordCount").item(0).getTextContent());
-			values.put("paragraphcount", doc.getElementsByTagName("paragraphCount").item(0).getTextContent());
+			names.add("EXIF-pagecount");
+			names.add("EXIF-wordcount");
+			names.add("EXIF-paragraphcount");
+			values.put("EXIF-pagecount", doc.getElementsByTagName("pageCount").item(0).getTextContent());
+			values.put("EXIF-wordcount", doc.getElementsByTagName("wordCount").item(0).getTextContent());
+			values.put("EXIF-paragraphcount", doc.getElementsByTagName("paragraphCount").item(0).getTextContent());
 
 		} catch (FileNotFoundException e) {
-			values.put("pagecount", "null");
-			values.put("wordcount", "null");
-			values.put("paragraphcount", "null");
+			names.add("EXIF-pagecount");
+			names.add("EXIF-wordcount");
+			names.add("EXIF-paragraphcount");
+			values.put("EXIF-pagecount", "null");
+			values.put("EXIF-wordcount", "null");
+			values.put("EXIF-paragraphcount", "null");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -243,34 +261,80 @@ public class Unifier {
 		return values;
 	}
 
-	public Map<String, String> getTikaMetadata(int ind) {
+	public Map<String, String> getTika(String file, List<String> names) {
+		List<String> tikaVer = Arrays.asList("1_1", "1_2", "1_13");
 		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathTikaResults + "Document" + ind + "-metadatatika.txt");
+		String pathGroundTruth = basePath + "GroundTruth/";
+		for (String ver : tikaVer) {
+			String pathTika = path + "ApacheTika" + ver + "/";
+			String pathTikaMetadata = pathTika + "metadata/";
+			String pathTikaText = pathTika + "text/";
+			File f = new File(pathTikaMetadata + file + "-metadatatika.txt");
+			getTikaMetadata(ver, f, values, names);
+			f = new File(pathTikaText + file + "-wdiff.txt");
+			getTextDiff("TIKA_" + ver + "txt-diff", f, values, names);
+			File fGT = new File(pathGroundTruth + file + "-groundtruthTextBoxWords.txt");
+			f = new File(pathTikaText + file + "-tika.txt");
+			getContrTxtBx("TIKA_" + ver + "_TXTBX-present", fGT, f, values, names);
+			fGT = new File(pathGroundTruth + file + "-groundtruthControlBoxWords.txt");
+			if (fGT.exists()) {
+				getContrTxtBx("TIKA_" + ver + "_CTBX-present", fGT, f, values, names);
+			} else {
+				names.add("TIKA_" + ver + "CTBX-present");
+				values.put("TIKA_" + ver + "CTBX-present", "NA");
+			}
+		}
+		return values;
+	}
+
+	private void getTikaMetadata(String version, File f, Map<String, String> values, List<String> names) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] elem = line.split(": ");
 				if (elem[0].compareTo("Page-Count") == 0) {
-					values.put("pagecount", elem[1]);
+					names.add("TIKA_" + version + "-pagecount");
+					names.add("TIKA_" + version + "-wordcount");
+					values.put("TIKA_" + version + "-pagecount", elem[1]);
 				}
 				if (elem[0].compareTo("Word-Count") == 0) {
-					values.put("wordcount", elem[1]);
+					values.put("TIKA_" + version + "-wordcount", elem[1]);
 				}
 			}
 		} catch (FileNotFoundException e) {
-			values.put("pagecount", "null");
-			values.put("wordcount", "null");
+			names.add("TIKA_" + version + "-pagecount");
+			names.add("TIKA_" + version + "-wordcount");
+			values.put("TIKA_" + version + "-pagecount", "null");
+			values.put("TIKA_" + version + "-wordcount", "null");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public Map<String, String> getUtils(String file, List<String> names) {
+		Map<String, String> values = new HashMap<String, String>();
+		String pathGroundTruth = basePath + "GroundTruth/";
+		String pathUtils = path + "TextUtil/text";
+		File f = new File(pathUtils + file + "-wdiff.txt");
+		getTextDiff("TEXTUTIL_txt-diff", f, values, names);
+
+		File fGT = new File(pathGroundTruth + file + "-groundtruthTextBoxWords.txt");
+		f = new File(pathUtils + file + "-textutil.txt");
+		getContrTxtBx("TEXTUTIL_TXTBX-present", fGT, f, values, names);
+		fGT = new File(pathGroundTruth + file + "-groundtruthControlBoxWords.txt");
+		if (fGT.exists()) {
+			getContrTxtBx("TEXTUTIL_CTBX-present", fGT, f, values, names);
+		} else {
+			names.add("TEXTUTIL_CTBX-present");
+			values.put("TEXTUTIL_CTBX-present", "NA");
+		}
+
 		return values;
 	}
 
-	public Map<String, String> getTikaDiff(int ind) {
-		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathTikaResults + "Document" + ind + "-wdiff.txt");
+	private void getTextDiff(String code, File f, Map<String, String> values, List<String> names) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
 			String line1, line2;
@@ -285,103 +349,46 @@ public class Unifier {
 			String s2 = elem2[5];
 			s2 = s2.substring(0, s2.length() - 1);
 			int num2 = Integer.parseInt(s2);
-
+			names.add(code);
 			if (num1 > num2) {
-				values.put("diff", s2);
+				values.put(code, s2);
 			} else {
-				values.put("diff", s1);
+				values.put(code, s1);
 			}
 		} catch (FileNotFoundException e) {
-			values.put("diff", "null");
+			names.add(code);
+			values.put(code, "null");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NullPointerException e) {
-			values.put("diff", "null");
+			names.add(code);
+			values.put(code, "null");
 		}
-		return values;
 	}
 
-	public Map<String, String> getUtilsDiff(int ind) {
-		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathTextUtilsResults + "Document" + ind + "-wdiff.txt");
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(f));
-			String line1, line2;
-			line1 = br.readLine();
-			line2 = br.readLine();
-			String[] elem1 = line1.split(" ");
-			String[] elem2 = line2.split(" ");
-
-			String s1 = elem1[5];
-			s1 = s1.substring(0, s1.length() - 1);
-			int num1 = Integer.parseInt(s1);
-			String s2 = elem2[5];
-			s2 = s2.substring(0, s2.length() - 1);
-			int num2 = Integer.parseInt(s2);
-
-			if (num1 > num2) {
-				values.put("diff", s2);
-			} else {
-				values.put("diff", s1);
+	private void getContrTxtBx(String code, File fGT, File f, Map<String, String> values, List<String> names) {
+		List<String> sGT = readFileToStringList(fGT);
+		String tRes = readFileToString(f);
+		names.add(code);
+		if (sGT.size() == 0 && tRes == null) {
+			values.put(code, "1");
+			return;
+		} else if (sGT.size() > 0 && tRes == null) {
+			values.put(code, "0");
+			return;
+		} else if (sGT.size() > 0) {
+			tRes = tRes.trim();
+			int count = 0;
+			for (String sg : sGT) {
+				sg = sg.trim();
+				if (tRes.contains(sg)) {
+					count++;
+				}
 			}
-		} catch (FileNotFoundException e) {
-			values.put("diff", "null");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NullPointerException e) {
-			values.put("diff", "null");
+			String res = new Double((double) count / sGT.size()).toString();
+			values.put(code, res);
 		}
-		return values;
-	}
-
-	public Map<String, String> getTikaTxtBx(int ind) {
-		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathGroundTruth + "Document" + ind + "-groundtruthTextBoxWords.txt");
-		File fTika = new File(pathTikaResults + "Document" + ind + "-tika.txt");
-		String sGT = readFileToString(f);
-		String tRes = readFileToString(fTika);
-
-		if (sGT == null || tRes == null) {
-			values.put("present", "0");
-			return values;
-		}
-
-		sGT = sGT.trim();
-		tRes = tRes.trim();
-		
-		if (tRes.contains(sGT)) {
-			values.put("present", "1");
-		} else {
-			values.put("present", "0");
-		}
-
-		return values;
-	}
-
-	public Map<String, String> getTextUtilsTxtBx(int ind) {
-		Map<String, String> values = new HashMap<String, String>();
-		File f = new File(pathGroundTruth + "Document" + ind + "-groundtruthTextBoxWords.txt");
-		File fTika = new File(pathTextUtilsResults + "Document" + ind + "-textutil.txt");
-		String sGT = readFileToString(f);
-		String tRes = readFileToString(fTika);
-
-		if (sGT == null || tRes == null) {
-			values.put("present", "0");
-			return values;
-		}
-
-		sGT = sGT.trim();
-		tRes = tRes.trim();
-		
-		if (tRes.contains(sGT)) {
-			values.put("present", "1");
-		} else {
-			values.put("present", "0");
-		}
-
-		return values;
 	}
 
 	private String readFileToString(File f) {
@@ -392,9 +399,29 @@ public class Unifier {
 			while ((c = r.read()) != -1) {
 				sb.append((char) c);
 			}
+			r.close();
 		} catch (IOException e) {
 			return null;
 		}
 		return sb.toString();
+	}
+
+	private List<String> readFileToStringList(File f) {
+		List<String> li = new ArrayList<String>();
+
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader(f));
+			String line;
+			while ((line = br.readLine()) != null) {
+				li.add(line);
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			return li;
+		} catch (IOException e) {
+			return li;
+		}
+		return li;
 	}
 }

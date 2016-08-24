@@ -31,7 +31,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class Mutator {
 
-	int n = 20;
+	int n = 3;
 	int m = 4;
 
 	private List<MutationOperatorInterface> mutationsPIM;
