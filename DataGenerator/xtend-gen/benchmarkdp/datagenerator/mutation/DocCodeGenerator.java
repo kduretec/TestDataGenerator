@@ -90,6 +90,8 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
     _builder.append("oDoc.SaveAs \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\Documents\\");
     _builder.append(this.documentName, "");
     _builder.append("_");
+    _builder.append(this.modelType, "");
+    _builder.append("_");
     String _documentFormat = d.getDocumentFormat();
     _builder.append(_documentFormat, "");
     _builder.append("_");
@@ -105,6 +107,8 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
     _builder.newLine();
     _builder.append("grFile = \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\GroundTruth\\");
     _builder.append(this.documentName, "");
+    _builder.append("_");
+    _builder.append(this.modelType, "");
     _builder.append("_");
     String _documentFormat_2 = d.getDocumentFormat();
     _builder.append(_documentFormat_2, "");

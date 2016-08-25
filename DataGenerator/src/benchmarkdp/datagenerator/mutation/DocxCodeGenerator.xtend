@@ -55,9 +55,9 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		tBox = 0
 		cBox = 0
 		«compileDocumentElements(d)»
-		oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«documentName»_«d.documentFormat»_«d.documentPlatform».«d.documentFormat»", «d.documentFormatCode»
+		oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«documentName»_«modelType»_«d.documentFormat»_«d.documentPlatform».«d.documentFormat»", «d.documentFormatCode»
 				
-		grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\«documentName»_«d.documentFormat»_«d.documentPlatform»-wordgroundtruth.txt" 
+		grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\«documentName»_«modelType»_«d.documentFormat»_«d.documentPlatform»-wordgroundtruth.txt" 
 				
 		Set objFSO = CreateObject("Scripting.FileSystemObject")
 		Set objFile = objFSO.CreateTextFile(grFile, True)

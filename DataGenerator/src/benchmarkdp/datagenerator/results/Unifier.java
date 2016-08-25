@@ -234,13 +234,29 @@ public class Unifier {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(f);
 
+			String pC, wC, parC;
 			doc.getDocumentElement().normalize();
+			if (doc.getElementsByTagName("pageCount").getLength() == 0) {
+				pC = "NA";
+			} else {
+				pC = doc.getElementsByTagName("pageCount").item(0).getTextContent();
+			}
+			if (doc.getElementsByTagName("wordCount").getLength() == 0) {
+				wC = "NA";
+			} else {
+				wC = doc.getElementsByTagName("wordCount").item(0).getTextContent();
+			}
+			if (doc.getElementsByTagName("paragraphCount").getLength() == 0) {
+				parC = "NA";
+			} else {
+				parC = doc.getElementsByTagName("paragraphCount").item(0).getTextContent();
+			}
 			names.add("EXIF-pagecount");
 			names.add("EXIF-wordcount");
 			names.add("EXIF-paragraphcount");
-			values.put("EXIF-pagecount", doc.getElementsByTagName("pageCount").item(0).getTextContent());
-			values.put("EXIF-wordcount", doc.getElementsByTagName("wordCount").item(0).getTextContent());
-			values.put("EXIF-paragraphcount", doc.getElementsByTagName("paragraphCount").item(0).getTextContent());
+			values.put("EXIF-pagecount", pC);
+			values.put("EXIF-wordcount", wC);
+			values.put("EXIF-paragraphcount", parC);
 
 		} catch (FileNotFoundException e) {
 			names.add("EXIF-pagecount");

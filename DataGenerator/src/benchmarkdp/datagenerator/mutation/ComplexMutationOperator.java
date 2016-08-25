@@ -33,6 +33,8 @@ public class ComplexMutationOperator extends MutationOperator implements Mutatio
 		formatMapping = new HashMap<String, String>();
 		formatMapping.put("doc", "0");
 		formatMapping.put("docx", "16");
+		formatMapping.put("rtf", "6");
+		formatMapping.put("pdf", "17");
 	}
 
 	@Override

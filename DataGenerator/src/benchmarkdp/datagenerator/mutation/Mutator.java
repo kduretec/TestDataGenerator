@@ -31,7 +31,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class Mutator {
 
-	int n = 2;
+	int n = 1;
 	int m = 4;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -231,10 +231,10 @@ public class Mutator {
 	private void initializeMutationsPIM2PSM() {
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
 				basePathPIM2PSMTransform + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
-				Arrays.asList("doc"), Arrays.asList("Win7-Office2007","Win7-Office2010")));
+				Arrays.asList("doc", "rtf", "pdf"), Arrays.asList("Win7-Office2007","Win7-Office2010")));
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
 				basePathPIM2PSMTransform + "PIM2Docx.qvto",
-				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx"),
+				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "rtf", "pdf"),
 				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
 	}
 

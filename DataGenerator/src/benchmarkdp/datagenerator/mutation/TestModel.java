@@ -152,7 +152,7 @@ public class TestModel {
 			file += testFeature.getName() + ".xmi";
 		} else {
 			file += "PSM/";
-			file += testFeature.getName() + "_" + format + "_" + platform + ".xmi";
+			file += testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + ".xmi";
 		}
 
 		Resource outResource = resourceSetOut.createResource(URI.createURI(file));
@@ -168,7 +168,7 @@ public class TestModel {
 	public void saveGeneratedCodeToFile(String path) {
 		if (generatedCode != null) {
 			try {
-				String file = path + "/" + platform + "/" + testFeature.getName() + "_" + format + "_" + platform
+				String file = path + "/" + platform + "/" + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform
 						+ ".vbs";
 				File f = new File(file);
 				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
@@ -183,11 +183,12 @@ public class TestModel {
 
 	public void saveGroundTruth(String path) {
 		try {
-			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "-groundtruthAll.txt";
+			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthAll.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			bw.write("platform = " + platform + "\n");
 			bw.write("format = " + format + "\n");
+			bw.write("modelType = " + modelType + "\n");
 
 			for (Map.Entry<String, Object> e : groundTruth.entrySet()) {
 				if (e.getKey().compareTo("words") == 0) {
@@ -210,7 +211,7 @@ public class TestModel {
 
 	private void exportWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "-groundtruthWords.txt";
+			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			List<String> list = (List<String>) words;
@@ -227,7 +228,7 @@ public class TestModel {
 
 	private void exportTextBoxWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "-groundtruthTextBoxWords.txt";
+			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthTextBoxWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			List<Object> list = (List<Object>) words;
@@ -248,7 +249,7 @@ public class TestModel {
 
 	private void exportControlBoxWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + format + "_" + platform + "-groundtruthControlBoxWords.txt";
+			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthControlBoxWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			List<Object> list = (List<Object>) words;
