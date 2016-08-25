@@ -31,7 +31,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class Mutator {
 
-	int n = 3;
+	int n = 2;
 	int m = 4;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -180,34 +180,6 @@ public class Mutator {
 			}
 		}
 
-		/*
-		 * for (int f = 0; f < formats.length; f++) {
-		 * 
-		 * for (int i = 0; i < n; i++) { DocumentMutator dm = new
-		 * DocumentMutator(new DocumentHolder("Document" + cnt,
-		 * "PIMs/Document.xmi")); cnt++; boolean control = false; for (int j =
-		 * 0; j < m; j++) { dm.addMutation(mutations.get(j), featureDist[i][j]);
-		 * } dm.addMutation(mutations.get(4), 1); docMut.add(dm); }
-		 * 
-		 * }
-		 * 
-		 * for (int i = 0; i < docMut.size(); i++) { DocumentMutator mutator =
-		 * docMut.get(i); // PIM mutations mutator.mutate(); // ground truth
-		 * extraction for (int j = 0; j < evaluators.size(); j++) {
-		 * evaluators.get(j).evaluateDocument(mutator.getDocumentHolder()); } //
-		 * PIM2PSM translation
-		 * 
-		 * codeGenerator.generateCode(mutator.getDocumentHolder());
-		 * mutator.getDocumentHolder().saveToFile(ModelType.PIM,
-		 * "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/"
-		 * ); mutator.getDocumentHolder().exportGroundTruth(
-		 * "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/"
-		 * ); mutator.getDocumentHolder().saveGeneratedCode(ModelType.PSMDoc,
-		 * "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/"
-		 * );
-		 * 
-		 * System.out.println("Done"); }
-		 */
 		System.out.println("Transformation done");
 
 	}
@@ -259,7 +231,7 @@ public class Mutator {
 	private void initializeMutationsPIM2PSM() {
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
 				basePathPIM2PSMTransform + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
-				Arrays.asList("doc"), Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+				Arrays.asList("doc"), Arrays.asList("Win7-Office2007","Win7-Office2010")));
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
 				basePathPIM2PSMTransform + "PIM2Docx.qvto",
 				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx"),
@@ -283,7 +255,7 @@ public class Mutator {
 		evaluators.add(new OCLEvaluatorPIM("tablecount", "self.pages.elements->selectByKind(Table)->size()"));
 		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByKind(Paragraph)->size()"));
 		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByKind(Paragraph).words->size()"));
-		evaluators.add(new OCLEvaluatorPIM("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
+		
 
 		evaluators.add(new OCLEvaluatorPSMDoc("words-textbox",
 				"self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
@@ -291,6 +263,10 @@ public class Mutator {
 				"self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
 		evaluators.add(new OCLEvaluatorPSMDocx("words-controlbox",
 				"self.pages.elements->selectByType(ControlBox)->asSequence()->collectNested(words.value->asSequence())"));
+		evaluators.add(new OCLEvaluatorPSMDocx("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
+		evaluators.add(new OCLEvaluatorPSMDoc("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
+		//evaluators.add(new OCLEvaluatorPSMDoc("controlboxcount", "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
+		evaluators.add(new OCLEvaluatorPSMDocx("controlboxcount", "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
 	}
 
 	private void initializeCodeGenerator() {

@@ -13,10 +13,9 @@ import org.eclipse.ocl.helper.OCLHelper;
 import benchmarkdp.datagenerator.model.PIM.Document;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 
-
 public class OCLEvaluatorPIM implements OCLEvaluatorInterface {
 
-	private String groundTruthKey; 
+	private String groundTruthKey;
 	private ModelType modelType;
 	private String expression;
 
@@ -24,14 +23,14 @@ public class OCLEvaluatorPIM implements OCLEvaluatorInterface {
 
 	private Query eval;
 
+	private OCL ocl;
 	public OCLEvaluatorPIM(String key, String exp) {
 		groundTruthKey = key;
 		modelType = ModelType.PIM;
 		expression = exp;
 
-		OCL ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+		ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 		OCLHelper helper = ocl.createOCLHelper();
-
 		helper.setContext(PIMPackage.Literals.DOCUMENT);
 
 		try {
@@ -42,14 +41,15 @@ public class OCLEvaluatorPIM implements OCLEvaluatorInterface {
 		}
 		eval = ocl.createQuery(query);
 	}
-	
+
 	public ModelType getModelType() {
 		return modelType;
 	}
+
 	public void evaluateTestModel(TestModel tm) {
 		EList<EObject> objects = tm.getModelObjects();
 		Document doc = (Document) objects.get(0);
-		
+		eval = ocl.createQuery(query);
 		Object value = eval.evaluate(doc);
 		tm.getGroundTruth().put(groundTruthKey, value);
 

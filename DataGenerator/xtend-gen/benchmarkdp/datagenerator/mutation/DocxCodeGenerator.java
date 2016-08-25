@@ -271,6 +271,8 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("cBox = cBox +1");
     _builder.newLine();
+    _builder.append("oSelection.TypeParagraph()");
+    _builder.newLine();
     _builder.append("Set oRange = oSelection.Range");
     _builder.newLine();
     _builder.append("oDoc.ContentControls.Add 0, oRange");

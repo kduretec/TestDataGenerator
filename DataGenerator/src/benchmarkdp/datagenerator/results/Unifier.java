@@ -57,7 +57,8 @@ public class Unifier {
 				String fileName = dF.getName().substring(0, pos);
 				System.out.println(fileName);
 				Map<String, String> mapDoc = new HashMap<String, String>();
-
+				mapDoc.put("size", Long.toString(dF.length()));
+				names.add("size");
 				Map<String, String> tmp = getGroundTruth(fileName, names);
 				mapDoc.putAll(tmp);
 
@@ -80,16 +81,16 @@ public class Unifier {
 				mapDoc.putAll(tmp);
 
 				if (header) {
-					bw.write("Name");
-					for (int i = 0; i < names.size(); i++) {
-						bw.write("\t" + names.get(i));
-					}
+					bw.write("Name\tElement\tValue");
+//					for (int i = 0; i < names.size(); i++) {
+//						bw.write("\t" + names.get(i));
+//					}
 					header = false;
 				}
-				bw.write("\n");
-				bw.write(fileName);
+//				bw.write("\n");
+//				bw.write(fileName);
 				for (int i = 0; i < names.size(); i++) {
-					bw.write("\t" + mapDoc.get(names.get(i)));
+					bw.write("\n" + fileName + "\t" + names.get(i) + "\t" + mapDoc.get(names.get(i)));
 				}
 				mapDoc.clear();
 				names.clear();
@@ -141,9 +142,9 @@ public class Unifier {
 			names.add("GTVB-pagecount");
 			names.add("GTVB-paragraphcount");
 			names.add("GTVB-wordcount");
-			values.put("GTVB-pagecount", "null");
-			values.put("GTVB-paragraphcount", "null");
-			values.put("GTVB-wordcount", "null");
+			values.put("GTVB-pagecount", "NA");
+			values.put("GTVB-paragraphcount", "NA");
+			values.put("GTVB-wordcount", "NA");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -169,10 +170,10 @@ public class Unifier {
 			names.add("VBRES-paragraphcount");
 			names.add("VBRES-wordcount");
 			names.add("VBRES-tablecount");
-			values.put("VBRES-pagecount", "null");
-			values.put("VBRES-paragraphcount", "null");
-			values.put("VBRES-wordcount", "null");
-			values.put("VBRES-tablecount", "null");
+			values.put("VBRES-pagecount", "NA");
+			values.put("VBRES-paragraphcount", "NA");
+			values.put("VBRES-wordcount", "NA");
+			values.put("VBRES-tablecount", "NA");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -181,7 +182,7 @@ public class Unifier {
 	}
 
 	public Map<String, String> getNLNZResults(String file, List<String> names) {
-		String pathNLNZ34Metadata = path + "NLNZMetadataExtractor3.4/metadata/";
+		String pathNLNZ34Metadata = path + "NLNZMetadataExtractor34/metadata/";
 		Map<String, String> values = new HashMap<String, String>();
 		File f = new File(pathNLNZ34Metadata + file + ".fits");
 		try {
@@ -192,12 +193,12 @@ public class Unifier {
 			doc.getDocumentElement().normalize();
 			String pC, wC;
 			if (doc.getElementsByTagName("pageCount").getLength() == 0) {
-				pC = null;
+				pC = "NA";
 			} else {
 				pC = doc.getElementsByTagName("pageCount").item(0).getTextContent();
 			}
 			if (doc.getElementsByTagName("wordCount").getLength() == 0) {
-				wC = null;
+				wC = "NA";
 			} else {
 				wC = doc.getElementsByTagName("wordCount").item(0).getTextContent();
 			}
@@ -209,8 +210,8 @@ public class Unifier {
 		} catch (FileNotFoundException e) {
 			names.add("NLNZ34-pagecount");
 			names.add("NLNZ34-wordcount");
-			values.put("NLNZ34-pagecount", "null");
-			values.put("NLNZ34-wordcount", "null");
+			values.put("NLNZ34-pagecount", "NA");
+			values.put("NLNZ34-wordcount", "NA");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -225,7 +226,7 @@ public class Unifier {
 	}
 
 	public Map<String, String> getExifResults(String file, List<String> names) {
-		String pathExifResults = path + "NLNZMetadataExtractor3.6/";
+		String pathExifResults = path + "EXIF/metadata/";
 		Map<String, String> values = new HashMap<String, String>();
 		File f = new File(pathExifResults + file + ".fits");
 		try {
@@ -245,9 +246,9 @@ public class Unifier {
 			names.add("EXIF-pagecount");
 			names.add("EXIF-wordcount");
 			names.add("EXIF-paragraphcount");
-			values.put("EXIF-pagecount", "null");
-			values.put("EXIF-wordcount", "null");
-			values.put("EXIF-paragraphcount", "null");
+			values.put("EXIF-pagecount", "NA");
+			values.put("EXIF-wordcount", "NA");
+			values.put("EXIF-paragraphcount", "NA");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -277,12 +278,8 @@ public class Unifier {
 			f = new File(pathTikaText + file + "-tika.txt");
 			getContrTxtBx("TIKA_" + ver + "_TXTBX-present", fGT, f, values, names);
 			fGT = new File(pathGroundTruth + file + "-groundtruthControlBoxWords.txt");
-			if (fGT.exists()) {
-				getContrTxtBx("TIKA_" + ver + "_CTBX-present", fGT, f, values, names);
-			} else {
-				names.add("TIKA_" + ver + "CTBX-present");
-				values.put("TIKA_" + ver + "CTBX-present", "NA");
-			}
+			getContrTxtBx("TIKA_" + ver + "_CTBX-present", fGT, f, values, names);
+
 		}
 		return values;
 	}
@@ -303,10 +300,11 @@ public class Unifier {
 				}
 			}
 		} catch (FileNotFoundException e) {
+			System.out.println(f.getName() + " not found");
 			names.add("TIKA_" + version + "-pagecount");
 			names.add("TIKA_" + version + "-wordcount");
-			values.put("TIKA_" + version + "-pagecount", "null");
-			values.put("TIKA_" + version + "-wordcount", "null");
+			values.put("TIKA_" + version + "-pagecount", "NA");
+			values.put("TIKA_" + version + "-wordcount", "NA");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -316,7 +314,7 @@ public class Unifier {
 	public Map<String, String> getUtils(String file, List<String> names) {
 		Map<String, String> values = new HashMap<String, String>();
 		String pathGroundTruth = basePath + "GroundTruth/";
-		String pathUtils = path + "TextUtil/text";
+		String pathUtils = path + "TextUtil/text/";
 		File f = new File(pathUtils + file + "-wdiff.txt");
 		getTextDiff("TEXTUTIL_txt-diff", f, values, names);
 
@@ -324,12 +322,7 @@ public class Unifier {
 		f = new File(pathUtils + file + "-textutil.txt");
 		getContrTxtBx("TEXTUTIL_TXTBX-present", fGT, f, values, names);
 		fGT = new File(pathGroundTruth + file + "-groundtruthControlBoxWords.txt");
-		if (fGT.exists()) {
-			getContrTxtBx("TEXTUTIL_CTBX-present", fGT, f, values, names);
-		} else {
-			names.add("TEXTUTIL_CTBX-present");
-			values.put("TEXTUTIL_CTBX-present", "NA");
-		}
+		getContrTxtBx("TEXTUTIL_CTBX-present", fGT, f, values, names);
 
 		return values;
 	}
@@ -350,44 +343,57 @@ public class Unifier {
 			s2 = s2.substring(0, s2.length() - 1);
 			int num2 = Integer.parseInt(s2);
 			names.add(code);
-			if (num1 > num2) {
-				values.put(code, s2);
-			} else {
-				values.put(code, s1);
-			}
+//			if (num1 > num2) {
+//				values.put(code, s2);
+//			} else {
+//				values.put(code, s1);
+//			}
+			values.put(code, s1);
 		} catch (FileNotFoundException e) {
+			System.out.println(f.getName() + " not exist");
 			names.add(code);
-			values.put(code, "null");
+			values.put(code, "NA");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NullPointerException e) {
 			names.add(code);
-			values.put(code, "null");
+			values.put(code, "NA");
 		}
 	}
 
 	private void getContrTxtBx(String code, File fGT, File f, Map<String, String> values, List<String> names) {
-		List<String> sGT = readFileToStringList(fGT);
-		String tRes = readFileToString(f);
-		names.add(code);
-		if (sGT.size() == 0 && tRes == null) {
-			values.put(code, "1");
-			return;
-		} else if (sGT.size() > 0 && tRes == null) {
-			values.put(code, "0");
-			return;
-		} else if (sGT.size() > 0) {
-			tRes = tRes.trim();
-			int count = 0;
-			for (String sg : sGT) {
-				sg = sg.trim();
-				if (tRes.contains(sg)) {
-					count++;
+		if (fGT.exists()) {
+			List<String> sGT = readFileToStringList(fGT);
+			String tRes = readFileToString(f);
+			names.add(code);
+			// System.out.println("Code " + code + " Getting " + f.getName() + "
+			// " + f.getPath());
+			// System.out.println("Ground truth has " + sGT.size());
+			// for (String s : sGT) {
+			// System.out.println("box: " + s);
+			// }
+			if (sGT.size() == 0) {
+				values.put(code, "1");
+				return;
+			} else if (sGT.size() > 0 && tRes == null) {
+				values.put(code, "0");
+				return;
+			} else if (sGT.size() > 0) {
+				tRes = tRes.trim();
+				int count = 0;
+				for (String sg : sGT) {
+					sg = sg.trim();
+					if (tRes.contains(sg)) {
+						count++;
+					}
 				}
+				String res = new Double((double) count / sGT.size()).toString();
+				values.put(code, res);
 			}
-			String res = new Double((double) count / sGT.size()).toString();
-			values.put(code, res);
+		} else {
+			names.add(code);
+			values.put(code, "NA");
 		}
 	}
 
@@ -403,7 +409,7 @@ public class Unifier {
 		} catch (IOException e) {
 			return null;
 		}
-		return sb.toString();
+		return sb.toString().replaceAll("\\s+", " ").trim();
 	}
 
 	private List<String> readFileToStringList(File f) {
@@ -414,7 +420,9 @@ public class Unifier {
 			br = new BufferedReader(new FileReader(f));
 			String line;
 			while ((line = br.readLine()) != null) {
-				li.add(line);
+				if (line.length() > 0) {
+					li.add(line.replaceAll("\\s+", " ").trim());
+				}
 			}
 			br.close();
 		} catch (FileNotFoundException e) {

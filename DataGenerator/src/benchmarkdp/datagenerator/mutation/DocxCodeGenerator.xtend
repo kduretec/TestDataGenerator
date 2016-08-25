@@ -145,6 +145,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		System.out.println("Content control is compiled")
 		var temp = '''
 		cBox = cBox +1
+		oSelection.TypeParagraph()
 		Set oRange = oSelection.Range
 		oDoc.ContentControls.Add 0, oRange
 		Set oControl = oDoc.ContentControls(cBox)
