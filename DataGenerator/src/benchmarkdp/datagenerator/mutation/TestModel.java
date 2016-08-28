@@ -186,9 +186,9 @@ public class TestModel {
 			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthAll.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-			bw.write("platform = " + platform + "\n");
-			bw.write("format = " + format + "\n");
-			bw.write("modelType = " + modelType + "\n");
+			//bw.write("platform = " + platform + "\n");
+			//bw.write("format = " + format + "\n");
+			//bw.write("modelType = " + modelType + "\n");
 
 			for (Map.Entry<String, Object> e : groundTruth.entrySet()) {
 				if (e.getKey().compareTo("words") == 0) {

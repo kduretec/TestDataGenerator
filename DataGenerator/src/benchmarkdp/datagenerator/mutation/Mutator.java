@@ -31,7 +31,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class Mutator {
 
-	int n = 1;
+	int n = 4;
 	int m = 4;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -265,8 +265,17 @@ public class Mutator {
 				"self.pages.elements->selectByType(ControlBox)->asSequence()->collectNested(words.value->asSequence())"));
 		evaluators.add(new OCLEvaluatorPSMDocx("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
 		evaluators.add(new OCLEvaluatorPSMDoc("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
-		//evaluators.add(new OCLEvaluatorPSMDoc("controlboxcount", "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
+		
 		evaluators.add(new OCLEvaluatorPSMDocx("controlboxcount", "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
+		
+		evaluators.add(new OCLEvaluatorPSMDoc("numCol", "self.numColum"));
+		evaluators.add(new OCLEvaluatorPSMDocx("numCol", "self.numColum"));
+		
+		evaluators.add(new OCLEvaluatorPSMDoc("format", "self.documentFormat"));
+		evaluators.add(new OCLEvaluatorPSMDocx("format", "self.documentFormat"));
+		
+		evaluators.add(new OCLEvaluatorPSMDoc("platform", "self.documentPlatform"));
+		evaluators.add(new OCLEvaluatorPSMDocx("platform", "self.documentPlatform"));
 	}
 
 	private void initializeCodeGenerator() {
