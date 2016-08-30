@@ -31,8 +31,8 @@ import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class Mutator {
 
-	int n = 4;
-	int m = 4;
+	int n = 46;
+	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
 	private List<MutationOperatorInterface> mutationsPIM2PSM;
@@ -219,7 +219,7 @@ public class Mutator {
 		mutationsPIM.add(new MutationOperator("AddPage", ModelType.PIM, ModelType.PIM,
 				basePathPIMTransform + "AddPage.qvto", Arrays.asList("pagecount")));
 		mutationsPIM.add(new MutationOperator("AddParagraph", ModelType.PIM, ModelType.PIM,
-				basePathPIMTransform + "AddParagraph.qvto", Arrays.asList("paragraphcount")));
+				basePathPIMTransform + "AddParagraph.qvto", Arrays.asList("paragraphcount", "wordcount")));
 		mutationsPIM.add(new MutationOperator("AddTable", ModelType.PIM, ModelType.PIM,
 				basePathPIMTransform + "AddTable.qvto", Arrays.asList("tablecount")));
 		mutationsPIM.add(new MutationOperator("AddImage", ModelType.PIM, ModelType.PIM,
@@ -235,7 +235,7 @@ public class Mutator {
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
 				basePathPIM2PSMTransform + "PIM2Docx.qvto",
 				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "rtf", "pdf"),
-				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+				Arrays.asList("Win7-Office2007","Win7-Office2010")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -252,10 +252,9 @@ public class Mutator {
 		evaluators = new ArrayList<OCLEvaluatorInterface>();
 
 		evaluators.add(new OCLEvaluatorPIM("pagecount", "self.pages->size()"));
-		evaluators.add(new OCLEvaluatorPIM("tablecount", "self.pages.elements->selectByKind(Table)->size()"));
-		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByKind(Paragraph)->size()"));
-		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByKind(Paragraph).words->size()"));
-		
+		evaluators.add(new OCLEvaluatorPIM("tablecount", "self.pages.elements->selectByType(Table)->size()"));
+		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByType(Paragraph)->size()"));
+		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByType(Paragraph).words->size()"));
 
 		evaluators.add(new OCLEvaluatorPSMDoc("words-textbox",
 				"self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
@@ -263,17 +262,25 @@ public class Mutator {
 				"self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
 		evaluators.add(new OCLEvaluatorPSMDocx("words-controlbox",
 				"self.pages.elements->selectByType(ControlBox)->asSequence()->collectNested(words.value->asSequence())"));
-		evaluators.add(new OCLEvaluatorPSMDocx("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
-		evaluators.add(new OCLEvaluatorPSMDoc("words", "self.pages.elements->selectByKind(Paragraph).words.value"));
-		
-		evaluators.add(new OCLEvaluatorPSMDocx("controlboxcount", "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
-		
+		// evaluators.add(new OCLEvaluatorPSMDocx("words",
+		// "self.pages.elements->selectByType(Paragraph).words.value"));
+		// evaluators.add(new OCLEvaluatorPSMDoc("words",
+		// "self.pages.elements->selectByType(Paragraph).words.value"));
+
+		evaluators.add(new OCLEvaluatorPSMDocx("words",
+				"self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words.value->asSequence())"));
+		evaluators.add(new OCLEvaluatorPSMDoc("words",
+				"self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words.value->asSequence())"));
+
+		evaluators.add(new OCLEvaluatorPSMDocx("controlboxcount",
+				"self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
+
 		evaluators.add(new OCLEvaluatorPSMDoc("numCol", "self.numColum"));
 		evaluators.add(new OCLEvaluatorPSMDocx("numCol", "self.numColum"));
-		
+
 		evaluators.add(new OCLEvaluatorPSMDoc("format", "self.documentFormat"));
 		evaluators.add(new OCLEvaluatorPSMDocx("format", "self.documentFormat"));
-		
+
 		evaluators.add(new OCLEvaluatorPSMDoc("platform", "self.documentPlatform"));
 		evaluators.add(new OCLEvaluatorPSMDocx("platform", "self.documentPlatform"));
 	}

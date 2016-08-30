@@ -6,15 +6,20 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 transformation AddTable(inout model:PIM);
 configuration property tablecount : String;
 main() {
-	var tc := stringToInt(tablecount);
-	var pages:= model.objectsOfType(Page); 
-	
-	while (tc > 0) {
-		var pos := getRandom(pages->size());
-		var page := pages->asSequence()->at(pos);
-		page->map AddTable(tc);
-		tc := tc - 1;		
+	var tc := getRandomBetween(1,5) - 1;
+	var pages:= model.objectsOfType(Page);
+	if (pages->size() > 0) {
+		if (pages->size() > 10) {
+			tc := getRandomBetween(1,10) - 1;
+		}; 
+		while (tc > 0) {
+			var pos := getRandom(pages->size());
+			var page := pages->asSequence()->at(pos);
+			page->map AddTable(tc);
+			tc := tc - 1;		
+		}	
 	}
+	
 	
 }
 

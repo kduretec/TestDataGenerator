@@ -5,16 +5,22 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 
 transformation AddParagraph(inout model:PIM);
 configuration property paragraphcount : String;
+configuration property wordcount : String;
 main() {
-	var pc := stringToInt(paragraphcount);
 	var pages:= model.objectsOfType(Page);
-	 
-	while (pc > 0) {
-		var pos := getRandom(pages->size());
-		var page := pages->asSequence()->at(pos);
-		page->map AddParagraph(pc);
-		pc := pc - 1;		
+	if (pages->size() > 0) {
+		var wc:= stringToInt(wordcount);
+		log("Word count", wc);
+		var num := wc/250;
+		var pc :=  getRandom(num.round() + 1); 
+		while (pc > 0) {
+			var pos := getRandom(pages->size());
+			var page := pages->asSequence()->at(pos);
+			page->map AddParagraph(pc);
+			pc := pc - 1;		
+		}	
 	}
+	
 
 }
 

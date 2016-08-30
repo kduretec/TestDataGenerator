@@ -159,7 +159,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		}
 		
 		temp = temp + "\"\n"
-		temp = temp + "oSelection.Start = oControl.Range.End + 1 \n"
+		temp = temp + "oSelection.Start = oControl.Range.End + 1 \n oSelection.TypeParagraph() \n"
 		return temp
 	}
 

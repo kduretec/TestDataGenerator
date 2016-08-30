@@ -30,6 +30,7 @@ public class Unifier {
 
 	private String path = basePath + "ToolOutput/";
 
+	private String pathResults = path + "results/";
 	private List<String> names;
 
 	public Unifier() {
@@ -44,7 +45,7 @@ public class Unifier {
 	public void execute() {
 
 		try {
-			File fResults = new File(path + "results.tsv");
+			File fResults = new File(pathResults + "rawResults.tsv");
 			BufferedWriter bw = new BufferedWriter(new FileWriter(fResults));
 
 			File f = new File(docPath);
@@ -289,12 +290,17 @@ public class Unifier {
 			File f = new File(pathTikaMetadata + file + "-metadatatika.txt");
 			getTikaMetadata(ver, f, values, names);
 			f = new File(pathTikaText + file + "-wdiff.txt");
-			getTextDiff("TIKA_" + ver + "txt-diff", f, values, names);
-			File fGT = new File(pathGroundTruth + file + "-groundtruthTextBoxWords.txt");
+			//getTextDiff("TIKA_" + ver + "txt-diff", f, values, names);
+			
 			f = new File(pathTikaText + file + "-tika.txt");
-			getContrTxtBx("TIKA_" + ver + "_TXTBX-present", fGT, f, values, names);
+			File fGT = new File(pathGroundTruth + file + "-groundtruthParagraphWords.txt");
+			getParContrTxtBx("TIKA_" + ver + "_PARAGRAPH-present", fGT, f, values, names);
+			
+			fGT = new File(pathGroundTruth + file + "-groundtruthTextBoxWords.txt");
+			getParContrTxtBx("TIKA_" + ver + "_TXTBX-present", fGT, f, values, names);
+			
 			fGT = new File(pathGroundTruth + file + "-groundtruthControlBoxWords.txt");
-			getContrTxtBx("TIKA_" + ver + "_CTBX-present", fGT, f, values, names);
+			getParContrTxtBx("TIKA_" + ver + "_CTBX-present", fGT, f, values, names);
 
 		}
 		return values;
@@ -332,13 +338,17 @@ public class Unifier {
 		String pathGroundTruth = basePath + "GroundTruth/";
 		String pathUtils = path + "TextUtil/text/";
 		File f = new File(pathUtils + file + "-wdiff.txt");
-		getTextDiff("TEXTUTIL_txt-diff", f, values, names);
+		//getTextDiff("TEXTUTIL_txt-diff", f, values, names);
 
-		File fGT = new File(pathGroundTruth + file + "-groundtruthTextBoxWords.txt");
 		f = new File(pathUtils + file + "-textutil.txt");
-		getContrTxtBx("TEXTUTIL_TXTBX-present", fGT, f, values, names);
+		File fGT = new File(pathGroundTruth + file + "-groundtruthParagraphWords.txt");
+		getParContrTxtBx("TEXTUTIL_PARAGRAPH-present", fGT, f, values, names);
+		
+		fGT = new File(pathGroundTruth + file + "-groundtruthTextBoxWords.txt");
+		getParContrTxtBx("TEXTUTIL_TXTBX-present", fGT, f, values, names);
+		
 		fGT = new File(pathGroundTruth + file + "-groundtruthControlBoxWords.txt");
-		getContrTxtBx("TEXTUTIL_CTBX-present", fGT, f, values, names);
+		getParContrTxtBx("TEXTUTIL_CTBX-present", fGT, f, values, names);
 
 		return values;
 	}
@@ -378,7 +388,7 @@ public class Unifier {
 		}
 	}
 
-	private void getContrTxtBx(String code, File fGT, File f, Map<String, String> values, List<String> names) {
+	private void getParContrTxtBx(String code, File fGT, File f, Map<String, String> values, List<String> names) {
 		if (fGT.exists()) {
 			List<String> sGT = readFileToStringList(fGT);
 			String tRes = readFileToString(f);
@@ -399,6 +409,7 @@ public class Unifier {
 				tRes = tRes.trim();
 				int count = 0;
 				for (String sg : sGT) {
+					sg = sg.substring(sg.indexOf(" ") + 1);
 					sg = sg.trim();
 					if (tRes.contains(sg)) {
 						count++;

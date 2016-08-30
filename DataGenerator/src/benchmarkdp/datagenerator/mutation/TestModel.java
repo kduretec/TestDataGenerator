@@ -168,8 +168,8 @@ public class TestModel {
 	public void saveGeneratedCodeToFile(String path) {
 		if (generatedCode != null) {
 			try {
-				String file = path + "/" + platform + "/" + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform
-						+ ".vbs";
+				String file = path + "/" + platform + "/" + testFeature.getName() + "_" + modelType + "_" + format + "_"
+						+ platform + ".vbs";
 				File f = new File(file);
 				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 				bw.write(generatedCode + "\n");
@@ -183,12 +183,13 @@ public class TestModel {
 
 	public void saveGroundTruth(String path) {
 		try {
-			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthAll.txt";
+			String file = path + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform
+					+ "-groundtruthAll.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-			//bw.write("platform = " + platform + "\n");
-			//bw.write("format = " + format + "\n");
-			//bw.write("modelType = " + modelType + "\n");
+			// bw.write("platform = " + platform + "\n");
+			// bw.write("format = " + format + "\n");
+			// bw.write("modelType = " + modelType + "\n");
 
 			for (Map.Entry<String, Object> e : groundTruth.entrySet()) {
 				if (e.getKey().compareTo("words") == 0) {
@@ -211,14 +212,22 @@ public class TestModel {
 
 	private void exportWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthWords.txt";
+			String file = path + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform
+					+ "-groundtruthParagraphWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-			List<String> list = (List<String>) words;
-			for (String w: list) {
-				bw.write(w + " ");
+			List<Object> list = (List<Object>) words;
+			int counter = 0;
+			for (Object l : list) {
+				counter++;
+				List<String> ls = (List<String>) l;
+				bw.write("PARAGRAPH_" + counter + " ");
+				for (String w : ls) {
+					bw.write(w + " ");
+				}
+				bw.write("\n");
 			}
-			bw.write("\n");
+
 			bw.close();
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
@@ -228,14 +237,18 @@ public class TestModel {
 
 	private void exportTextBoxWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthTextBoxWords.txt";
+			String file = path + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform
+					+ "-groundtruthTextBoxWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			List<Object> list = (List<Object>) words;
-			for (Object l: list) {
+			int counter = 0;
+			for (Object l : list) {
+				counter++;
 				List<String> ls = (List<String>) l;
-				for (String w: ls) {
-					bw.write(w + " ");	
+				bw.write("TEXTBOX_" + counter + " ");
+				for (String w : ls) {
+					bw.write(w + " ");
 				}
 				bw.write("\n");
 			}
@@ -249,14 +262,18 @@ public class TestModel {
 
 	private void exportControlBoxWords(String path, Object words) {
 		try {
-			String file = path  + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform + "-groundtruthControlBoxWords.txt";
+			String file = path + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform
+					+ "-groundtruthControlBoxWords.txt";
 			File f = new File(file);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			List<Object> list = (List<Object>) words;
-			for (Object l: list) {
+			int counter = 0;
+			for (Object l : list) {
+				counter++;
 				List<String> ls = (List<String>) l;
-				for (String w: ls) {
-					bw.write(w + " ");	
+				bw.write("CONTROLBOX_" + counter + " ");
+				for (String w : ls) {
+					bw.write(w + " ");
 				}
 				bw.write("\n");
 			}
