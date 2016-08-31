@@ -2,15 +2,12 @@ import m2m.qvt.oml.ExampleJavaLib;
 
 modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
-
 transformation AddParagraph(inout model:PIM);
-configuration property paragraphcount : String;
 configuration property wordcount : String;
 main() {
 	var pages:= model.objectsOfType(Page);
 	if (pages->size() > 0) {
 		var wc:= stringToInt(wordcount);
-		log("Word count", wc);
 		var num := wc/250;
 		var pc :=  getRandom(num.round() + 1); 
 		while (pc > 0) {
@@ -23,7 +20,6 @@ main() {
 	
 
 }
-
 
 mapping inout PIM::Page::AddParagraph(inout i:Integer) {
 	var par := object Paragraph {};
