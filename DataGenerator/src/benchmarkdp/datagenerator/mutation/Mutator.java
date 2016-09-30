@@ -31,7 +31,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class Mutator {
 
-	int n = 46;
+	int n = 1;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -169,16 +169,30 @@ public class Mutator {
 		}
 
 		System.out.println("Size of models " + testModels.size());
+//		for (TestModel tm : testModels) {
+//			tm.saveModelToFile(
+//					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");
+//			tm.saveGeneratedCodeToFile(
+//					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
+//			if (tm.getModelType() != ModelType.PIM) {
+//				tm.saveGroundTruth(
+//						"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/");
+//			}
+//		}
+		
+		
 		for (TestModel tm : testModels) {
 			tm.saveModelToFile(
-					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");
+					"/Users/kresimir/Desktop/JSSProblem/Generated/Models/");
 			tm.saveGeneratedCodeToFile(
-					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
+					"/Users/kresimir/Desktop/JSSProblem/Generated/Macro/");
 			if (tm.getModelType() != ModelType.PIM) {
 				tm.saveGroundTruth(
-						"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/");
+						"/Users/kresimir/Desktop/JSSProblem/Generated/GroundTruth/");
 			}
 		}
+		
+		
 
 		System.out.println("Transformation done");
 

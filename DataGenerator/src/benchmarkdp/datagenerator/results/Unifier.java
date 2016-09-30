@@ -56,7 +56,7 @@ public class Unifier {
 					continue;
 				int pos = dF.getName().indexOf(".");
 				String fileName = dF.getName().substring(0, pos);
-				//if (!fileName.contains("193304_PSMDoc_doc_Win7-Office2007")) continue;
+				//if (!fileName.contains("003323_PSMDocx_docx_Win7-Office2007")) continue;
 				System.out.println(fileName);
 				Map<String, String> mapDoc = new HashMap<String, String>();
 				mapDoc.put("size", Long.toString(dF.length()));
