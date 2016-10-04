@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.results;
+package benchmarkdp.datagenerator.datacollector;
 
 import java.io.BufferedWriter;
 import java.io.File;

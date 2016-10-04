@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.results;
+package benchmarkdp.datagenerator.datacollector;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -23,86 +23,113 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-public class Unifier {
+import benchmarkdp.datagenerator.utils.Utils;
+
+public class DataCollector {
 
 	private String basePath = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/";
 	private String docPath = basePath + "Documents/";
 
 	private String path = basePath + "ToolOutput/";
 
-	private String pathResults = path + "results/";
-	private List<String> names;
+	private String pathResults = basePath + "Results/";
 
-	public Unifier() {
-		names = new ArrayList<String>();
+	private String resultsFileName = "rawResults.tsv";
+	
+	private List<CollectorOperatorInterface> operators;
+
+	public DataCollector() {
+		operators = new ArrayList<CollectorOperatorInterface>();
+		operators.add(new SizeCollector());
+		operators.add(new GroundTruthCollector());
 	}
 
 	public static void main(String[] args) {
-		Unifier unifier = new Unifier();
+		DataCollector unifier = new DataCollector();
 		unifier.execute();
 	}
 
 	public void execute() {
 
 		try {
-			File fResults = new File(pathResults + "rawResults.tsv");
+			File fResults = new File(Utils.resultsPath + resultsFileName);
 			BufferedWriter bw = new BufferedWriter(new FileWriter(fResults));
+			bw.write("Name\tElement\tValue");
 
-			File f = new File(docPath);
+			File f = new File(Utils.docsPath);
 			File[] documents = f.listFiles();
 			boolean header = true;
 			for (File dF : documents) {
 				if (dF.getName().compareTo(".DS_Store") == 0)
 					continue;
-				int pos = dF.getName().indexOf(".");
-				String fileName = dF.getName().substring(0, pos);
-				//if (!fileName.contains("003323_PSMDocx_docx_Win7-Office2007")) continue;
-				System.out.println(fileName);
+				String fileName = Utils.getFileName(dF);
+				System.out.println("Collecting data about " + fileName);
 				Map<String, String> mapDoc = new HashMap<String, String>();
-				mapDoc.put("size", Long.toString(dF.length()));
-				names.add("size");
-				Map<String, String> tmp = getGroundTruth(fileName, names);
-				mapDoc.putAll(tmp);
-
-				tmp = getGroundTruthVB(fileName, names);
-				mapDoc.putAll(tmp);
-
-//				tmp = getVBMetadata(fileName, names);
-//				mapDoc.putAll(tmp);
-//
-//				tmp = getNLNZResults(fileName, names);
-//				mapDoc.putAll(tmp);
-//
-//				tmp = getExifResults(fileName, names);
-//				mapDoc.putAll(tmp);
-
-				tmp = getTika(fileName, names);
-				mapDoc.putAll(tmp);
-
-				tmp = getUtils(fileName, names);
-				mapDoc.putAll(tmp);
-
-				if (header) {
-					bw.write("Name\tElement\tValue");
-//					for (int i = 0; i < names.size(); i++) {
-//						bw.write("\t" + names.get(i));
-//					}
-					header = false;
+				for (CollectorOperatorInterface op : operators) {
+					Map<String, String> tmp = op.collect(dF);
+					mapDoc.putAll(tmp);
 				}
-//				bw.write("\n");
-//				bw.write(fileName);
-				for (int i = 0; i < names.size(); i++) {
-					bw.write("\n" + fileName + "\t" + names.get(i) + "\t" + mapDoc.get(names.get(i)));
+
+				for (Map.Entry<String, String> ent : mapDoc.entrySet()) {
+					bw.write("\n" + fileName + "\t" + ent.getKey() + "\t" + ent.getValue());
 				}
 				mapDoc.clear();
-				names.clear();
 			}
 			bw.close();
-
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		// //if (!fileName.contains("003323_PSMDocx_docx_Win7-Office2007"))
+		// continue;
+		// System.out.println(fileName);
+		// Map<String, String> mapDoc = new HashMap<String, String>();
+		// mapDoc.put("size", Long.toString(dF.length()));
+		// names.add("size");
+		// Map<String, String> tmp = getGroundTruth(fileName, names);
+		// mapDoc.putAll(tmp);
+		//
+		// tmp = getGroundTruthVB(fileName, names);
+		// mapDoc.putAll(tmp);
+		//
+		//// tmp = getVBMetadata(fileName, names);
+		//// mapDoc.putAll(tmp);
+		////
+		//// tmp = getNLNZResults(fileName, names);
+		//// mapDoc.putAll(tmp);
+		////
+		//// tmp = getExifResults(fileName, names);
+		//// mapDoc.putAll(tmp);
+		//
+		// tmp = getTika(fileName, names);
+		// mapDoc.putAll(tmp);
+		//
+		// tmp = getUtils(fileName, names);
+		// mapDoc.putAll(tmp);
+		//
+		//// if (header) {
+		//// bw.write("Name\tElement\tValue");
+		////// for (int i = 0; i < names.size(); i++) {
+		////// bw.write("\t" + names.get(i));
+		////// }
+		//// header = false;
+		//// }
+		//// bw.write("\n");
+		//// bw.write(fileName);
+		// for (int i = 0; i < names.size(); i++) {
+		// bw.write("\n" + fileName + "\t" + names.get(i) + "\t" +
+		// mapDoc.get(names.get(i)));
+		// }
+		// mapDoc.clear();
+		// names.clear();
+		// }
+		// bw.close();
+		//
+		// } catch (IOException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
 	}
 
@@ -289,17 +316,17 @@ public class Unifier {
 			String pathTikaMetadata = pathTika + "metadata/";
 			String pathTikaText = pathTika + "text/";
 			File f = new File(pathTikaMetadata + file + "-metadatatika.txt");
-//			getTikaMetadata(ver, f, values, names);
+			// getTikaMetadata(ver, f, values, names);
 			f = new File(pathTikaText + file + "-wdiff.txt");
-			//getTextDiff("TIKA_" + ver + "txt-diff", f, values, names);
-			
+			// getTextDiff("TIKA_" + ver + "txt-diff", f, values, names);
+
 			f = new File(pathTikaText + file + "-tika.txt");
 			File fGT = new File(pathGroundTruth + file + "-groundtruthParagraphWords.txt");
 			getParContrTxtBx("TIKA_" + ver + "_PARAGRAPH-present", fGT, f, values, names);
-			
+
 			fGT = new File(pathGroundTruth + file + "-groundtruthTextBoxWords.txt");
 			getParContrTxtBx("TIKA_" + ver + "_TXTBX-present", fGT, f, values, names);
-			
+
 			fGT = new File(pathGroundTruth + file + "-groundtruthControlBoxWords.txt");
 			getParContrTxtBx("TIKA_" + ver + "_CTBX-present", fGT, f, values, names);
 
@@ -339,15 +366,15 @@ public class Unifier {
 		String pathGroundTruth = basePath + "GroundTruth/";
 		String pathUtils = path + "TextUtil/text/";
 		File f = new File(pathUtils + file + "-wdiff.txt");
-		//getTextDiff("TEXTUTIL_txt-diff", f, values, names);
+		// getTextDiff("TEXTUTIL_txt-diff", f, values, names);
 
 		f = new File(pathUtils + file + "-textutil.txt");
 		File fGT = new File(pathGroundTruth + file + "-groundtruthParagraphWords.txt");
 		getParContrTxtBx("TEXTUTIL_PARAGRAPH-present", fGT, f, values, names);
-		
+
 		fGT = new File(pathGroundTruth + file + "-groundtruthTextBoxWords.txt");
 		getParContrTxtBx("TEXTUTIL_TXTBX-present", fGT, f, values, names);
-		
+
 		fGT = new File(pathGroundTruth + file + "-groundtruthControlBoxWords.txt");
 		getParContrTxtBx("TEXTUTIL_CTBX-present", fGT, f, values, names);
 
@@ -370,11 +397,11 @@ public class Unifier {
 			s2 = s2.substring(0, s2.length() - 1);
 			int num2 = Integer.parseInt(s2);
 			names.add(code);
-//			if (num1 > num2) {
-//				values.put(code, s2);
-//			} else {
-//				values.put(code, s1);
-//			}
+			// if (num1 > num2) {
+			// values.put(code, s2);
+			// } else {
+			// values.put(code, s1);
+			// }
 			values.put(code, s1);
 		} catch (FileNotFoundException e) {
 			System.out.println(f.getName() + " not exist");
@@ -409,21 +436,22 @@ public class Unifier {
 			} else if (sGT.size() > 0) {
 				tRes = tRes.trim();
 				int count = 0;
-				int pos = 0; 
+				int pos = 0;
 				for (String sg : sGT) {
 					pos++;
-					if (sg.indexOf(" ") == -1 ) {
+					if (sg.indexOf(" ") == -1) {
 						count++;
 						continue;
 					}
 					sg = sg.substring(sg.indexOf(" ") + 1);
 					sg = sg.trim();
-					//if (tRes.contains(sg)) {
+					// if (tRes.contains(sg)) {
 					if (checkStringInString(sg, tRes)) {
 						count++;
 					} else {
 						System.out.println(f.getName() + " " + code + " " + pos + " wrong\n\n");
-						//System.out.println(sg.substring(0, 20) + "\n " + sg.substring(sg.length() - 20) + "\n");
+						// System.out.println(sg.substring(0, 20) + "\n " +
+						// sg.substring(sg.length() - 20) + "\n");
 					}
 				}
 				String res = new Double((double) count / sGT.size()).toString();
@@ -451,7 +479,7 @@ public class Unifier {
 		result = result.replaceAll("(\\r|\\n|\\r\\n)+", " ");
 		result = result.replaceAll("HYPERLINK", " ");
 		result = result.replaceAll("\"http://www.google.com\"", " ");
-		//result = result.replaceAll("[^A-Za-z0-9- ]", "");
+		// result = result.replaceAll("[^A-Za-z0-9- ]", "");
 		result = result.replaceAll("\\s+", " ").trim();
 		return result;
 	}
@@ -476,11 +504,11 @@ public class Unifier {
 		}
 		return li;
 	}
-	
-	private boolean checkStringInString (String s1, String s2) {
+
+	private boolean checkStringInString(String s1, String s2) {
 		boolean check = true;
-		String [] splitWords = s1.split(" ");
-		for (int i = 0; i<splitWords.length; i++) {
+		String[] splitWords = s1.split(" ");
+		for (int i = 0; i < splitWords.length; i++) {
 			if (!s2.contains(splitWords[i])) {
 				System.out.println("does not contain " + splitWords[i]);
 				check = false;
