@@ -14,6 +14,8 @@ public class Utils {
 	
 	public static String toolOutputPath = basePath + "ToolOutput/";
 	
+	public static String fitsPath = basePath + "Fits/";
+	
 	public static String groundTruthFileEnding = "-groundtruthAll.txt";
 	
 	public static String groundTruthVBFileEnding = "-wordgroundtruth.txt";

@@ -27,8 +27,8 @@ public class TikaLoader extends AbstractToolLoader {
 
 	@Override
 	public String load(String name) {
-		if (testName==null) {
-			testName=name;
+		if (testName == null) {
+			testName = name;
 		}
 		if (name.compareTo(testName) != 0) {
 			String path = Utils.toolOutputPath + "ApacheTika" + version + "/text/" + name + suffix;

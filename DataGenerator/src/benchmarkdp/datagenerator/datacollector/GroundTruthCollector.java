@@ -36,7 +36,7 @@ public class GroundTruthCollector implements CollectorOperatorInterface {
 				BufferedReader br = new BufferedReader(new FileReader(fGT));
 				String line;
 				while ((line = br.readLine()) != null) {
-					System.out.println(line);
+					//System.out.println(line);
 					String[] elem = line.split(" ");
 					values.put(prefix.get(i) + elem[0], elem[positions.get(i).intValue()]);
 				}
