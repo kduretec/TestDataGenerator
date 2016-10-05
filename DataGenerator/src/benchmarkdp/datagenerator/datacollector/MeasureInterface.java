@@ -6,7 +6,7 @@ public interface MeasureInterface {
 
 	public void setTestName(String name);
 	
-	public void setToolLoader(ToolLoaderInterface toolLoader);
+	public void setToolLoader(ToolLoaderInterface tL);
 	
 	public Map<String,String> evaluate();
 }

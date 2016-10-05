@@ -42,6 +42,7 @@ public class DataCollector {
 		operators = new ArrayList<CollectorOperatorInterface>();
 		operators.add(new SizeCollector());
 		operators.add(new GroundTruthCollector());
+		operators.add(new TextExtractionCollector());
 	}
 
 	public static void main(String[] args) {

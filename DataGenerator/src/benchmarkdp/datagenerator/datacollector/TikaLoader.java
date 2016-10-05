@@ -10,22 +10,32 @@ public class TikaLoader extends AbstractToolLoader {
 
 	private String suffix = "-tika.txt";
 
+	private String testName;
+
+	private String text;
+
 	public TikaLoader(String v) {
 		version = v;
+		testName = null;
+		text = null;
 	}
 
-	@Override 
-	public String getToolCode(){
+	@Override
+	public String getToolCode() {
 		return "Tika_" + version;
 	}
-	
+
 	@Override
 	public String load(String name) {
-
-		String path = Utils.toolOutputPath + "ApacheTika" + version + "/text/" + name + suffix;
-		File tikaOutput = new File(path);
-		String text = readFileToString(tikaOutput);
-		
+		if (testName==null) {
+			testName=name;
+		}
+		if (name.compareTo(testName) != 0) {
+			String path = Utils.toolOutputPath + "ApacheTika" + version + "/text/" + name + suffix;
+			File tikaOutput = new File(path);
+			text = readFileToString(tikaOutput);
+			testName = name;
+		}
 		return text;
 	}
 

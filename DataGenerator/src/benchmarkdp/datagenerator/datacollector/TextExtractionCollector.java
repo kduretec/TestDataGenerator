@@ -1,6 +1,7 @@
 package benchmarkdp.datagenerator.datacollector;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,13 +14,18 @@ public class TextExtractionCollector implements CollectorOperatorInterface {
 	List<MeasureInterface> measures;
 	
 	public TextExtractionCollector() {
+		toolLoaders = new ArrayList<ToolLoaderInterface>();
+		measures = new ArrayList<MeasureInterface>();
 		toolLoaders.add(new TikaLoader("1_1"));
+		measures.add(new ParagraphMeasure());
 	}
 	
 	@Override
 	public Map<String, String> collect(File test) {
 		Map<String, String> values = new HashMap<String, String>();
 		String testName = Utils.getFileName(test);
+		
+		
 		
 		for (MeasureInterface measure: measures) {
 			measure.setTestName(testName);
@@ -34,5 +40,4 @@ public class TextExtractionCollector implements CollectorOperatorInterface {
 		return values;
 	}
 
-	
 }

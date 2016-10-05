@@ -18,6 +18,8 @@ public class Utils {
 	
 	public static String groundTruthVBFileEnding = "-wordgroundtruth.txt";
 	
+	public static String groundTruthParagraphEnding = "-groundtruthParagraphWords.txt";
+	
 	public static String getFileName(File f) {
 		int pos = f.getName().lastIndexOf(".");
 		String fileName = f.getName().substring(0, pos);
