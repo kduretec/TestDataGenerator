@@ -28,6 +28,7 @@ import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
+import benchmarkdp.datagenerator.utils.Utils;
 
 public class Mutator {
 
@@ -43,11 +44,6 @@ public class Mutator {
 	private List<OCLEvaluatorInterface> evaluators;
 
 	private List<CodeGeneratorInterface> codeGenerator;
-
-	private String basePathPIMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM/";
-	private String basePathPIM2PSMTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM2PSM/";
-	private String basePathPSMDocTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDoc/";
-	private String basePathPSMDocxTransform = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDocx/";
 
 	public Mutator() {
 
@@ -169,30 +165,13 @@ public class Mutator {
 		}
 
 		System.out.println("Size of models " + testModels.size());
-//		for (TestModel tm : testModels) {
-//			tm.saveModelToFile(
-//					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/");
-//			tm.saveGeneratedCodeToFile(
-//					"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/");
-//			if (tm.getModelType() != ModelType.PIM) {
-//				tm.saveGroundTruth(
-//						"/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/");
-//			}
-//		}
-		
-		
 		for (TestModel tm : testModels) {
-			tm.saveModelToFile(
-					"/Users/kresimir/Desktop/JSSProblem/Generated/Models/");
-			tm.saveGeneratedCodeToFile(
-					"/Users/kresimir/Desktop/JSSProblem/Generated/Macro/");
+			tm.saveModelToFile(Utils.modelsPath);
+			tm.saveGeneratedCodeToFile(Utils.macroPath);
 			if (tm.getModelType() != ModelType.PIM) {
-				tm.saveGroundTruth(
-						"/Users/kresimir/Desktop/JSSProblem/Generated/GroundTruth/");
+				tm.saveGroundTruth(Utils.groundTruthPath);
 			}
 		}
-		
-		
 
 		System.out.println("Transformation done");
 
@@ -231,34 +210,34 @@ public class Mutator {
 
 	private void initializeMutationsPIM() {
 		mutationsPIM.add(new MutationOperator("AddPage", ModelType.PIM, ModelType.PIM,
-				basePathPIMTransform + "AddPage.qvto", Arrays.asList("pagecount")));
+				Utils.pimTransformation + "AddPage.qvto", Arrays.asList("pagecount")));
 		mutationsPIM.add(new MutationOperator("AddParagraph", ModelType.PIM, ModelType.PIM,
-				basePathPIMTransform + "AddParagraph.qvto", Arrays.asList("paragraphcount", "wordcount")));
+				Utils.pimTransformation + "AddParagraph.qvto", Arrays.asList("paragraphcount", "wordcount")));
 		mutationsPIM.add(new MutationOperator("AddTable", ModelType.PIM, ModelType.PIM,
-				basePathPIMTransform + "AddTable.qvto", Arrays.asList("tablecount")));
+				Utils.pimTransformation + "AddTable.qvto", Arrays.asList("tablecount")));
 		mutationsPIM.add(new MutationOperator("AddImage", ModelType.PIM, ModelType.PIM,
-				basePathPIMTransform + "AddImage.qvto", Arrays.asList("imagecount")));
+				Utils.pimTransformation + "AddImage.qvto", Arrays.asList("imagecount")));
 		mutationsPIM.add(new MutationOperator("AddWord", ModelType.PIM, ModelType.PIM,
-				basePathPIMTransform + "AddWord.qvto", Arrays.asList("wordcount")));
+				Utils.pimTransformation + "AddWord.qvto", Arrays.asList("wordcount")));
 	}
 
 	private void initializeMutationsPIM2PSM() {
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
-				basePathPIM2PSMTransform + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
-				Arrays.asList("doc", "rtf", "pdf"), Arrays.asList("Win7-Office2007","Win7-Office2010")));
+				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
+				Arrays.asList("doc", "rtf", "pdf"), Arrays.asList("Win7-Office2007", "Win7-Office2010")));
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-				basePathPIM2PSMTransform + "PIM2Docx.qvto",
+				Utils.pim2psmTransformation + "PIM2Docx.qvto",
 				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "rtf", "pdf"),
-				Arrays.asList("Win7-Office2007","Win7-Office2010")));
+				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
 	}
 
 	private void initializeMutationsPSM() {
 		mutationsPSM.add(new MutationOperator("ChangeTextColor", ModelType.PSMDoc, ModelType.PSMDoc,
-				basePathPSMDocTransform + "ChangeTextColor.qvto", Arrays.asList("textcolor")));
+				Utils.psmDocTransformation + "ChangeTextColor.qvto", Arrays.asList("textcolor")));
 		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDoc, ModelType.PSMDoc,
-				basePathPSMDocTransform + "ChangeTextSize.qvto", Arrays.asList("textsize")));
+				Utils.psmDocTransformation + "ChangeTextSize.qvto", Arrays.asList("textsize")));
 		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDocx, ModelType.PSMDocx,
-				basePathPSMDocxTransform + "ChangeTextColorDocx.qvto", Arrays.asList("textcolor")));
+				Utils.psmDocxTransformation + "ChangeTextColorDocx.qvto", Arrays.asList("textcolor")));
 
 	}
 

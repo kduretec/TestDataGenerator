@@ -10,7 +10,11 @@ public class Utils {
 	
 	public static String resultsPath = basePath + "Results/";
 	
-	public static String groundTruthPath = basePath + "GroundTruth/"; 
+	public static String groundTruthPath = basePath + "GroundTruth/";
+	
+	public static String modelsPath = basePath + "Models/";
+	
+	public static String macroPath = basePath + "Macro/"; 
 	
 	public static String toolOutputPath = basePath + "ToolOutput/";
 	
@@ -21,6 +25,18 @@ public class Utils {
 	public static String groundTruthVBFileEnding = "-wordgroundtruth.txt";
 	
 	public static String groundTruthParagraphEnding = "-groundtruthParagraphWords.txt";
+	
+	
+	
+	public static String pimTransformation = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM/";
+	
+	public static String pim2psmTransformation = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM2PSM/";
+	
+	public static String psmDocTransformation = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDoc/";
+	
+	public static String psmDocxTransformation = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PSMDocx/";
+	
+	
 	
 	public static String getFileName(File f) {
 		int pos = f.getName().lastIndexOf(".");
