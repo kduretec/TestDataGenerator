@@ -35,6 +35,7 @@ public class ComplexMutationOperator extends MutationOperator implements Mutatio
 		formatMapping.put("docx", "16");
 		formatMapping.put("rtf", "6");
 		formatMapping.put("pdf", "17");
+		formatMapping.put("odt", "20"); 
 	}
 
 	@Override

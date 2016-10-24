@@ -30,4 +30,12 @@
             genModel="model/PSMDocx.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated PSMLibre -->
+      <package
+            uri="http://benchmarkdp.datagenerator.model.PSMLibre"
+            class="benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage"
+            genModel="model/PSMLibre.genmodel"/>
+   </extension>
+
 </plugin>

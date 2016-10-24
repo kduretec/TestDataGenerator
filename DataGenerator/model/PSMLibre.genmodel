@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/DataGenerator/src" modelPluginID="DataGenerator"
+    modelName="PSMLibre" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>PSMLibre.ecore</foreignModel>
+  <genPackages prefix="PSMLibre" basePackage="benchmarkdp.datagenerator.model" disposableProviderFactory="true"
+      ecorePackage="PSMLibre.ecore#/">
+    <genClasses ecoreClass="PSMLibre.ecore#//Document">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Document/pages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/name"/>
+    </genClasses>
+    <genClasses ecoreClass="PSMLibre.ecore#//Page">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Page/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="PSMLibre.ecore#//Element"/>
+    <genClasses ecoreClass="PSMLibre.ecore#//TextContainer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//TextContainer/words"/>
+    </genClasses>
+    <genClasses ecoreClass="PSMLibre.ecore#//Paragraph"/>
+    <genClasses ecoreClass="PSMLibre.ecore#//Text">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Text/value"/>
+    </genClasses>
+    <genClasses ecoreClass="PSMLibre.ecore#//SimpleText"/>
+  </genPackages>
+</genmodel:GenModel>

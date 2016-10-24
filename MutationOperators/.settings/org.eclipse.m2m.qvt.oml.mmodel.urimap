@@ -3,4 +3,5 @@
   <mapping sourceURI="http://benchmarkdp.datagenerator.model.PIM" targetURI="platform:/resource/DataGenerator/model/PIM.ecore"/>
   <mapping sourceURI="http://benchmarkdp.datagenerator.model.PSMDoc" targetURI="platform:/resource/DataGenerator/model/PSMDoc.ecore"/>
   <mapping sourceURI="http://benchmarkdp.datagenerator.model.PSMDocx" targetURI="platform:/resource/DataGenerator/model/PSMDocx.ecore"/>
+  <mapping sourceURI="http://benchmarkdp.datagenerator.model.PSMLibre" targetURI="platform:/resource/DataGenerator/model/PSMLibre.ecore"/>
 </uriMap:MappingContainer>

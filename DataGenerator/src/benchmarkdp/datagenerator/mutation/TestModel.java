@@ -168,8 +168,13 @@ public class TestModel {
 	public void saveGeneratedCodeToFile(String path) {
 		if (generatedCode != null) {
 			try {
-				String file = path + "/" + platform + "/" + testFeature.getName() + "_" + modelType + "_" + format + "_"
-						+ platform + ".vbs";
+				String file;
+				if (modelType==ModelType.PSMLibre) {
+					file = path + "/" + platform + "/" + testFeature.getName() + ".xba";
+				} else {
+					file = path + "/" + platform + "/" + testFeature.getName() + "_" + modelType + "_" + format + "_"
+							+ platform + ".vbs";
+				}
 				File f = new File(file);
 				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 				bw.write(generatedCode + "\n");

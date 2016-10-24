@@ -5,34 +5,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.m2m.qvt.oml.BasicModelExtent;
-import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
-import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
-import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.examples.blackbox.UtilitiesLibrary;
-import org.eclipse.m2m.qvt.oml.util.Log;
-import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
+import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 import benchmarkdp.datagenerator.utils.Utils;
 
 public class Mutator {
 
-	int n = 1;
+	int n = 2;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -44,6 +35,8 @@ public class Mutator {
 	private List<OCLEvaluatorInterface> evaluators;
 
 	private List<CodeGeneratorInterface> codeGenerator;
+	
+	private List<CodeGeneratorObserverInterface> codeGeneratorObserver;
 
 	public Mutator() {
 
@@ -54,6 +47,7 @@ public class Mutator {
 		PIMPackage mwp = PIMPackage.eINSTANCE;
 		PSMDocPackage pwp = PSMDocPackage.eINSTANCE;
 		PSMDocxPackage pwd = PSMDocxPackage.eINSTANCE;
+		PSMLibrePackage pld = PSMLibrePackage.eINSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("xmi", new XMIResourceFactoryImpl());
 
@@ -164,6 +158,9 @@ public class Mutator {
 			}
 		}
 
+		for (CodeGeneratorObserverInterface cob:codeGeneratorObserver) {
+			cob.afterGeneration(Utils.macroPath);
+		}
 		System.out.println("Size of models " + testModels.size());
 		for (TestModel tm : testModels) {
 			tm.saveModelToFile(Utils.modelsPath);
@@ -222,13 +219,17 @@ public class Mutator {
 	}
 
 	private void initializeMutationsPIM2PSM() {
-		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
-				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
-				Arrays.asList("doc", "rtf", "pdf"), Arrays.asList("Win7-Office2007", "Win7-Office2010")));
-		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "rtf", "pdf"),
-				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
+//				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
+//				Arrays.asList("doc", "rtf", "pdf"), Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+//				Utils.pim2psmTransformation + "PIM2Docx.qvto",
+//				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "rtf", "pdf"),
+//				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
+				Utils.pim2psmTransformation + "PIM2Libre.qvto",
+				Arrays.asList(), Arrays.asList("odt"),
+				Arrays.asList("Ubuntu14-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -280,8 +281,13 @@ public class Mutator {
 
 	private void initializeCodeGenerator() {
 		codeGenerator = new ArrayList<CodeGeneratorInterface>();
-		codeGenerator.add(new DocCodeGenerator());
-		codeGenerator.add(new DocxCodeGenerator());
+		codeGeneratorObserver = new ArrayList<CodeGeneratorObserverInterface>();
+		//codeGenerator.add(new DocCodeGenerator());
+		//codeGenerator.add(new DocxCodeGenerator());
+		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
+		codeGenerator.add(new LibreCodeGenerator(libreObserver));
+		codeGeneratorObserver.add(libreObserver);
+		
 	}
 
 }
