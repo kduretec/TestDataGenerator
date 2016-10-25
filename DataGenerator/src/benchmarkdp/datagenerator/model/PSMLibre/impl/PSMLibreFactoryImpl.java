@@ -63,6 +63,10 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 			case PSMLibrePackage.PARAGRAPH: return createParagraph();
 			case PSMLibrePackage.TEXT: return createText();
 			case PSMLibrePackage.SIMPLE_TEXT: return createSimpleText();
+			case PSMLibrePackage.TABLE: return createTable();
+			case PSMLibrePackage.ROW: return createRow();
+			case PSMLibrePackage.CELL: return createCell();
+			case PSMLibrePackage.IMAGE: return createImage();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -136,6 +140,46 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 	public SimpleText createSimpleText() {
 		SimpleTextImpl simpleText = new SimpleTextImpl();
 		return simpleText;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Table createTable() {
+		TableImpl table = new TableImpl();
+		return table;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Row createRow() {
+		RowImpl row = new RowImpl();
+		return row;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Cell createCell() {
+		CellImpl cell = new CellImpl();
+		return cell;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Image createImage() {
+		ImageImpl image = new ImageImpl();
+		return image;
 	}
 
 	/**

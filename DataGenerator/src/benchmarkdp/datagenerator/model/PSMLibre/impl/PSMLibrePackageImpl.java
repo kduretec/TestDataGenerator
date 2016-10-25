@@ -2,13 +2,17 @@
  */
 package benchmarkdp.datagenerator.model.PSMLibre.impl;
 
+import benchmarkdp.datagenerator.model.PSMLibre.Cell;
 import benchmarkdp.datagenerator.model.PSMLibre.Document;
 import benchmarkdp.datagenerator.model.PSMLibre.Element;
+import benchmarkdp.datagenerator.model.PSMLibre.Image;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibreFactory;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 import benchmarkdp.datagenerator.model.PSMLibre.Page;
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
+import benchmarkdp.datagenerator.model.PSMLibre.Row;
 import benchmarkdp.datagenerator.model.PSMLibre.SimpleText;
+import benchmarkdp.datagenerator.model.PSMLibre.Table;
 import benchmarkdp.datagenerator.model.PSMLibre.Text;
 import benchmarkdp.datagenerator.model.PSMLibre.TextContainer;
 
@@ -74,6 +78,34 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * @generated
 	 */
 	private EClass simpleTextEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rowEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass cellEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass imageEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -249,6 +281,114 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTable() {
+		return tableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTable_NumRows() {
+		return (EAttribute)tableEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTable_NumCol() {
+		return (EAttribute)tableEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTable_Row() {
+		return (EReference)tableEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRow() {
+		return rowEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getRow_Cell() {
+		return (EReference)rowEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCell() {
+		return cellEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCell_Elements() {
+		return (EReference)cellEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getImage() {
+		return imageEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Height() {
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Width() {
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getImage_Type() {
+		return (EAttribute)imageEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PSMLibreFactory getPSMLibreFactory() {
 		return (PSMLibreFactory)getEFactoryInstance();
 	}
@@ -290,6 +430,22 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		createEAttribute(textEClass, TEXT__VALUE);
 
 		simpleTextEClass = createEClass(SIMPLE_TEXT);
+
+		tableEClass = createEClass(TABLE);
+		createEAttribute(tableEClass, TABLE__NUM_ROWS);
+		createEAttribute(tableEClass, TABLE__NUM_COL);
+		createEReference(tableEClass, TABLE__ROW);
+
+		rowEClass = createEClass(ROW);
+		createEReference(rowEClass, ROW__CELL);
+
+		cellEClass = createEClass(CELL);
+		createEReference(cellEClass, CELL__ELEMENTS);
+
+		imageEClass = createEClass(IMAGE);
+		createEAttribute(imageEClass, IMAGE__HEIGHT);
+		createEAttribute(imageEClass, IMAGE__WIDTH);
+		createEAttribute(imageEClass, IMAGE__TYPE);
 	}
 
 	/**
@@ -323,6 +479,8 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		textContainerEClass.getESuperTypes().add(this.getElement());
 		paragraphEClass.getESuperTypes().add(this.getTextContainer());
 		simpleTextEClass.getESuperTypes().add(this.getText());
+		tableEClass.getESuperTypes().add(this.getElement());
+		imageEClass.getESuperTypes().add(this.getElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -343,6 +501,22 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		initEAttribute(getText_Value(), ecorePackage.getEString(), "value", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleTextEClass, SimpleText.class, "SimpleText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTable_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTable_NumCol(), ecorePackage.getEInt(), "numCol", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTable_Row(), this.getRow(), null, "row", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(rowEClass, Row.class, "Row", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getRow_Cell(), this.getCell(), null, "cell", null, 0, -1, Row.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(cellEClass, Cell.class, "Cell", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCell_Elements(), this.getElement(), null, "elements", null, 0, -1, Cell.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(imageEClass, Image.class, "Image", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getImage_Height(), ecorePackage.getEInt(), "height", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Width(), ecorePackage.getEInt(), "width", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImage_Type(), ecorePackage.getEString(), "type", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
