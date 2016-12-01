@@ -35,7 +35,7 @@ public class Mutator {
 	private List<OCLEvaluatorInterface> evaluators;
 
 	private List<CodeGeneratorInterface> codeGenerator;
-	
+
 	private List<CodeGeneratorObserverInterface> codeGeneratorObserver;
 
 	public Mutator() {
@@ -158,7 +158,7 @@ public class Mutator {
 			}
 		}
 
-		for (CodeGeneratorObserverInterface cob:codeGeneratorObserver) {
+		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
 			cob.afterGeneration(Utils.macroPath);
 		}
 		System.out.println("Size of models " + testModels.size());
@@ -166,7 +166,7 @@ public class Mutator {
 			tm.saveModelToFile(Utils.modelsPath);
 			tm.saveGeneratedCodeToFile(Utils.macroPath);
 			if (tm.getModelType() != ModelType.PIM) {
-				tm.saveGroundTruth(Utils.groundTruthPath);
+				tm.saveGroundTruthToXML(Utils.groundTruthPath);
 			}
 		}
 
@@ -219,17 +219,20 @@ public class Mutator {
 	}
 
 	private void initializeMutationsPIM2PSM() {
-//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
-//				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
-//				Arrays.asList("doc", "rtf", "pdf"), Arrays.asList("Win7-Office2007", "Win7-Office2010")));
-//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-//				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-//				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "rtf", "pdf"),
-//				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
-		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
-				Utils.pim2psmTransformation + "PIM2Libre.qvto",
-				Arrays.asList(), Arrays.asList("odt"),
-				Arrays.asList("Ubuntu14-LibreOffice")));
+		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
+				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
+				Arrays.asList("doc", "rtf", "pdf"), Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+		// mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx",
+		// ModelType.PIM, ModelType.PSMDocx,
+		// Utils.pim2psmTransformation + "PIM2Docx.qvto",
+		// Arrays.asList("textbox", "controlbox", "format", "platform"),
+		// Arrays.asList("docx", "rtf", "pdf"),
+		// Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+		// mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
+		// ModelType.PIM, ModelType.PSMLibre,
+		// Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
+		// Arrays.asList("odt"),
+		// Arrays.asList("Ubuntu14-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -245,49 +248,64 @@ public class Mutator {
 	private void initializeEvaluators() {
 		evaluators = new ArrayList<OCLEvaluatorInterface>();
 
-		evaluators.add(new OCLEvaluatorPIM("pagecount", "self.pages->size()"));
-		evaluators.add(new OCLEvaluatorPIM("tablecount", "self.pages.elements->selectByType(Table)->size()"));
-		evaluators.add(new OCLEvaluatorPIM("paragraphcount", "self.pages.elements->selectByType(Paragraph)->size()"));
-		evaluators.add(new OCLEvaluatorPIM("wordcount", "self.pages.elements->selectByType(Paragraph).words->size()"));
-
-		evaluators.add(new OCLEvaluatorPSMDoc("words-textbox",
-				"self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
-		evaluators.add(new OCLEvaluatorPSMDocx("words-textbox",
-				"self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
-		evaluators.add(new OCLEvaluatorPSMDocx("words-controlbox",
-				"self.pages.elements->selectByType(ControlBox)->asSequence()->collectNested(words.value->asSequence())"));
+		// evaluators.add(new OCLEvaluatorPIM("pagecount",
+		// "self.pages->size()"));
+		// evaluators.add(new OCLEvaluatorPIM("tablecount",
+		// "self.pages.elements->selectByType(Table)->size()"));
+		// evaluators.add(new OCLEvaluatorPIM("paragraphcount",
+		// "self.pages.elements->selectByType(Paragraph)->size()"));
+		// evaluators.add(new OCLEvaluatorPIM("wordcount",
+		// "self.pages.elements->selectByType(Paragraph).words->size()"));
+		//
+		// evaluators.add(new OCLEvaluatorPSMDoc("words-textbox",
+		// "self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
+		// evaluators.add(new OCLEvaluatorPSMDocx("words-textbox",
+		// "self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
+		// evaluators.add(new OCLEvaluatorPSMDocx("words-controlbox",
+		// "self.pages.elements->selectByType(ControlBox)->asSequence()->collectNested(words.value->asSequence())"));
+		// // evaluators.add(new OCLEvaluatorPSMDocx("words",
+		// // "self.pages.elements->selectByType(Paragraph).words.value"));
+		// // evaluators.add(new OCLEvaluatorPSMDoc("words",
+		// // "self.pages.elements->selectByType(Paragraph).words.value"));
+		//
 		// evaluators.add(new OCLEvaluatorPSMDocx("words",
-		// "self.pages.elements->selectByType(Paragraph).words.value"));
+		// "self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words.value->asSequence())"));
 		// evaluators.add(new OCLEvaluatorPSMDoc("words",
-		// "self.pages.elements->selectByType(Paragraph).words.value"));
+		// "self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words.value->asSequence())"));
+		//
+		// evaluators.add(new OCLEvaluatorPSMDocx("controlboxcount",
+		// "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
+		//
+		// evaluators.add(new OCLEvaluatorPSMDoc("numCol", "self.numColum"));
+		// evaluators.add(new OCLEvaluatorPSMDocx("numCol", "self.numColum"));
+		//
+		// evaluators.add(new OCLEvaluatorPSMDoc("format",
+		// "self.documentFormat"));
+		// evaluators.add(new OCLEvaluatorPSMDocx("format",
+		// "self.documentFormat"));
+		//
+		// evaluators.add(new OCLEvaluatorPSMDoc("platform",
+		// "self.documentPlatform"));
+		// evaluators.add(new OCLEvaluatorPSMDocx("platform",
+		// "self.documentPlatform"));
 
-		evaluators.add(new OCLEvaluatorPSMDocx("words",
-				"self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words.value->asSequence())"));
-		evaluators.add(new OCLEvaluatorPSMDoc("words",
-				"self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words.value->asSequence())"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "tablecount",
+				"self.pages.elements->selectByType(Table)->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT, "numCol", "self.numColum"));
+		evaluators.add(new OCLText(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT));
+		evaluators.add(new OCLText(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT));
 
-		evaluators.add(new OCLEvaluatorPSMDocx("controlboxcount",
-				"self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
-
-		evaluators.add(new OCLEvaluatorPSMDoc("numCol", "self.numColum"));
-		evaluators.add(new OCLEvaluatorPSMDocx("numCol", "self.numColum"));
-
-		evaluators.add(new OCLEvaluatorPSMDoc("format", "self.documentFormat"));
-		evaluators.add(new OCLEvaluatorPSMDocx("format", "self.documentFormat"));
-
-		evaluators.add(new OCLEvaluatorPSMDoc("platform", "self.documentPlatform"));
-		evaluators.add(new OCLEvaluatorPSMDocx("platform", "self.documentPlatform"));
 	}
 
 	private void initializeCodeGenerator() {
 		codeGenerator = new ArrayList<CodeGeneratorInterface>();
 		codeGeneratorObserver = new ArrayList<CodeGeneratorObserverInterface>();
-		//codeGenerator.add(new DocCodeGenerator());
-		//codeGenerator.add(new DocxCodeGenerator());
+		// codeGenerator.add(new DocCodeGenerator());
+		// codeGenerator.add(new DocxCodeGenerator());
 		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
 		codeGenerator.add(new LibreCodeGenerator(libreObserver));
 		codeGeneratorObserver.add(libreObserver);
-		
+
 	}
 
 }

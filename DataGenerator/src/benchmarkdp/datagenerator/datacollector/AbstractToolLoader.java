@@ -28,4 +28,6 @@ public abstract class AbstractToolLoader implements ToolLoaderInterface {
 		result = result.replaceAll("\\s+", " ").trim();
 		return result;
 	}
+	
+	
 }

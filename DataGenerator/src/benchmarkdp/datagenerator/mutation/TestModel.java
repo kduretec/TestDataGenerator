@@ -41,12 +41,22 @@ public class TestModel {
 	private String format;
 
 	private String platform;
+	
+	private Metadata metadata; 
+	
+	private TextElements textElements; 
 
 	public TestModel() {
 		ID = UUID.randomUUID().toString();
 		groundTruth = new HashMap<String, Object>();
+		metadata = new Metadata(this); 
+		textElements = new TextElements(this);
 	}
 
+	public String getTestName() {
+		return testFeature.getName() + "_" + modelType + "_" + format + "_" + platform;
+	}
+	
 	public ModelType getModelType() {
 		return modelType;
 	}
@@ -55,6 +65,14 @@ public class TestModel {
 		this.modelType = modelType;
 	}
 
+	public Metadata getMetadata() {
+		return metadata;
+	}
+	
+	public TextElements getTextElements() {
+		return textElements;
+	}
+	
 	public EList<EObject> getModelObjects() {
 		return modelObjects;
 	}
@@ -186,6 +204,26 @@ public class TestModel {
 		}
 	}
 
+	
+	public void saveGroundTruthToXML(String path) {
+		
+		String pathMetadata = path + "/Metadata";
+		File f = new File(pathMetadata); 
+		if (!f.exists()) {
+			f.mkdir();
+		}
+		metadata.saveToXML(pathMetadata);
+		
+		String pathText = path + "/Text";
+		f = new File(pathText); 
+		if (!f.exists()) {
+			f.mkdir();
+		}
+		textElements.saveToXML(pathText);
+		
+	}
+	
+	
 	public void saveGroundTruth(String path) {
 		try {
 			String file = path + testFeature.getName() + "_" + modelType + "_" + format + "_" + platform
