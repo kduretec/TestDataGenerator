@@ -32,7 +32,16 @@ public class Metadata {
 	public void add(String name, Object value) {
 		values.put(name, value);
 	}
+	
+	public Map<String, Object> getValues() {
+		return values;
+	}
 
+	public void add(Metadata m) {
+		for (Map.Entry<String, Object> ent : m.getValues().entrySet()) {
+			values.put(ent.getKey(), ent.getValue());
+		}
+	}
 	public void saveToXML(String path) {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

@@ -68,7 +68,9 @@ public class TestModel {
 	public Metadata getMetadata() {
 		return metadata;
 	}
-	
+	public void setMetadata(Metadata m) {
+		metadata.add(m);
+	}
 	public TextElements getTextElements() {
 		return textElements;
 	}
@@ -156,6 +158,7 @@ public class TestModel {
 		this.setModelType(tm.getModelType());
 		this.setParent(tm);
 		this.setTestFeature(tm.getTestFeature());
+		this.setMetadata(tm.getMetadata());
 	}
 
 	public void saveModelToFile(String path) {

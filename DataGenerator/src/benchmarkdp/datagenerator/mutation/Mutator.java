@@ -292,6 +292,7 @@ public class Mutator {
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "tablecount",
 				"self.pages.elements->selectByType(Table)->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT, "numCol", "self.numColum"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "paragraphcount", "self.pages.elements->selectByType(Paragraph)->size()"));
 		evaluators.add(new OCLText(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT));
 		evaluators.add(new OCLText(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT));
 
