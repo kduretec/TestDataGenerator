@@ -6,9 +6,9 @@ modeltype PSM uses PSMLibre('http://benchmarkdp.datagenerator.model.PSMLibre');
 
 transformation PIM2Libre(in source:PIM, out target:PSM);
 //configuration property textbox : String;
-//configuration property format : String;
+configuration property format : String;
 //configuration property formatCode : String;
-//configuration property platform : String;
+configuration property platform : String;
 main() {
 	log("Translating from PIM to PSMLibre");
 	source.rootObjects()[Document].map DocumentToDocument();
@@ -17,6 +17,8 @@ main() {
 
 mapping PIM::Document::DocumentToDocument():PSM::Document {
 	name := self.name;
+	documentFormat := format;
+	documentPlatform := platform;
 	self.pages->forEach(p) {
 		pages += p->map PageToPage();
 	}

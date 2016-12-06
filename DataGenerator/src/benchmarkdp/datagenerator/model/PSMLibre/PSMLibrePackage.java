@@ -85,13 +85,49 @@ public interface PSMLibrePackage extends EPackage {
 	int DOCUMENT__NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Author</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__AUTHOR = 2;
+
+	/**
+	 * The feature id for the '<em><b>Num Colum</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__NUM_COLUM = 3;
+
+	/**
+	 * The feature id for the '<em><b>Document Format</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__DOCUMENT_FORMAT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Document Platform</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__DOCUMENT_PLATFORM = 5;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = 2;
+	int DOCUMENT_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -534,6 +570,50 @@ public interface PSMLibrePackage extends EPackage {
 	EAttribute getDocument_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getAuthor <em>Author</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Author</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getAuthor()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_Author();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getNumColum <em>Num Colum</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Num Colum</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getNumColum()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_NumColum();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFormat <em>Document Format</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Document Format</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFormat()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_DocumentFormat();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentPlatform <em>Document Platform</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Document Platform</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentPlatform()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_DocumentPlatform();
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.Page <em>Page</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -802,6 +882,38 @@ public interface PSMLibrePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOCUMENT__NAME = eINSTANCE.getDocument_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__AUTHOR = eINSTANCE.getDocument_Author();
+
+		/**
+		 * The meta object literal for the '<em><b>Num Colum</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__NUM_COLUM = eINSTANCE.getDocument_NumColum();
+
+		/**
+		 * The meta object literal for the '<em><b>Document Format</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__DOCUMENT_FORMAT = eINSTANCE.getDocument_DocumentFormat();
+
+		/**
+		 * The meta object literal for the '<em><b>Document Platform</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__DOCUMENT_PLATFORM = eINSTANCE.getDocument_DocumentPlatform();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.PageImpl <em>Page</em>}' class.

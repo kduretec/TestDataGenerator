@@ -221,16 +221,14 @@ public class Mutator {
 	private void initializeMutationsPIM2PSM() {
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
 				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
-				Arrays.asList("doc"), Arrays.asList("Win7-Office2007")));
+				Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
 				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx"),
+				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf"),
 				Arrays.asList("Win7-Office2007")));
-		// mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
-		// ModelType.PIM, ModelType.PSMLibre,
-		// Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
-		// Arrays.asList("odt"),
-		// Arrays.asList("Ubuntu14-LibreOffice")));
+		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
+				ModelType.PIM, ModelType.PSMLibre, Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
+				Arrays.asList("odt"), Arrays.asList("Ubuntu14-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -294,6 +292,7 @@ public class Mutator {
 				"self.pages.elements->selectByType(Paragraph)->size()"));
 		evaluators.add(new OCLText(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT));
 		evaluators.add(new OCLText(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT));
+		evaluators.add(new OCLText(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT));
 
 	}
 
@@ -302,9 +301,9 @@ public class Mutator {
 		codeGeneratorObserver = new ArrayList<CodeGeneratorObserverInterface>();
 		codeGenerator.add(new DocCodeGenerator());
 		codeGenerator.add(new DocxCodeGenerator());
-		//CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
-		//codeGenerator.add(new LibreCodeGenerator(libreObserver));
-		//codeGeneratorObserver.add(libreObserver);
+		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
+		codeGenerator.add(new LibreCodeGenerator(libreObserver));
+		codeGeneratorObserver.add(libreObserver);
 
 	}
 

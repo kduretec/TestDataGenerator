@@ -5,5 +5,7 @@ import java.util.Map;
 
 public interface CollectorOperatorInterface {
 
-	Map<String, String> collect(File test);
+	String getName();
+	
+	Map<String, String> collect(String name);
 }

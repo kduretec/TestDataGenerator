@@ -26,6 +26,7 @@ public class Utils {
 	
 	public static String groundTruthParagraphEnding = "-groundtruthParagraphWords.txt";
 	
+	public static String metadataPath = groundTruthPath + "Metadata/";
 	
 	
 	public static String pimTransformation = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM/";

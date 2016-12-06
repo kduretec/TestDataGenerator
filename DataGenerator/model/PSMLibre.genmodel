@@ -10,6 +10,10 @@
     <genClasses ecoreClass="PSMLibre.ecore#//Document">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Document/pages"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/author"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/numColum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/documentFormat"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/documentPlatform"/>
     </genClasses>
     <genClasses ecoreClass="PSMLibre.ecore#//Page">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Page/elements"/>

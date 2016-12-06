@@ -60,7 +60,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 
 	
 	
-	Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«documentName».odt"
+	Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«documentName»_«modelType»_«d.documentFormat»_«d.documentPlatform».«d.documentFormat»"
 	Doc.storeAsURL(Url2, Dummy())
 	Doc.close(true)
 	End Sub

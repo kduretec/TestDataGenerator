@@ -19,14 +19,19 @@ import benchmarkdp.datagenerator.utils.Utils;
 public class FitsCollector implements CollectorOperatorInterface {
 
 	private List<String> elements = Arrays.asList("size");
-	private String code = "FITS";
+	private String name = "FITS";
 
 	@Override
-	public Map<String, String> collect(File test) {
+	public String getName() {
+		return name;
+	}
 
-		String testName = Utils.getFileName(test);
-		String path = Utils.fitsPath + testName + ".fits.xml";
-		File fits = new File(path);
+	@Override
+	public Map<String, String> collect(String test) {
+
+		String fitsFilePath = Utils.fitsPath + test + ".fits.xml";
+
+		File fits = new File(fitsFilePath);
 
 		Map<String, String> values = new HashMap<String, String>();
 
@@ -43,7 +48,7 @@ public class FitsCollector implements CollectorOperatorInterface {
 				} else {
 					val = doc.getElementsByTagName(el).item(0).getTextContent();
 				}
-				values.put(code + "_" + el, val);
+				values.put(el, val);
 			}
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
