@@ -47,6 +47,9 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 	var si:Integer := self.words->asSequence()->size(); 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
+	 if (pos - i > 20) {
+	 	pos := i + 20 
+	 };
 	 var tt := self.words->asSequence()->subSequence(i,pos);
 	 var tSize := tt->size();
 	 i := pos + 1;

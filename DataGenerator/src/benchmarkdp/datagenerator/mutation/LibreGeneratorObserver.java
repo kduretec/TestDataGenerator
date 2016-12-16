@@ -5,37 +5,49 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 
-	List<String> names;
+	Map<String, List<String>> names;
 
 	public LibreGeneratorObserver() {
-		names = new ArrayList<String>();
+		names = new HashMap<String, List<String>>();
 	}
 
 	@Override
-	public void notify(String name) {
-		names.add(name);
+	public void notify(TestModel tm) {
+		String platform = tm.getPlatform();
+		if (!names.containsKey(platform)) {
+			names.put(platform, new ArrayList<String>());
+		}
+		
+		names.get(platform).add(tm.getTestFeature().getName());
+		
 	}
 
 	@Override
 	public void afterGeneration(String path) {
-		try {
-			String file = path + "/Ubuntu14-LibreOffice/script.xlb";
-			File f = new File(file);
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-			bw.write(getFileContent() + "\n");
-			bw.close();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		
+		for (Map.Entry<String, List<String>> mE : names.entrySet()) {
+			String platform = mE.getKey();
+			try {
+				String file = path + "/" + platform + "/script.xlb";
+				File f = new File(file);
+				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+				bw.write(getFileContent(mE.getValue()) + "\n");
+				bw.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 
 	}
 
-	private String getFileContent() {
+	private String getFileContent(List<String> nam) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
@@ -44,7 +56,7 @@ public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 		sb.append("<library:library xmlns:library=\"http://openoffice.org/2000/library\" "
 				+ "library:name=\"Experiment\" library:readonly=\"false\" library:passwordprotected=\"false\">\n");
 
-		for (String n : names) {
+		for (String n : nam) {
 			sb.append("<library:element library:name=\"" + n + "\"/>\n");
 		}
 

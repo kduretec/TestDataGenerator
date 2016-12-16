@@ -161,6 +161,7 @@ public class Mutator {
 		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
 			cob.afterGeneration(Utils.macroPath);
 		}
+		
 		System.out.println("Size of models " + testModels.size());
 		for (TestModel tm : testModels) {
 			tm.saveModelToFile(Utils.modelsPath);
@@ -228,7 +229,7 @@ public class Mutator {
 				Arrays.asList("Win7-Office2007")));
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
 				ModelType.PIM, ModelType.PSMLibre, Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
-				Arrays.asList("odt"), Arrays.asList("Ubuntu14-LibreOffice")));
+				Arrays.asList("odt"), Arrays.asList("Ubuntu14-LibreOffice", "Ubuntu16-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -285,6 +286,19 @@ public class Mutator {
 		// evaluators.add(new OCLEvaluatorPSMDocx("platform",
 		// "self.documentPlatform"));
 
+		evaluators.add(new OCLMetadata(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT, "format",
+				"self.documentFormat"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "format",
+				"self.documentFormat"));
+		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "format",
+				"self.documentFormat"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT, "platform",
+				"self.documentPlatform"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "platform",
+				"self.documentPlatform"));
+		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "platform",
+				"self.documentPlatform"));
+		
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "tablecount",
 				"self.pages.elements->selectByType(Table)->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT, "numCol", "self.numColum"));

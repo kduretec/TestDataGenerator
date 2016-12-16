@@ -22,7 +22,7 @@ mapping PIM::Document::DocumentToDocument():PSM::Document {
 	documentFormat := format;
 	documentFormatCode := formatCode;
 	documentPlatform := platform;
-	result.numColum := getRandom(3);
+	result.numColum := 1;
 	self.pages->forEach(p) {
 		pages += p->map PageToPage();
 	}

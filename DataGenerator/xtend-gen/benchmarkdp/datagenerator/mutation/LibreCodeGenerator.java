@@ -48,7 +48,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     Document d = ((Document) _get);
     String s = this.compile(d);
     tm.setGeneratedCode(s);
-    this.cGOb.notify(this.documentName);
+    this.cGOb.notify(tm);
   }
   
   public String compile(final Document d) {
@@ -77,15 +77,13 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     _builder.newLine();
     _builder.append("Dim Url As String");
     _builder.newLine();
-    _builder.append("Dim Doc As Object");
+    _builder.append("Dim oDoc As Object");
     _builder.newLine();
     _builder.newLine();
     _builder.append("Url = \"private:factory/swriter\"");
     _builder.newLine();
-    _builder.append("Doc = StarDesktop.loadComponentFromURL(Url, \"_blank\", 0, Dummy())");
+    _builder.append("oDoc = StarDesktop.loadComponentFromURL(Url, \"_blank\", 0, Array())");
     _builder.newLine();
-    _builder.newLine();
-    _builder.append("oDoc = ThisComponent");
     _builder.newLine();
     _builder.append("oText = oDoc.getText()");
     _builder.newLine();
@@ -110,9 +108,9 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     _builder.append(_documentFormat_1, "");
     _builder.append("\"");
     _builder.newLineIfNotEmpty();
-    _builder.append("Doc.storeAsURL(Url2, Dummy())");
+    _builder.append("oDoc.storeAsURL(Url2, Dummy())");
     _builder.newLine();
-    _builder.append("Doc.close(true)");
+    _builder.append("oDoc.close(true)");
     _builder.newLine();
     _builder.append("End Sub");
     _builder.newLine();
@@ -175,7 +173,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     String temp = _builder.toString();
     if (((this.parag > 1) && (!inTable))) {
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("oText.InsertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)");
+      _builder_1.append("oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)");
       _builder_1.newLine();
       String _plus = (temp + _builder_1);
       temp = _plus;
@@ -242,7 +240,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   
   public String compileSimpleText(final SimpleText t) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("oText.insertString(oText.getStart(), \" ");
+    _builder.append("oText.insertString(oText.getEnd(), \" ");
     String _value = t.getValue();
     _builder.append(_value, "");
     _builder.append("\", False)");

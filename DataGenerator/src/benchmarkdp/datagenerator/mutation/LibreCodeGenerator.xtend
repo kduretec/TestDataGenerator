@@ -30,7 +30,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		var d = tm.modelObjects.get(0) as Document;
 		var s = compile(d);
 		tm.generatedCode = s;
-		cGOb.notify(documentName);
+		cGOb.notify(tm);
 	}
 	
 	
@@ -49,20 +49,19 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 	Sub Main 
 	Dim Dummy()
 	Dim Url As String
-	Dim Doc As Object
+	Dim oDoc As Object
 	
 	Url = "private:factory/swriter"
-	Doc = StarDesktop.loadComponentFromURL(Url, "_blank", 0, Dummy())
+	oDoc = StarDesktop.loadComponentFromURL(Url, "_blank", 0, Array())
 	
-	oDoc = ThisComponent
 	oText = oDoc.getText()
 	«compileDocumentElements(d)»
 
 	
 	
 	Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«documentName»_«modelType»_«d.documentFormat»_«d.documentPlatform».«d.documentFormat»"
-	Doc.storeAsURL(Url2, Dummy())
-	Doc.close(true)
+	oDoc.storeAsURL(Url2, Dummy())
+	oDoc.close(true)
 	End Sub
 	
 	</script:module>
@@ -102,7 +101,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		'''
 		if (parag > 1 && !inTable) {
 			temp = temp + '''
-				oText.InsertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)
+				oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)
 			'''
 		}
 		parag = parag + 1
@@ -160,7 +159,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 	
 	def compileSimpleText(SimpleText t) {
 		var temp = '''
-			oText.insertString(oText.getStart(), " «t.value»", False)
+			oText.insertString(oText.getEnd(), " «t.value»", False)
 		'''
 		return temp
 	}
