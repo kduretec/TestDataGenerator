@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator.groundtruth;
+package benchmarkdp.datagenerator.generator.ocl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
@@ -11,7 +11,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
 import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestModel;
+import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
@@ -53,12 +53,12 @@ public class OCLEvaluatorPSMDocx implements OCLEvaluatorInterface {
 	}
 
 	@Override
-	public void evaluateTestModel(TestModel tm) {
-		EList<EObject> objects = tm.getModelObjects();
+	public void evaluateTestModel(TestCase tC) {
+		EList<EObject> objects = tC.getTestModel().getModelObjects();
 		Document doc = (Document) objects.get(0);
 		
 		Object value = eval.evaluate(doc);
-		tm.getGroundTruth().put(groundTruthKey, value);
+		tC.getMetadata().add(groundTruthKey, value);
 		
 	}
 

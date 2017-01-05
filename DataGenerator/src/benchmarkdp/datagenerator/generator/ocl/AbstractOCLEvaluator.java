@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator.groundtruth;
+package benchmarkdp.datagenerator.generator.ocl;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.OCL;

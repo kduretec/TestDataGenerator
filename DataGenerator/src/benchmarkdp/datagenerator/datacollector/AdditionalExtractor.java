@@ -18,7 +18,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
-import benchmarkdp.datagenerator.generator.TestModel;
+import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
@@ -63,34 +63,34 @@ public class AdditionalExtractor {
 	
 	private void extract(File model, int meta) {
 	
-		OCL ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
-		OCLHelper helper = ocl.createOCLHelper();
-
-		if (meta==1) {
-			helper.setContext(PSMDocxPackage.Literals.DOCUMENT);		
-		} else {
-			helper.setContext(PSMDocPackage.Literals.DOCUMENT);
-		}
-
-		OCLExpression<EClassifier> query = null;
-		
-		try {
-			query = helper.createQuery(oclQuery);
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Query eval = ocl.createQuery(query);
-		
-		TestModel tmp = new TestModel();
-		tmp.initialize(model.getAbsolutePath());
-		
-		EList<EObject> objects = tmp.getModelObjects();
-		Object doc = objects.get(0);
-		
-		Object value = eval.evaluate(doc);
-		
-		save(model.getName(), value);
+//		OCL ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+//		OCLHelper helper = ocl.createOCLHelper();
+//
+//		if (meta==1) {
+//			helper.setContext(PSMDocxPackage.Literals.DOCUMENT);		
+//		} else {
+//			helper.setContext(PSMDocPackage.Literals.DOCUMENT);
+//		}
+//
+//		OCLExpression<EClassifier> query = null;
+//		
+//		try {
+//			query = helper.createQuery(oclQuery);
+//		} catch (ParserException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Query eval = ocl.createQuery(query);
+//		
+//		TestCase tmp = new TestCase();
+//		tmp.initialize(model.getAbsolutePath());
+//		
+//		EList<EObject> objects = tmp.getModelObjects();
+//		Object doc = objects.get(0);
+//		
+//		Object value = eval.evaluate(doc);
+//		
+//		save(model.getName(), value);
 	}
 	
 	private void save(String name, Object value) {

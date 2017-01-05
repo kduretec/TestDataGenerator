@@ -18,6 +18,7 @@ import org.eclipse.m2m.qvt.oml.util.Log;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
 import benchmarkdp.datagenerator.generator.ModelType;
+import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.TestModel;
 
 public class ComplexMutationOperator extends MutationOperator implements MutationOperatorInterface {
@@ -42,22 +43,22 @@ public class ComplexMutationOperator extends MutationOperator implements Mutatio
 	}
 
 	@Override
-	public List<TestModel> mutateModel(TestModel tm) {
-		List<TestModel> tModels = new ArrayList<TestModel>();
+	public List<TestCase> mutateTestCase(TestCase tC) {
+		List<TestCase> tModels = new ArrayList<TestCase>();
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true);
 		OutputStreamWriter outStream = new OutputStreamWriter(System.out);
 		Log log = new WriterLog(outStream);
 		context.setLog(log);
 
-		if (tm.getModelType() == source) {
+		if (tC.getTestModel().getModelType() == source) {
 			List<Object> tForm = new ArrayList<Object>();
 			List<Object> tPlat = new ArrayList<Object>();
 			// set the transformation parameters
 			for (String feature : features) {
 				Object value = null;
-				if (tm.getTestFeature().isFeatureAvailable(feature)) {
-					value = tm.getTestFeature().getFeature(feature);
+				if (tC.getTestFeature().isFeatureAvailable(feature)) {
+					value = tC.getTestFeature().getFeature(feature);
 					if (feature == "format") {
 						tForm.add(value);
 					} else if (feature == "platform") {
@@ -79,19 +80,16 @@ public class ComplexMutationOperator extends MutationOperator implements Mutatio
 					context.setConfigProperty("formatCode", formatMapping.get(oF));
 					context.setConfigProperty("platform", oP);
 					TransformationExecutor executor = getTransformationExecutor();
-					ModelExtent input = tm.getModelExtent();
+					ModelExtent input = tC.getTestModel().getModelExtent();
 					ModelExtent output = new BasicModelExtent();
 					ExecutionDiagnostic result = executor.execute(context, input, output);
 					if (result.getSeverity() == Diagnostic.OK) {
 						if (source == destination) {
-							tm.setModelExtent(input);
+							tC.getTestModel().setModelExtent(input);
 						} else {
-							TestModel nTM = new TestModel();
-							nTM.initialize(tm);
-							nTM.setModelExtent(output);
-							nTM.setModelType(destination);
-							nTM.setFormat(oF.toString());
-							nTM.setPlatform(oP.toString());
+							TestCase nTM = new TestCase(tC);
+							nTM.getTestModel().setModelExtent(output);
+							nTM.getTestModel().setModelType(destination);
 							tModels.add(nTM);
 						}
 					} else {

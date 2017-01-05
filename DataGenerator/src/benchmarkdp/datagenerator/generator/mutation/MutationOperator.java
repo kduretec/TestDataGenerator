@@ -17,6 +17,7 @@ import org.eclipse.m2m.qvt.oml.util.Log;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
 import benchmarkdp.datagenerator.generator.ModelType;
+import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.TestModel;
 
 public class MutationOperator implements MutationOperatorInterface {
@@ -60,36 +61,35 @@ public class MutationOperator implements MutationOperatorInterface {
 		return features;
 	}
 	
-	public List<TestModel> mutateModel(TestModel tm) {
-		List<TestModel> tModels = new ArrayList<TestModel>();
+	public List<TestCase> mutateTestCase(TestCase tC) {
+		List<TestCase> tModels = new ArrayList<TestCase>();
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true);
 		OutputStreamWriter outStream = new OutputStreamWriter(System.out);
 		Log log = new WriterLog(outStream);
 		context.setLog(log);
-		if (tm.getModelType() == source) {
+		if (tC.getTestModel().getModelType() == source) {
 
 			// set the transformation parameters
 			for (String feature : features) {
 				Object value = null;
-				if (tm.getTestFeature().isFeatureAvailable(feature)) {
-					value = tm.getTestFeature().getFeature(feature);
+				if (tC.getTestFeature().isFeatureAvailable(feature)) {
+					value = tC.getTestFeature().getFeature(feature);
 				}
 				context.setConfigProperty(feature, value);
 			}
 
 			TransformationExecutor executor = getTransformationExecutor();
-			ModelExtent input = tm.getModelExtent();
+			ModelExtent input = tC.getTestModel().getModelExtent();
 			ModelExtent output = new BasicModelExtent();
 			ExecutionDiagnostic result = executor.execute(context, input, output);
 			if (result.getSeverity() == Diagnostic.OK) {
 				if (source == destination) {
-					tm.setModelExtent(input);
+					tC.getTestModel().setModelExtent(input);
 				} else {
-					TestModel nTM = new TestModel();
-					nTM.initialize(tm);
-					nTM.setModelExtent(output);
-					nTM.setModelType(destination);
+					TestCase nTM = new TestCase(tC);
+					nTM.getTestModel().setModelExtent(output);
+					nTM.getTestModel().setModelType(destination);
 					tModels.add(nTM);
 				}
 			} else {

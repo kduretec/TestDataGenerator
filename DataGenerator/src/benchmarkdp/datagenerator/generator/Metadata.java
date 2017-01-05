@@ -22,11 +22,8 @@ public class Metadata {
 
 	private Map<String, Object> values;
 
-	private TestModel tm;
-
-	public Metadata(TestModel t) {
+	public Metadata() {
 		values = new HashMap<String, Object>();
-		tm = t;
 	}
 
 	public void add(String name, Object value) {
@@ -42,7 +39,8 @@ public class Metadata {
 			values.put(ent.getKey(), ent.getValue());
 		}
 	}
-	public void saveToXML(String path) {
+	
+	public void saveToXML(String filePath, String testCaseName) {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -51,7 +49,7 @@ public class Metadata {
 			Element rootElement = doc.createElement("metadata");
 			doc.appendChild(rootElement);
 			Element d = doc.createElement("document");
-			d.appendChild(doc.createTextNode(tm.getTestName()));
+			d.appendChild(doc.createTextNode(testCaseName));
 			rootElement.appendChild(d);
 			Element entries = doc.createElement("metadataEntries");
 			rootElement.appendChild(entries);
@@ -68,7 +66,7 @@ public class Metadata {
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(path + "/" + tm.getTestName() + ".xml"));
+			StreamResult result = new StreamResult(new File(filePath + testCaseName + ".xml"));
 
 			transformer.transform(source, result);
 		} catch (ParserConfigurationException pce) {

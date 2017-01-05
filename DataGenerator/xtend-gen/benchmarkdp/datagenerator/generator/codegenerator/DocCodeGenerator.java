@@ -1,6 +1,8 @@
 package benchmarkdp.datagenerator.generator.codegenerator;
 
 import benchmarkdp.datagenerator.generator.ModelType;
+import benchmarkdp.datagenerator.generator.SingleFileCode;
+import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.TestFeature;
 import benchmarkdp.datagenerator.generator.TestModel;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
@@ -41,15 +43,19 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
   }
   
   @Override
-  public void generateCode(final TestModel tm) {
-    TestFeature _testFeature = tm.getTestFeature();
+  public void generateCode(final TestCase tC) {
+    TestFeature _testFeature = tC.getTestFeature();
     String _name = _testFeature.getName();
     this.documentName = _name;
-    EList<EObject> _modelObjects = tm.getModelObjects();
+    TestModel _testModel = tC.getTestModel();
+    EList<EObject> _modelObjects = _testModel.getModelObjects();
     EObject _get = _modelObjects.get(0);
     Document d = ((Document) _get);
+    String _documentPlatform = d.getDocumentPlatform();
+    SingleFileCode sCode = new SingleFileCode(_documentPlatform);
     String s = this.compile(d);
-    tm.setGeneratedCode(s);
+    sCode.setGeneratedCode(s);
+    tC.setGeneratedCode(sCode);
   }
   
   public String compile(final Document d) {

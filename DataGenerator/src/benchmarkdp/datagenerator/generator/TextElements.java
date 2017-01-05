@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator.groundtruth;
+package benchmarkdp.datagenerator.generator;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -18,16 +18,11 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import benchmarkdp.datagenerator.generator.TestModel;
-
 public class TextElements {
-
-	private TestModel tm;
 
 	private List<Text> elements;
 
-	public TextElements(TestModel t) {
-		tm = t;
+	public TextElements() {
 		elements = new ArrayList<Text>();
 	}
 
@@ -35,7 +30,15 @@ public class TextElements {
 		elements.add(txt);
 	}
 
-	public void saveToXML(String path) {
+	public List<Text> getTextElements() {
+		return elements;
+	}
+	
+	public void addText(TextElements tE) {
+		elements.addAll(tE.getTextElements());
+	}
+	
+	public void saveToXML(String filePath, String testCaseName) {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -44,7 +47,7 @@ public class TextElements {
 			Element rootElement = doc.createElement("textValues");
 			doc.appendChild(rootElement);
 			Element d = doc.createElement("document");
-			d.appendChild(doc.createTextNode(tm.getTestName()));
+			d.appendChild(doc.createTextNode(testCaseName));
 			rootElement.appendChild(d);
 			Element els = doc.createElement("textElements");
 			rootElement.appendChild(els);
@@ -64,7 +67,7 @@ public class TextElements {
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File(path + "/" + tm.getTestName() + ".xml"));
+			StreamResult result = new StreamResult(new File(filePath + testCaseName + ".xml"));
 			transformer.transform(source, result);
 		} catch (ParserConfigurationException pce) {
 			pce.printStackTrace();

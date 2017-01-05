@@ -1,7 +1,8 @@
 package benchmarkdp.datagenerator.generator.codegenerator
 
 import benchmarkdp.datagenerator.generator.ModelType
-import benchmarkdp.datagenerator.generator.TestModel
+import benchmarkdp.datagenerator.generator.SingleFileCode
+import benchmarkdp.datagenerator.generator.TestCase
 import benchmarkdp.datagenerator.model.PSMDocx.Color
 import benchmarkdp.datagenerator.model.PSMDocx.ControlBox
 import benchmarkdp.datagenerator.model.PSMDocx.Document
@@ -29,11 +30,13 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		return modelType;
 	}
 
-	override generateCode(TestModel tm) {
-		documentName = tm.testFeature.name
-		var d = tm.modelObjects.get(0) as Document;
+	override generateCode(TestCase tC) {
+		documentName = tC.getTestFeature.name
+		var d = tC.getTestModel().getModelObjects.get(0) as Document
+		var sCode = new SingleFileCode(d.documentPlatform)
 		var s = compile(d);
-		tm.generatedCode = s;
+		sCode.generatedCode = s
+		tC.generatedCode = sCode;
 	}
 
 	def String compile(Document d) {

@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator.groundtruth;
+package benchmarkdp.datagenerator.generator;
 
 public class Text {
 

@@ -5,7 +5,7 @@ import java.util.List;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 
 import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestModel;
+import benchmarkdp.datagenerator.generator.TestCase;
 
 public interface MutationOperatorInterface {
 
@@ -19,5 +19,5 @@ public interface MutationOperatorInterface {
 	
 	public List<String> getFeatures();
 	
-	public List<TestModel> mutateModel(TestModel tm);
+	public List<TestCase> mutateTestCase(TestCase tm);
 }

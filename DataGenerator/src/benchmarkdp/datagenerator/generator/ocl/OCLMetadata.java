@@ -1,10 +1,10 @@
-package benchmarkdp.datagenerator.generator.groundtruth;
+package benchmarkdp.datagenerator.generator.ocl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestModel;
+import benchmarkdp.datagenerator.generator.TestCase;
 
 public class OCLMetadata extends AbstractOCLEvaluator{
 
@@ -17,11 +17,11 @@ public class OCLMetadata extends AbstractOCLEvaluator{
 	}
 	
 	@Override
-	public void evaluateTestModel(TestModel tm) {
-		EList<EObject> objects = tm.getModelObjects();
+	public void evaluateTestModel(TestCase tC) {
+		EList<EObject> objects = tC.getTestModel().getModelObjects();
 		Object doc =  objects.get(0);
 		Object value = eval.evaluate(doc);
-		tm.getMetadata().add(name, value);
+		tC.getMetadata().add(name, value);
 	}
 
 	

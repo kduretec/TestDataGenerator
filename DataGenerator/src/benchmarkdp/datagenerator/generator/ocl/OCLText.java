@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator.groundtruth;
+package benchmarkdp.datagenerator.generator.ocl;
 
 import java.util.List;
 
@@ -6,7 +6,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestModel;
+import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.generator.Text;
 
 public class OCLText extends AbstractOCLEvaluator {
 
@@ -19,9 +20,9 @@ public class OCLText extends AbstractOCLEvaluator {
 	}
 
 	@Override
-	public void evaluateTestModel(TestModel tm) {
+	public void evaluateTestModel(TestCase tC) {
 		// TODO Auto-generated method stub
-		EList<EObject> objects = tm.getModelObjects();
+		EList<EObject> objects = tC.getTestModel().getModelObjects();
 		Object doc = objects.get(0);
 		Object value = eval.evaluate(doc);
 
@@ -37,7 +38,7 @@ public class OCLText extends AbstractOCLEvaluator {
 			}
 			String rT = sb.toString().trim();
 			Text txt = new Text(Integer.toString(counter), rT);
-			tm.getTextElements().addText(txt);
+			tC.getTextElements().addText(txt);
 		}
 	}
 

@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import benchmarkdp.datagenerator.generator.TestModel;
+import benchmarkdp.datagenerator.generator.TestCase;
 
 public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 
@@ -20,13 +20,13 @@ public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 	}
 
 	@Override
-	public void notify(TestModel tm) {
-		String platform = tm.getPlatform();
-		if (!names.containsKey(platform)) {
-			names.put(platform, new ArrayList<String>());
-		}
+	public void notify(TestCase tC) {
+	//	String platform = tC getPlatform();
+	//	if (!names.containsKey(platform)) {
+	//		names.put(platform, new ArrayList<String>());
+	//	}
 		
-		names.get(platform).add(tm.getTestFeature().getName());
+	//	names.get(platform).add(tC.getTestFeature().getName());
 		
 	}
 

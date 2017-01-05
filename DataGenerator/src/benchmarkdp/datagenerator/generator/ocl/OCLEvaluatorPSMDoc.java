@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator.groundtruth;
+package benchmarkdp.datagenerator.generator.ocl;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
@@ -11,29 +11,29 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
 import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestModel;
-import benchmarkdp.datagenerator.model.PIM.Document;
-import benchmarkdp.datagenerator.model.PIM.PIMPackage;
+import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.model.PSMDoc.Document;
+import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 
-public class OCLEvaluatorPIM implements OCLEvaluatorInterface {
+public class OCLEvaluatorPSMDoc implements OCLEvaluatorInterface {
 
-	private String groundTruthKey;
+	private String groundTruthKey; 
 	private ModelType modelType;
 	private String expression;
-
+	
 	private OCLExpression<EClassifier> query;
-
+	
 	private Query eval;
-
-	private OCL ocl;
-	public OCLEvaluatorPIM(String key, String exp) {
+	
+	public OCLEvaluatorPSMDoc(String key, String exp) {
 		groundTruthKey = key;
-		modelType = ModelType.PIM;
+		modelType = ModelType.PSMDoc;
 		expression = exp;
 
-		ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+		OCL ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
 		OCLHelper helper = ocl.createOCLHelper();
-		helper.setContext(PIMPackage.Literals.DOCUMENT);
+
+		helper.setContext(PSMDocPackage.Literals.DOCUMENT);
 
 		try {
 			query = helper.createQuery(expression);
@@ -43,17 +43,22 @@ public class OCLEvaluatorPIM implements OCLEvaluatorInterface {
 		}
 		eval = ocl.createQuery(query);
 	}
-
+	
+	@Override
 	public ModelType getModelType() {
+		// TODO Auto-generated method stub
 		return modelType;
 	}
 
-	public void evaluateTestModel(TestModel tm) {
-		EList<EObject> objects = tm.getModelObjects();
+	@Override
+	public void evaluateTestModel(TestCase tC) {
+		EList<EObject> objects = tC.getTestModel().getModelObjects();
 		Document doc = (Document) objects.get(0);
-		eval = ocl.createQuery(query);
+		
 		Object value = eval.evaluate(doc);
-		tm.getGroundTruth().put(groundTruthKey, value);
-
+		tC.getMetadata().add(groundTruthKey, value);
+		
 	}
+
+	
 }
