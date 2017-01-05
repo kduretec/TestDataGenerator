@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import benchmarkdp.datagenerator.utils.Utils;
+import benchmarkdp.datagenerator.generator.utils.Utils;
 
 public class ParagraphMeasure extends AbstractMeasure {
 

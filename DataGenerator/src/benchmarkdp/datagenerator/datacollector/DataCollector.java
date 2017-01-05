@@ -22,7 +22,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import benchmarkdp.datagenerator.utils.Utils;
+import benchmarkdp.datagenerator.generator.utils.Utils;
 
 public class DataCollector {
 

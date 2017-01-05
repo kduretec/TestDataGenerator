@@ -18,11 +18,11 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
+import benchmarkdp.datagenerator.generator.TestModel;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
-import benchmarkdp.datagenerator.mutation.TestModel;
 
 public class AdditionalExtractor {
 

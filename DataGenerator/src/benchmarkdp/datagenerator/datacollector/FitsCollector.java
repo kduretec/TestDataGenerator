@@ -14,7 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import benchmarkdp.datagenerator.utils.Utils;
+import benchmarkdp.datagenerator.generator.utils.Utils;
 
 public class FitsCollector implements CollectorOperatorInterface {
 

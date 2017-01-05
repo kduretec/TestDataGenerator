@@ -2,7 +2,7 @@ package benchmarkdp.datagenerator.datacollector;
 
 import java.io.File;
 
-import benchmarkdp.datagenerator.utils.Utils;
+import benchmarkdp.datagenerator.generator.utils.Utils;
 
 public class TikaLoader extends AbstractToolLoader {
 
