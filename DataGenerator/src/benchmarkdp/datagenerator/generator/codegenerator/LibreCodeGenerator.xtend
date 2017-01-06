@@ -127,11 +127,8 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		var temp = '''
 			oTable = ThisComponent.createInstance( "com.sun.star.text.TextTable" )
 			oTable.initialize(«numR», «numC»)
-				
 			oText.insertTextContent(oText.getEnd(), oTable, False)
-		
 			«compileTableElements(t)»
-			
 		'''
 		return temp
 	}

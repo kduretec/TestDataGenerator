@@ -213,16 +213,11 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     _builder.append(numC, "");
     _builder.append(")");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.newLine();
     _builder.append("oText.insertTextContent(oText.getEnd(), oTable, False)");
-    _builder.newLine();
-    _builder.append("\t\t");
     _builder.newLine();
     String _compileTableElements = this.compileTableElements(t);
     _builder.append(_compileTableElements, "");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
     String temp = _builder.toString();
     return temp;
   }

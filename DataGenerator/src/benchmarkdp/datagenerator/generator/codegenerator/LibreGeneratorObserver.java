@@ -27,7 +27,6 @@ public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 	//	}
 		
 	//	names.get(platform).add(tC.getTestFeature().getName());
-		
 	}
 
 	@Override
