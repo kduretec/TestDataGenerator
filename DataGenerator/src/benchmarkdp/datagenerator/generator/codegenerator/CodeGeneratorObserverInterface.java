@@ -5,5 +5,6 @@ import benchmarkdp.datagenerator.generator.TestCase;
 public interface CodeGeneratorObserverInterface {
 
 	public void notify(TestCase tm);
-	public void afterGeneration(String path);
+	public void notify(String path, String scriptName);
+	public void afterGeneration();
 }

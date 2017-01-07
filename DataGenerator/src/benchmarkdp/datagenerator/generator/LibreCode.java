@@ -7,13 +7,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
+
 public class LibreCode implements IGeneratedCode {
 
 	List<String> codeElements;
 	String platform;
-
-	public LibreCode() {
+	CodeGeneratorObserverInterface cObserver; 
+	
+	public LibreCode(CodeGeneratorObserverInterface cI) {
 		codeElements = new ArrayList<String>();
+		cObserver = cI;
 	}
 
 	public void addCodeElement(String element) {
@@ -42,13 +46,11 @@ public class LibreCode implements IGeneratedCode {
 			tempFile = tempFile + codeElements.get(i);
 			tempFile = tempFile + "End Sub\n";
 			tempFile = tempFile + getFileEnd();
-			File fT = new File(filePath + scriptName + ".xba");
-			save(fT, tempFile);
+			save(tempFile, filePath, scriptName);
 		}
 		
 		fileMain = fileMain + getFileEnd();
-		File fM = new File(filePath + testCaseName + ".xba");
-		save(fM, fileMain);
+		save(fileMain, filePath, testCaseName);
 	}
 
 	private String getFileStart(String scriptName) {
@@ -64,11 +66,13 @@ public class LibreCode implements IGeneratedCode {
 		return str;
 	}
 
-	private void save(File f, String code) {
+	private void save(String code, String path, String scriptName) {
+		File f = new File(path + scriptName + ".xba");
 		try {
 			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 			bw.write(code + "\n");
 			bw.close();
+			cObserver.notify(path, scriptName);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

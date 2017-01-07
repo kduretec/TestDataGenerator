@@ -29,13 +29,21 @@ public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 	//	names.get(platform).add(tC.getTestFeature().getName());
 	}
 
+	@Override 
+	public void notify(String path, String scriptName) {
+		if (!names.containsKey(path)) {
+			names.put(path, new ArrayList<String>());
+		} 
+		names.get(path).add(scriptName);
+	}
+	
 	@Override
-	public void afterGeneration(String path) {
+	public void afterGeneration() {
 		
 		for (Map.Entry<String, List<String>> mE : names.entrySet()) {
-			String platform = mE.getKey();
+			String path = mE.getKey();
 			try {
-				String file = path + "/" + platform + "/script.xlb";
+				String file = path +  "script.xlb";
 				File f = new File(file);
 				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 				bw.write(getFileContent(mE.getValue()) + "\n");

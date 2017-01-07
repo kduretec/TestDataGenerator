@@ -171,7 +171,7 @@ public class Mutator {
 		}
 
 		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
-			cob.afterGeneration(Utils.macroPath);
+			cob.afterGeneration();
 		}
 		
 		System.out.println("Size of models " + testCases.size());

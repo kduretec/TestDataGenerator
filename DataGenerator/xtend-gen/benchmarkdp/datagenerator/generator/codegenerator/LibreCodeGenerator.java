@@ -1,7 +1,7 @@
 package benchmarkdp.datagenerator.generator.codegenerator;
 
+import benchmarkdp.datagenerator.generator.LibreCode;
 import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.SingleFileCode;
 import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.TestFeature;
 import benchmarkdp.datagenerator.generator.TestModel;
@@ -29,6 +29,10 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   
   private int parag = 0;
   
+  private int numCodeLines = 0;
+  
+  private LibreCode libreCode;
+  
   private CodeGeneratorObserverInterface cGOb;
   
   public LibreCodeGenerator(final CodeGeneratorObserverInterface cO) {
@@ -42,6 +46,8 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   
   @Override
   public void generateCode(final TestCase tC) {
+    LibreCode _libreCode = new LibreCode(this.cGOb);
+    this.libreCode = _libreCode;
     TestFeature _testFeature = tC.getTestFeature();
     String _name = _testFeature.getName();
     this.documentName = _name;
@@ -49,128 +55,119 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     EList<EObject> _modelObjects = _testModel.getModelObjects();
     EObject _get = _modelObjects.get(0);
     Document d = ((Document) _get);
-    String _documentPlatform = d.getDocumentPlatform();
-    SingleFileCode sCode = new SingleFileCode(_documentPlatform);
-    String s = this.compile(d);
-    sCode.setGeneratedCode(s);
-    tC.setGeneratedCode(sCode);
+    this.numCodeLines = 0;
+    this.compile(d);
+    tC.setGeneratedCode(this.libreCode);
+    this.libreCode = null;
   }
   
-  public String compile(final Document d) {
-    CharSequence _compileDocument = this.compileDocument(d);
-    String co = _compileDocument.toString();
-    this.documentNumber++;
-    return co;
+  public int compile(final Document d) {
+    int _xblockexpression = (int) 0;
+    {
+      this.compileDocument(d);
+      _xblockexpression = this.documentNumber++;
+    }
+    return _xblockexpression;
   }
   
-  public CharSequence compileDocument(final Document d) {
+  public void compileDocument(final Document d) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-    _builder.newLine();
-    _builder.append("<!DOCTYPE library:libraries PUBLIC \"-//OpenOffice.org//DTD OfficeDocument 1.0//EN\" \"module.dtd\">");
-    _builder.newLine();
-    _builder.append("<script:module xmlns:script=\"http://openoffice.org/2000/script\" script:name=\"");
-    _builder.append(this.documentName, "");
-    _builder.append("\" script:language=\"StarBasic\">");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
     _builder.append("REM ***** BASIC *****");
     _builder.newLine();
     _builder.append("Sub Main ");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("Dim Dummy()");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("Dim Url As String");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("Dim oDoc As Object");
     _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("Url = \"private:factory/swriter\"");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("oDoc = StarDesktop.loadComponentFromURL(Url, \"_blank\", 0, Array())");
     _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("oText = oDoc.getText()");
     _builder.newLine();
-    String _compileDocumentElements = this.compileDocumentElements(d);
-    _builder.append(_compileDocumentElements, "");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("Url2 = \"file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/");
-    _builder.append(this.documentName, "");
-    _builder.append("_");
-    _builder.append(this.modelType, "");
-    _builder.append("_");
+    String mainPart = _builder.toString();
+    this.libreCode.addCodeElement(mainPart);
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("Url2 = \"file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/");
+    _builder_1.append(this.documentName, "");
+    _builder_1.append("_");
+    _builder_1.append(this.modelType, "");
+    _builder_1.append("_");
     String _documentFormat = d.getDocumentFormat();
-    _builder.append(_documentFormat, "");
-    _builder.append("_");
+    _builder_1.append(_documentFormat, "");
+    _builder_1.append("_");
     String _documentPlatform = d.getDocumentPlatform();
-    _builder.append(_documentPlatform, "");
-    _builder.append(".");
+    _builder_1.append(_documentPlatform, "");
+    _builder_1.append(".");
     String _documentFormat_1 = d.getDocumentFormat();
-    _builder.append(_documentFormat_1, "");
-    _builder.append("\"");
-    _builder.newLineIfNotEmpty();
-    _builder.append("oDoc.storeAsURL(Url2, Dummy())");
-    _builder.newLine();
-    _builder.append("oDoc.close(true)");
-    _builder.newLine();
-    _builder.append("End Sub");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("</script:module>");
-    _builder.newLine();
-    return _builder;
+    _builder_1.append(_documentFormat_1, "");
+    _builder_1.append("\"");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("oDoc.storeAsURL(Url2, Dummy())");
+    _builder_1.newLine();
+    _builder_1.append("oDoc.close(true)");
+    _builder_1.newLine();
+    _builder_1.append("End Sub");
+    _builder_1.newLine();
+    String endPart = _builder_1.toString();
+    this.libreCode.addCodeElement(endPart);
+    this.compileDocumentElements(d);
   }
   
-  public String compileDocumentElements(final Document d) {
-    StringConcatenation _builder = new StringConcatenation();
-    String temp = _builder.toString();
-    boolean check = false;
+  public void compileDocumentElements(final Document d) {
     EList<Page> _pages = d.getPages();
     for (final Page p : _pages) {
-      {
-        if (check) {
-          temp = (temp + "");
-        }
-        String _compilePage = this.compilePage(p);
-        String _plus = (temp + _compilePage);
-        temp = _plus;
-        check = true;
-      }
+      this.compilePage(p);
     }
-    return temp;
   }
   
-  public String compilePage(final Page p) {
+  public void compilePage(final Page p) {
     StringConcatenation _builder = new StringConcatenation();
     String temp = _builder.toString();
     EList<Element> _elements = p.getElements();
     for (final Element e : _elements) {
-      String _switchResult = null;
-      boolean _matched = false;
-      if (e instanceof Paragraph) {
-        _matched=true;
-        _switchResult = this.compileParagraph(((Paragraph)e), false);
-      }
-      if (!_matched) {
-        if (e instanceof Table) {
+      {
+        String _switchResult = null;
+        boolean _matched = false;
+        if (e instanceof Paragraph) {
           _matched=true;
-          _switchResult = this.compileTable(((Table)e));
+          _switchResult = this.compileParagraph(((Paragraph)e), false);
+        }
+        if (!_matched) {
+          if (e instanceof Table) {
+            _matched=true;
+            _switchResult = this.compileTable(((Table)e));
+          }
+        }
+        if (!_matched) {
+          if (e instanceof Image) {
+            _matched=true;
+            _switchResult = this.compileImage(((Image)e));
+          }
+        }
+        String _plus = (temp + _switchResult);
+        temp = _plus;
+        if ((this.numCodeLines > 0)) {
+          this.libreCode.addCodeElement(temp);
+          this.numCodeLines = 0;
+          StringConcatenation _builder_1 = new StringConcatenation();
+          temp = _builder_1.toString();
         }
       }
-      if (!_matched) {
-        if (e instanceof Image) {
-          _matched=true;
-          _switchResult = this.compileImage(((Image)e));
-        }
-      }
-      String _plus = (temp + _switchResult);
-      temp = _plus;
     }
-    return temp;
   }
   
   public String compileParagraph(final Paragraph par, final boolean inTable) {
@@ -182,6 +179,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
       _builder_1.newLine();
       String _plus = (temp + _builder_1);
       temp = _plus;
+      this.numCodeLines++;
     }
     this.parag = (this.parag + 1);
     EList<Text> _words = par.getWords();
@@ -219,6 +217,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     _builder.append(_compileTableElements, "");
     _builder.newLineIfNotEmpty();
     String temp = _builder.toString();
+    this.numCodeLines = (this.numCodeLines + 3);
     return temp;
   }
   
@@ -246,6 +245,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     _builder.append("\", False)");
     _builder.newLineIfNotEmpty();
     String temp = _builder.toString();
+    this.numCodeLines++;
     return temp;
   }
 }
