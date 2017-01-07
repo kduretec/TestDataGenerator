@@ -3,7 +3,6 @@ package benchmarkdp.datagenerator.generator.codegenerator;
 import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.SingleFileCode;
 import benchmarkdp.datagenerator.generator.TestCase;
-import benchmarkdp.datagenerator.generator.TestFeature;
 import benchmarkdp.datagenerator.generator.TestModel;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.model.PSMDocx.Cell;
@@ -45,9 +44,8 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
   
   @Override
   public void generateCode(final TestCase tC) {
-    TestFeature _testFeature = tC.getTestFeature();
-    String _name = _testFeature.getName();
-    this.documentName = _name;
+    String _testCaseName = tC.getTestCaseName();
+    this.documentName = _testCaseName;
     TestModel _testModel = tC.getTestModel();
     EList<EObject> _modelObjects = _testModel.getModelObjects();
     EObject _get = _modelObjects.get(0);
@@ -98,17 +96,9 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     _builder.newLineIfNotEmpty();
     _builder.append("oDoc.SaveAs \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\Documents\\");
     _builder.append(this.documentName, "");
-    _builder.append("_");
-    _builder.append(this.modelType, "");
-    _builder.append("_");
+    _builder.append(".");
     String _documentFormat = d.getDocumentFormat();
     _builder.append(_documentFormat, "");
-    _builder.append("_");
-    String _documentPlatform = d.getDocumentPlatform();
-    _builder.append(_documentPlatform, "");
-    _builder.append(".");
-    String _documentFormat_1 = d.getDocumentFormat();
-    _builder.append(_documentFormat_1, "");
     _builder.append("\", ");
     String _documentFormatCode = d.getDocumentFormatCode();
     _builder.append(_documentFormatCode, "");
@@ -117,14 +107,6 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     _builder.newLine();
     _builder.append("grFile = \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\GroundTruth\\");
     _builder.append(this.documentName, "");
-    _builder.append("_");
-    _builder.append(this.modelType, "");
-    _builder.append("_");
-    String _documentFormat_2 = d.getDocumentFormat();
-    _builder.append(_documentFormat_2, "");
-    _builder.append("_");
-    String _documentPlatform_1 = d.getDocumentPlatform();
-    _builder.append(_documentPlatform_1, "");
     _builder.append("-wordgroundtruth.txt\" ");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");

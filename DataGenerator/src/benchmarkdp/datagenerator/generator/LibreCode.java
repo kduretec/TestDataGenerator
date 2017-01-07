@@ -35,29 +35,30 @@ public class LibreCode implements IGeneratedCode {
 
 	@Override
 	public void saveToFile(String filePath, String testCaseName) {
+		String path = filePath + platform + "/";
 		String fileMain = getFileStart(testCaseName);
 		fileMain = fileMain + codeElements.get(0);
 		
 		for (int i=2; i<codeElements.size(); i++) {
-			String scriptName = testCaseName + "_part_" + (i-1);
-			fileMain = fileMain + scriptName + "(oDoc, oText)\n";
+			String scriptName = "sub_" + testCaseName + "_part_" + (i-1);
+			fileMain = fileMain + "fun_" + scriptName + "(oDoc, oText)\n";
 			String tempFile = getFileStart(scriptName);
-			tempFile = tempFile + "Sub " + scriptName + "(oDoc, oText)\n";
+			tempFile = tempFile + "Sub " + "fun_" + scriptName + "(oDoc, oText)\n";
 			tempFile = tempFile + codeElements.get(i);
 			tempFile = tempFile + "End Sub\n";
 			tempFile = tempFile + getFileEnd();
-			save(tempFile, filePath, scriptName);
+			save(tempFile, path, scriptName);
 		}
-		
+		fileMain = fileMain + codeElements.get(1);
 		fileMain = fileMain + getFileEnd();
-		save(fileMain, filePath, testCaseName);
+		save(fileMain, path, "main_" + testCaseName);
 	}
 
 	private String getFileStart(String scriptName) {
 		String str = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n "
 				+ "<!DOCTYPE library:libraries PUBLIC \"-//OpenOffice.org//DTD OfficeDocument 1.0//EN\" \"module.dtd\">\n"
-				+ "<script:module xmlns:script=\"http://openoffice.org/2000/script\" script:name=" + scriptName
-				+ " script:language=\"StarBasic\">\n\n";
+				+ "<script:module xmlns:script=\"http://openoffice.org/2000/script\" script:name=\"" + scriptName
+				+ "\" script:language=\"StarBasic\">\n\n";
 		return str;
 	}
 

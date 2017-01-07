@@ -32,13 +32,14 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 	}
 
 	override generateCode(TestCase tC) {
-		libreCode = new LibreCode(cGOb);
-		documentName = tC.getTestFeature.name
+		libreCode = new LibreCode(cGOb)
+		documentName = tC.testCaseName
 		var d = tC.getTestModel().getModelObjects.get(0) as Document
-		numCodeLines = 0;
-		compile(d);
-		tC.generatedCode = libreCode;
-		libreCode = null;
+		numCodeLines = 0
+		compile(d)
+		libreCode.platform = d.documentPlatform
+		tC.generatedCode = libreCode
+		libreCode = null
 	}
 
 	def compile(Document d) {
@@ -63,7 +64,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		libreCode.addCodeElement(mainPart)
 
 		var endPart = '''
-			Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«documentName»_«modelType»_«d.documentFormat»_«d.documentPlatform».«d.documentFormat»"
+			Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«documentName».«d.documentFormat»"
 			oDoc.storeAsURL(Url2, Dummy())
 			oDoc.close(true)
 			End Sub

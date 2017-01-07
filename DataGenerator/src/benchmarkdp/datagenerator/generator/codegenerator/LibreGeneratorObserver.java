@@ -39,11 +39,11 @@ public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 	
 	@Override
 	public void afterGeneration() {
-		
 		for (Map.Entry<String, List<String>> mE : names.entrySet()) {
 			String path = mE.getKey();
 			try {
 				String file = path +  "script.xlb";
+				System.out.println(path);
 				File f = new File(file);
 				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 				bw.write(getFileContent(mE.getValue()) + "\n");

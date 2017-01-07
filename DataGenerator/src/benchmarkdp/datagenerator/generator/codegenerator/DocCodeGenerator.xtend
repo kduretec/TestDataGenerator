@@ -31,7 +31,7 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 	}
 
 	override generateCode(TestCase tC) {
-		documentName = tC.getTestFeature.name
+		documentName = tC.testCaseName
 		var d = tC.getTestModel().getModelObjects.get(0) as Document
 		var sCode = new SingleFileCode(d.documentPlatform)
 		var s = compile(d);
@@ -59,9 +59,9 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 		tableIndex = 1
 		tBox = 0
 		«compileDocumentElements(d)»
-		oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«documentName»_«modelType»_«d.documentFormat»_«d.documentPlatform».«d.documentFormat»", «d.documentFormatCode»
+		oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«documentName».«d.documentFormat»", «d.documentFormatCode»
 		
-		grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\«documentName»_«modelType»_«d.documentFormat»_«d.documentPlatform»-wordgroundtruth.txt" 
+		grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\«documentName»-wordgroundtruth.txt" 
 		
 		Set objFSO = CreateObject("Scripting.FileSystemObject")
 		Set objFile = objFSO.CreateTextFile(grFile, True)

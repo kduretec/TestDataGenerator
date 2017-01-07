@@ -35,15 +35,17 @@ public class TestCase {
 	private Metadata metadata;
 
 	private TextElements textElements;
-	
+
 	private IGeneratedCode generatedCode;
 
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
+		testCaseName = ID.replace("-", "");
 		metadata = new Metadata();
 		textElements = new TextElements();
 		testModel = new TestModel();
 	}
+
 	public TestCase(TestModel tm) {
 		this();
 		testModel = tm;
@@ -53,12 +55,15 @@ public class TestCase {
 		this();
 		metadata.add(tC.getMetadata());
 		textElements.addText(tC.getTextElements());
+		testFeature = tC.getTestFeature();
+		testModel.setParent(tC.getTestModel());
+		System.out.println("Ading parent");
 	}
-	
+
 	public String getID() {
 		return ID;
 	}
-	
+
 	public String getTestCaseName() {
 		return testCaseName;
 	}
@@ -66,7 +71,7 @@ public class TestCase {
 	public TestFeature getTestFeature() {
 		return testFeature;
 	}
-	
+
 	public void setTestFeature(TestFeature testFeature) {
 		this.testFeature = testFeature;
 	}
@@ -74,11 +79,11 @@ public class TestCase {
 	public TestModel getTestModel() {
 		return testModel;
 	}
-	
+
 	public void setTestModel(TestModel tM) {
 		testModel = tM;
 	}
-	
+
 	public Metadata getMetadata() {
 		return metadata;
 	}
@@ -97,16 +102,11 @@ public class TestCase {
 
 	public void saveTestCaseComponents() {
 
-		if (testModel != null) {
-			String path = Utils.modelsPath;
-			if (testModel.getModelType() == ModelType.PIM) {
-				path = path + "PIM/";
-			} else {
-				path = path + "PSM/";
-			}
-			testModel.saveModelToFile(path, testCaseName);
-		}
 		if (generatedCode != null) {
+			if (testModel != null) {
+				String path = Utils.modelsPath;
+				testModel.saveModelToFile(path, testCaseName);
+			}
 			if (metadata != null) {
 				metadata.saveToXML(Utils.metadataPath, testCaseName);
 			}
@@ -115,7 +115,6 @@ public class TestCase {
 			}
 			generatedCode.saveToFile(Utils.macroPath, testCaseName);
 		}
-
 	}
 
 }

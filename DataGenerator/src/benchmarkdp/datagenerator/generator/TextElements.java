@@ -39,6 +39,10 @@ public class TextElements {
 	}
 	
 	public void saveToXML(String filePath, String testCaseName) {
+		File f = new File(filePath); 
+		if (!f.exists()) {
+			f.mkdir();
+		}
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();

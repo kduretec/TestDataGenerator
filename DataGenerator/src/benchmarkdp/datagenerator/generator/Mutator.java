@@ -76,7 +76,7 @@ public class Mutator {
 		List<TestFeature> testFeatures = readFeatureDistributions();
 
 		for (int i = 0; i < n; i++) {
-			TestCase tCase = new TestCase(new TestModel("PIMs/Document.xmi"));
+			TestCase tCase = new TestCase(new TestModel("PIMs/Document.xmi", ModelType.PIM));
 			tCase.getTestModel().setModelType(ModelType.PIM);
 			if (i < testFeatures.size()) {
 				TestFeature tf = testFeatures.get(i);
@@ -170,13 +170,14 @@ public class Mutator {
 			}
 		}
 
-		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
-			cob.afterGeneration();
-		}
 		
 		System.out.println("Size of models " + testCases.size());
 		for (TestCase tm : testCases) {
 			tm.saveTestCaseComponents();
+		}
+
+		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
+			cob.afterGeneration();
 		}
 
 		System.out.println("Transformation done");
@@ -228,16 +229,16 @@ public class Mutator {
 	}
 
 	private void initializeMutationsPIM2PSM() {
-		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
-				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
-				Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
-		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf"),
-				Arrays.asList("Win7-Office2007")));
+//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
+//				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
+//				Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
+//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+//				Utils.pim2psmTransformation + "PIM2Docx.qvto",
+//				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf"),
+//				Arrays.asList("Win7-Office2007")));
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
 				ModelType.PIM, ModelType.PSMLibre, Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
-				Arrays.asList("odt"), Arrays.asList("Ubuntu14-LibreOffice", "Ubuntu16-LibreOffice")));
+				Arrays.asList("odt"), Arrays.asList("Ubuntu16-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -321,8 +322,8 @@ public class Mutator {
 	private void initializeCodeGenerator() {
 		codeGenerator = new ArrayList<CodeGeneratorInterface>();
 		codeGeneratorObserver = new ArrayList<CodeGeneratorObserverInterface>();
-		codeGenerator.add(new DocCodeGenerator());
-		codeGenerator.add(new DocxCodeGenerator());
+//		codeGenerator.add(new DocCodeGenerator());
+//		codeGenerator.add(new DocxCodeGenerator());
 		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
 		codeGenerator.add(new LibreCodeGenerator(libreObserver));
 		codeGeneratorObserver.add(libreObserver);

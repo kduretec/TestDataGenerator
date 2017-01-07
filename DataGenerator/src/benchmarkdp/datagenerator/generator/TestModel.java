@@ -22,17 +22,18 @@ public class TestModel {
 	private EList<EObject> modelObjects;
 
 	private ModelExtent modelExtent;
-	
-	private TestModel parent; 
-	
+
+	private TestModel parent;
+
 	public TestModel() {
-		
+
 	}
 
-	public TestModel(String modelFile) {
+	public TestModel(String modelFile, ModelType type) {
 		initialize(modelFile);
+		modelType = type;
 	}
-	
+
 	public ModelType getModelType() {
 		return modelType;
 	}
@@ -65,13 +66,19 @@ public class TestModel {
 	public void setParent(TestModel parent) {
 		this.parent = parent;
 	}
-	
+
 	public void saveModelToFile(String filePath, String testCaseName) {
+		String path;
+		if (modelType == ModelType.PIM) {
+			path = filePath + "PIM/";
+		} else {
+			path = filePath + "PSM/";
+		}
 		Map<String, Object> opts = new HashMap<String, Object>();
 		opts.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
 		ResourceSet resourceSetOut = new ResourceSetImpl();
 
-		Resource outResource = resourceSetOut.createResource(URI.createURI(filePath));
+		Resource outResource = resourceSetOut.createResource(URI.createURI(path + testCaseName + ".xmi"));
 		outResource.getContents().addAll(modelObjects);
 		try {
 			outResource.save(opts);
@@ -79,8 +86,12 @@ public class TestModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if (parent != null) {
+			System.out.println("Output");
+			parent.saveModelToFile(filePath, testCaseName);
+		}
 	}
-	
+
 	private void initialize(String modelFile) {
 		URI documentURI = URI.createURI(modelFile);
 
@@ -89,5 +100,5 @@ public class TestModel {
 		modelObjects = documentResource.getContents();
 		modelExtent = new BasicModelExtent(modelObjects);
 	}
-	
+
 }

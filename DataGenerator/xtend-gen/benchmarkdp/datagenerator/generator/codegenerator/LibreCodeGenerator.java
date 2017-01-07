@@ -3,7 +3,6 @@ package benchmarkdp.datagenerator.generator.codegenerator;
 import benchmarkdp.datagenerator.generator.LibreCode;
 import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
-import benchmarkdp.datagenerator.generator.TestFeature;
 import benchmarkdp.datagenerator.generator.TestModel;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
@@ -48,15 +47,16 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   public void generateCode(final TestCase tC) {
     LibreCode _libreCode = new LibreCode(this.cGOb);
     this.libreCode = _libreCode;
-    TestFeature _testFeature = tC.getTestFeature();
-    String _name = _testFeature.getName();
-    this.documentName = _name;
+    String _testCaseName = tC.getTestCaseName();
+    this.documentName = _testCaseName;
     TestModel _testModel = tC.getTestModel();
     EList<EObject> _modelObjects = _testModel.getModelObjects();
     EObject _get = _modelObjects.get(0);
     Document d = ((Document) _get);
     this.numCodeLines = 0;
     this.compile(d);
+    String _documentPlatform = d.getDocumentPlatform();
+    this.libreCode.setPlatform(_documentPlatform);
     tC.setGeneratedCode(this.libreCode);
     this.libreCode = null;
   }
@@ -103,17 +103,9 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("Url2 = \"file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/");
     _builder_1.append(this.documentName, "");
-    _builder_1.append("_");
-    _builder_1.append(this.modelType, "");
-    _builder_1.append("_");
+    _builder_1.append(".");
     String _documentFormat = d.getDocumentFormat();
     _builder_1.append(_documentFormat, "");
-    _builder_1.append("_");
-    String _documentPlatform = d.getDocumentPlatform();
-    _builder_1.append(_documentPlatform, "");
-    _builder_1.append(".");
-    String _documentFormat_1 = d.getDocumentFormat();
-    _builder_1.append(_documentFormat_1, "");
     _builder_1.append("\"");
     _builder_1.newLineIfNotEmpty();
     _builder_1.append("oDoc.storeAsURL(Url2, Dummy())");
