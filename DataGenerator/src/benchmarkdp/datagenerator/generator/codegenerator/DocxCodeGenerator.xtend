@@ -19,7 +19,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.TextBox
 class DocxCodeGenerator implements CodeGeneratorInterface {
 
 	ModelType modelType = ModelType::PSMDocx;
-	int parag = 1;
+	int parag = 0;
 	int documentNumber = 0;
 	String documentName;
 	
@@ -33,7 +33,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 	override generateCode(TestCase tC) {
 		documentName = tC.testCaseName
 		var d = tC.getTestModel().getModelObjects.get(0) as Document
-		var sCode = new SingleFileCode(d.documentPlatform)
+		var sCode = new SingleFileCode("vbs", d.documentPlatform)
 		var s = compile(d);
 		sCode.generatedCode = s
 		tC.generatedCode = sCode;
@@ -51,6 +51,9 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		Const END_OF_STORY = 6 
 		Set objWord = CreateObject("Word.Application") 
 		objWord.Visible = True 
+		grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\MSWordOutput\«documentName»-wordgroundtruth.txt" 				
+		Set objFSO = CreateObject("Scripting.FileSystemObject")
+		Set objFile = objFSO.CreateTextFile(grFile, True)
 		Set oDoc = objWord.Documents.Add()
 		oDoc.PageSetup.TextColumns.SetCount(«d.numColum») 
 		Set oSelection = objWord.Selection 
@@ -62,16 +65,29 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		«compileDocumentElements(d)»
 		oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«documentName».«d.documentFormat»", «d.documentFormatCode»
 				
-		grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\«documentName»-wordgroundtruth.txt" 
-				
-		Set objFSO = CreateObject("Scripting.FileSystemObject")
-		Set objFile = objFSO.CreateTextFile(grFile, True)
 		objFile.Write "pagecount " & oDoc.ComputeStatistics(2) & vbCrLf
 		objFile.Write "wordcount " & oDoc.ComputeStatistics(0) & vbCrLf
 		objFile.Write "paragraphcount " & oDoc.ComputeStatistics(4)
 		oDoc.Saved = TRUE
 		objFile.Close()
 		objWord.Quit
+		
+		Sub selLines(p, id, o, outFile) 
+		    p.Range.Select
+		    counter = 1
+		    Do While True
+		        o.Selection.Collapse(1)
+		        Call o.Selection.EndKey(5,1)
+		        outFile.Write("id:counter:" & o.Selection.Text & vbCrLf)
+		        maxEnd = o.Selection.End
+		        o.Selection.Collapse(0)
+		        If maxEnd = p.Range.End Then
+		            Exit Do
+		        End If
+		        counter = counter + 1 
+		    Loop
+		End Sub
+		
 	'''
 
 	def compileDocumentElements(Document d) {
@@ -107,7 +123,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 	def compileParagraph(Paragraph par, boolean inTable) {
 		var temp = '''
 		'''
-		if (parag > 1 && !inTable) {
+		if (parag > 0 && !inTable) {
 			temp = temp + '''
 				oSelection.TypeParagraph()
 			'''
@@ -120,6 +136,9 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 			}
 
 		}
+		temp = temp + ''' 
+		Call selLines(oDoc.Paragraphs(«parag»), «parag», objWord, objFile)
+		'''
 		temp = temp + '''
 			i = i + 1
 		'''
@@ -127,7 +146,6 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 	}
 
 	def compileTextBox(TextBox tb) {
-		System.out.println("Text box is compiled")
 		var temp = '''
 		tBox = tBox + 1
 		oDoc.Shapes.AddTextbox 1, 80, 100, 500, 32

@@ -28,7 +28,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 public class DocxCodeGenerator implements CodeGeneratorInterface {
   private ModelType modelType = ModelType.PSMDocx;
   
-  private int parag = 1;
+  private int parag = 0;
   
   private int documentNumber = 0;
   
@@ -51,7 +51,7 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     EObject _get = _modelObjects.get(0);
     Document d = ((Document) _get);
     String _documentPlatform = d.getDocumentPlatform();
-    SingleFileCode sCode = new SingleFileCode(_documentPlatform);
+    SingleFileCode sCode = new SingleFileCode("vbs", _documentPlatform);
     String s = this.compile(d);
     sCode.setGeneratedCode(s);
     tC.setGeneratedCode(sCode);
@@ -72,6 +72,14 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     _builder.append("Set objWord = CreateObject(\"Word.Application\") ");
     _builder.newLine();
     _builder.append("objWord.Visible = True ");
+    _builder.newLine();
+    _builder.append("grFile = \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\GroundTruth\\MSWordOutput\\");
+    _builder.append(this.documentName, "");
+    _builder.append("-wordgroundtruth.txt\" \t\t\t\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("Set objFSO = CreateObject(\"Scripting.FileSystemObject\")");
+    _builder.newLine();
+    _builder.append("Set objFile = objFSO.CreateTextFile(grFile, True)");
     _builder.newLine();
     _builder.append("Set oDoc = objWord.Documents.Add()");
     _builder.newLine();
@@ -105,16 +113,6 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.newLine();
-    _builder.append("grFile = \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\GroundTruth\\");
-    _builder.append(this.documentName, "");
-    _builder.append("-wordgroundtruth.txt\" ");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.newLine();
-    _builder.append("Set objFSO = CreateObject(\"Scripting.FileSystemObject\")");
-    _builder.newLine();
-    _builder.append("Set objFile = objFSO.CreateTextFile(grFile, True)");
-    _builder.newLine();
     _builder.append("objFile.Write \"pagecount \" & oDoc.ComputeStatistics(2) & vbCrLf");
     _builder.newLine();
     _builder.append("objFile.Write \"wordcount \" & oDoc.ComputeStatistics(0) & vbCrLf");
@@ -126,6 +124,51 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     _builder.append("objFile.Close()");
     _builder.newLine();
     _builder.append("objWord.Quit");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("Sub selLines(p, id, o, outFile) ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("p.Range.Select");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("counter = 1");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("Do While True");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("o.Selection.Collapse(1)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("Call o.Selection.EndKey(5,1)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("outFile.Write(\"id:counter:\" & o.Selection.Text & vbCrLf)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("maxEnd = o.Selection.End");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("o.Selection.Collapse(0)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("If maxEnd = p.Range.End Then");
+    _builder.newLine();
+    _builder.append("            ");
+    _builder.append("Exit Do");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("End If");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("counter = counter + 1 ");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("Loop");
+    _builder.newLine();
+    _builder.append("End Sub");
+    _builder.newLine();
     _builder.newLine();
     return _builder;
   }
@@ -193,7 +236,7 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
   public String compileParagraph(final Paragraph par, final boolean inTable) {
     StringConcatenation _builder = new StringConcatenation();
     String temp = _builder.toString();
-    if (((this.parag > 1) && (!inTable))) {
+    if (((this.parag > 0) && (!inTable))) {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("oSelection.TypeParagraph()");
       _builder_1.newLine();
@@ -219,15 +262,23 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
       temp = _plus_1;
     }
     StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append("i = i + 1");
-    _builder_2.newLine();
+    _builder_2.append("Call selLines(oDoc.Paragraphs(");
+    _builder_2.append(this.parag, "");
+    _builder_2.append("), ");
+    _builder_2.append(this.parag, "");
+    _builder_2.append(", objWord, objFile)");
+    _builder_2.newLineIfNotEmpty();
     String _plus_2 = (temp + _builder_2);
     temp = _plus_2;
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("i = i + 1");
+    _builder_3.newLine();
+    String _plus_3 = (temp + _builder_3);
+    temp = _plus_3;
     return temp;
   }
   
   public String compileTextBox(final TextBox tb) {
-    System.out.println("Text box is compiled");
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("tBox = tBox + 1");
     _builder.newLine();

@@ -9,10 +9,13 @@ public class SingleFileCode implements IGeneratedCode {
 
 	String generatedCode;
 
-	String fileExtension; 
-	
-	public SingleFileCode(String fE) {
+	String fileExtension;
+
+	String platform;
+
+	public SingleFileCode(String fE, String plat) {
 		fileExtension = fE;
+		platform = plat;
 	}
 
 	public void setGeneratedCode(String code) {
@@ -24,7 +27,7 @@ public class SingleFileCode implements IGeneratedCode {
 		if (generatedCode != null) {
 			try {
 				String file;
-				file = filePath + testCaseName + "." + fileExtension;
+				file = filePath + platform + "/" + testCaseName + "." + fileExtension;
 				File f = new File(file);
 				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 				bw.write(generatedCode + "\n");

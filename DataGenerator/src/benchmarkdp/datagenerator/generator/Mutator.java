@@ -36,7 +36,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 10;
+	int n = 1;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -232,10 +232,10 @@ public class Mutator {
 //		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
 //				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
 //				Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
-//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-//				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-//				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf"),
-//				Arrays.asList("Win7-Office2007")));
+		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+				Utils.pim2psmTransformation + "PIM2Docx.qvto",
+				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx"),
+				Arrays.asList("Win7-Office2007")));
 		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
 				ModelType.PIM, ModelType.PSMLibre, Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
 				Arrays.asList("odt"), Arrays.asList("Ubuntu16-LibreOffice")));
@@ -323,7 +323,7 @@ public class Mutator {
 		codeGenerator = new ArrayList<CodeGeneratorInterface>();
 		codeGeneratorObserver = new ArrayList<CodeGeneratorObserverInterface>();
 //		codeGenerator.add(new DocCodeGenerator());
-//		codeGenerator.add(new DocxCodeGenerator());
+		codeGenerator.add(new DocxCodeGenerator());
 		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
 		codeGenerator.add(new LibreCodeGenerator(libreObserver));
 		codeGeneratorObserver.add(libreObserver);
