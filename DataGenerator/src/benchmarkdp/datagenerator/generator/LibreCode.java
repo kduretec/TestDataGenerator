@@ -36,14 +36,14 @@ public class LibreCode implements IGeneratedCode {
 	@Override
 	public void saveToFile(String filePath, String testCaseName) {
 		String path = filePath + platform + "/";
-		String fileMain = getFileStart(testCaseName);
+		String fileMain = getFileStart("main_" + testCaseName);
 		fileMain = fileMain + codeElements.get(0);
 		
 		for (int i=2; i<codeElements.size(); i++) {
 			String scriptName = "sub_" + testCaseName + "_part_" + (i-1);
-			fileMain = fileMain + "fun_" + scriptName + "(oDoc, oText)\n";
+			fileMain = fileMain + "fun_" + scriptName + "(oDoc, oText, file)\n";
 			String tempFile = getFileStart(scriptName);
-			tempFile = tempFile + "Sub " + "fun_" + scriptName + "(oDoc, oText)\n";
+			tempFile = tempFile + "Sub " + "fun_" + scriptName + "(oDoc, oText, file)\n";
 			tempFile = tempFile + codeElements.get(i);
 			tempFile = tempFile + "End Sub\n";
 			tempFile = tempFile + getFileEnd();

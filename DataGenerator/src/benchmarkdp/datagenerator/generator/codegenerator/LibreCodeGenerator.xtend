@@ -57,6 +57,8 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 				Dim oDoc As Object
 				
 				Url = "private:factory/swriter"
+				file = FreeFile()
+				Open "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/LibreOffice/«documentName»-libregroundtruth.txt" For Output As #file 
 				oDoc = StarDesktop.loadComponentFromURL(Url, "_blank", 0, Array())
 				
 				oText = oDoc.getText()
@@ -66,7 +68,34 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		var endPart = '''
 			Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«documentName».«d.documentFormat»"
 			oDoc.storeAsURL(Url2, Dummy())
+			Close #file
 			oDoc.close(true)
+			End Sub
+			
+			Sub getLines(numPar, file) 
+			    oTextCursor = ThisComponent.Text.createTextCursor()
+			    oTextCursor.gotoStart(False)
+			    oViewCursor = ThisComponent.CurrentController.getViewCursor()
+			    num = 0
+			    Do 
+			        num = num + 1
+			        line = 0
+			        oTextCursor.gotoStartOfParagraph(False)
+			        oViewCursor.gotoRange(oTextCursor, False)
+			        If numPar = num Then	
+			        	Do While True 
+			            	oViewCursor.gotoEndOfLine(False)
+			            	oTextCursor.gotoRange(oViewCursor, True)
+			            	line = line + 1
+			            	s = numPar &amp; ":" &amp; line &amp; ":" &amp; oTextCursor.String
+			            	Print #file, s
+			            	REM MsgBox "numparh=" + num + " numline=" + line + " text=" + oTextCursor.String, 0, "Lines"
+			            	oTextCursor.collapseToEnd()
+			            	If oTextCursor.isEndOfParagraph() Then Exit Do 
+			        	Loop
+			        	Exit Do 
+		        	End If
+			    Loop While oTextCursor.gotoNextParagraph(False)  
 			End Sub
 			'''
 		libreCode.addCodeElement(endPart)
@@ -76,25 +105,34 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 	}
 
 	def compileDocumentElements(Document d) {
+		var temp = ''''''
 		for (Page p : d.pages) {
-			compilePage(p)
+			temp = compilePage(p, temp)
+		}
+		if (temp.length > 0) {
+			libreCode.addCodeElement(temp);
+			numCodeLines = 0;
+			temp = ''''''
 		}
 	}
 
-	def compilePage(Page p) {
-		var temp = ''''''
+	def compilePage(Page p, String t) {
+		var temp = t
 		for (Element e : p.elements) {
 			temp = temp + switch e {
 				Paragraph: compileParagraph(e, false)
 				Table: compileTable(e)
 				Image: compileImage(e)
 			}
-			if (numCodeLines > 0) {
+			if (temp.length > 40000) {
 				libreCode.addCodeElement(temp);
 				numCodeLines = 0;
 				temp = ''''''
 			}
 		}
+		return temp
+		
+	
 	}
 
 	def compileParagraph(Paragraph par, boolean inTable) {
@@ -111,6 +149,11 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 			temp = temp + switch txt {
 				SimpleText: compileSimpleText(txt)
 			}
+		}
+		if (!inTable) {
+			temp = temp + '''
+				getLines(«parag», file)
+			'''			
 		}
 		temp = temp + '''
 		'''
