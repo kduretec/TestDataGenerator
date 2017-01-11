@@ -1,7 +1,9 @@
 package benchmarkdp.datagenerator.generator.codegenerator;
 
 import benchmarkdp.datagenerator.generator.ModelType;
+import benchmarkdp.datagenerator.generator.SingleFileCode;
 import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.generator.TestModel;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.model.PSMDoc.Cell;
 import benchmarkdp.datagenerator.model.PSMDoc.Color;
@@ -18,6 +20,7 @@ import benchmarkdp.datagenerator.model.PSMDoc.Text;
 import benchmarkdp.datagenerator.model.PSMDoc.TextBox;
 import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
@@ -40,8 +43,17 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
   
   @Override
   public void generateCode(final TestCase tC) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nInvalid number of arguments. The constructor SingleFileCode(String, String) is not applicable for the arguments (String)");
+    String _testCaseName = tC.getTestCaseName();
+    this.documentName = _testCaseName;
+    TestModel _testModel = tC.getTestModel();
+    EList<EObject> _modelObjects = _testModel.getModelObjects();
+    EObject _get = _modelObjects.get(0);
+    Document d = ((Document) _get);
+    String _documentPlatform = d.getDocumentPlatform();
+    SingleFileCode sCode = new SingleFileCode("vbs", _documentPlatform);
+    String s = this.compile(d);
+    sCode.setGeneratedCode(s);
+    tC.setGeneratedCode(sCode);
   }
   
   public String compile(final Document d) {

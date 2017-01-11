@@ -33,7 +33,7 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 	override generateCode(TestCase tC) {
 		documentName = tC.testCaseName
 		var d = tC.getTestModel().getModelObjects.get(0) as Document
-		var sCode = new SingleFileCode(d.documentPlatform)
+		var sCode = new SingleFileCode("vbs", d.documentPlatform)
 		var s = compile(d);
 		sCode.generatedCode = s
 		tC.generatedCode = sCode;
