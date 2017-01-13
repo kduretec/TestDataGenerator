@@ -1,8 +1,9 @@
-package benchmarkdp.datagenerator.generator.codegenerator
+package benchmarkdp.datagenerator.generator.codegenerator.libreoffice
 
-import benchmarkdp.datagenerator.generator.LibreCode
 import benchmarkdp.datagenerator.generator.ModelType
 import benchmarkdp.datagenerator.generator.TestCase
+import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface
+import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface
 import benchmarkdp.datagenerator.model.PSMLibre.Document
 import benchmarkdp.datagenerator.model.PSMLibre.Element
 import benchmarkdp.datagenerator.model.PSMLibre.Image
@@ -36,8 +37,10 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		documentName = tC.testCaseName
 		var d = tC.getTestModel().getModelObjects.get(0) as Document
 		numCodeLines = 0
+		parag = 0;
 		compile(d)
 		libreCode.platform = d.documentPlatform
+		libreCode.addHelperFunction(helper())
 		tC.generatedCode = libreCode
 		libreCode = null
 	}
@@ -71,32 +74,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 			Close #file
 			oDoc.close(true)
 			End Sub
-			
-			Sub getLines(numPar, file) 
-			    oTextCursor = ThisComponent.Text.createTextCursor()
-			    oTextCursor.gotoStart(False)
-			    oViewCursor = ThisComponent.CurrentController.getViewCursor()
-			    num = 0
-			    Do 
-			        num = num + 1
-			        line = 0
-			        oTextCursor.gotoStartOfParagraph(False)
-			        oViewCursor.gotoRange(oTextCursor, False)
-			        If numPar = num Then	
-			        	Do While True 
-			            	oViewCursor.gotoEndOfLine(False)
-			            	oTextCursor.gotoRange(oViewCursor, True)
-			            	line = line + 1
-			            	s = numPar &amp; ":" &amp; line &amp; ":" &amp; oTextCursor.String
-			            	Print #file, s
-			            	REM MsgBox "numparh=" + num + " numline=" + line + " text=" + oTextCursor.String, 0, "Lines"
-			            	oTextCursor.collapseToEnd()
-			            	If oTextCursor.isEndOfParagraph() Then Exit Do 
-			        	Loop
-			        	Exit Do 
-		        	End If
-			    Loop While oTextCursor.gotoNextParagraph(False)  
-			End Sub
+						
 			'''
 		libreCode.addCodeElement(endPart)
 
@@ -206,5 +184,35 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		return temp
 		}
 
+	def helper() { 
+		var fun = '''
+		Sub getLines(numPar, file) 
+					    oTextCursor = ThisComponent.Text.createTextCursor()
+					    oTextCursor.gotoStart(False)
+					    oViewCursor = ThisComponent.CurrentController.getViewCursor()
+					    num = 0
+					    Do 
+					        num = num + 1
+					        line = 0
+					        oTextCursor.gotoStartOfParagraph(False)
+					        oViewCursor.gotoRange(oTextCursor, False)
+					        If numPar = num Then	
+					        	Do While True 
+					            	oViewCursor.gotoEndOfLine(False)
+					            	oTextCursor.gotoRange(oViewCursor, True)
+					            	line = line + 1
+					            	s = numPar &amp; ":" &amp; line &amp; ":" &amp; oTextCursor.String
+					            	Print #file, s
+					            	REM MsgBox "numparh=" + num + " numline=" + line + " text=" + oTextCursor.String, 0, "Lines"
+					            	oTextCursor.collapseToEnd()
+					            	If oTextCursor.isEndOfParagraph() Then Exit Do 
+					        	Loop
+					        	Exit Do 
+				        	End If
+					    Loop While oTextCursor.gotoNextParagraph(False)  
+		End Sub
+		'''	
+		return fun
 	}
+}
 	

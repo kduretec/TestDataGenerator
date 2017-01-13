@@ -197,7 +197,7 @@
           </edges>
           <edges xmi:type="notation:Edge" xmi:id="_B7tlQENdEeaWKIeNVfCIxg" type="4001" element="_B7lpcENdEeaWKIeNVfCIxg" source="_twrPUENcEeaWKIeNVfCIxg" target="_wrMfsENcEeaWKIeNVfCIxg">
             <children xmi:type="notation:Node" xmi:id="_B7uMUENdEeaWKIeNVfCIxg" type="6001">
-              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B7uMUUNdEeaWKIeNVfCIxg" x="16" y="-7"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B7uMUUNdEeaWKIeNVfCIxg" x="-11" y="-7"/>
             </children>
             <children xmi:type="notation:Node" xmi:id="_B7uMUkNdEeaWKIeNVfCIxg" type="6002">
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_B7uMU0NdEeaWKIeNVfCIxg" x="55" y="-10"/>

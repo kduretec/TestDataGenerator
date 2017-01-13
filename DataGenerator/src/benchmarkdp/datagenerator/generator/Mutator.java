@@ -17,10 +17,9 @@ import org.eclipse.m2m.qvt.oml.examples.blackbox.UtilitiesLibrary;
 
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
-import benchmarkdp.datagenerator.generator.codegenerator.DocCodeGenerator;
 import benchmarkdp.datagenerator.generator.codegenerator.DocxCodeGenerator;
-import benchmarkdp.datagenerator.generator.codegenerator.LibreCodeGenerator;
-import benchmarkdp.datagenerator.generator.codegenerator.LibreGeneratorObserver;
+import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreCodeGenerator;
+import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratorObserver;
 import benchmarkdp.datagenerator.generator.mutation.ComplexMutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperatorInterface;

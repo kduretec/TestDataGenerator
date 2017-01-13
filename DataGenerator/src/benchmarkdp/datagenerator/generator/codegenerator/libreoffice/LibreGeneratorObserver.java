@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator.codegenerator;
+package benchmarkdp.datagenerator.generator.codegenerator.libreoffice;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
 
 public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 

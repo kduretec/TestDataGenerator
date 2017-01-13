@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator;
+package benchmarkdp.datagenerator.generator.codegenerator.libreoffice;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -7,16 +7,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import benchmarkdp.datagenerator.generator.IGeneratedCode;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
 
 public class LibreCode implements IGeneratedCode {
 
 	List<String> codeElements;
+	List<String> helperFunctions;
+
 	String platform;
-	CodeGeneratorObserverInterface cObserver; 
-	
+	CodeGeneratorObserverInterface cObserver;
+
 	public LibreCode(CodeGeneratorObserverInterface cI) {
 		codeElements = new ArrayList<String>();
+		helperFunctions = new ArrayList<String>();
 		cObserver = cI;
 	}
 
@@ -33,14 +37,18 @@ public class LibreCode implements IGeneratedCode {
 		return platform;
 	}
 
+	public void addHelperFunction(String function) {
+		helperFunctions.add(function);
+	}
+
 	@Override
 	public void saveToFile(String filePath, String testCaseName) {
 		String path = filePath + platform + "/";
 		String fileMain = getFileStart("main_" + testCaseName);
 		fileMain = fileMain + codeElements.get(0);
-		
-		for (int i=2; i<codeElements.size(); i++) {
-			String scriptName = "sub_" + testCaseName + "_part_" + (i-1);
+
+		for (int i = 2; i < codeElements.size(); i++) {
+			String scriptName = "sub_" + testCaseName + "_part_" + (i - 1);
 			fileMain = fileMain + "fun_" + scriptName + "(oDoc, oText, file)\n";
 			String tempFile = getFileStart(scriptName);
 			tempFile = tempFile + "Sub " + "fun_" + scriptName + "(oDoc, oText, file)\n";
@@ -52,6 +60,14 @@ public class LibreCode implements IGeneratedCode {
 		fileMain = fileMain + codeElements.get(1);
 		fileMain = fileMain + getFileEnd();
 		save(fileMain, path, "main_" + testCaseName);
+
+		String helpersName = "helpers";
+		String fileHelper = getFileStart(helpersName);
+		for (int i = 0; i < helperFunctions.size(); i++) {
+			fileHelper = fileHelper + helperFunctions.get(i);
+		}
+		fileHelper = fileHelper + getFileEnd();
+		save(fileHelper, path, helpersName);
 	}
 
 	private String getFileStart(String scriptName) {
@@ -69,14 +85,16 @@ public class LibreCode implements IGeneratedCode {
 
 	private void save(String code, String path, String scriptName) {
 		File f = new File(path + scriptName + ".xba");
-		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-			bw.write(code + "\n");
-			bw.close();
-			cObserver.notify(path, scriptName);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		if (!f.exists()) {
+			try {
+				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+				bw.write(code + "\n");
+				bw.close();
+				cObserver.notify(path, scriptName);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}			
 		}
 	}
 
