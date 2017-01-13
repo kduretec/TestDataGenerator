@@ -32,7 +32,10 @@
     <genClasses ecoreClass="PSMDocx.ecore#//Page">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Page/elements"/>
     </genClasses>
-    <genClasses ecoreClass="PSMDocx.ecore#//Element"/>
+    <genClasses ecoreClass="PSMDocx.ecore#//Element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Element/ID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Element/parentID"/>
+    </genClasses>
     <genClasses ecoreClass="PSMDocx.ecore#//TextContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//TextContainer/words"/>
     </genClasses>

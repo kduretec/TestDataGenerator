@@ -25,6 +25,7 @@ main() {
 
 mapping inout PIM::Page::AddImage(inout i:Integer) {
 	var img := object Image {
+		ID := generateUID();
 		height := 100;
 		width := 200;
 		type := "jpg";

@@ -22,6 +22,8 @@ main() {
 }
 
 mapping inout PIM::Page::AddParagraph(inout i:Integer) {
-	var par := object Paragraph {};
+	var par := object Paragraph {
+		ID := generateUID();
+	};
 	self.elements += par;
 }

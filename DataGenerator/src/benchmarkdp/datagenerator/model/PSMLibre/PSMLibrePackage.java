@@ -186,13 +186,31 @@ public interface PSMLibrePackage extends EPackage {
 	int ELEMENT = 2;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__PARENT_ID = 1;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 0;
+	int ELEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Element</em>' class.
@@ -212,6 +230,24 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	int TEXT_CONTAINER = 3;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__PARENT_ID = ELEMENT__PARENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Words</b></em>' reference list.
@@ -249,6 +285,24 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	int PARAGRAPH = 4;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__ID = TEXT_CONTAINER__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Words</b></em>' reference list.
@@ -361,6 +415,24 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	int TABLE = 7;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__PARENT_ID = ELEMENT__PARENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Num Rows</b></em>' attribute.
@@ -490,6 +562,24 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	int IMAGE = 10;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__PARENT_ID = ELEMENT__PARENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -643,6 +733,28 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Element#getID <em>ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Element#getID()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EAttribute getElement_ID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Element#getParentID <em>Parent ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Parent ID</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Element#getParentID()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EAttribute getElement_ParentID();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.TextContainer <em>Text Container</em>}'.
@@ -942,6 +1054,22 @@ public interface PSMLibrePackage extends EPackage {
 		 * @generated
 		 */
 		EClass ELEMENT = eINSTANCE.getElement();
+
+		/**
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT__ID = eINSTANCE.getElement_ID();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT__PARENT_ID = eINSTANCE.getElement_ParentID();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.TextContainerImpl <em>Text Container</em>}' class.

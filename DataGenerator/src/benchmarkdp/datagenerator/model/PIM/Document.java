@@ -88,7 +88,7 @@ public interface Document extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pages</em>' containment reference list.
 	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getDocument_Pages()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	EList<Page> getPages();

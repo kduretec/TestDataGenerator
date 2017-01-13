@@ -122,13 +122,13 @@ public interface PIMPackage extends EPackage {
 	int ELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT__ALIGNMENT = 0;
+	int ELEMENT__ID = 0;
 
 	/**
 	 * The number of structural features of the '<em>Element</em>' class.
@@ -159,13 +159,13 @@ public interface PIMPackage extends EPackage {
 	int TABLE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__ALIGNMENT = ELEMENT__ALIGNMENT;
+	int TABLE__ID = ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Num Rows</b></em>' attribute.
@@ -223,13 +223,13 @@ public interface PIMPackage extends EPackage {
 	int PARAGRAPH = 3;
 
 	/**
-	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__ALIGNMENT = ELEMENT__ALIGNMENT;
+	int PARAGRAPH__ID = ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
@@ -269,13 +269,13 @@ public interface PIMPackage extends EPackage {
 	int IMAGE = 4;
 
 	/**
-	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMAGE__ALIGNMENT = ELEMENT__ALIGNMENT;
+	int IMAGE__ID = ELEMENT__ID;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -525,15 +525,15 @@ public interface PIMPackage extends EPackage {
 	EClass getElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Element#getAlignment <em>Alignment</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Element#getID <em>ID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Alignment</em>'.
-	 * @see benchmarkdp.datagenerator.model.PIM.Element#getAlignment()
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Element#getID()
 	 * @see #getElement()
 	 * @generated
 	 */
-	EAttribute getElement_Alignment();
+	EAttribute getElement_ID();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Table <em>Table</em>}'.
@@ -794,12 +794,12 @@ public interface PIMPackage extends EPackage {
 		EClass ELEMENT = eINSTANCE.getElement();
 
 		/**
-		 * The meta object literal for the '<em><b>Alignment</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ELEMENT__ALIGNMENT = eINSTANCE.getElement_Alignment();
+		EAttribute ELEMENT__ID = eINSTANCE.getElement_ID();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl <em>Table</em>}' class.

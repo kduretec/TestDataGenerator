@@ -20,31 +20,31 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.ElementImpl#getAlignment <em>Alignment</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.ElementImpl#getID <em>ID</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ElementImpl extends MinimalEObjectImpl.Container implements Element {
 	/**
-	 * The default value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.
+	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAlignment()
+	 * @see #getID()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ALIGNMENT_EDEFAULT = null;
+	protected static final String ID_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.
+	 * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAlignment()
+	 * @see #getID()
 	 * @generated
 	 * @ordered
 	 */
-	protected String alignment = ALIGNMENT_EDEFAULT;
+	protected String id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,8 +70,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getAlignment() {
-		return alignment;
+	public String getID() {
+		return id;
 	}
 
 	/**
@@ -79,11 +79,11 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAlignment(String newAlignment) {
-		String oldAlignment = alignment;
-		alignment = newAlignment;
+	public void setID(String newID) {
+		String oldID = id;
+		id = newID;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.ELEMENT__ALIGNMENT, oldAlignment, alignment));
+			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.ELEMENT__ID, oldID, id));
 	}
 
 	/**
@@ -94,8 +94,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PIMPackage.ELEMENT__ALIGNMENT:
-				return getAlignment();
+			case PIMPackage.ELEMENT__ID:
+				return getID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -108,8 +108,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PIMPackage.ELEMENT__ALIGNMENT:
-				setAlignment((String)newValue);
+			case PIMPackage.ELEMENT__ID:
+				setID((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -123,8 +123,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PIMPackage.ELEMENT__ALIGNMENT:
-				setAlignment(ALIGNMENT_EDEFAULT);
+			case PIMPackage.ELEMENT__ID:
+				setID(ID_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -138,8 +138,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PIMPackage.ELEMENT__ALIGNMENT:
-				return ALIGNMENT_EDEFAULT == null ? alignment != null : !ALIGNMENT_EDEFAULT.equals(alignment);
+			case PIMPackage.ELEMENT__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -154,8 +154,8 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (alignment: ");
-		result.append(alignment);
+		result.append(" (ID: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}

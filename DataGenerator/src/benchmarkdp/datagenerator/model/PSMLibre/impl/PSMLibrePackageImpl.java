@@ -263,6 +263,24 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getElement_ID() {
+		return (EAttribute)elementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getElement_ParentID() {
+		return (EAttribute)elementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTextContainer() {
 		return textContainerEClass;
 	}
@@ -460,6 +478,8 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		createEReference(pageEClass, PAGE__ELEMENTS);
 
 		elementEClass = createEClass(ELEMENT);
+		createEAttribute(elementEClass, ELEMENT__ID);
+		createEAttribute(elementEClass, ELEMENT__PARENT_ID);
 
 		textContainerEClass = createEClass(TEXT_CONTAINER);
 		createEReference(textContainerEClass, TEXT_CONTAINER__WORDS);
@@ -535,6 +555,8 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		initEReference(getPage_Elements(), this.getElement(), null, "elements", null, 0, -1, Page.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getElement_ID(), ecorePackage.getEString(), "ID", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElement_ParentID(), ecorePackage.getEString(), "parentID", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textContainerEClass, TextContainer.class, "TextContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTextContainer_Words(), this.getText(), null, "words", null, 0, -1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

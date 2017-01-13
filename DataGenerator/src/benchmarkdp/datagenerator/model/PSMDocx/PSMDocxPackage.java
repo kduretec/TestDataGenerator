@@ -196,13 +196,31 @@ public interface PSMDocxPackage extends EPackage {
 	int ELEMENT = 2;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__PARENT_ID = 1;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 0;
+	int ELEMENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Element</em>' class.
@@ -222,6 +240,24 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	int TEXT_CONTAINER = 3;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__PARENT_ID = ELEMENT__PARENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
@@ -261,6 +297,24 @@ public interface PSMDocxPackage extends EPackage {
 	int TEXT_BOX = 4;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BOX__ID = TEXT_CONTAINER__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BOX__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -296,6 +350,24 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	int PARAGRAPH = 5;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__ID = TEXT_CONTAINER__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
@@ -360,6 +432,24 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	int CONTROL_BOX = 6;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_BOX__ID = TEXT_CONTAINER__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_BOX__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
@@ -555,6 +645,24 @@ public interface PSMDocxPackage extends EPackage {
 	int TABLE = 10;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__PARENT_ID = ELEMENT__PARENT_ID;
+
+	/**
 	 * The feature id for the '<em><b>Row</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -682,6 +790,24 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	int IMAGE = 13;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__PARENT_ID = ELEMENT__PARENT_ID;
 
 	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
@@ -866,6 +992,28 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Element#getID <em>ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Element#getID()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EAttribute getElement_ID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Element#getParentID <em>Parent ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Parent ID</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Element#getParentID()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EAttribute getElement_ParentID();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.TextContainer <em>Text Container</em>}'.
@@ -1311,6 +1459,22 @@ public interface PSMDocxPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ELEMENT = eINSTANCE.getElement();
+
+		/**
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT__ID = eINSTANCE.getElement_ID();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT__PARENT_ID = eINSTANCE.getElement_ParentID();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TextContainerImpl <em>Text Container</em>}' class.

@@ -50,6 +50,8 @@ mapping PIM::Page::PageToPage():PSM::Page {
 }
 
 mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
+	ID := generateUID();
+	parentID := self.ID; 
 	paragraphSpacing := 1.0;
 	lineSpacing := 1.0;
 	indent := 1.0;
@@ -85,6 +87,8 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
 	var i:Integer := 1;
 	var si:Integer := self.words->asSequence()->size(); 
+	ID := generateUID();
+	parentID := self.ID; 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
 	 var tt := self.words->asSequence()->subSequence(i,pos);
@@ -105,6 +109,8 @@ mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
 mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
 	var i:Integer := 1;
 	var si:Integer := self.words->asSequence()->size(); 
+	ID := generateUID();
+	parentID := self.ID; 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
 	 var tt := self.words->asSequence()->subSequence(i,pos);
@@ -123,6 +129,8 @@ mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
 }
 
 mapping PIM::Table::TableToTable():PSM::Table {
+	ID := generateUID();
+	parentID := self.ID; 
 	numRows := self.numRows;
 	numCol := self.numCol;
 	row := self.row->map RowToRow();
@@ -139,6 +147,8 @@ mapping PIM::Cell::CellToCell():PSM::Cell {
 }
 
 mapping PIM::Image::ImageToImage():PSM::Image {
+	ID := generateUID();
+	parentID := self.ID; 
 	height := self.height;
 	width  := self.width;
 	type   := self.type;

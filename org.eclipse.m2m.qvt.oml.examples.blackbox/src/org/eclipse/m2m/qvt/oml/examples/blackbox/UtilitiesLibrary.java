@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -112,5 +113,10 @@ public class UtilitiesLibrary {
 	
 	public static double stringToDouble(String s) {
 		return Double.parseDouble(s);
+	}
+	
+	public static String generateUID() {
+		String uuid = UUID.randomUUID().toString();
+		return uuid;
 	}
 }

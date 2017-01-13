@@ -32,7 +32,7 @@ public interface Paragraph extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Words</em>' containment reference list.
 	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getParagraph_Words()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Word> getWords();

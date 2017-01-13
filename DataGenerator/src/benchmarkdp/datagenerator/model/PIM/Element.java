@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PIM.Element#getAlignment <em>Alignment</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.Element#getID <em>ID</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getElement()
@@ -22,29 +22,29 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Element extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Alignment</b></em>' attribute.
+	 * Returns the value of the '<em><b>ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Alignment</em>' attribute isn't clear,
+	 * If the meaning of the '<em>ID</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Alignment</em>' attribute.
-	 * @see #setAlignment(String)
-	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getElement_Alignment()
+	 * @return the value of the '<em>ID</em>' attribute.
+	 * @see #setID(String)
+	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getElement_ID()
 	 * @model
 	 * @generated
 	 */
-	String getAlignment();
+	String getID();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Element#getAlignment <em>Alignment</em>}' attribute.
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Element#getID <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Alignment</em>' attribute.
-	 * @see #getAlignment()
+	 * @param value the new value of the '<em>ID</em>' attribute.
+	 * @see #getID()
 	 * @generated
 	 */
-	void setAlignment(String value);
+	void setID(String value);
 
 } // Element
