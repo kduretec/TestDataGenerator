@@ -1,11 +1,13 @@
-package benchmarkdp.datagenerator.generator;
+package benchmarkdp.datagenerator.generator.codegenerator.msword;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class SingleFileCode implements IGeneratedCode {
+import benchmarkdp.datagenerator.generator.IGeneratedCode;
+
+public class MSWordGeneratedCode implements IGeneratedCode {
 
 	String generatedCode;
 
@@ -13,7 +15,7 @@ public class SingleFileCode implements IGeneratedCode {
 
 	String platform;
 
-	public SingleFileCode(String fE, String plat) {
+	public MSWordGeneratedCode(String fE, String plat) {
 		fileExtension = fE;
 		platform = plat;
 	}
