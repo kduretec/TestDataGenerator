@@ -10,7 +10,7 @@ import java.util.List;
 import benchmarkdp.datagenerator.generator.IGeneratedCode;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
 
-public class LibreCode implements IGeneratedCode {
+public class LibreGeneratedCode implements IGeneratedCode {
 
 	List<String> codeElements;
 	List<String> helperFunctions;
@@ -18,7 +18,7 @@ public class LibreCode implements IGeneratedCode {
 	String platform;
 	CodeGeneratorObserverInterface cObserver;
 
-	public LibreCode(CodeGeneratorObserverInterface cI) {
+	public LibreGeneratedCode(CodeGeneratorObserverInterface cI) {
 		codeElements = new ArrayList<String>();
 		helperFunctions = new ArrayList<String>();
 		cObserver = cI;
@@ -26,6 +26,7 @@ public class LibreCode implements IGeneratedCode {
 
 	public void addCodeElement(String element) {
 		codeElements.add(element);
+		System.out.println("Adding code elements");
 	}
 
 	public void setPlatform(String plat) {
