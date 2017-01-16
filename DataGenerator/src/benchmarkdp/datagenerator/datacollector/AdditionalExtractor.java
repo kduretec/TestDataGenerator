@@ -20,7 +20,6 @@ import org.eclipse.ocl.helper.OCLHelper;
 
 import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
-import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
@@ -40,7 +39,6 @@ public class AdditionalExtractor {
 		
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		PIMPackage mwp = PIMPackage.eINSTANCE;
-		PSMDocPackage pwp = PSMDocPackage.eINSTANCE;
 		PSMDocxPackage pwd = PSMDocxPackage.eINSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("xmi", new XMIResourceFactoryImpl());

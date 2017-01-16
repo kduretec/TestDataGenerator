@@ -28,7 +28,6 @@ import benchmarkdp.datagenerator.generator.ocl.OCLMetadata;
 import benchmarkdp.datagenerator.generator.ocl.OCLText;
 import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
-import benchmarkdp.datagenerator.model.PSMDoc.PSMDocPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
@@ -57,7 +56,6 @@ public class Mutator {
 
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		PIMPackage mwp = PIMPackage.eINSTANCE;
-		PSMDocPackage pwp = PSMDocPackage.eINSTANCE;
 		PSMDocxPackage pwd = PSMDocxPackage.eINSTANCE;
 		PSMLibrePackage pld = PSMLibrePackage.eINSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
@@ -294,14 +292,10 @@ public class Mutator {
 		// evaluators.add(new OCLEvaluatorPSMDocx("platform",
 		// "self.documentPlatform"));
 
-		evaluators.add(new OCLMetadata(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT, "format",
-				"self.documentFormat"));
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "format",
 				"self.documentFormat"));
 		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "format",
 				"self.documentFormat"));
-		evaluators.add(new OCLMetadata(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT, "platform",
-				"self.documentPlatform"));
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "platform",
 				"self.documentPlatform"));
 		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "platform",
@@ -309,10 +303,8 @@ public class Mutator {
 		
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "tablecount",
 				"self.pages.elements->selectByType(Table)->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT, "numCol", "self.numColum"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "paragraphcount",
 				"self.pages.elements->selectByType(Paragraph)->size()"));
-		evaluators.add(new OCLText(ModelType.PSMDoc, PSMDocPackage.Literals.DOCUMENT));
 		evaluators.add(new OCLText(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT));
 		evaluators.add(new OCLText(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT));
 
