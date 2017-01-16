@@ -1,6 +1,7 @@
 package benchmarkdp.datagenerator.generator.codegenerator
 
 import benchmarkdp.datagenerator.generator.ModelType
+import benchmarkdp.datagenerator.generator.TestCase
 import benchmarkdp.datagenerator.model.PSMDoc.Color
 import benchmarkdp.datagenerator.model.PSMDoc.Document
 import benchmarkdp.datagenerator.model.PSMDoc.Element
@@ -12,8 +13,6 @@ import benchmarkdp.datagenerator.model.PSMDoc.SimpleText
 import benchmarkdp.datagenerator.model.PSMDoc.Table
 import benchmarkdp.datagenerator.model.PSMDoc.Text
 import benchmarkdp.datagenerator.model.PSMDoc.TextBox
-import benchmarkdp.datagenerator.generator.TestCase
-import benchmarkdp.datagenerator.generator.SingleFileCode
 
 class DocCodeGenerator implements CodeGeneratorInterface {
 
@@ -31,12 +30,12 @@ class DocCodeGenerator implements CodeGeneratorInterface {
 	}
 
 	override generateCode(TestCase tC) {
-		documentName = tC.testCaseName
-		var d = tC.getTestModel().getModelObjects.get(0) as Document
-		var sCode = new SingleFileCode("vbs", d.documentPlatform)
-		var s = compile(d);
-		sCode.generatedCode = s
-		tC.generatedCode = sCode;
+	//	documentName = tC.testCaseName
+	//	var d = tC.getTestModel().getModelObjects.get(0) as Document
+	//	var sCode = new SingleFileCode("vbs", d.documentPlatform)
+	//	var s = compile(d);
+	//	sCode.generatedCode = s
+	//	tC.generatedCode = sCode;
 	}
 
 	def String compile(Document d) {

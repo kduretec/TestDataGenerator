@@ -40,9 +40,6 @@ public class DocCodeGenerator implements CodeGeneratorInterface {
   
   @Override
   public void generateCode(final TestCase tC) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nSingleFileCode cannot be resolved."
-      + "\ngeneratedCode cannot be resolved");
   }
   
   public String compile(final Document d) {

@@ -20,6 +20,8 @@ public class MSWordTable extends AbstractElementCompiler {
     int numC = t.getNumCol();
     Object _variable = cState.getVariable("temp");
     String temp = ((String) _variable);
+    Boolean _boolean = new Boolean(true);
+    cState.setVariable("inTable", _boolean);
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("oSelection.TypeParagraph()");
     _builder.newLine();
@@ -52,6 +54,8 @@ public class MSWordTable extends AbstractElementCompiler {
     String _plus_1 = (temp + _builder_1);
     temp = _plus_1;
     cState.setVariable("temp", temp);
+    Boolean _boolean_1 = new Boolean(false);
+    cState.setVariable("inTable", _boolean_1);
   }
   
   public void compileTableElements(final Table t, final CompilerState cState) {

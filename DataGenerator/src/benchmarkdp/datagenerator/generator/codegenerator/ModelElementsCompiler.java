@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.generator.codegenerator;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 
 public class ModelElementsCompiler {
@@ -26,5 +27,9 @@ public class ModelElementsCompiler {
 		iec.compile(object, cState);
 	}
 	
+	public void compile(String name, Enumerator en) {
+		IEnumCompiler iec = (IEnumCompiler) compilers.get(name);
+		iec.compile(en, cState);
+	}
 	
 }

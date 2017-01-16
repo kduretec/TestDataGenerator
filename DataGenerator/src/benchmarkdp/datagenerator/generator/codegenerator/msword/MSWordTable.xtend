@@ -16,7 +16,7 @@ class MSWordTable extends AbstractElementCompiler{
 		var numR = t.numRows
 		var numC = t.numCol
 		var temp = cState.getVariable("temp") as String 
-		
+		cState.setVariable("inTable", new Boolean(true))
 		temp = temp + '''
 			oSelection.TypeParagraph()
 			Set oRange = oSelection.Range
@@ -34,6 +34,7 @@ class MSWordTable extends AbstractElementCompiler{
 			i= i + 1
 		'''
 		cState.setVariable("temp", temp)
+		cState.setVariable("inTable", new Boolean(false))
 	}
 	
 	def compileTableElements(Table t, CompilerState cState) {

@@ -28,6 +28,17 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 	new() {
 		compilerState = new CompilerState();
 		compiler = new ModelElementsCompiler(compilerState);
+		compiler.addCompiler("Document", new MSWordDocument())
+		compiler.addCompiler("Page", new MSWordPage())
+		compiler.addCompiler("Paragraph", new MSWordParagraph())
+		compiler.addCompiler("TextBox", new MSWordTextBox())
+		compiler.addCompiler("ControlBox", new MSWordControlBox())
+		compiler.addCompiler("Table", new MSWordTable())
+		compiler.addCompiler("Image", new MSWordImage())
+		compiler.addCompiler("SimpleText", new MSWordSimpleText())
+		compiler.addCompiler("HyperLink", new MSWordHyperLink())
+		compiler.addCompiler("Color", new MSWordColor())
+		
 	}
 
 	override getModelType() {
@@ -39,6 +50,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		
 		compilerState.setVariable("documentName", tC.testCaseName)
 		compilerState.setVariable("parag", new Integer(0))
+		compilerState.setVariable("inTable", new Boolean(false))
 		var sCode = new MSWordGeneratedCode("vbs", d.documentPlatform)
 		compilerState.setVariable("temp", new String(""));
 		
@@ -47,31 +59,6 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		sCode.generatedCode = s
 		tC.generatedCode = sCode;
 	}
-	
-	
-	def compileHyperLink(HyperLink h) {
-		var temp = '''
-			Set oRange = oSelection.Range
-			oDoc.Hyperlinks.Add oRange, "«h.url»", , , " «h.value»"
-		'''
-		return temp
-	}
 
-	def compileColor(Color c) {
-		var temp = '''RGB('''
-		if (c == Color::BLACK) {
-			temp = temp + "0,0,0"
-		}
-		if (c == Color::WHITE) {
-			temp = temp + "255,255,255"
-		}
-		if (c == Color::RED) {
-			temp = temp + "255,0,0"
-		}
-		if (c == Color::BLUE) {
-			temp = temp + "0,0,255"
-		}
-		temp = temp + ''')'''
-	}
 	
 }
