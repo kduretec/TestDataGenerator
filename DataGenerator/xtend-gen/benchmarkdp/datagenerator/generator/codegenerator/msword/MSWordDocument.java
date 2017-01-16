@@ -90,6 +90,8 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder_1.append("counter = 1");
     _builder_1.newLine();
     _builder_1.append("    ");
+    _builder_1.newLine();
+    _builder_1.append("    ");
     _builder_1.append("Do While True");
     _builder_1.newLine();
     _builder_1.append("        ");
@@ -99,7 +101,7 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder_1.append("Call o.Selection.EndKey(5,1)");
     _builder_1.newLine();
     _builder_1.append("        ");
-    _builder_1.append("outFile.Write(\"id:counter:\" & o.Selection.Text & vbCrLf)");
+    _builder_1.append("outFile.Write(id & \":\" & counter & \":\" & o.Selection.Text & vbCrLf)");
     _builder_1.newLine();
     _builder_1.append("        ");
     _builder_1.append("maxEnd = o.Selection.End");
@@ -108,7 +110,7 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder_1.append("o.Selection.Collapse(0)");
     _builder_1.newLine();
     _builder_1.append("        ");
-    _builder_1.append("If maxEnd = p.Range.End Then");
+    _builder_1.append("If maxEnd >= p.Range.End Then");
     _builder_1.newLine();
     _builder_1.append("            ");
     _builder_1.append("Exit Do");
@@ -121,6 +123,9 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder_1.newLine();
     _builder_1.append("    ");
     _builder_1.append("Loop");
+    _builder_1.newLine();
+    _builder_1.append("    ");
+    _builder_1.append("o.Selection.EndKey END_OF_STORY");
     _builder_1.newLine();
     _builder_1.append("End Sub");
     _builder_1.newLine();

@@ -46,17 +46,19 @@ class MSWordDocument extends AbstractElementCompiler {
 			Sub selLines(p, id, o, outFile) 
 			    p.Range.Select
 			    counter = 1
+			    
 			    Do While True
 			        o.Selection.Collapse(1)
 			        Call o.Selection.EndKey(5,1)
-			        outFile.Write("id:counter:" & o.Selection.Text & vbCrLf)
+			        outFile.Write(id & ":" & counter & ":" & o.Selection.Text & vbCrLf)
 			        maxEnd = o.Selection.End
 			        o.Selection.Collapse(0)
-			        If maxEnd = p.Range.End Then
+			        If maxEnd >= p.Range.End Then
 			            Exit Do
 			        End If
 			        counter = counter + 1 
 			    Loop
+			    o.Selection.EndKey END_OF_STORY
 			End Sub
 		'''
 		cState.setVariable("temp", temp)

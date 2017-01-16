@@ -28,11 +28,16 @@ public class MSWordControlBox extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("Set oControl = oDoc.ContentControls(cBox)");
     _builder.newLine();
-    _builder.append("oControl.Range.Text = \"");
-    _builder.newLine();
+    _builder.append("oControl.Range.Text = \" ");
     String _plus = (temp + _builder);
     temp = _plus;
     cState.setVariable("temp", temp);
+    Object _variable_1 = cState.getVariable("parag");
+    Integer paragNum = ((Integer) _variable_1);
+    int parag = paragNum.intValue();
+    parag = (parag + 1);
+    Integer _integer = new Integer(parag);
+    cState.setVariable("parag", _integer);
     EList<Text> _words = cb.getWords();
     for (final Text txt : _words) {
       boolean _matched = false;
@@ -47,9 +52,17 @@ public class MSWordControlBox extends AbstractElementCompiler {
         }
       }
     }
-    Object _variable_1 = cState.getVariable("temp");
-    temp = ((String) _variable_1);
+    Object _variable_2 = cState.getVariable("temp");
+    temp = ((String) _variable_2);
     temp = (temp + "\"\n");
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("Call selLines(oControl, \"");
+    String _iD = cb.getID();
+    _builder_1.append(_iD, "");
+    _builder_1.append("\", objWord, objFile)\t\t");
+    _builder_1.newLineIfNotEmpty();
+    String _plus_1 = (temp + _builder_1);
+    temp = _plus_1;
     temp = (temp + "oSelection.Start = oControl.Range.End + 1 \n oSelection.TypeParagraph() \n");
     cState.setVariable("temp", temp);
   }

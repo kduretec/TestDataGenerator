@@ -49,15 +49,16 @@ public class MSWordParagraph extends AbstractElementCompiler {
     }
     Object _variable_3 = cState.getVariable("temp");
     temp = ((String) _variable_3);
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("Call selLines(oDoc.Paragraphs(");
-    _builder_1.append(parag, "");
-    _builder_1.append("), ");
-    _builder_1.append(parag, "");
-    _builder_1.append(", objWord, objFile)");
-    _builder_1.newLineIfNotEmpty();
-    String _plus_1 = (temp + _builder_1);
-    temp = _plus_1;
+    if ((!(inTable).booleanValue())) {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), \"");
+      String _iD = par.getID();
+      _builder_1.append(_iD, "");
+      _builder_1.append("\", objWord, objFile)");
+      _builder_1.newLineIfNotEmpty();
+      String _plus_1 = (temp + _builder_1);
+      temp = _plus_1;
+    }
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("i = i + 1");
     _builder_2.newLine();

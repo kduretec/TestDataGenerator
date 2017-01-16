@@ -37,10 +37,12 @@ class MSWordParagraph extends AbstractElementCompiler{
 		}
 		
 		temp = cState.getVariable("temp") as String
+		if (!inTable) { 
+			temp = temp + ''' 
+				Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), "«par.ID»", objWord, objFile)
+			'''			
+		}
 		
-		temp = temp + ''' 
-			Call selLines(oDoc.Paragraphs(«parag»), «parag», objWord, objFile)
-		'''
 		temp = temp + '''
 			i = i + 1
 		'''

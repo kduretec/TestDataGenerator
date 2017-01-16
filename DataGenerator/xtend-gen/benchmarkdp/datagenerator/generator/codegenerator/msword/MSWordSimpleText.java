@@ -14,7 +14,7 @@ public class MSWordSimpleText extends AbstractElementCompiler {
     SimpleText t = ((SimpleText) object);
     Object _variable = cState.getVariable("temp");
     String temp = ((String) _variable);
-    temp = (temp + " oSelection.Font.Color = ");
+    temp = (temp + "oSelection.Font.Color = ");
     cState.setVariable("temp", temp);
     Color _color = t.getColor();
     this.compiler.compile("Color", _color);
@@ -26,15 +26,16 @@ public class MSWordSimpleText extends AbstractElementCompiler {
     this.compiler.compile("Color", _background);
     Object _variable_2 = cState.getVariable("temp");
     temp = ((String) _variable_2);
+    temp = (temp + "\n");
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\noSelection.Font.Size = ");
+    _builder.append("oSelection.Font.Size = ");
     int _size = t.getSize();
     _builder.append(_size, "");
     _builder.newLineIfNotEmpty();
     _builder.append("oSelection.TypeText(\" ");
     String _value = t.getValue();
     _builder.append(_value, "");
-    _builder.append(" \")\t\t");
+    _builder.append(" \")");
     _builder.newLineIfNotEmpty();
     String _plus = (temp + _builder);
     temp = _plus;

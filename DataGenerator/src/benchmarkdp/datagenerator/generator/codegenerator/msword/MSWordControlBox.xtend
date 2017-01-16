@@ -21,9 +21,12 @@ class MSWordControlBox extends AbstractElementCompiler{
 			Set oRange = oSelection.Range
 			oDoc.ContentControls.Add 0, oRange
 			Set oControl = oDoc.ContentControls(cBox)
-			oControl.Range.Text = "
-		'''
+			oControl.Range.Text = " '''
 		cState.setVariable("temp", temp)  
+		var paragNum = cState.getVariable("parag") as Integer
+		var parag = paragNum.intValue
+		parag = parag + 1
+		cState.setVariable("parag", new Integer(parag))
 		for (Text txt : cb.words) {
 			switch txt {
 				SimpleText : compileSimpleText(txt, cState)
@@ -33,6 +36,9 @@ class MSWordControlBox extends AbstractElementCompiler{
 		
 		temp = cState.getVariable("temp") as String
 		temp = temp + "\"\n"
+		temp = temp + '''
+			Call selLines(oControl, "«cb.ID»", objWord, objFile)		
+		'''
 		temp = temp + "oSelection.Start = oControl.Range.End + 1 \n oSelection.TypeParagraph() \n"
 		cState.setVariable("temp", temp)  
 	}

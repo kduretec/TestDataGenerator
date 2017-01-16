@@ -12,7 +12,7 @@ class MSWordSimpleText extends AbstractElementCompiler{
 		var t = object as SimpleText
 		var temp = cState.getVariable("temp") as String 
 		
-		temp = temp + " oSelection.Font.Color = "
+		temp = temp + "oSelection.Font.Color = "
 		cState.setVariable("temp", temp)
 		compiler.compile("Color", t.color)
 		temp = cState.getVariable("temp") as String 
@@ -20,9 +20,10 @@ class MSWordSimpleText extends AbstractElementCompiler{
 		cState.setVariable("temp", temp)
 		compiler.compile("Color", t.background)
 		temp = cState.getVariable("temp") as String
+		temp = temp + "\n";
 		temp = temp + '''
-			\noSelection.Font.Size = «t.size»
-			oSelection.TypeText(" «t.value» ")		
+			oSelection.Font.Size = «t.size»
+			oSelection.TypeText(" «t.value» ")
 		'''
 	
 		cState.setVariable("temp", temp)
