@@ -80,4 +80,6 @@
     <eLiterals name="BLUE" value="2"/>
     <eLiterals name="RED" value="3"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EmbeddedExcel" eSuperTypes="#//Table"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WordTable" eSuperTypes="#//Table"/>
 </ecore:EPackage>

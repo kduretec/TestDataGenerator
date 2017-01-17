@@ -74,5 +74,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Image/height"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Image/type"/>
     </genClasses>
+    <genClasses ecoreClass="PSMDocx.ecore#//EmbeddedExcel"/>
+    <genClasses ecoreClass="PSMDocx.ecore#//WordTable"/>
   </genPackages>
 </genmodel:GenModel>

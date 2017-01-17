@@ -124,6 +124,14 @@ public class PSMDocxAdapterFactory extends AdapterFactoryImpl {
 				return createImageAdapter();
 			}
 			@Override
+			public Adapter caseEmbeddedExcel(EmbeddedExcel object) {
+				return createEmbeddedExcelAdapter();
+			}
+			@Override
+			public Adapter caseWordTable(WordTable object) {
+				return createWordTableAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -336,6 +344,34 @@ public class PSMDocxAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel <em>Embedded Excel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel
+	 * @generated
+	 */
+	public Adapter createEmbeddedExcelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMDocx.WordTable <em>Word Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.WordTable
+	 * @generated
+	 */
+	public Adapter createWordTableAdapter() {
 		return null;
 	}
 

@@ -4,6 +4,7 @@ package benchmarkdp.datagenerator.model.PSMLibre;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -314,13 +315,40 @@ public interface PSMLibrePackage extends EPackage {
 	int PARAGRAPH__WORDS = TEXT_CONTAINER__WORDS;
 
 	/**
+	 * The feature id for the '<em><b>Paragraph Spacing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__PARAGRAPH_SPACING = TEXT_CONTAINER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Line Spacing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__LINE_SPACING = TEXT_CONTAINER_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Indent</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__INDENT = TEXT_CONTAINER_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Paragraph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 0;
+	int PARAGRAPH_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Paragraph</em>' class.
@@ -388,13 +416,49 @@ public interface PSMLibrePackage extends EPackage {
 	int SIMPLE_TEXT__VALUE = TEXT__VALUE;
 
 	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TEXT__FONT_FAMILY = TEXT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TEXT__FONT_COLOR = TEXT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Font Background</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TEXT__FONT_BACKGROUND = TEXT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Font Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_TEXT__FONT_SIZE = TEXT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Simple Text</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_TEXT_FEATURE_COUNT = TEXT_FEATURE_COUNT + 0;
+	int SIMPLE_TEXT_FEATURE_COUNT = TEXT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Simple Text</em>' class.
@@ -628,6 +692,27 @@ public interface PSMLibrePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMLibre.FontFamily <em>Font Family</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.FontFamily
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getFontFamily()
+	 * @generated
+	 */
+	int FONT_FAMILY = 11;
+
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMLibre.Color <em>Color</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Color
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getColor()
+	 * @generated
+	 */
+	int COLOR = 12;
+
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.Document <em>Document</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -788,6 +873,39 @@ public interface PSMLibrePackage extends EPackage {
 	EClass getParagraph();
 
 	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Paragraph#getParagraphSpacing <em>Paragraph Spacing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Paragraph Spacing</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Paragraph#getParagraphSpacing()
+	 * @see #getParagraph()
+	 * @generated
+	 */
+	EAttribute getParagraph_ParagraphSpacing();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Paragraph#getLineSpacing <em>Line Spacing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Line Spacing</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Paragraph#getLineSpacing()
+	 * @see #getParagraph()
+	 * @generated
+	 */
+	EAttribute getParagraph_LineSpacing();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Paragraph#getIndent <em>Indent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Indent</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Paragraph#getIndent()
+	 * @see #getParagraph()
+	 * @generated
+	 */
+	EAttribute getParagraph_Indent();
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.Text <em>Text</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -817,6 +935,50 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSimpleText();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.SimpleText#getFontFamily <em>Font Family</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Font Family</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.SimpleText#getFontFamily()
+	 * @see #getSimpleText()
+	 * @generated
+	 */
+	EAttribute getSimpleText_FontFamily();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.SimpleText#getFontColor <em>Font Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Font Color</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.SimpleText#getFontColor()
+	 * @see #getSimpleText()
+	 * @generated
+	 */
+	EAttribute getSimpleText_FontColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.SimpleText#getFontBackground <em>Font Background</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Font Background</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.SimpleText#getFontBackground()
+	 * @see #getSimpleText()
+	 * @generated
+	 */
+	EAttribute getSimpleText_FontBackground();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.SimpleText#getFontSize <em>Font Size</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Font Size</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.SimpleText#getFontSize()
+	 * @see #getSimpleText()
+	 * @generated
+	 */
+	EAttribute getSimpleText_FontSize();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.Table <em>Table</em>}'.
@@ -945,6 +1107,26 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getImage_Type();
+
+	/**
+	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMLibre.FontFamily <em>Font Family</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Font Family</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.FontFamily
+	 * @generated
+	 */
+	EEnum getFontFamily();
+
+	/**
+	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMLibre.Color <em>Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Color</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Color
+	 * @generated
+	 */
+	EEnum getColor();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1100,6 +1282,30 @@ public interface PSMLibrePackage extends EPackage {
 		EClass PARAGRAPH = eINSTANCE.getParagraph();
 
 		/**
+		 * The meta object literal for the '<em><b>Paragraph Spacing</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAGRAPH__PARAGRAPH_SPACING = eINSTANCE.getParagraph_ParagraphSpacing();
+
+		/**
+		 * The meta object literal for the '<em><b>Line Spacing</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAGRAPH__LINE_SPACING = eINSTANCE.getParagraph_LineSpacing();
+
+		/**
+		 * The meta object literal for the '<em><b>Indent</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAGRAPH__INDENT = eINSTANCE.getParagraph_Indent();
+
+		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.TextImpl <em>Text</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1126,6 +1332,38 @@ public interface PSMLibrePackage extends EPackage {
 		 * @generated
 		 */
 		EClass SIMPLE_TEXT = eINSTANCE.getSimpleText();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Family</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_TEXT__FONT_FAMILY = eINSTANCE.getSimpleText_FontFamily();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_TEXT__FONT_COLOR = eINSTANCE.getSimpleText_FontColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Background</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_TEXT__FONT_BACKGROUND = eINSTANCE.getSimpleText_FontBackground();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Size</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMPLE_TEXT__FONT_SIZE = eINSTANCE.getSimpleText_FontSize();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.TableImpl <em>Table</em>}' class.
@@ -1230,6 +1468,26 @@ public interface PSMLibrePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute IMAGE__TYPE = eINSTANCE.getImage_Type();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.FontFamily <em>Font Family</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PSMLibre.FontFamily
+		 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getFontFamily()
+		 * @generated
+		 */
+		EEnum FONT_FAMILY = eINSTANCE.getFontFamily();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.Color <em>Color</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PSMLibre.Color
+		 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getColor()
+		 * @generated
+		 */
+		EEnum COLOR = eINSTANCE.getColor();
 
 	}
 

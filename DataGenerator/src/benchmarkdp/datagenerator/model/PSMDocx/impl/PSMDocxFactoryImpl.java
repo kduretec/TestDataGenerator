@@ -71,6 +71,8 @@ public class PSMDocxFactoryImpl extends EFactoryImpl implements PSMDocxFactory {
 			case PSMDocxPackage.ROW: return createRow();
 			case PSMDocxPackage.CELL: return createCell();
 			case PSMDocxPackage.IMAGE: return createImage();
+			case PSMDocxPackage.EMBEDDED_EXCEL: return createEmbeddedExcel();
+			case PSMDocxPackage.WORD_TABLE: return createWordTable();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -248,6 +250,26 @@ public class PSMDocxFactoryImpl extends EFactoryImpl implements PSMDocxFactory {
 	public Image createImage() {
 		ImageImpl image = new ImageImpl();
 		return image;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EmbeddedExcel createEmbeddedExcel() {
+		EmbeddedExcelImpl embeddedExcel = new EmbeddedExcelImpl();
+		return embeddedExcel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WordTable createWordTable() {
+		WordTableImpl wordTable = new WordTableImpl();
+		return wordTable;
 	}
 
 	/**

@@ -7,6 +7,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.Color;
 import benchmarkdp.datagenerator.model.PSMDocx.ControlBox;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.Element;
+import benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel;
 import benchmarkdp.datagenerator.model.PSMDocx.FontFamily;
 import benchmarkdp.datagenerator.model.PSMDocx.HyperLink;
 import benchmarkdp.datagenerator.model.PSMDocx.Image;
@@ -21,6 +22,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.Text;
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
 import benchmarkdp.datagenerator.model.PSMDocx.TextContainer;
 
+import benchmarkdp.datagenerator.model.PSMDocx.WordTable;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -133,6 +135,20 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * @generated
 	 */
 	private EClass imageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass embeddedExcelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass wordTableEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -592,6 +608,24 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEmbeddedExcel() {
+		return embeddedExcelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getWordTable() {
+		return wordTableEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getFontFamily() {
 		return fontFamilyEEnum;
 	}
@@ -689,6 +723,10 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		createEAttribute(imageEClass, IMAGE__HEIGHT);
 		createEAttribute(imageEClass, IMAGE__TYPE);
 
+		embeddedExcelEClass = createEClass(EMBEDDED_EXCEL);
+
+		wordTableEClass = createEClass(WORD_TABLE);
+
 		// Create enums
 		fontFamilyEEnum = createEEnum(FONT_FAMILY);
 		colorEEnum = createEEnum(COLOR);
@@ -730,6 +768,8 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		hyperLinkEClass.getESuperTypes().add(this.getText());
 		tableEClass.getESuperTypes().add(this.getElement());
 		imageEClass.getESuperTypes().add(this.getElement());
+		embeddedExcelEClass.getESuperTypes().add(this.getTable());
+		wordTableEClass.getESuperTypes().add(this.getTable());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -787,6 +827,10 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		initEAttribute(getImage_Width(), ecorePackage.getEInt(), "width", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImage_Height(), ecorePackage.getEInt(), "height", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImage_Type(), ecorePackage.getEString(), "type", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(embeddedExcelEClass, EmbeddedExcel.class, "EmbeddedExcel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(wordTableEClass, WordTable.class, "WordTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(fontFamilyEEnum, FontFamily.class, "FontFamily");

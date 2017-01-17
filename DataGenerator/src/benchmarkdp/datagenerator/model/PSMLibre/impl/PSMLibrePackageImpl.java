@@ -3,8 +3,10 @@
 package benchmarkdp.datagenerator.model.PSMLibre.impl;
 
 import benchmarkdp.datagenerator.model.PSMLibre.Cell;
+import benchmarkdp.datagenerator.model.PSMLibre.Color;
 import benchmarkdp.datagenerator.model.PSMLibre.Document;
 import benchmarkdp.datagenerator.model.PSMLibre.Element;
+import benchmarkdp.datagenerator.model.PSMLibre.FontFamily;
 import benchmarkdp.datagenerator.model.PSMLibre.Image;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibreFactory;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
@@ -18,6 +20,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.TextContainer;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -106,6 +109,20 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * @generated
 	 */
 	private EClass imageEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum fontFamilyEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum colorEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -308,6 +325,33 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getParagraph_ParagraphSpacing() {
+		return (EAttribute)paragraphEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParagraph_LineSpacing() {
+		return (EAttribute)paragraphEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParagraph_Indent() {
+		return (EAttribute)paragraphEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getText() {
 		return textEClass;
 	}
@@ -328,6 +372,42 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 */
 	public EClass getSimpleText() {
 		return simpleTextEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleText_FontFamily() {
+		return (EAttribute)simpleTextEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleText_FontColor() {
+		return (EAttribute)simpleTextEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleText_FontBackground() {
+		return (EAttribute)simpleTextEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimpleText_FontSize() {
+		return (EAttribute)simpleTextEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -443,6 +523,24 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getFontFamily() {
+		return fontFamilyEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getColor() {
+		return colorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PSMLibreFactory getPSMLibreFactory() {
 		return (PSMLibreFactory)getEFactoryInstance();
 	}
@@ -485,11 +583,18 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		createEReference(textContainerEClass, TEXT_CONTAINER__WORDS);
 
 		paragraphEClass = createEClass(PARAGRAPH);
+		createEAttribute(paragraphEClass, PARAGRAPH__PARAGRAPH_SPACING);
+		createEAttribute(paragraphEClass, PARAGRAPH__LINE_SPACING);
+		createEAttribute(paragraphEClass, PARAGRAPH__INDENT);
 
 		textEClass = createEClass(TEXT);
 		createEAttribute(textEClass, TEXT__VALUE);
 
 		simpleTextEClass = createEClass(SIMPLE_TEXT);
+		createEAttribute(simpleTextEClass, SIMPLE_TEXT__FONT_FAMILY);
+		createEAttribute(simpleTextEClass, SIMPLE_TEXT__FONT_COLOR);
+		createEAttribute(simpleTextEClass, SIMPLE_TEXT__FONT_BACKGROUND);
+		createEAttribute(simpleTextEClass, SIMPLE_TEXT__FONT_SIZE);
 
 		tableEClass = createEClass(TABLE);
 		createEAttribute(tableEClass, TABLE__NUM_ROWS);
@@ -506,6 +611,10 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		createEAttribute(imageEClass, IMAGE__HEIGHT);
 		createEAttribute(imageEClass, IMAGE__WIDTH);
 		createEAttribute(imageEClass, IMAGE__TYPE);
+
+		// Create enums
+		fontFamilyEEnum = createEEnum(FONT_FAMILY);
+		colorEEnum = createEEnum(COLOR);
 	}
 
 	/**
@@ -562,11 +671,18 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		initEReference(getTextContainer_Words(), this.getText(), null, "words", null, 0, -1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(paragraphEClass, Paragraph.class, "Paragraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getParagraph_ParagraphSpacing(), ecorePackage.getEDouble(), "paragraphSpacing", "1.0", 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getParagraph_LineSpacing(), ecorePackage.getEDouble(), "lineSpacing", "1.0", 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getParagraph_Indent(), ecorePackage.getEDouble(), "indent", "1.0", 0, 1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getText_Value(), ecorePackage.getEString(), "value", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleTextEClass, SimpleText.class, "SimpleText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getSimpleText_FontFamily(), this.getFontFamily(), "fontFamily", null, 0, 1, SimpleText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleText_FontColor(), this.getColor(), "fontColor", null, 0, 1, SimpleText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleText_FontBackground(), this.getColor(), "fontBackground", "WHITE", 0, 1, SimpleText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimpleText_FontSize(), ecorePackage.getEInt(), "fontSize", "10", 0, 1, SimpleText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTable_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -583,6 +699,18 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		initEAttribute(getImage_Height(), ecorePackage.getEInt(), "height", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImage_Width(), ecorePackage.getEInt(), "width", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImage_Type(), ecorePackage.getEString(), "type", null, 0, 1, Image.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(fontFamilyEEnum, FontFamily.class, "FontFamily");
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.ARIAL);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.COURIER);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.LIBERATIONSERIF);
+
+		initEEnum(colorEEnum, Color.class, "Color");
+		addEEnumLiteral(colorEEnum, Color.BLACK);
+		addEEnumLiteral(colorEEnum, Color.WHITE);
+		addEEnumLiteral(colorEEnum, Color.BLUE);
+		addEEnumLiteral(colorEEnum, Color.RED);
 
 		// Create resource
 		createResource(eNS_URI);

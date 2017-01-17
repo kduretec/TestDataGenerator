@@ -855,6 +855,152 @@ public interface PSMDocxPackage extends EPackage {
 	int IMAGE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.EmbeddedExcelImpl <em>Embedded Excel</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.EmbeddedExcelImpl
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getEmbeddedExcel()
+	 * @generated
+	 */
+	int EMBEDDED_EXCEL = 14;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__ID = TABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__PARENT_ID = TABLE__PARENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Row</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__ROW = TABLE__ROW;
+
+	/**
+	 * The feature id for the '<em><b>Num Rows</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__NUM_ROWS = TABLE__NUM_ROWS;
+
+	/**
+	 * The feature id for the '<em><b>Num Col</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__NUM_COL = TABLE__NUM_COL;
+
+	/**
+	 * The number of structural features of the '<em>Embedded Excel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL_FEATURE_COUNT = TABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Embedded Excel</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL_OPERATION_COUNT = TABLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.WordTableImpl <em>Word Table</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.WordTableImpl
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getWordTable()
+	 * @generated
+	 */
+	int WORD_TABLE = 15;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__ID = TABLE__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__PARENT_ID = TABLE__PARENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Row</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__ROW = TABLE__ROW;
+
+	/**
+	 * The feature id for the '<em><b>Num Rows</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__NUM_ROWS = TABLE__NUM_ROWS;
+
+	/**
+	 * The feature id for the '<em><b>Num Col</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__NUM_COL = TABLE__NUM_COL;
+
+	/**
+	 * The number of structural features of the '<em>Word Table</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE_FEATURE_COUNT = TABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Word Table</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE_OPERATION_COUNT = TABLE_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.FontFamily <em>Font Family</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -862,7 +1008,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getFontFamily()
 	 * @generated
 	 */
-	int FONT_FAMILY = 14;
+	int FONT_FAMILY = 16;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.Color <em>Color</em>}' enum.
@@ -872,7 +1018,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getColor()
 	 * @generated
 	 */
-	int COLOR = 15;
+	int COLOR = 17;
 
 
 	/**
@@ -1324,6 +1470,26 @@ public interface PSMDocxPackage extends EPackage {
 	EAttribute getImage_Type();
 
 	/**
+	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel <em>Embedded Excel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Embedded Excel</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel
+	 * @generated
+	 */
+	EClass getEmbeddedExcel();
+
+	/**
+	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.WordTable <em>Word Table</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Word Table</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.WordTable
+	 * @generated
+	 */
+	EClass getWordTable();
+
+	/**
 	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMDocx.FontFamily <em>Font Family</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1729,6 +1895,26 @@ public interface PSMDocxPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute IMAGE__TYPE = eINSTANCE.getImage_Type();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.EmbeddedExcelImpl <em>Embedded Excel</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.EmbeddedExcelImpl
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getEmbeddedExcel()
+		 * @generated
+		 */
+		EClass EMBEDDED_EXCEL = eINSTANCE.getEmbeddedExcel();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.WordTableImpl <em>Word Table</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.WordTableImpl
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getWordTable()
+		 * @generated
+		 */
+		EClass WORD_TABLE = eINSTANCE.getWordTable();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.FontFamily <em>Font Family</em>}' enum.

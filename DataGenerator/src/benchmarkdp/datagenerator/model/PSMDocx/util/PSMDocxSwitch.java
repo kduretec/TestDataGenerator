@@ -161,6 +161,22 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PSMDocxPackage.EMBEDDED_EXCEL: {
+				EmbeddedExcel embeddedExcel = (EmbeddedExcel)theEObject;
+				T result = caseEmbeddedExcel(embeddedExcel);
+				if (result == null) result = caseTable(embeddedExcel);
+				if (result == null) result = caseElement(embeddedExcel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocxPackage.WORD_TABLE: {
+				WordTable wordTable = (WordTable)theEObject;
+				T result = caseWordTable(wordTable);
+				if (result == null) result = caseTable(wordTable);
+				if (result == null) result = caseElement(wordTable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -372,6 +388,36 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseImage(Image object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Embedded Excel</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Embedded Excel</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEmbeddedExcel(EmbeddedExcel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Word Table</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Word Table</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWordTable(WordTable object) {
 		return null;
 	}
 

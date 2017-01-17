@@ -148,6 +148,24 @@ public interface PSMDocxFactory extends EFactory {
 	Image createImage();
 
 	/**
+	 * Returns a new object of class '<em>Embedded Excel</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Embedded Excel</em>'.
+	 * @generated
+	 */
+	EmbeddedExcel createEmbeddedExcel();
+
+	/**
+	 * Returns a new object of class '<em>Word Table</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Word Table</em>'.
+	 * @generated
+	 */
+	WordTable createWordTable();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
