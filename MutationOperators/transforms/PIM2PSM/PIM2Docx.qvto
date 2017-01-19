@@ -41,7 +41,12 @@ mapping PIM::Page::PageToPage():PSM::Page {
 			}
 		};
 		if (e.oclIsTypeOf(PIM::Table)) {
-			elements += e.oclAsType(PIM::Table)->map TableToTable();
+			var temp:Real := getRandomReal();
+			if (temp <=0.50) {
+				elements += e.oclAsType(PIM::Table)->map TableToWordTable();
+			} else {
+				elements += e.oclAsType(PIM::Table)->map TableToEmbeddedExcel();
+			}
 		};
 		if (e.oclIsTypeOf(PIM::Image)) {
 			elements += e.oclAsType(PIM::Image)->map ImageToImage();
@@ -128,7 +133,7 @@ mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
 	}
 }
 
-mapping PIM::Table::TableToTable():PSM::Table {
+mapping PIM::Table::TableToWordTable():PSM::Table {
 	ID := generateUID();
 	parentID := self.ID; 
 	numRows := self.numRows;
@@ -145,6 +150,18 @@ mapping PIM::Cell::CellToCell():PSM::Cell {
 		elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
 	}	
 }
+
+mapping PIM::Table::TableToEmbeddedExcel():PSM::EmbeddedExcel {
+	ID := generateUID();
+	parentID := self.ID; 
+	numRows := self.numRows;
+	numCol := self.numCol;
+	row := self.row->map RowToRow();
+}
+
+
+
+
 
 mapping PIM::Image::ImageToImage():PSM::Image {
 	ID := generateUID();

@@ -43,7 +43,6 @@ class LibreParagraph extends AbstractElementCompiler {
 			temp = cState.getVariable("temp") as String
 			temp = temp + '''
 				getLines(«parag», file)
-				
 			'''	
 			cState.setVariable("temp", temp)		
 		}

@@ -4,11 +4,12 @@ import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
 import benchmarkdp.datagenerator.model.PSMDocx.ControlBox;
 import benchmarkdp.datagenerator.model.PSMDocx.Element;
+import benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel;
 import benchmarkdp.datagenerator.model.PSMDocx.Image;
 import benchmarkdp.datagenerator.model.PSMDocx.Page;
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph;
-import benchmarkdp.datagenerator.model.PSMDocx.Table;
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
+import benchmarkdp.datagenerator.model.PSMDocx.WordTable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -37,9 +38,15 @@ public class MSWordPage extends AbstractElementCompiler {
         }
       }
       if (!_matched) {
-        if (e instanceof Table) {
+        if (e instanceof WordTable) {
           _matched=true;
           this.compiler.compile("Table", e);
+        }
+      }
+      if (!_matched) {
+        if (e instanceof EmbeddedExcel) {
+          _matched=true;
+          this.compiler.compile("EmbeddedExcel", e);
         }
       }
       if (!_matched) {

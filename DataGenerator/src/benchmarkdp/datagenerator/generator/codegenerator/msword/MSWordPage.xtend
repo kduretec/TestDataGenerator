@@ -4,11 +4,12 @@ import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.model.PSMDocx.ControlBox
 import benchmarkdp.datagenerator.model.PSMDocx.Element
+import benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel
 import benchmarkdp.datagenerator.model.PSMDocx.Image
 import benchmarkdp.datagenerator.model.PSMDocx.Page
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph
-import benchmarkdp.datagenerator.model.PSMDocx.Table
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox
+import benchmarkdp.datagenerator.model.PSMDocx.WordTable
 import org.eclipse.emf.ecore.EObject
 
 class MSWordPage extends AbstractElementCompiler{
@@ -20,7 +21,8 @@ class MSWordPage extends AbstractElementCompiler{
 				Paragraph: compiler.compile("Paragraph",e)
 				ControlBox : compiler.compile("ControlBox",e)
 				TextBox: compiler.compile("TextBox", e)
-				Table: compiler.compile("Table", e)
+				WordTable: compiler.compile("Table", e)
+				EmbeddedExcel: compiler.compile("EmbeddedExcel", e)
 				Image: compiler.compile("Image", e)
 			}
 		}

@@ -9,6 +9,7 @@ import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordColor;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordControlBox;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordDocument;
+import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordEmbeddedExcel;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordGeneratedCode;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordHyperLink;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordImage;
@@ -54,6 +55,8 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     this.compiler.addCompiler("HyperLink", _mSWordHyperLink);
     MSWordColor _mSWordColor = new MSWordColor();
     this.compiler.addCompiler("Color", _mSWordColor);
+    MSWordEmbeddedExcel _mSWordEmbeddedExcel = new MSWordEmbeddedExcel();
+    this.compiler.addCompiler("EmbeddedExcel", _mSWordEmbeddedExcel);
   }
   
   @Override
@@ -73,6 +76,8 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     this.compilerState.setVariable("parag", _integer);
     Boolean _boolean = new Boolean(false);
     this.compilerState.setVariable("inTable", _boolean);
+    Integer _integer_1 = new Integer(0);
+    this.compilerState.setVariable("inlineShape", _integer_1);
     String _documentPlatform = d.getDocumentPlatform();
     MSWordGeneratedCode sCode = new MSWordGeneratedCode("vbs", _documentPlatform);
     String _string = new String("");

@@ -54,7 +54,6 @@ public class LibreParagraph extends AbstractElementCompiler {
       _builder_1.append(parag, "");
       _builder_1.append(", file)");
       _builder_1.newLineIfNotEmpty();
-      _builder_1.newLine();
       String _plus_1 = (temp + _builder_1);
       temp = _plus_1;
       cState.setVariable("temp", temp);
