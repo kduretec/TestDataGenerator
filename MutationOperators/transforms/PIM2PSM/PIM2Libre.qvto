@@ -56,7 +56,7 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 	 var stVal:String := turnSeqToString(tt.value->asList());
 	 var temp:Real := getRandomReal();
 	 var sT:Text := null;
-	 if (temp < 0.95) {
+	 if (temp <= 1) {
 	 	sT := object SimpleText {
 	// 		size := 10;
 	//		color := Color::BLACK;

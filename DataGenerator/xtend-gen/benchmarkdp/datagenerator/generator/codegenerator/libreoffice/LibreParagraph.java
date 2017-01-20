@@ -38,12 +38,25 @@ public class LibreParagraph extends AbstractElementCompiler {
     parag = (parag + 1);
     Integer _integer = new Integer(parag);
     cState.setVariable("parag", _integer);
+    int counter = 0;
+    if (((par.getWords().size() == 0) && (inTable).booleanValue())) {
+      System.out.println("Nema texta u cellu!!!");
+    }
     EList<Text> _words = par.getWords();
     for (final Text txt : _words) {
-      boolean _matched = false;
-      if (txt instanceof SimpleText) {
-        _matched=true;
-        this.compiler.compile("SimpleText", txt);
+      {
+        if (((inTable).booleanValue() && (counter > 0))) {
+          Object _variable_3 = cState.getVariable("temp");
+          temp = ((String) _variable_3);
+          temp = (temp + " + ");
+          cState.setVariable("temp", temp);
+        }
+        boolean _matched = false;
+        if (txt instanceof SimpleText) {
+          _matched=true;
+          this.compiler.compile("SimpleText", txt);
+        }
+        counter = (counter + 1);
       }
     }
     if ((!(inTable).booleanValue())) {

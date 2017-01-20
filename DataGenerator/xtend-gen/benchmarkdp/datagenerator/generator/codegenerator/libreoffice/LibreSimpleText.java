@@ -8,30 +8,28 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class LibreSimpleText extends AbstractElementCompiler {
-  public String compileSimpleText(final SimpleText t) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("oText.insertString(oText.getEnd(), \" ");
-    String _value = t.getValue();
-    _builder.append(_value, "");
-    _builder.append("\", False)");
-    _builder.newLineIfNotEmpty();
-    String temp = _builder.toString();
-    return temp;
-  }
-  
   @Override
   public void compile(final EObject object, final CompilerState cState) {
     SimpleText t = ((SimpleText) object);
     Object _variable = cState.getVariable("temp");
     String temp = ((String) _variable);
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("oText.insertString(oText.getEnd(), \" ");
-    String _value = t.getValue();
-    _builder.append(_value, "");
-    _builder.append("\", False)");
-    _builder.newLineIfNotEmpty();
-    String _plus = (temp + _builder);
-    temp = _plus;
+    Object _variable_1 = cState.getVariable("inTable");
+    Boolean inTable = ((Boolean) _variable_1);
+    if ((!(inTable).booleanValue())) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("oText.insertString(oText.getEnd(), \" ");
+      String _value = t.getValue();
+      _builder.append(_value, "");
+      _builder.append("\", False)");
+      _builder.newLineIfNotEmpty();
+      String _plus = (temp + _builder);
+      temp = _plus;
+    } else {
+      String _value_1 = t.getValue();
+      String _plus_1 = ((temp + "\"") + _value_1);
+      String _plus_2 = (_plus_1 + "\"");
+      temp = _plus_2;
+    }
     cState.setVariable("temp", temp);
   }
 }

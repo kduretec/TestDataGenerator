@@ -34,7 +34,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 10;
+	int n = 1;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;

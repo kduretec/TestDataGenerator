@@ -34,11 +34,21 @@ class LibreParagraph extends AbstractElementCompiler {
 		cState.setVariable("temp", temp)
 		parag = parag + 1
 		cState.setVariable("parag", new Integer(parag))
+		var counter = 0; 
+		if (par.words.size ==0 && inTable) {
+			System.out.println("Nema texta u cellu!!!")
+		}
 		for (Text txt : par.words) {
+			if (inTable && counter > 0) { 
+				temp = cState.getVariable("temp") as String
+				temp = temp + " + "
+				cState.setVariable("temp", temp)
+			}
 			switch txt {
 				SimpleText: compiler.compile("SimpleText", txt)
 			}
-		}
+			counter = counter + 1
+		}			
 		if (!inTable) {
 			temp = cState.getVariable("temp") as String
 			temp = temp + '''
