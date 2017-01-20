@@ -33,13 +33,13 @@ public class TextElements {
 	public List<Text> getTextElements() {
 		return elements;
 	}
-	
+
 	public void addText(TextElements tE) {
 		elements.addAll(tE.getTextElements());
 	}
-	
+
 	public void saveToXML(String filePath, String testCaseName) {
-		File f = new File(filePath); 
+		File f = new File(filePath);
 		if (!f.exists()) {
 			f.mkdir();
 		}
@@ -63,6 +63,15 @@ public class TextElements {
 				txt.appendChild(doc.createTextNode(t.getRawText()));
 				tmpE.appendChild(id);
 				tmpE.appendChild(txt);
+				Element lines = doc.createElement("lines");
+				for (int i = 0; i < t.getLines().size(); i++) {
+					String l = t.getLines().get(i);
+					Element line = doc.createElement("line");
+					line.setAttribute("num", Integer.toString(i + 1));
+					line.appendChild(doc.createTextNode(l));
+					lines.appendChild(line);
+				}
+				tmpE.appendChild(lines);
 				els.appendChild(tmpE);
 			}
 
