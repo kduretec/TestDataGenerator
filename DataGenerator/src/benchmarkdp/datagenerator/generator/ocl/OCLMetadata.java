@@ -20,7 +20,7 @@ public class OCLMetadata extends AbstractOCLEvaluator{
 	public void evaluateTestModel(TestCase tC) {
 		EList<EObject> objects = tC.getTestModel().getModelObjects();
 		Object doc =  objects.get(0);
-		Object value = eval.evaluate(doc);
+		Object value = evaluateObject(doc);
 		tC.getMetadata().add(name, value);
 	}
 

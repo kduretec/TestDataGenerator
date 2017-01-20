@@ -21,25 +21,25 @@ public class OCLText extends AbstractOCLEvaluator {
 
 	@Override
 	public void evaluateTestModel(TestCase tC) {
-		// TODO Auto-generated method stub
-		EList<EObject> objects = tC.getTestModel().getModelObjects();
-		Object doc = objects.get(0);
-		Object value = eval.evaluate(doc);
-
-		List<Object> list = (List<Object>) value;
-
-		int counter = 0;
-		for (Object l : list) {
-			counter++;
-			StringBuilder sb = new StringBuilder();
-			List<String> ls = (List<String>) l;
-			for (String w : ls) {
-				sb.append(w + " ");
-			}
-			String rT = sb.toString().trim();
-			Text txt = new Text(Integer.toString(counter), rT);
-			tC.getTextElements().addText(txt);
-		}
+//		// TODO Auto-generated method stub
+//		EList<EObject> objects = tC.getTestModel().getModelObjects();
+//		Object doc = objects.get(0);
+//		Object value = eval.evaluate(doc);
+//
+//		List<Object> list = (List<Object>) value;
+//
+//		int counter = 0;
+//		for (Object l : list) {
+//			counter++;
+//			StringBuilder sb = new StringBuilder();
+//			List<String> ls = (List<String>) l;
+//			for (String w : ls) {
+//				sb.append(w + " ");
+//			}
+//			String rT = sb.toString().trim();
+//			Text txt = new Text(Integer.toString(counter), rT);
+//			tC.getTextElements().addText(txt);
+//		}
 	}
 
 }

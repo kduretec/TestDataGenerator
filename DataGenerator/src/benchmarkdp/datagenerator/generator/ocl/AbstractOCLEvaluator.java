@@ -1,6 +1,8 @@
 package benchmarkdp.datagenerator.generator.ocl;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.OCL;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.Query;
@@ -9,13 +11,14 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
 import benchmarkdp.datagenerator.generator.ModelType;
+import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 
 public abstract class AbstractOCLEvaluator implements OCLEvaluatorInterface{
 	
 	protected ModelType modelType;
 
-	protected Query eval;
+	private Query eval;
 
 	private OCLExpression<EClassifier> query;
 	
@@ -39,6 +42,11 @@ public abstract class AbstractOCLEvaluator implements OCLEvaluatorInterface{
 	
 	public ModelType getModelType() {
 		return modelType;
+	}
+	
+	protected Object evaluateObject(Object obj) {
+		Object value = eval.evaluate(obj);
+		return value;
 	}
 
 }
