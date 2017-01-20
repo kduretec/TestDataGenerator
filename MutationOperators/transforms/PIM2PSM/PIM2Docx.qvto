@@ -133,7 +133,7 @@ mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
 	}
 }
 
-mapping PIM::Table::TableToWordTable():PSM::Table {
+mapping PIM::Table::TableToWordTable():PSM::WordTable {
 	ID := generateUID();
 	parentID := self.ID; 
 	numRows := self.numRows;

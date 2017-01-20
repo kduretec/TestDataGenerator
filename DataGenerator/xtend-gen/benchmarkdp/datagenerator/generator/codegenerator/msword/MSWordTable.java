@@ -7,6 +7,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
 import benchmarkdp.datagenerator.model.PSMDocx.Table;
+import benchmarkdp.datagenerator.model.PSMDocx.WordTable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -15,7 +16,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 public class MSWordTable extends AbstractElementCompiler {
   @Override
   public void compile(final EObject object, final CompilerState cState) {
-    Table t = ((Table) object);
+    WordTable t = ((WordTable) object);
     int numR = t.getNumRows();
     int numC = t.getNumCol();
     Object _variable = cState.getVariable("temp");

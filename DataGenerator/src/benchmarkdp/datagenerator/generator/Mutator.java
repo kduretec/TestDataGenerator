@@ -24,8 +24,9 @@ import benchmarkdp.datagenerator.generator.mutation.ComplexMutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperatorInterface;
 import benchmarkdp.datagenerator.generator.ocl.OCLEvaluatorInterface;
+import benchmarkdp.datagenerator.generator.ocl.OCLLibreText;
+import benchmarkdp.datagenerator.generator.ocl.OCLMSWordText;
 import benchmarkdp.datagenerator.generator.ocl.OCLMetadata;
-import benchmarkdp.datagenerator.generator.ocl.OCLText;
 import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
@@ -34,7 +35,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 10;
+	int n = 1;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -305,8 +306,9 @@ public class Mutator {
 				"self.pages.elements->selectByType(Table)->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "paragraphcount",
 				"self.pages.elements->selectByType(Paragraph)->size()"));
-		evaluators.add(new OCLText(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT));
-		evaluators.add(new OCLText(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT));
+
+		evaluators.add(new OCLLibreText());
+		evaluators.add(new OCLMSWordText());
 
 	}
 

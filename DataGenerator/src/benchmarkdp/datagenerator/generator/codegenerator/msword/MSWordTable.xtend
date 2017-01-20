@@ -5,13 +5,14 @@ import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.model.PSMDocx.Element
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph
 import benchmarkdp.datagenerator.model.PSMDocx.Table
+import benchmarkdp.datagenerator.model.PSMDocx.WordTable
 import org.eclipse.emf.ecore.EObject
 
 class MSWordTable extends AbstractElementCompiler{
 	
 	override compile(EObject object, CompilerState cState) {
 		
-		var t = object as Table
+		var t = object as WordTable
 		
 		var numR = t.numRows
 		var numC = t.numCol
