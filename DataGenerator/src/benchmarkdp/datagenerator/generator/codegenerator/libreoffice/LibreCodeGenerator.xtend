@@ -59,7 +59,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 
 	def helper() {
 		var fun = '''
-			Sub getLines(numPar, file) 
+			Sub getLines(numPar, parID, file) 
 				oTextCursor = ThisComponent.Text.createTextCursor()
 			    oTextCursor.gotoStart(False)
 			    oViewCursor = ThisComponent.CurrentController.getViewCursor()
@@ -74,7 +74,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 			        	   	oViewCursor.gotoEndOfLine(False)
 			        	   	oTextCursor.gotoRange(oViewCursor, True)
 			        	   	line = line + 1
-			        	   	s = numPar &amp; ":" &amp; line &amp; ":" &amp; oTextCursor.String
+			        	   	s = parID &amp; ":" &amp; line &amp; ":" &amp; oTextCursor.String
 			        	   	Print #file, s
 			        	   	REM MsgBox "numparh=" + num + " numline=" + line + " text=" + oTextCursor.String, 0, "Lines"
 			        	   	oTextCursor.collapseToEnd()

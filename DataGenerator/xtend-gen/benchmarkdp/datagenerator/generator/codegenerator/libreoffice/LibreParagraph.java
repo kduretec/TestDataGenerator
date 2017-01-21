@@ -35,13 +35,12 @@ public class LibreParagraph extends AbstractElementCompiler {
       temp = _plus;
     }
     cState.setVariable("temp", temp);
-    parag = (parag + 1);
+    if ((!(inTable).booleanValue())) {
+      parag = (parag + 1);
+    }
     Integer _integer = new Integer(parag);
     cState.setVariable("parag", _integer);
     int counter = 0;
-    if (((par.getWords().size() == 0) && (inTable).booleanValue())) {
-      System.out.println("Nema texta u cellu!!!");
-    }
     EList<Text> _words = par.getWords();
     for (final Text txt : _words) {
       {
@@ -65,7 +64,10 @@ public class LibreParagraph extends AbstractElementCompiler {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("getLines(");
       _builder_1.append(parag, "");
-      _builder_1.append(", file)");
+      _builder_1.append(", \"");
+      String _iD = par.getID();
+      _builder_1.append(_iD, "");
+      _builder_1.append("\", file)");
       _builder_1.newLineIfNotEmpty();
       String _plus_1 = (temp + _builder_1);
       temp = _plus_1;

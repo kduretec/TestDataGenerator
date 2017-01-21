@@ -16,9 +16,11 @@ class MSWordDocument extends AbstractElementCompiler {
 			Const END_OF_STORY = 6 
 			Set objWord = CreateObject("Word.Application") 
 			objWord.Visible = True 
-			grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\MSWordOutput\«cState.getVariable("documentName")»-wordgroundtruth.txt" 				
+			grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\GeneratedText\«cState.getVariable("documentName")».txt" 				
+			grFileMetadata = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\GeneratedMetadata\«cState.getVariable("documentName")».txt"
 			Set objFSO = CreateObject("Scripting.FileSystemObject")
 			Set objFile = objFSO.CreateTextFile(grFile, True)
+			Set objFileMetadata = objFSO.CreateTextFile(grFileMetadata, True)
 			Set oDoc = objWord.Documents.Add()
 			oDoc.PageSetup.TextColumns.SetCount(«d.numColum») 
 			Set oSelection = objWord.Selection 
@@ -36,11 +38,12 @@ class MSWordDocument extends AbstractElementCompiler {
 		temp = temp + '''
 			oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«cState.getVariable("documentName")».«d.documentFormat»", «d.documentFormatCode»
 					
-			objFile.Write "pagecount " & oDoc.ComputeStatistics(2) & vbCrLf
-			objFile.Write "wordcount " & oDoc.ComputeStatistics(0) & vbCrLf
-			objFile.Write "paragraphcount " & oDoc.ComputeStatistics(4)
+			objFileMetadata.Write "pagecount " & oDoc.ComputeStatistics(2) & vbCrLf
+			objFileMetadata.Write "wordcount " & oDoc.ComputeStatistics(0) & vbCrLf
+			objFileMetadata.Write "paragraphcount " & oDoc.ComputeStatistics(4)
 			oDoc.Saved = TRUE
 			objFile.Close()
+			objFileMetadata.Close()
 			objWord.Quit
 			
 			Sub selLines(p, id, o, outFile) 

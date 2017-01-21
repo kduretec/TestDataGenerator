@@ -28,7 +28,15 @@ public class Utils {
 	
 	public static String metadataPath = groundTruthPath + "Metadata/";
 	
+	public static String modelMetadataPath = groundTruthPath + "ModelMetadata/";
+	
+	public static String generatedMetadataPath = groundTruthPath + "GeneratedMetadata/";
+	
 	public static String textPath = groundTruthPath + "Text/";
+	
+	public static String modelTextPath = groundTruthPath + "ModelText/";
+	
+	public static String generatedTextPath = groundTruthPath + "GeneratedText/";
 	
 	public static String pimTransformation = "file://Users/kresimir/Projects/TestDataGenerator/TestDataGenerator/MutationOperators/transforms/PIM/";
 	

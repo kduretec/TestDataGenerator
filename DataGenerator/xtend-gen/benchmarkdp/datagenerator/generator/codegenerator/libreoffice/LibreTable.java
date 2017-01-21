@@ -18,8 +18,14 @@ public class LibreTable extends AbstractElementCompiler {
     Table t = ((Table) object);
     int numR = t.getNumRows();
     int numC = t.getNumCol();
-    Object _variable = cState.getVariable("temp");
-    String temp = ((String) _variable);
+    Object _variable = cState.getVariable("parag");
+    Integer numPar = ((Integer) _variable);
+    int parag = numPar.intValue();
+    parag = (parag + 1);
+    Integer _integer = new Integer(parag);
+    cState.setVariable("parag", _integer);
+    Object _variable_1 = cState.getVariable("temp");
+    String temp = ((String) _variable_1);
     Boolean _boolean = new Boolean(true);
     cState.setVariable("inTable", _boolean);
     StringConcatenation _builder = new StringConcatenation();

@@ -78,7 +78,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   
   public String helper() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Sub getLines(numPar, file) ");
+    _builder.append("Sub getLines(numPar, parID, file) ");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("oTextCursor = ThisComponent.Text.createTextCursor()");
@@ -123,7 +123,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     _builder.append("line = line + 1");
     _builder.newLine();
     _builder.append("        \t   \t");
-    _builder.append("s = numPar &amp; \":\" &amp; line &amp; \":\" &amp; oTextCursor.String");
+    _builder.append("s = parID &amp; \":\" &amp; line &amp; \":\" &amp; oTextCursor.String");
     _builder.newLine();
     _builder.append("        \t   \t");
     _builder.append("Print #file, s");

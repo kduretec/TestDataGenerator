@@ -23,7 +23,9 @@ class LibreDocument extends AbstractElementCompiler {
 				
 				Url = "private:factory/swriter"
 				file = FreeFile()
-				Open "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/LibreOffice/«cS.getVariable("documentName")»-libregroundtruth.txt" For Output As #file 
+				Open "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/GeneratedText/«cS.getVariable("documentName")».txt" For Output As #file
+				fileMetadata = FreeFile()
+				Open "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/GeneratedMetadata/«cS.getVariable("documentName")».txt" For Output As #fileMetadata  
 				oDoc = StarDesktop.loadComponentFromURL(Url, "_blank", 0, Array())
 				
 				oText = oDoc.getText()
@@ -35,6 +37,7 @@ class LibreDocument extends AbstractElementCompiler {
 				Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«cState.getVariable("documentName")».«d.documentFormat»"
 				oDoc.storeAsURL(Url2, Dummy())
 				Close #file
+				Close #fileMetadata
 				oDoc.close(true)
 				End Sub
 							

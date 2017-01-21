@@ -108,10 +108,10 @@ public class TestCase {
 				testModel.saveModelToFile(path, testCaseName);
 			}
 			if (metadata != null) {
-				metadata.saveToXML(Utils.metadataPath, testCaseName);
+				metadata.saveToXML(Utils.modelMetadataPath, testCaseName);
 			}
 			if (textElements != null) {
-				textElements.saveToXML(Utils.textPath, testCaseName);
+				textElements.saveToXML(Utils.modelTextPath, testCaseName);
 			}
 			generatedCode.saveToFile(Utils.macroPath, testCaseName);
 		}

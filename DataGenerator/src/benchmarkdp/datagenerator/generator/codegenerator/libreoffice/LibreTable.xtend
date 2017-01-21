@@ -13,7 +13,10 @@ class LibreTable extends AbstractElementCompiler{
 		var t = object as Table
 		var numR = t.numRows
 		var numC = t.numCol
-		
+		var numPar = cState.getVariable("parag") as Integer;
+		var parag = numPar.intValue
+		parag = parag + 1
+		cState.setVariable("parag", new Integer(parag)) 
 		var temp = cState.getVariable("temp") as String
 		cState.setVariable("inTable", new Boolean(true))
 		temp = temp + '''
