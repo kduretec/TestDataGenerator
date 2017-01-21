@@ -16,10 +16,16 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
@@ -27,11 +33,13 @@ import benchmarkdp.datagenerator.generator.utils.Utils;
 public class DataCollector {
 
 	private List<CollectorOperatorInterface> operators;
+	LineCollector lineCollector;
 
 	public DataCollector() {
 		operators = new ArrayList<CollectorOperatorInterface>();
 		operators.add(new FitsCollector());
 		operators.add(new GeneratedMetadataCollector());
+		lineCollector = new LineCollector();
 	}
 
 	public static void main(String[] args) {
@@ -60,10 +68,14 @@ public class DataCollector {
 			}
 
 			storeMetadata(metadata, f);
-			
-			
-			// collect integrity information 
-			
+
+			// collect integrity information
+			Document text = getText(f);
+			Map<String, List<String>> lValues = lineCollector.collect(f);
+			text = addLines(text, lValues);
+
+			storeText(text, f);
+
 		}
 
 	}
@@ -79,6 +91,36 @@ public class DataCollector {
 			root.appendChild(tmp);
 		}
 		return x;
+	}
+
+	private Document addLines(Document x, Map<String, List<String>> lines) {
+
+		XPathFactory xPathfactory = XPathFactory.newInstance();
+		XPath xpath = xPathfactory.newXPath();
+
+		for (Map.Entry<String, List<String>> entry : lines.entrySet()) {
+			try {
+				String id = entry.getKey();
+				List<String> l = entry.getValue();
+				XPathExpression expr = xpath.compile("//element[ID='" + id + "']/lines");
+				NodeList nl = (NodeList) expr.evaluate(x, XPathConstants.NODESET);
+				Node el = nl.item(0);
+				for (int i = 0; i < l.size(); i++) {
+					Element tmp = x.createElement("line");
+					tmp.setAttribute("num", Integer.toString(i + 1));
+					tmp.appendChild(x.createTextNode(l.get(i)));
+					el.appendChild(tmp);
+				}
+			} catch (XPathExpressionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			Node root = x.getElementsByTagName("metadataEntries").item(0);
+
+		}
+		return x;
+
 	}
 
 	private Document getMetadata(String file) {
@@ -111,7 +153,7 @@ public class DataCollector {
 
 		String metadataPath = Utils.metadataPath + file + ".xml";
 		File fileMetadata = new File(metadataPath);
-		
+
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer;
 		try {
@@ -129,6 +171,54 @@ public class DataCollector {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	private Document getText(String file) {
+		String textPath = Utils.modelTextPath + file + ".xml";
+		File fileText = new File(textPath);
+
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder;
+		Document doc = null;
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+			doc = dBuilder.parse(fileText);
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return doc;
+
+	}
+
+	private void storeText(Document text, String file) {
+		String textPath = Utils.textPath + file + ".xml";
+		File fileText = new File(textPath);
+
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer;
+		try {
+			transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+			DOMSource source = new DOMSource(text);
+			StreamResult result = new StreamResult(fileText);
+
+			transformer.transform(source, result);
+		} catch (TransformerConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
