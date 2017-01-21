@@ -19,7 +19,7 @@ import benchmarkdp.datagenerator.generator.utils.Utils;
 public class FitsCollector implements CollectorOperatorInterface {
 
 	private List<String> elements = Arrays.asList("size");
-	private String name = "FITS";
+	private String name = "Fits";
 
 	@Override
 	public String getName() {

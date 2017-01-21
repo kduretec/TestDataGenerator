@@ -31,6 +31,7 @@ public class DataCollector {
 	public DataCollector() {
 		operators = new ArrayList<CollectorOperatorInterface>();
 		operators.add(new FitsCollector());
+		operators.add(new GeneratedMetadataCollector());
 	}
 
 	public static void main(String[] args) {
@@ -59,6 +60,10 @@ public class DataCollector {
 			}
 
 			storeMetadata(metadata, f);
+			
+			
+			// collect integrity information 
+			
 		}
 
 	}
@@ -78,7 +83,7 @@ public class DataCollector {
 
 	private Document getMetadata(String file) {
 
-		String metadataPath = Utils.metadataPath + file + ".xml";
+		String metadataPath = Utils.modelMetadataPath + file + ".xml";
 		File fileMetadata = new File(metadataPath);
 
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
