@@ -18,9 +18,15 @@ public class MSWordTextBox extends AbstractElementCompiler {
     Object _variable = cState.getVariable("temp");
     String temp = ((String) _variable);
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("oSelection.TypeParagraph()");
+    _builder.newLine();
     _builder.append("tBox = tBox + 1");
     _builder.newLine();
-    _builder.append("oDoc.Shapes.AddTextbox 1, 80, 100, 500, 32");
+    _builder.append("x = oSelection.Information(5)");
+    _builder.newLine();
+    _builder.append("y = oSelection.Information(6)  ");
+    _builder.newLine();
+    _builder.append("oDoc.Shapes.AddTextbox 1, x, y, 500, 100");
     _builder.newLine();
     _builder.append("Set textBox = oDoc.Shapes(tBox)");
     _builder.newLine();

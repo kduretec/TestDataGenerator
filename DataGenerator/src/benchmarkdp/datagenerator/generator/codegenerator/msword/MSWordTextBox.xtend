@@ -15,8 +15,11 @@ class MSWordTextBox extends AbstractElementCompiler{
 		
 		var temp = cState.getVariable("temp") as String
 		temp = temp + '''
+			oSelection.TypeParagraph()
 			tBox = tBox + 1
-			oDoc.Shapes.AddTextbox 1, 80, 100, 500, 32
+			x = oSelection.Information(5)
+			y = oSelection.Information(6)  
+			oDoc.Shapes.AddTextbox 1, x, y, 500, 100
 			Set textBox = oDoc.Shapes(tBox)
 		'''
 		temp = temp + "\ntextBox.TextFrame.TextRange.Text = \""
