@@ -30,6 +30,8 @@ public class MSWordTextBox extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("Set textBox = oDoc.Shapes(tBox)");
     _builder.newLine();
+    _builder.append("textBox.WrapFormat.Type = 7");
+    _builder.newLine();
     String _plus = (temp + _builder);
     temp = _plus;
     temp = (temp + "\ntextBox.TextFrame.TextRange.Text = \"");
@@ -51,6 +53,7 @@ public class MSWordTextBox extends AbstractElementCompiler {
     Object _variable_1 = cState.getVariable("temp");
     temp = ((String) _variable_1);
     temp = (temp + "\"\n");
+    temp = (temp + "oSelection.Move 5, 2\n");
     cState.setVariable("temp", temp);
   }
   

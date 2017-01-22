@@ -21,6 +21,7 @@ class MSWordTextBox extends AbstractElementCompiler{
 			y = oSelection.Information(6)  
 			oDoc.Shapes.AddTextbox 1, x, y, 500, 100
 			Set textBox = oDoc.Shapes(tBox)
+			textBox.WrapFormat.Type = 7
 		'''
 		temp = temp + "\ntextBox.TextFrame.TextRange.Text = \""
 		cState.setVariable("temp", temp)
@@ -35,6 +36,7 @@ class MSWordTextBox extends AbstractElementCompiler{
 
 		temp = cState.getVariable("temp") as String
 		temp = temp + "\"\n"
+		temp = temp + "oSelection.Move 5, 2\n";
 		cState.setVariable("temp", temp)
 		
 	}
