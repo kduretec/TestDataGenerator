@@ -64,13 +64,16 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 	var si:Integer := self.words->asSequence()->size(); 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
+	 if (pos - i > 20) {
+	 	pos := i + 20 
+	 };
 	 var tt := self.words->asSequence()->subSequence(i,pos);
 	 var tSize := tt->size();
 	 i := pos + 1;
 	 var stVal:String := turnSeqToString(tt.value->asList());
 	 var temp:Real := getRandomReal();
 	 var sT:Text := null;
-	 if (temp < 0.98) {
+	 if (temp < 0.98 or tt->size() > 3) {
 	 	sT := object SimpleText {
 	 		size := 10;
 	 		color := Color::BLACK;
@@ -90,13 +93,15 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 }
 
 mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
-	log("Here is TextBox");
 	var i:Integer := 1;
 	var si:Integer := self.words->asSequence()->size(); 
 	ID := generateUID();
 	parentID := self.ID; 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
+	 if (pos - i > 20) {
+	 	pos := i + 20 
+	 };
 	 var tt := self.words->asSequence()->subSequence(i,pos);
 	 var tSize := tt->size();
 	 i := pos + 1;
@@ -119,6 +124,9 @@ mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
 	parentID := self.ID; 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
+	 if (pos - i > 20) {
+	 	pos := i + 20 
+	 };
 	 var tt := self.words->asSequence()->subSequence(i,pos);
 	 var tSize := tt->size();
 	 i := pos + 1;
@@ -159,10 +167,6 @@ mapping PIM::Table::TableToEmbeddedExcel():PSM::EmbeddedExcel {
 	numCol := self.numCol;
 	row := self.row->map RowToRow();
 }
-
-
-
-
 
 mapping PIM::Image::ImageToImage():PSM::Image {
 	ID := generateUID();

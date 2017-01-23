@@ -32,33 +32,35 @@ public class FitsCollector implements CollectorOperatorInterface {
 		String fitsFilePath = Utils.fitsPath + test + ".fits.xml";
 
 		File fits = new File(fitsFilePath);
-
 		Map<String, String> values = new HashMap<String, String>();
 
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder;
-		try {
-			dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fits);
-			doc.getDocumentElement().normalize();
-			for (String el : elements) {
-				String val;
-				if (doc.getElementsByTagName(el).getLength() == 0) {
-					val = "NA";
-				} else {
-					val = doc.getElementsByTagName(el).item(0).getTextContent();
+		if (fits.exists()) {
+
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder;
+			try {
+				dBuilder = dbFactory.newDocumentBuilder();
+				Document doc = dBuilder.parse(fits);
+				doc.getDocumentElement().normalize();
+				for (String el : elements) {
+					String val;
+					if (doc.getElementsByTagName(el).getLength() == 0) {
+						val = "NA";
+					} else {
+						val = doc.getElementsByTagName(el).item(0).getTextContent();
+					}
+					values.put(el, val);
 				}
-				values.put(el, val);
+			} catch (ParserConfigurationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return values;
 	}
