@@ -21,7 +21,7 @@ import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.TestModel;
 
-public class ComplexMutationOperator extends MutationOperator implements MutationOperatorInterface {
+public class MSWordMutationOperator extends MutationOperator implements MutationOperatorInterface {
 
 	private List<String> formats;
 
@@ -29,7 +29,7 @@ public class ComplexMutationOperator extends MutationOperator implements Mutatio
 
 	private Map<String, String> formatMapping;
 
-	public ComplexMutationOperator(String n, ModelType s, ModelType d, String link, List<String> f, List<String> form,
+	public MSWordMutationOperator(String n, ModelType s, ModelType d, String link, List<String> f, List<String> form,
 			List<String> plat) {
 		super(n, s, d, link, f);
 		formats = form;

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getNumColum <em>Num Colum</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentFormat <em>Document Format</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentPlatform <em>Document Platform</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentFilter <em>Document Filter</em>}</li>
  * </ul>
  *
  * @generated
@@ -143,6 +144,26 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @ordered
 	 */
 	protected String documentPlatform = DOCUMENT_PLATFORM_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDocumentFilter() <em>Document Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DOCUMENT_FILTER_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDocumentFilter() <em>Document Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentFilter()
+	 * @generated
+	 * @ordered
+	 */
+	protected String documentFilter = DOCUMENT_FILTER_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -285,6 +306,27 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getDocumentFilter() {
+		return documentFilter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDocumentFilter(String newDocumentFilter) {
+		String oldDocumentFilter = documentFilter;
+		documentFilter = newDocumentFilter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER, oldDocumentFilter, documentFilter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -300,6 +342,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getDocumentFormat();
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
 				return getDocumentPlatform();
+			case PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER:
+				return getDocumentFilter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -332,6 +376,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
 				setDocumentPlatform((String)newValue);
 				return;
+			case PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER:
+				setDocumentFilter((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -362,6 +409,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
 				setDocumentPlatform(DOCUMENT_PLATFORM_EDEFAULT);
 				return;
+			case PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER:
+				setDocumentFilter(DOCUMENT_FILTER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -386,6 +436,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return DOCUMENT_FORMAT_EDEFAULT == null ? documentFormat != null : !DOCUMENT_FORMAT_EDEFAULT.equals(documentFormat);
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
 				return DOCUMENT_PLATFORM_EDEFAULT == null ? documentPlatform != null : !DOCUMENT_PLATFORM_EDEFAULT.equals(documentPlatform);
+			case PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER:
+				return DOCUMENT_FILTER_EDEFAULT == null ? documentFilter != null : !DOCUMENT_FILTER_EDEFAULT.equals(documentFilter);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -410,6 +462,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		result.append(documentFormat);
 		result.append(", documentPlatform: ");
 		result.append(documentPlatform);
+		result.append(", documentFilter: ");
+		result.append(documentFilter);
 		result.append(')');
 		return result.toString();
 	}

@@ -25,6 +25,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/numColum"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/documentFormat"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/documentPlatform"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/documentFilter"/>
     </genClasses>
     <genClasses ecoreClass="PSMLibre.ecore#//Page">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Page/elements"/>

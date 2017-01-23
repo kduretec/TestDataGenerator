@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getNumColum <em>Num Colum</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFormat <em>Document Format</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentPlatform <em>Document Platform</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFilter <em>Document Filter</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument()
@@ -172,5 +173,31 @@ public interface Document extends EObject {
 	 * @generated
 	 */
 	void setDocumentPlatform(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Document Filter</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Document Filter</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Document Filter</em>' attribute.
+	 * @see #setDocumentFilter(String)
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_DocumentFilter()
+	 * @model
+	 * @generated
+	 */
+	String getDocumentFilter();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFilter <em>Document Filter</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Document Filter</em>' attribute.
+	 * @see #getDocumentFilter()
+	 * @generated
+	 */
+	void setDocumentFilter(String value);
 
 } // Document

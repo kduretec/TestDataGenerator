@@ -35,7 +35,10 @@ class LibreDocument extends AbstractElementCompiler {
 
 		var endPart = '''
 				Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«cState.getVariable("documentName")».«d.documentFormat»"
-				oDoc.storeAsURL(Url2, Dummy())
+				Dim args(0) as new com.sun.star.beans.PropertyValue
+				args(0).Name = "FilterName"
+				args(0).Value = "«d.documentFilter»"
+				oDoc.storeToURL(Url2, args())
 				Close #file
 				Close #fileMetadata
 				oDoc.close(true)

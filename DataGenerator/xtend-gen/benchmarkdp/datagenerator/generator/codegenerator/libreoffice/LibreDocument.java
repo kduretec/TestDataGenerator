@@ -78,7 +78,16 @@ public class LibreDocument extends AbstractElementCompiler {
     _builder_1.append(_documentFormat, "");
     _builder_1.append("\"");
     _builder_1.newLineIfNotEmpty();
-    _builder_1.append("oDoc.storeAsURL(Url2, Dummy())");
+    _builder_1.append("Dim args(0) as new com.sun.star.beans.PropertyValue");
+    _builder_1.newLine();
+    _builder_1.append("args(0).Name = \"FilterName\"");
+    _builder_1.newLine();
+    _builder_1.append("args(0).Value = \"");
+    String _documentFilter = d.getDocumentFilter();
+    _builder_1.append(_documentFilter, "");
+    _builder_1.append("\"");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("oDoc.storeToURL(Url2, args())");
     _builder_1.newLine();
     _builder_1.append("Close #file");
     _builder_1.newLine();

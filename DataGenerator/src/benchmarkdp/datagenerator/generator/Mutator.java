@@ -20,7 +20,7 @@ import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverIn
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreCodeGenerator;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratorObserver;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.DocxCodeGenerator;
-import benchmarkdp.datagenerator.generator.mutation.ComplexMutationOperator;
+import benchmarkdp.datagenerator.generator.mutation.LibreOfficeMutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperatorInterface;
 import benchmarkdp.datagenerator.generator.ocl.OCLEvaluatorInterface;
@@ -31,7 +31,6 @@ import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
-
 
 public class Mutator {
 
@@ -70,7 +69,7 @@ public class Mutator {
 		initializeMutationsPIM2PSM();
 		initializeMutationsPSM();
 
-		testCases= new ArrayList<TestCase>();
+		testCases = new ArrayList<TestCase>();
 		List<TestFeature> testFeatures = readFeatureDistributions();
 
 		for (int i = 0; i < n; i++) {
@@ -168,7 +167,6 @@ public class Mutator {
 			}
 		}
 
-		
 		System.out.println("Size of models " + testCases.size());
 		for (TestCase tm : testCases) {
 			tm.saveTestCaseComponents();
@@ -227,16 +225,20 @@ public class Mutator {
 	}
 
 	private void initializeMutationsPIM2PSM() {
-//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
-//				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
-//				Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
-		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx"),
-				Arrays.asList("Win7-Office2007")));
-//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
-//				ModelType.PIM, ModelType.PSMLibre, Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
-//				Arrays.asList("odt"), Arrays.asList("Ubuntu16-LibreOffice")));
+		// mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc",
+		// ModelType.PIM, ModelType.PSMDoc,
+		// Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox,
+		// format, platform"),
+		// Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
+		// mutationsPIM2PSM.add(new MSWordMutationOperator("PIM2Docx",
+		// ModelType.PIM, ModelType.PSMDocx,
+		// Utils.pim2psmTransformation + "PIM2Docx.qvto",
+		// Arrays.asList("textbox", "controlbox", "format", "platform"),
+		// Arrays.asList("docx"),
+		// Arrays.asList("Win7-Office2007")));
+		mutationsPIM2PSM.add(new LibreOfficeMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
+				Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList("format", "platform"),
+				Arrays.asList("odt", "doc", "pdf", "docx"), Arrays.asList("Ubuntu16-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -293,15 +295,15 @@ public class Mutator {
 		// evaluators.add(new OCLEvaluatorPSMDocx("platform",
 		// "self.documentPlatform"));
 
-		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "format",
-				"self.documentFormat"));
+		evaluators.add(
+				new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "format", "self.documentFormat"));
 		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "format",
 				"self.documentFormat"));
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "platform",
 				"self.documentPlatform"));
 		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "platform",
 				"self.documentPlatform"));
-		
+
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "tablecount",
 				"self.pages.elements->selectByType(Table)->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "paragraphcount",
@@ -315,7 +317,7 @@ public class Mutator {
 	private void initializeCodeGenerator() {
 		codeGenerator = new ArrayList<CodeGeneratorInterface>();
 		codeGeneratorObserver = new ArrayList<CodeGeneratorObserverInterface>();
-//		codeGenerator.add(new DocCodeGenerator());
+		// codeGenerator.add(new DocCodeGenerator());
 		codeGenerator.add(new DocxCodeGenerator());
 		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
 		codeGenerator.add(new LibreCodeGenerator(libreObserver));
