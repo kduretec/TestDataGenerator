@@ -8,7 +8,7 @@ transformation ChangeTextColor(inout model:PSM);
 main() {
 	var texts:= model.objectsOfType(SimpleText); 
 	if (texts->size() > 0) {
-		texts->asSequence()->at(getRandom(texts->size()))->map ChangeColor()	
+		texts->asSequence()->at(getRandom(texts->size()))->map ChangeColor()
 	}
 	
 }

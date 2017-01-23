@@ -31,7 +31,6 @@ class MSWordTextBox extends AbstractElementCompiler{
 				SimpleText: compileSimpleText(txt, cState)
 				HyperLink: compiler.compile("HyperLink", txt)
 			}
-
 		}
 
 		temp = cState.getVariable("temp") as String

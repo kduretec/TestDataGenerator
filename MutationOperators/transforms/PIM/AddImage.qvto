@@ -30,5 +30,12 @@ mapping inout PIM::Page::AddImage(inout i:Integer) {
 		width := 200;
 		type := "jpg";
 	};
-	self.elements += img;
+	var ranPos : Integer;
+	var elSize := self.elements->size();
+	if (elSize > 0) {
+		ranPos := getRandomBetween(1,elSize)
+	} else {
+		ranPos := 1;
+	};
+	self.elements := self.elements->insertAt(ranPos, img);
 }

@@ -4,17 +4,19 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 transformation AddParagraph(inout model:PIM);
 configuration property wordcount : String;
+configuration property pagecount : String;
 main() {
 	var pages:= model.objectsOfType(Page);
 	if (pages->size() > 0) {
-		var wc:= stringToInt(wordcount);
-		var num := wc/250;
-		var pc :=  getRandom(num.round() + 1); 
-		while (pc > 0) {
+		var wc := stringToInt(wordcount);
+		var pc := stringToInt(pagecount);
+		var numPar := pc * 3;
+		//var pc :=  getRandom(num.round() + 1); 
+		while (numPar > 0) {
 			var pos := getRandom(pages->size());
 			var page := pages->asSequence()->at(pos);
-			page->map AddParagraph(pc);
-			pc := pc - 1;		
+			page->map AddParagraph(numPar);
+			numPar := numPar - 1;		
 		}	
 	}
 	
@@ -25,5 +27,12 @@ mapping inout PIM::Page::AddParagraph(inout i:Integer) {
 	var par := object Paragraph {
 		ID := generateUID();
 	};
-	self.elements += par;
+	var ranPos : Integer;
+	var elSize := self.elements->size();
+	if (elSize > 0) {
+		ranPos := getRandomBetween(1,elSize)
+	} else {
+		ranPos := 1;
+	};
+	self.elements := self.elements->insertAt(ranPos, par);
 }

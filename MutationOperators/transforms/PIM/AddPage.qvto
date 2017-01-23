@@ -9,15 +9,16 @@ configuration property pagecount : String;
 main() {
 	var doc:= model.objectsOfType(Document); 
 	doc->map AddPage();
+	log('Added pages : ', doc.pages->size());
 }
-
 
 mapping inout Document::AddPage() {
 	var pc := stringToInt(pagecount);
+	log('Adding pages : ', pc);
 	while (pc > 0) {
 		var pag := object Page {
 		}; 
 		pages += pag;
 		pc := pc - 1;	
-	}
+	};
 }

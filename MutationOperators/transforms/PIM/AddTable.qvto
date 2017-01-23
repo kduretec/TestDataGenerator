@@ -54,18 +54,16 @@ mapping inout PIM::Page::AddTable(inout i:Integer) {
 			r := r + 1;
 		};
 	}; 
-
  
-	var pos:Integer;
-	if (self.elements->size()=0) {
-		pos:=1;
+	var ranPos : Integer;
+	var elSize := self.elements->size();
+	if (elSize > 0) {
+		ranPos := getRandomBetween(1,elSize)
 	} else {
-		pos := getRandom(self.elements->size());
+		ranPos := 1;
 	};
-	//self.elements += tab;
-	self.elements := self.elements->asSequence()->insertAt(pos,tab);
+	self.elements := self.elements->insertAt(ranPos, tab);
 }
-
 
 mapping AddWord(inout par:PIM::Paragraph) {
 	var w := object Word {
