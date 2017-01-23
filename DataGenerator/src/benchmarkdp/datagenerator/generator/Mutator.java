@@ -35,7 +35,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 10;
+	int n = 1;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -218,25 +218,25 @@ public class Mutator {
 				Utils.pimTransformation + "AddPage.qvto", Arrays.asList("pagecount")));
 		mutationsPIM.add(new MutationOperator("AddParagraph", ModelType.PIM, ModelType.PIM,
 				Utils.pimTransformation + "AddParagraph.qvto", Arrays.asList("pagecount", "wordcount")));
-//		mutationsPIM.add(new MutationOperator("AddTable", ModelType.PIM, ModelType.PIM,
-//				Utils.pimTransformation + "AddTable.qvto", Arrays.asList("tablecount")));
-//		mutationsPIM.add(new MutationOperator("AddImage", ModelType.PIM, ModelType.PIM,
-//				Utils.pimTransformation + "AddImage.qvto", Arrays.asList("imagecount")));
-//		mutationsPIM.add(new MutationOperator("AddWord", ModelType.PIM, ModelType.PIM,
-//				Utils.pimTransformation + "AddWord.qvto", Arrays.asList("wordcount")));
+		mutationsPIM.add(new MutationOperator("AddTable", ModelType.PIM, ModelType.PIM,
+				Utils.pimTransformation + "AddTable.qvto", Arrays.asList("tablecount")));
+		mutationsPIM.add(new MutationOperator("AddImage", ModelType.PIM, ModelType.PIM,
+				Utils.pimTransformation + "AddImage.qvto", Arrays.asList("imagecount")));
+		mutationsPIM.add(new MutationOperator("AddWord", ModelType.PIM, ModelType.PIM,
+				Utils.pimTransformation + "AddWord.qvto", Arrays.asList("wordcount")));
 	}
 
 	private void initializeMutationsPIM2PSM() {
 //		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc", ModelType.PIM, ModelType.PSMDoc,
 //				Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox, format, platform"),
 //				Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
-//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-//				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-//				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx"),
-//				Arrays.asList("Win7-Office2007")));
-		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
-				ModelType.PIM, ModelType.PSMLibre, Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
-				Arrays.asList("odt"), Arrays.asList("Ubuntu16-LibreOffice")));
+		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+				Utils.pim2psmTransformation + "PIM2Docx.qvto",
+				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx"),
+				Arrays.asList("Win7-Office2007")));
+//		mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Libre",
+//				ModelType.PIM, ModelType.PSMLibre, Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList(),
+//				Arrays.asList("odt"), Arrays.asList("Ubuntu16-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {

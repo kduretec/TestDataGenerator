@@ -32,9 +32,9 @@ mapping PIM::Page::PageToPage():PSM::Page {
 	self.elements->forEach(e) {
 		if (e.oclIsTypeOf(PIM::Paragraph)) {
 			var temp:Real := getRandomReal();
-			if (temp <=0.20) {
+			if (temp <=0.90) {
 				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
-			} else if (temp<=0.95) {
+			} else if (temp<=0.99) {
 				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
 			} else {
 				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToControlBox();
@@ -90,6 +90,7 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 }
 
 mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
+	log("Here is TextBox");
 	var i:Integer := 1;
 	var si:Integer := self.words->asSequence()->size(); 
 	ID := generateUID();

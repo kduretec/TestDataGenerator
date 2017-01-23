@@ -22,6 +22,7 @@ class MSWordTextBox extends AbstractElementCompiler{
 			oDoc.Shapes.AddTextbox 1, x, y, 500, 100
 			Set textBox = oDoc.Shapes(tBox)
 			textBox.WrapFormat.Type = 7
+			textBox.TextFrame.AutoSize = True
 		'''
 		temp = temp + "\ntextBox.TextFrame.TextRange.Text = \""
 		cState.setVariable("temp", temp)

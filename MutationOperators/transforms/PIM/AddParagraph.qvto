@@ -10,7 +10,15 @@ main() {
 	if (pages->size() > 0) {
 		var wc := stringToInt(wordcount);
 		var pc := stringToInt(pagecount);
-		var numPar := pc * 3;
+		var numPar1 := pc * 3;
+		var numPar2real := wc / 250;
+		var numPar : Integer; 
+		var numPar2 := numPar2real.round() + 1;
+		if (numPar1 > numPar2) {
+			numPar := numPar1;
+		} else {
+			numPar := numPar2;
+		};
 		//var pc :=  getRandom(num.round() + 1); 
 		while (numPar > 0) {
 			var pos := getRandom(pages->size());
