@@ -21,6 +21,7 @@ import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreCodeGe
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratorObserver;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.DocxCodeGenerator;
 import benchmarkdp.datagenerator.generator.mutation.LibreOfficeMutationOperator;
+import benchmarkdp.datagenerator.generator.mutation.MSWordMutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperatorInterface;
 import benchmarkdp.datagenerator.generator.ocl.OCLEvaluatorInterface;
@@ -34,7 +35,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 1;
+	int n = 5;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -230,15 +231,13 @@ public class Mutator {
 		// Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox,
 		// format, platform"),
 		// Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
-		// mutationsPIM2PSM.add(new MSWordMutationOperator("PIM2Docx",
-		// ModelType.PIM, ModelType.PSMDocx,
-		// Utils.pim2psmTransformation + "PIM2Docx.qvto",
-		// Arrays.asList("textbox", "controlbox", "format", "platform"),
-		// Arrays.asList("docx"),
-		// Arrays.asList("Win7-Office2007")));
+		mutationsPIM2PSM.add(new MSWordMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+				Utils.pim2psmTransformation + "PIM2Docx.qvto",
+				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf", "odt"),
+				Arrays.asList("Win7-Office2007")));
 		mutationsPIM2PSM.add(new LibreOfficeMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
 				Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList("format", "platform"),
-				Arrays.asList("odt", "doc", "pdf", "docx"), Arrays.asList("Ubuntu16-LibreOffice")));
+				Arrays.asList("odt", "pdf", "docx"), Arrays.asList("Ubuntu16-LibreOffice","Ubuntu14-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -308,7 +307,29 @@ public class Mutator {
 				"self.pages.elements->selectByType(Table)->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "paragraphcount",
 				"self.pages.elements->selectByType(Paragraph)->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "imagecount",
+				"self.pages.elements->selectByType(Image)->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "pagecount",
+				"self.pages->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "freewordcount",
+				"self.pages.elements->selectByType(Paragraph).words->size()"));
+		//evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "allwordcount",
+		//		"Word::allInstances()->asSequence()->size()"));
+		//evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "freewordcount",
+		//		"self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words->size())->sum()"));
 
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "textboxcount",
+				"self.pages.elements->selectByKind(TextBox)->asSequence()->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "controlboxcount",
+				"self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "emeddedexcelcount",
+				"self.pages.elements->selectByKind(EmbeddedExcel)->asSequence()->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "simpleparagraphcount",
+				"self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
+		
+		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "simpleparagraphcount",
+				"self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
+		
 		evaluators.add(new OCLLibreText());
 		evaluators.add(new OCLMSWordText());
 
