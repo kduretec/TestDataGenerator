@@ -87,7 +87,6 @@ public class TestModel {
 			e.printStackTrace();
 		}
 		if (parent != null) {
-			System.out.println("Output");
 			parent.saveModelToFile(filePath, testCaseName);
 		}
 	}

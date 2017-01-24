@@ -343,7 +343,6 @@ public class Mutator {
 		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
 		codeGenerator.add(new LibreCodeGenerator(libreObserver));
 		codeGeneratorObserver.add(libreObserver);
-
 	}
 
 }

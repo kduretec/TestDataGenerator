@@ -57,7 +57,6 @@ public class TestCase {
 		textElements.addText(tC.getTextElements());
 		testFeature = tC.getTestFeature();
 		testModel.setParent(tC.getTestModel());
-		System.out.println("Ading parent");
 	}
 
 	public String getID() {

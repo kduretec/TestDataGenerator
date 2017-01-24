@@ -18,7 +18,7 @@ import benchmarkdp.datagenerator.generator.utils.Utils;
 
 public class FitsCollector implements CollectorOperatorInterface {
 
-	private List<String> elements = Arrays.asList("size");
+	private List<String> elements = Arrays.asList("size", "pagecount");
 	private String name = "Fits";
 
 	@Override
@@ -35,7 +35,6 @@ public class FitsCollector implements CollectorOperatorInterface {
 		Map<String, String> values = new HashMap<String, String>();
 
 		if (fits.exists()) {
-
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;
 			try {

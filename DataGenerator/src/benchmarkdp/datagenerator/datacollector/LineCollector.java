@@ -29,8 +29,11 @@ public class LineCollector {
 				String line = br.readLine();
 				if (line == null)
 					break;
-				if (line.length()==0) continue;
+				if (line.length() == 0)
+					continue;
 				String[] entr = line.split(":");
+				if (entr.length < 3) 
+					continue;
 				if (!values.containsKey(entr[0])) {
 					values.put(entr[0], new ArrayList<String>());
 				}
