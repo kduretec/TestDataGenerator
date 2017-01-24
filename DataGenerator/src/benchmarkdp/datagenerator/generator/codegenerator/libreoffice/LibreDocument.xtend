@@ -35,6 +35,12 @@ class LibreDocument extends AbstractElementCompiler {
 
 		var endPart = '''
 				Url2 = "file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/«cState.getVariable("documentName")».«d.documentFormat»"
+				pageCount = oDoc.getCurrentController().getPropertyValue("PageCount")
+				paragraphCount = oDoc.getDocumentProperties().DocumentStatistics(4).Value
+				wordCount = oDoc.getDocumentProperties().DocumentStatistics(5).Value
+				Print #fileMetadata "pagecount " &amp; pageCount
+				Print #fileMetadata "paragraphcount " &amp; wordCount
+				Print #fileMetadata "wordcount " &amp; wordCount
 				Dim args(0) as new com.sun.star.beans.PropertyValue
 				args(0).Name = "FilterName"
 				args(0).Value = "«d.documentFilter»"

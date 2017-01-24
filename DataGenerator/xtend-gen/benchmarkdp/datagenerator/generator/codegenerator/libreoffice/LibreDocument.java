@@ -78,6 +78,18 @@ public class LibreDocument extends AbstractElementCompiler {
     _builder_1.append(_documentFormat, "");
     _builder_1.append("\"");
     _builder_1.newLineIfNotEmpty();
+    _builder_1.append("pageCount = oDoc.getCurrentController().getPropertyValue(\"PageCount\")");
+    _builder_1.newLine();
+    _builder_1.append("paragraphCount = oDoc.getDocumentProperties().DocumentStatistics(4).Value");
+    _builder_1.newLine();
+    _builder_1.append("wordCount = oDoc.getDocumentProperties().DocumentStatistics(5).Value");
+    _builder_1.newLine();
+    _builder_1.append("Print #fileMetadata \"pagecount \" &amp; pageCount");
+    _builder_1.newLine();
+    _builder_1.append("Print #fileMetadata \"paragraphcount \" &amp; wordCount");
+    _builder_1.newLine();
+    _builder_1.append("Print #fileMetadata \"wordcount \" &amp; wordCount");
+    _builder_1.newLine();
     _builder_1.append("Dim args(0) as new com.sun.star.beans.PropertyValue");
     _builder_1.newLine();
     _builder_1.append("args(0).Name = \"FilterName\"");
