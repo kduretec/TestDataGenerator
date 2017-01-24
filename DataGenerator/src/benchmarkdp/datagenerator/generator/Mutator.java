@@ -35,7 +35,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 46;
+	int n = 20;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -106,6 +106,7 @@ public class Mutator {
 		System.out.println("Starting PIM transformations");
 		for (int i = 0; i < testCases.size(); i++) {
 			TestCase tC = testCases.get(i);
+			System.out.println("Mutating according to test feature:" + tC.getTestFeature().getName());
 			if (tC.getTestModel().getModelType() == ModelType.PIM) {
 				for (int j = 0; j < mutationsPIM.size(); j++) {
 					MutationOperatorInterface mo = mutationsPIM.get(j);
@@ -168,7 +169,8 @@ public class Mutator {
 		System.out.println("In total " + siz + " test cases");
 		for (TestCase tC : testCases) {
 			counter++;
-			System.out.println("Compilling test case " + counter +"/" + siz);
+			System.out.println(
+					"Compilling test case " + counter + "/" + siz + " init feature:" + tC.getTestFeature().getName());
 			for (CodeGeneratorInterface cg : codeGenerator) {
 				if (tC.getTestModel().getModelType() == cg.getModelType()) {
 					cg.generateCode(tC);
@@ -242,10 +244,10 @@ public class Mutator {
 		mutationsPIM2PSM.add(new MSWordMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
 				Utils.pim2psmTransformation + "PIM2Docx.qvto",
 				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf", "odt"),
-				Arrays.asList("Win7-Office2007","Win7-Office2010", "Win8-Office2013")));
+				Arrays.asList("Win7-Office2007", "Win7-Office2010", "Win8-Office2013")));
 		mutationsPIM2PSM.add(new LibreOfficeMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
 				Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList("format", "platform"),
-				Arrays.asList("odt", "pdf", "docx"), Arrays.asList("Ubuntu16-LibreOffice","Ubuntu14-LibreOffice")));
+				Arrays.asList("odt", "pdf", "docx"), Arrays.asList("Ubuntu16-LibreOffice", "Ubuntu14-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {
@@ -317,14 +319,15 @@ public class Mutator {
 				"self.pages.elements->selectByType(Paragraph)->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "imagecount",
 				"self.pages.elements->selectByType(Image)->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "pagecount",
-				"self.pages->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "pagecount", "self.pages->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "freewordcount",
 				"self.pages.elements->selectByType(Paragraph).words->size()"));
-		//evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "allwordcount",
-		//		"Word::allInstances()->asSequence()->size()"));
-		//evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "freewordcount",
-		//		"self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words->size())->sum()"));
+		// evaluators.add(new OCLMetadata(ModelType.PIM,
+		// PIMPackage.Literals.DOCUMENT, "allwordcount",
+		// "Word::allInstances()->asSequence()->size()"));
+		// evaluators.add(new OCLMetadata(ModelType.PIM,
+		// PIMPackage.Literals.DOCUMENT, "freewordcount",
+		// "self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words->size())->sum()"));
 
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "textboxcount",
 				"self.pages.elements->selectByKind(TextBox)->asSequence()->size()"));
@@ -334,10 +337,10 @@ public class Mutator {
 				"self.pages.elements->selectByKind(EmbeddedExcel)->asSequence()->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "simpleparagraphcount",
 				"self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
-		
+
 		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "simpleparagraphcount",
 				"self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
-		
+
 		evaluators.add(new OCLLibreText());
 		evaluators.add(new OCLMSWordText());
 

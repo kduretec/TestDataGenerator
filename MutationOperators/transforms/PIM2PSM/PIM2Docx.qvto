@@ -11,7 +11,6 @@ configuration property format : String;
 configuration property formatCode : String;
 configuration property platform : String;
 main() {
-	log("Translating from PIM to PSMDocx");
 	source.rootObjects()[Document].map DocumentToDocument();
 }
 

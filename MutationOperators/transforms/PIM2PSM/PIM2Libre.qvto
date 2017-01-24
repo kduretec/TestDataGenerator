@@ -9,7 +9,6 @@ configuration property format : String;
 configuration property formatFilter : String;
 configuration property platform : String;
 main() {
-	log("Translating from PIM to PSMLibre");
 	source.rootObjects()[Document].map DocumentToDocument();
 }
 
