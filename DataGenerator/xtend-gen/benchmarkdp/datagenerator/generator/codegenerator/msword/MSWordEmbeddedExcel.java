@@ -16,7 +16,6 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 public class MSWordEmbeddedExcel extends AbstractElementCompiler {
   @Override
   public void compile(final EObject object, final CompilerState cState) {
-    System.out.println("EmbeddedExcel compiled");
     EmbeddedExcel t = ((EmbeddedExcel) object);
     Object _variable = cState.getVariable("inlineShape");
     Integer tabNum = ((Integer) _variable);

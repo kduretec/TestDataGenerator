@@ -26,7 +26,6 @@ public class LibreGeneratedCode implements IGeneratedCode {
 
 	public void addCodeElement(String element) {
 		codeElements.add(element);
-		System.out.println("Adding code elements");
 	}
 
 	public void setPlatform(String plat) {

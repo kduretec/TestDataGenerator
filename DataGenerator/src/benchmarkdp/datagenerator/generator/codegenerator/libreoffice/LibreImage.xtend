@@ -21,7 +21,6 @@ class LibreImage extends AbstractElementCompiler{
 			oText.insertTextContent(oText.getEnd(), oGraph, False )
 		'''
 		cState.setVariable("temp", temp)
-		System.out.println("Image compiled");
 	}
 	
 }

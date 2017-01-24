@@ -50,7 +50,6 @@ class MSWordTable extends AbstractElementCompiler{
 							Paragraph : compiler.compile("Paragraph", e)
 					}
 				}
-				
 			}
 		}
 	}

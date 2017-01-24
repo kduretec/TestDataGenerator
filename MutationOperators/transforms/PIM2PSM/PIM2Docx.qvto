@@ -34,7 +34,7 @@ mapping PIM::Page::PageToPage():PSM::Page {
 			var temp:Real := getRandomReal();
 			if (temp <=0.90) {
 				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
-			} else if (temp<=0.99) {
+			} else if (temp<=0.95) {
 				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
 			} else {
 				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToControlBox();
@@ -42,7 +42,7 @@ mapping PIM::Page::PageToPage():PSM::Page {
 		};
 		if (e.oclIsTypeOf(PIM::Table)) {
 			var temp:Real := getRandomReal();
-			if (temp <=0.50) {
+			if (temp <=0.90) {
 				elements += e.oclAsType(PIM::Table)->map TableToWordTable();
 			} else {
 				elements += e.oclAsType(PIM::Table)->map TableToEmbeddedExcel();

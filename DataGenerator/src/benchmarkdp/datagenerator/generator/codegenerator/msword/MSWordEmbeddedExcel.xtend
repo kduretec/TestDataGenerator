@@ -11,7 +11,6 @@ class MSWordEmbeddedExcel extends AbstractElementCompiler {
 	
 	override compile(EObject object, CompilerState cState) {
 		
-		System.out.println("EmbeddedExcel compiled")
 		var t = object as EmbeddedExcel
 		var tabNum = cState.getVariable("inlineShape") as Integer
 		var tN = tabNum.intValue

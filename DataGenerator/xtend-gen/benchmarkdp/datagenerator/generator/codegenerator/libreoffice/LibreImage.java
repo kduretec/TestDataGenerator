@@ -37,6 +37,5 @@ public class LibreImage extends AbstractElementCompiler {
     String _plus = (temp + _builder);
     temp = _plus;
     cState.setVariable("temp", temp);
-    System.out.println("Image compiled");
   }
 }

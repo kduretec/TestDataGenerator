@@ -23,17 +23,17 @@ public class ModelElementsCompiler {
 	}
 
 	public void compile(String name, EObject object) {
-		if (compilers.containsKey(name)) {
 			IElementCompiler iec = compilers.get(name);
-			iec.compile(object, cState);
-		}
+			if (iec != null) {
+				iec.compile(object, cState);				
+			}
 	}
 
 	public void compile(String name, Enumerator en) {
-		if (compilers.containsKey(name)) {
 			IEnumCompiler iec = (IEnumCompiler) compilers.get(name);
-			iec.compile(en, cState);
-		}
+			if (iec != null) {
+				iec.compile(en, cState);				
+			}
 	}
 
 }

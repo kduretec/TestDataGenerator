@@ -35,7 +35,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 5;
+	int n = 46;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -99,10 +99,11 @@ public class Mutator {
 
 	public void mutate() {
 
-		System.out.println("Starting the transformation");
+		System.out.println("Starting transformation");
 		int cnt = 0;
 
 		// PIM mutations
+		System.out.println("Starting PIM transformations");
 		for (int i = 0; i < testCases.size(); i++) {
 			TestCase tC = testCases.get(i);
 			if (tC.getTestModel().getModelType() == ModelType.PIM) {
@@ -124,7 +125,7 @@ public class Mutator {
 		}
 
 		// PIM2PSM mutations
-		System.out.println("Starting PIM2PSM");
+		System.out.println("Starting PIM2PSM model transformations ");
 		for (int i = 0; i < testCases.size(); i++) {
 			TestCase tC = testCases.get(i);
 			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
@@ -140,6 +141,7 @@ public class Mutator {
 		}
 
 		// PSM mutations
+		System.out.println("Starting PSM transformations");
 		for (int i = 0; i < testCases.size(); i++) {
 			TestCase tC = testCases.get(i);
 			if (tC.getTestModel().getModelType() != ModelType.PIM) {
@@ -160,7 +162,13 @@ public class Mutator {
 		}
 
 		// code generation
+		System.out.println("Starting Code generation");
+		int siz = testCases.size();
+		int counter = 0;
+		System.out.println("In total " + siz + " test cases");
 		for (TestCase tC : testCases) {
+			counter++;
+			System.out.println("Compilling test case " + counter +"/" + siz);
 			for (CodeGeneratorInterface cg : codeGenerator) {
 				if (tC.getTestModel().getModelType() == cg.getModelType()) {
 					cg.generateCode(tC);
@@ -234,7 +242,7 @@ public class Mutator {
 		mutationsPIM2PSM.add(new MSWordMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
 				Utils.pim2psmTransformation + "PIM2Docx.qvto",
 				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf", "odt"),
-				Arrays.asList("Win7-Office2007")));
+				Arrays.asList("Win7-Office2007","Win7-Office2010", "Win8-Office2013")));
 		mutationsPIM2PSM.add(new LibreOfficeMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
 				Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList("format", "platform"),
 				Arrays.asList("odt", "pdf", "docx"), Arrays.asList("Ubuntu16-LibreOffice","Ubuntu14-LibreOffice")));
