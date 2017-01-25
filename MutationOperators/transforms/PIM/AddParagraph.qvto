@@ -19,13 +19,25 @@ main() {
 		} else {
 			numPar := numPar2;
 		};
-		//var pc :=  getRandom(num.round() + 1); 
+		if (numPar > wc) {
+			numPar := wc;
+		};
+		// try to put on each page at least one paragraph
+		var i:= 1;
+		while (numPar > 0 and i <= pages->size()) {
+			var page := pages->asSequence()->at(i);
+			page->map AddParagraph(numPar);
+			numPar := numPar - 1;
+			i := i + 1;		
+		};
+		
+		// put remaining paragraphs to random pages
 		while (numPar > 0) {
 			var pos := getRandom(pages->size());
 			var page := pages->asSequence()->at(pos);
 			page->map AddParagraph(numPar);
 			numPar := numPar - 1;		
-		}	
+		};	
 	}
 	
 

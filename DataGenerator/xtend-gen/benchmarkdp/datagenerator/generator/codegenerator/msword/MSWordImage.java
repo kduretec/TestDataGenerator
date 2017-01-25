@@ -30,6 +30,8 @@ public class MSWordImage extends AbstractElementCompiler {
     int _width = img.getWidth();
     _builder.append(_width, "");
     _builder.newLineIfNotEmpty();
+    _builder.append("oSelection.TypeParagraph()");
+    _builder.newLine();
     String _plus = (temp + _builder);
     temp = _plus;
     cState.setVariable("temp", temp);

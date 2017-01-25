@@ -10,12 +10,21 @@ main() {
 	var paragraphs := model.rootObjects()[Document].pages.elements->selectByType(Paragraph);
 	
 	if (paragraphs->size() > 0) {
+		
+		// put at least one word to each paragraph
+		var i:= 1;
+		while (i <= paragraphs->size()) {
+			var paragraph := paragraphs->asSequence()->at(i);
+			paragraph->map AddWord(wc);
+			wc := wc - 1;		
+		};
+	
 		while (wc > 0) {
 			var pos := getRandom(paragraphs->size());
 			var paragraph := paragraphs->asSequence()->at(pos);
 			paragraph->map AddWord(wc);
 			wc := wc - 1;		
-		}	
+		};	
 	}
 	
 	

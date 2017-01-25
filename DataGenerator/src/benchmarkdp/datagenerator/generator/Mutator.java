@@ -35,7 +35,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 20;
+	int n = 10;
 	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
@@ -243,11 +243,11 @@ public class Mutator {
 		// Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
 		mutationsPIM2PSM.add(new MSWordMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
 				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf", "odt"),
-				Arrays.asList("Win7-Office2007", "Win7-Office2010", "Win8-Office2013")));
-		mutationsPIM2PSM.add(new LibreOfficeMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
-				Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList("format", "platform"),
-				Arrays.asList("odt", "pdf", "docx"), Arrays.asList("Ubuntu16-LibreOffice", "Ubuntu14-LibreOffice")));
+				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("pdf"),
+				Arrays.asList("Win7-Office2007")));
+//		mutationsPIM2PSM.add(new LibreOfficeMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
+//				Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList("format", "platform"),
+//				Arrays.asList("odt", "pdf", "docx"), Arrays.asList("Ubuntu16-LibreOffice", "Ubuntu14-LibreOffice")));
 	}
 
 	private void initializeMutationsPSM() {

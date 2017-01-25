@@ -63,8 +63,8 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
 	var si:Integer := self.words->asSequence()->size(); 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
-	 if (pos - i > 20) {
-	 	pos := i + 20 
+	 if (pos - i > 50) {
+	 	pos := i + 50 
 	 };
 	 var tt := self.words->asSequence()->subSequence(i,pos);
 	 var tSize := tt->size();
@@ -98,8 +98,8 @@ mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
 	parentID := self.ID; 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
-	 if (pos - i > 20) {
-	 	pos := i + 20 
+	 if (pos - i > 50) {
+	 	pos := i + 50 
 	 };
 	 var tt := self.words->asSequence()->subSequence(i,pos);
 	 var tSize := tt->size();
@@ -123,8 +123,8 @@ mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
 	parentID := self.ID; 
 	while (i <= si) {
 	 var pos:Integer := getRandomBetween(i,si);
-	 if (pos - i > 20) {
-	 	pos := i + 20 
+	 if (pos - i > 50) {
+	 	pos := i + 50 
 	 };
 	 var tt := self.words->asSequence()->subSequence(i,pos);
 	 var tSize := tt->size();
