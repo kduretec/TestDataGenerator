@@ -20,6 +20,8 @@ public class MSWordImage extends AbstractElementCompiler {
     Integer _integer = new Integer(iN);
     cState.setVariable("inlineShape", _integer);
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("oSelection.TypeParagraph()");
+    _builder.newLine();
     _builder.append("Set oImg = oSelection.InlineShapes.AddPicture(\"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\Macro\\Images\\Desert.jpg\")");
     _builder.newLine();
     _builder.append("oImg.Height = ");
