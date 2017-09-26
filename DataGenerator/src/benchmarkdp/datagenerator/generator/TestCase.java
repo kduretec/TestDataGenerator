@@ -72,6 +72,7 @@ public class TestCase {
 	}
 
 	public void setTestFeature(TestFeature testFeature) {
+		this.testCaseName  = testFeature.getName();
 		this.testFeature = testFeature;
 	}
 
