@@ -7,13 +7,27 @@
   <foreignModel>PIM.ecore</foreignModel>
   <genPackages prefix="PIM" basePackage="benchmarkdp.datagenerator.model" disposableProviderFactory="true"
       ecorePackage="PIM.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="PIM.ecore#//Color">
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Color/BLACK"/>
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Color/BLUE"/>
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Color/RED"/>
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Color/WHITE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="PIM.ecore#//Alignment">
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Alignment/LEFT"/>
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Alignment/CENTER"/>
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Alignment/RIGHT"/>
+    </genEnums>
     <genClasses ecoreClass="PIM.ecore#//Document">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/author"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//Document/pages"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/documentBackground"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Element">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/ID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/backgroundColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/allignment"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Table">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Table/numRows"/>
@@ -39,6 +53,9 @@
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Word">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Word/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="PIM.ecore#//TextContainer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//TextContainer/fontColor"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
