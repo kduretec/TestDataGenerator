@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Utils {
 
-	public static String basePath = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/";
+	public static String basePath = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/INFSOF/experiments/Generated/ExperimentTest2/";
 	
 	public static String docsPath = basePath + "Documents/";
 	
@@ -54,4 +54,40 @@ public class Utils {
 		return fileName;
 	}
 	
+	public static void initializeFolderStructure() {
+		
+		File bDir = new File(basePath);
+		if (bDir.exists()) {
+			deleteDirectory(bDir);
+		}
+		bDir.mkdir();
+		File f = new File(docsPath);
+		f.mkdir();
+		f = new File(resultsPath);
+		f.mkdir();
+		f = new File(fitsPath);
+		f.mkdir();
+		f = new File(toolOutputPath);
+		f.mkdir();
+		f = new File(groundTruthPath);
+		f.mkdir();
+		f = new File(metadataPath);
+		f.mkdir();
+		f = new File(textPath);
+		f.mkdir();
+		f = new File(modelsPath);
+		f.mkdir();
+		f = new File(macroPath);
+		f.mkdir();
+	}
+	
+	private static void deleteDirectory(File d) {
+		File[] files = d.listFiles();
+		for (File f : files) {
+			if (f.isDirectory()) {
+				deleteDirectory(f);
+			} 
+			f.delete();
+		}
+	}
 }

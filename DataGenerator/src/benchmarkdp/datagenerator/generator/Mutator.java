@@ -52,142 +52,147 @@ public class Mutator {
 
 	public Mutator() {
 
-		TransformationExecutor.BlackboxRegistry.INSTANCE.registerModule(UtilitiesLibrary.class,
-				"m2m.qvt.oml.ExampleJavaLib", "m2m.qvt.oml");
-
-		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
-		PIMPackage mwp = PIMPackage.eINSTANCE;
-		PSMDocxPackage pwd = PSMDocxPackage.eINSTANCE;
-		PSMLibrePackage pld = PSMLibrePackage.eINSTANCE;
-		Map<String, Object> m = reg.getExtensionToFactoryMap();
-		m.put("xmi", new XMIResourceFactoryImpl());
-
-		mutationsPIM = new ArrayList<MutationOperatorInterface>();
-		mutationsPIM2PSM = new ArrayList<MutationOperatorInterface>();
-		mutationsPSM = new ArrayList<MutationOperatorInterface>();
-
-		initializeMutationsPIM();
-		initializeMutationsPIM2PSM();
-		initializeMutationsPSM();
-
-		testCases = new ArrayList<TestCase>();
-		List<TestFeature> testFeatures = readFeatureDistributions();
-
-		for (int i = 0; i < n; i++) {
-			TestCase tCase = new TestCase(new TestModel("PIMs/Document.xmi", ModelType.PIM));
-			tCase.getTestModel().setModelType(ModelType.PIM);
-			if (i < testFeatures.size()) {
-				TestFeature tf = testFeatures.get(i);
-				tCase.setTestFeature(tf);
-			} else {
-				tCase.setTestFeature(new TestFeature());
-			}
-			testCases.add(tCase);
-		}
-
-		initializeEvaluators();
-
-		initializeCodeGenerator();
+		System.out.println("Initializing");
+		
+		Utils.initializeFolderStructure();
+		System.out.println("Folder structure initialized");
+		
+//		TransformationExecutor.BlackboxRegistry.INSTANCE.registerModule(UtilitiesLibrary.class,
+//				"m2m.qvt.oml.ExampleJavaLib", "m2m.qvt.oml");
+//
+//		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+//		PIMPackage mwp = PIMPackage.eINSTANCE;
+//		PSMDocxPackage pwd = PSMDocxPackage.eINSTANCE;
+//		PSMLibrePackage pld = PSMLibrePackage.eINSTANCE;
+//		Map<String, Object> m = reg.getExtensionToFactoryMap();
+//		m.put("xmi", new XMIResourceFactoryImpl());
+//
+//		mutationsPIM = new ArrayList<MutationOperatorInterface>();
+//		mutationsPIM2PSM = new ArrayList<MutationOperatorInterface>();
+//		mutationsPSM = new ArrayList<MutationOperatorInterface>();
+//
+//		initializeMutationsPIM();
+//		initializeMutationsPIM2PSM();
+//		initializeMutationsPSM();
+//
+//		testCases = new ArrayList<TestCase>();
+//		List<TestFeature> testFeatures = readFeatureDistributions();
+//
+//		for (int i = 0; i < n; i++) {
+//			TestCase tCase = new TestCase(new TestModel("PIMs/Document.xmi", ModelType.PIM));
+//			tCase.getTestModel().setModelType(ModelType.PIM);
+//			if (i < testFeatures.size()) {
+//				TestFeature tf = testFeatures.get(i);
+//				tCase.setTestFeature(tf);
+//			} else {
+//				tCase.setTestFeature(new TestFeature());
+//			}
+//			testCases.add(tCase);
+//		}
+//
+//		initializeEvaluators();
+//
+//		initializeCodeGenerator();
 
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Mutator mut = new Mutator();
-		mut.mutate();
+		//mut.mutate();
 	}
 
 	public void mutate() {
 
-		System.out.println("Starting transformation");
+		System.out.println("Starting Test Suite generation");
 
-		// PIM mutations
-		System.out.println("Starting PIM transformations");
-		for (int i = 0; i < testCases.size(); i++) {
-			TestCase tC = testCases.get(i);
-			System.out.println("Mutating according to test feature:" + tC.getTestFeature().getName());
-			if (tC.getTestModel().getModelType() == ModelType.PIM) {
-				for (int j = 0; j < mutationsPIM.size(); j++) {
-					MutationOperatorInterface mo = mutationsPIM.get(j);
-					if (mo.getSourceModel() == ModelType.PIM) {
-						List<TestCase> newModels = mo.mutateTestCase(tC);
-						if (newModels.size() > 0) {
-							testCases.addAll(newModels);
-						}
-					}
-				}
-				for (OCLEvaluatorInterface oE : evaluators) {
-					if (oE.getModelType() == ModelType.PIM) {
-						oE.evaluateTestModel(tC);
-					}
-				}
-			}
-		}
+//		// PIM mutations
+//		System.out.println("Starting PIM transformations");
+//		for (int i = 0; i < testCases.size(); i++) {
+//			TestCase tC = testCases.get(i);
+//			System.out.println("Mutating according to test feature:" + tC.getTestFeature().getName());
+//			if (tC.getTestModel().getModelType() == ModelType.PIM) {
+//				for (int j = 0; j < mutationsPIM.size(); j++) {
+//					MutationOperatorInterface mo = mutationsPIM.get(j);
+//					if (mo.getSourceModel() == ModelType.PIM) {
+//						List<TestCase> newModels = mo.mutateTestCase(tC);
+//						if (newModels.size() > 0) {
+//							testCases.addAll(newModels);
+//						}
+//					}
+//				}
+//				for (OCLEvaluatorInterface oE : evaluators) {
+//					if (oE.getModelType() == ModelType.PIM) {
+//						oE.evaluateTestModel(tC);
+//					}
+//				}
+//			}
+//		}
+//
+//		// PIM2PSM mutations
+//		System.out.println("Starting PIM2PSM model transformations ");
+//		for (int i = 0; i < testCases.size(); i++) {
+//			TestCase tC = testCases.get(i);
+//			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
+//				MutationOperatorInterface mo = mutationsPIM2PSM.get(j);
+//				if (tC.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
+//						&& mo.getDestinationModel() != ModelType.PIM) {
+//					List<TestCase> newModels = mo.mutateTestCase(tC);
+//					if (newModels.size() > 0) {
+//						testCases.addAll(newModels);
+//					}
+//				}
+//			}
+//		}
+//
+//		// PSM mutations
+//		System.out.println("Starting PSM transformations");
+//		for (int i = 0; i < testCases.size(); i++) {
+//			TestCase tC = testCases.get(i);
+//			if (tC.getTestModel().getModelType() != ModelType.PIM) {
+//				for (int j = 0; j < mutationsPSM.size(); j++) {
+//					MutationOperatorInterface mo = mutationsPSM.get(j);
+//					List<TestCase> newModels = mo.mutateTestCase(tC);
+//					if (newModels.size() > 0) {
+//						testCases.addAll(newModels);
+//					}
+//				}
+//				for (OCLEvaluatorInterface oE : evaluators) {
+//					if (oE.getModelType() == tC.getTestModel().getModelType()) {
+//						oE.evaluateTestModel(tC);
+//					}
+//				}
+//			}
+//
+//		}
 
-		// PIM2PSM mutations
-		System.out.println("Starting PIM2PSM model transformations ");
-		for (int i = 0; i < testCases.size(); i++) {
-			TestCase tC = testCases.get(i);
-			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-				MutationOperatorInterface mo = mutationsPIM2PSM.get(j);
-				if (tC.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
-						&& mo.getDestinationModel() != ModelType.PIM) {
-					List<TestCase> newModels = mo.mutateTestCase(tC);
-					if (newModels.size() > 0) {
-						testCases.addAll(newModels);
-					}
-				}
-			}
-		}
-
-		// PSM mutations
-		System.out.println("Starting PSM transformations");
-		for (int i = 0; i < testCases.size(); i++) {
-			TestCase tC = testCases.get(i);
-			if (tC.getTestModel().getModelType() != ModelType.PIM) {
-				for (int j = 0; j < mutationsPSM.size(); j++) {
-					MutationOperatorInterface mo = mutationsPSM.get(j);
-					List<TestCase> newModels = mo.mutateTestCase(tC);
-					if (newModels.size() > 0) {
-						testCases.addAll(newModels);
-					}
-				}
-				for (OCLEvaluatorInterface oE : evaluators) {
-					if (oE.getModelType() == tC.getTestModel().getModelType()) {
-						oE.evaluateTestModel(tC);
-					}
-				}
-			}
-
-		}
-
-		// code generation
-		System.out.println("Starting Code generation");
-		int siz = testCases.size();
-		int counter = 0;
-		System.out.println("In total " + siz + " test cases");
-		for (TestCase tC : testCases) {
-			counter++;
-			System.out.println(
-					"Compilling test case " + counter + "/" + siz + " init feature:" + tC.getTestFeature().getName());
-			for (CodeGeneratorInterface cg : codeGenerator) {
-				if (tC.getTestModel().getModelType() == cg.getModelType()) {
-					cg.generateCode(tC);
-				}
-			}
-		}
-
-		
-		System.out.println("Size of models " + testCases.size());
-		for (TestCase tm : testCases) {
-			tm.saveTestCaseComponents();
-		}
-
-		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
-			cob.afterGeneration();
-		}
-
-		System.out.println("Transformation done");
+//		// code generation
+//		System.out.println("Starting Code generation");
+//		int siz = testCases.size();
+//		int counter = 0;
+//		System.out.println("In total " + siz + " test cases");
+//		for (TestCase tC : testCases) {
+//			counter++;
+//			System.out.println(
+//					"Compilling test case " + counter + "/" + siz + " init feature:" + tC.getTestFeature().getName());
+//			for (CodeGeneratorInterface cg : codeGenerator) {
+//				if (tC.getTestModel().getModelType() == cg.getModelType()) {
+//					cg.generateCode(tC);
+//				}
+//			}
+//		}
+//
+//		
+//		System.out.println("Size of models " + testCases.size());
+//		for (TestCase tm : testCases) {
+//			tm.saveTestCaseComponents();
+//		}
+//
+//		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
+//			cob.afterGeneration();
+//		}
+//
+		System.out.println("Test Suite generation done");
 
 	}
 
