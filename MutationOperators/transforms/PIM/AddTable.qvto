@@ -4,21 +4,31 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 
 transformation AddTable(inout model:PIM);
-configuration property tablecount : String;
+configuration property numTable : String;
+
 main() {
-	var tc := getRandomBetween(1,5) - 1;
 	var pages:= model.objectsOfType(Page);
-	if (pages->size() > 0) {
-		if (pages->size() > 10) {
-			tc := getRandomBetween(1,10) - 1;
-		}; 
-		while (tc > 0) {
-			var pos := getRandom(pages->size());
-			var page := pages->asSequence()->at(pos);
-			page->map AddTable(tc);
-			tc := tc - 1;		
-		}	
-	}
+	var tc := 0; 
+	if (numTable <> null) {
+		tc := stringToInt(numTable)
+	} else {
+		var rn := getRandomReal();
+		switch {
+			case (rn < 0.59) tc := 0; 
+			case (rn >= 0.59 and rn < 0.74) tc := 1;
+			case (rn >= 0.74 and rn < 0.88) tc := getRandomBetween(2,5);
+			case (rn >= 0.88 and rn < 0.97) tc := getRandomBetween(6,20);
+			case (rn >= 0.97 and rn < 0.100) tc := getRandomBetween(21,50);
+			else null; 
+		};
+	};
+	
+	while (tc > 0) {
+		var pos := getRandom(pages->size());
+		var page := pages->asSequence()->at(pos);
+		page->map AddTable(tc);
+		tc := tc - 1;		
+	}	
 }
 
 

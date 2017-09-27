@@ -2,12 +2,24 @@ import m2m.qvt.oml.ExampleJavaLib;
 
 modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
-
 transformation AddWord(inout model:PIM);
-configuration property wordcount:String;
+configuration property numWords:String;
+
 main() {
-	var wc := stringToInt(wordcount);
 	var paragraphs := model.rootObjects()[Document].pages.elements->selectByType(Paragraph);
+	var wc := 0;
+	if (numWords<>null) {
+		wc := stringToInt(numWords);
+	} else {
+		var rn := getRandomReal();
+		switch {
+			case (rn < 0.02) wc := getRandomBetween(1,100); 
+			case (rn >= 0.02 and rn < 0.42) wc := getRandomBetween(101,1000);
+			case (rn >= 0.42 and rn < 0.87) wc := getRandomBetween(1001,5000);
+			case (rn >= 0.87 and rn < 1) wc := getRandomBetween(5001,10000);
+			else null; 
+		};	
+	};
 	
 	if (paragraphs->size() > 0) {
 		
@@ -28,7 +40,6 @@ main() {
 			wc := wc - 1;		
 		};	
 	}
-	
 	
 }
 

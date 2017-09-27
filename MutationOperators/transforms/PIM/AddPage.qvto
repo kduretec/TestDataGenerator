@@ -4,7 +4,7 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 
 transformation AddPage(inout model:PIM);
-configuration property pagecount : String;
+configuration property numPage : String;
 	
 main() {
 	var doc:= model.objectsOfType(Document); 
@@ -12,7 +12,21 @@ main() {
 }
 
 mapping inout Document::AddPage() {
-	var pc := stringToInt(pagecount);
+	var pc := 0;
+	if (numPage <> null) {
+		pc := stringToInt(numPage);
+	} else {
+		var rn := getRandomReal();
+		switch {
+			case (rn < 0.13) pc := 1; 
+			case (rn >= 0.13 and rn < 0.5) pc := getRandomBetween(2,5);
+			case (rn >= 0.5 and rn < 0.81) pc := getRandomBetween(6,20);
+			case (rn >= 0.81 and rn < 0.93) pc := getRandomBetween(21,50);
+			case (rn >= 0.93 and rn < 0.97) pc := getRandomBetween(51,100);
+			case (rn >= 0.97 and rn < 1) pc := getRandomBetween(101, 1000);
+			else null; 
+		};
+	}; 
 	while (pc > 0) {
 		var pag := object Page {
 		}; 

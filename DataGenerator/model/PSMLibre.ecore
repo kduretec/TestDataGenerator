@@ -4,7 +4,7 @@
     nsPrefix="benchmarkdp.datagenerator.model.PSMLibre">
   <eClassifiers xsi:type="ecore:EClass" name="Document">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pages" upperBound="-1"
-        eType="#//Page"/>
+        eType="#//Page" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentBackground" eType="#//Color"
@@ -17,7 +17,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Page">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
-        eType="#//Element"/>
+        eType="#//Element" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -29,7 +29,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParagraphImpl" abstract="true" eSuperTypes="#//TextContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="words" upperBound="-1"
-        eType="#//Text"/>
+        eType="#//Text" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Paragraph" eSuperTypes="#//ParagraphImpl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paragraphSpacing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
@@ -45,7 +45,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//TextContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numRows" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numCol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="row" upperBound="-1" eType="#//Row"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="row" upperBound="-1" eType="#//Row"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Row">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cell" upperBound="-1" eType="#//Cell"

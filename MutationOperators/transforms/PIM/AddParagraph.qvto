@@ -3,43 +3,42 @@ import m2m.qvt.oml.ExampleJavaLib;
 modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 transformation AddParagraph(inout model:PIM);
-configuration property wordcount : String;
-configuration property pagecount : String;
+configuration property numParag : String; 
+
 main() {
 	var pages:= model.objectsOfType(Page);
-	if (pages->size() > 0) {
-		var wc := stringToInt(wordcount);
-		var pc := stringToInt(pagecount);
-		var numPar1 := pc * 3;
-		var numPar2real := wc / 250;
-		var numPar : Integer; 
-		var numPar2 := numPar2real.round() + 1;
-		if (numPar1 > numPar2) {
-			numPar := numPar1;
-		} else {
-			numPar := numPar2;
-		};
-		if (numPar > wc) {
-			numPar := wc;
-		};
-		// try to put on each page at least one paragraph
-		var i:= 1;
-		while (numPar > 0 and i <= pages->size()) {
-			var page := pages->asSequence()->at(i);
-			page->map AddParagraph(numPar);
-			numPar := numPar - 1;
-			i := i + 1;		
-		};
-		
-		// put remaining paragraphs to random pages
-		while (numPar > 0) {
-			var pos := getRandom(pages->size());
-			var page := pages->asSequence()->at(pos);
-			page->map AddParagraph(numPar);
-			numPar := numPar - 1;		
-		};	
-	}
+	var pc := 0; 
 	
+	if (numParag <> null) {
+		pc := stringToInt(numParag)
+	} else {
+		var rn := getRandomReal();
+		switch {
+			case (rn < 0.018) pc := getRandomBetween(1,5); 
+			case (rn >= 0.018 and rn < 0.15) pc := getRandomBetween(6,20);
+			case (rn >= 0.15 and rn < 0.54) pc := getRandomBetween(21,100);
+			case (rn >= 0.54 and rn < 0.95) pc := getRandomBetween(101,1000);
+			case (rn >= 0.95 and rn < 1) pc := getRandomBetween(1001,2000);
+			else null; 
+		};
+	};
+	
+	// try to put on each page at least one paragraph
+	var i:= 1;
+	while (pc > 0 and i <= pages->size()) {
+		var page := pages->asSequence()->at(i);
+		page->map AddParagraph(pc);
+		pc := pc - 1;
+		i := i + 1;		
+	};
+	
+	// put remaining paragraphs to random pages
+	while (pc > 0) {
+		var pos := getRandom(pages->size());
+		var page := pages->asSequence()->at(pos);
+		page->map AddParagraph(pc);
+		pc := pc - 1;		
+	};	
 
 }
 
