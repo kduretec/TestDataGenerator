@@ -7,7 +7,8 @@
         eType="#//Page"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="numColum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentBackground" eType="#//Color"
+        defaultValueLiteral="WHITE"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentFormat" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentPlatform" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentFilter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
@@ -18,15 +19,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Element"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element">
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parentID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundColor" eType="#//Color"
+        defaultValueLiteral="WHITE"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignment" eType="#//Alignment"
+        defaultValueLiteral="LEFT"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TextContainer" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="ParagraphImpl" abstract="true" eSuperTypes="#//TextContainer">
     <eStructuralFeatures xsi:type="ecore:EReference" name="words" upperBound="-1"
         eType="#//Text"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Paragraph" eSuperTypes="#//TextContainer">
+  <eClassifiers xsi:type="ecore:EClass" name="Paragraph" eSuperTypes="#//ParagraphImpl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paragraphSpacing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
         defaultValueLiteral="1.0"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lineSpacing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
@@ -37,15 +42,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Text">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleText" eSuperTypes="#//Text">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontFamily" eType="#//FontFamily"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontColor" eType="#//Color"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontBackground" eType="#//Color"
-        defaultValueLiteral="WHITE"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="10"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//Element">
+  <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//TextContainer">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numRows" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numCol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="row" upperBound="-1" eType="#//Row"/>
@@ -70,8 +67,18 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Color">
     <eLiterals name="BLACK"/>
-    <eLiterals name="WHITE" value="1"/>
-    <eLiterals name="BLUE" value="2"/>
-    <eLiterals name="RED" value="3"/>
+    <eLiterals name="BLUE" value="1"/>
+    <eLiterals name="RED" value="2"/>
+    <eLiterals name="WHITE" value="3"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Alignment">
+    <eLiterals name="LEFT"/>
+    <eLiterals name="CENTER" value="1"/>
+    <eLiterals name="RIGHT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextContainer" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontFamily" eType="#//FontFamily"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontColor" eType="#//Color"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextBox" eSuperTypes="#//ParagraphImpl"/>
 </ecore:EPackage>

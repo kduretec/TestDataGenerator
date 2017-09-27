@@ -876,9 +876,9 @@
           <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
         </ownedElements>
       </ownedDiagramElements>
-      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_uiZwMGeYEeaY_p8GeoQIAA" name="[0..*] words" sourceNode="_EBN88KNgEeeu86Iee3XfLQ" targetNode="_XUWVMGeYEeaY_p8GeoQIAA">
-        <target xmi:type="ecore:EReference" href="PSMDocx.ecore#//ParagraphImpl/words"/>
-        <semanticElements xmi:type="ecore:EReference" href="PSMDocx.ecore#//ParagraphImpl/words"/>
+      <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_uiZwMGeYEeaY_p8GeoQIAA" name="[0..*] text" sourceNode="_EBN88KNgEeeu86Iee3XfLQ" targetNode="_XUWVMGeYEeaY_p8GeoQIAA">
+        <target xmi:type="ecore:EReference" href="PSMDocx.ecore#//ParagraphImpl/text"/>
+        <semanticElements xmi:type="ecore:EReference" href="PSMDocx.ecore#//ParagraphImpl/text"/>
         <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_whONUGeYEeaY_p8GeoQIAA" description="_DDayoGeYEeaY_p8GeoQIAA" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
           <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_whONUWeYEeaY_p8GeoQIAA" showIcon="false">
             <customFeatures>labelSize</customFeatures>
