@@ -9,11 +9,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentBackground" eType="#//Color"
         defaultValueLiteral="WHITE"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element">
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundColor" eType="#//Color"
         defaultValueLiteral="WHITE"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="allignment" eType="#//Alignment"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alignment" eType="#//Alignment"
         defaultValueLiteral="LEFT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Table" eSuperTypes="#//TextContainer">
