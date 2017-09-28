@@ -1,0 +1,34 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
+
+transformation MutateColor(inout model:PIM);
+
+configuration property documentBackgroundColor:String;
+configuration property elementBackgroundColor:String;
+configuration property fontColor:String;
+
+main() {
+
+	var doc := model.objectsOfType(Document);
+	
+	doc->map ChangeColors();
+}
+
+mapping inout Document::ChangeColors() {
+	self.documentBackground := Color::WHITE;
+	self.pages.elements->forEach(el) {
+		el->map ElementBackground();
+		if (el.oclIsTypeOf(PIM::TextContainer)) {
+			el.oclAsType(PIM::TextContainer)->map TextFont();
+		}
+	};
+}
+
+mapping inout Element::ElementBackground() {
+	self.backgroundColor := Color::WHITE;
+}
+
+mapping inout TextContainer::TextFont() {
+	self.fontColor := Color::BLACK;
+}
