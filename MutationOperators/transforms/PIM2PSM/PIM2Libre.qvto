@@ -5,29 +5,51 @@ modeltype PSM uses PSMLibre('http://benchmarkdp.datagenerator.model.PSMLibre');
 	
 
 transformation PIM2Libre(in source:PIM, out target:PSM);
-configuration property format : String;
-configuration property formatFilter : String;
-configuration property platform : String;
+configuration property paragraphImpl : String;
+
 main() {
 	source.rootObjects()[Document].map DocumentToDocument();
 }
 
-
 mapping PIM::Document::DocumentToDocument():PSM::Document {
 	name := self.name;
-	documentFormat := format;
-	documentPlatform := platform;
-	documentFilter := formatFilter;
+	author := self.author;
+	documentBackground := mapColor(self.documentBackground);
 	self.pages->forEach(p) {
 		pages += p->map PageToPage();
 	}
 }
 
 mapping PIM::Page::PageToPage():PSM::Page {
+
+	if (paragraphImpl = null) {
+		var rnd := getRandomReal(); 
+		switch {
+			case(rnd < 0.80) paragraphImpl := "allSimpleParagraph";
+			case(rnd >= 0.8 and rnd < 0.9) paragraphImpl := "allTextBox";
+			else paragraphImpl := "mixture";
+		}
+	};
+	
+	var percSP := 0.0;
+	var percTB := 0.0;
+	var percCB := 0.0;
+	
+	switch {
+		case (paragraphImpl = "allSimpleParagraph") {percSP := 1.0; percTB:=0.0;};
+		case (paragraphImpl = "allTextBox") {percSP := 0.0; percTB:=1.0;};
+		else {percSP := 0.8; percTB:=0.20;};
+	};
+	
+
 	self.elements->forEach(e) {
 		if (e.oclIsTypeOf(PIM::Paragraph)) {
-			var temp:Real := getRandomReal();
-			elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
+			var temp := getRandomReal();
+			if (temp < percSP) {
+				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
+			} else if (temp < percSP + percTB) {
+				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
+			};
 		};
 		if (e.oclIsTypeOf(PIM::Table)) {
 			elements += e.oclAsType(PIM::Table)->map TableToTable();
@@ -38,42 +60,44 @@ mapping PIM::Page::PageToPage():PSM::Page {
 	}
 }
 
-mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
-//	paragraphSpacing := 1.0;
-//	lineSpacing := 1.0;
-//	indent := 1.0;
+abstract mapping PIM::Element::ElementToElement():PSM::Element {
 	ID := generateUID();
 	parentID := self.ID; 
-	var i:Integer := 1;
-	var si:Integer := self.words->asSequence()->size(); 
-	while (i <= si) {
-	 var pos:Integer := getRandomBetween(i,si);
-	 if (pos - i > 20) {
-	 	pos := i + 20 
-	 };
-	 var tt := self.words->asSequence()->subSequence(i,pos);
-	 var tSize := tt->size();
-	 i := pos + 1;
-	 var stVal:String := turnSeqToString(tt.value->asList());
-	 var temp:Real := getRandomReal();
-	 var sT:Text := null;
-	 if (temp <= 1) {
-	 	sT := object SimpleText {
-	// 		size := 10;
-	//		color := Color::BLACK;
+	backgroundColor := mapColor(self.backgroundColor);
+}
+
+abstract mapping PIM::TextContainer::TextContainerToTextContainer():PSM::TextContainer 
+	inherits PIM::Element::ElementToElement {
+			fontFamily := FontFamily::ARIAL;
+}
+
+mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph 
+	inherits PIM::TextContainer::TextContainerToTextContainer {
+		paragraphSpacing := 1.0;
+		lineSpacing := 1.0;
+		indent := 1.0;
+		var i:Integer := 1;
+		var si:Integer := self.words->asSequence()->size(); 
+		while (i <= si) {
+		 var pos:Integer := getRandomBetween(i,si);
+		 if (pos - i > 20) {
+		 	pos := i + 20 
+		 };
+		 var tt := self.words->asSequence()->subSequence(i,pos);
+		 var tSize := tt->size();
+		 i := pos + 1;
+		 var stVal:String := turnSeqToString(tt.value->asList());
+		 var temp:Real := getRandomReal();
+		 var sT:Text := null;
+	 	 sT := object Text {
 	 		value := stVal;
-	// 		background := Color::WHITE;
-	 	};
-	 } else {
-	// 	sT := object HyperLink {
-	//		value := stVal;
-	//		url := "http://www.google.com"	 		
-	// 	}
-	 };
-	 
-	 words += sT;
-	 
-	}
+	 	 };
+		 text += sT;		 
+		}
+}
+
+mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
+	
 }
 
 mapping PIM::Table::TableToTable():PSM::Table {
@@ -102,3 +126,12 @@ mapping PIM::Image::ImageToImage():PSM::Image {
 	type   := self.type;
 }
 
+helper mapColor(in col:PIM::Color):PSMLibre::Color {
+	switch {
+		case (col = PIM::Color::WHITE) return PSMLibre::Color::WHITE;
+		case (col = PIM::Color::BLACK) return PSMLibre::Color::BLACK;
+		case (col = PIM::Color::BLUE) return PSMLibre::Color::BLUE;
+		case (col = PIM::Color::RED) return PSMLibre::Color::RED;
+		else return null;
+	}
+}

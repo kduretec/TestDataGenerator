@@ -71,9 +71,9 @@ mapping PIM::Page::PageToPage():PSM::Page {
 			if (temp < percSP) {
 				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
 			} else if (temp < percSP + percTB) {
-				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
+				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
 			} else if (temp < percSP + percTB + percCB){
-				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToControlBox();
+				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToControlBox();
 			}
 		};
 		

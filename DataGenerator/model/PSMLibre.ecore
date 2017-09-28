@@ -28,8 +28,8 @@
         defaultValueLiteral="LEFT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParagraphImpl" abstract="true" eSuperTypes="#//TextContainer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="words" upperBound="-1"
-        eType="#//Text" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="text" upperBound="-1" eType="#//Text"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Paragraph" eSuperTypes="#//ParagraphImpl">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="paragraphSpacing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
