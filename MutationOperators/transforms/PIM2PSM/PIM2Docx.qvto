@@ -5,11 +5,10 @@ modeltype PSM uses PSMDocx('http://benchmarkdp.datagenerator.model.PSMDocx');
 	
 
 transformation PIM2Docx(in source:PIM, out target:PSM);
-configuration property textbox : String;
-configuration property controlbox : String;
-configuration property format : String;
-configuration property formatCode : String;
-configuration property platform : String;
+configuration property tableImpl : String;
+configuration property paragraphImpl : String; 
+
+
 main() {
 	source.rootObjects()[Document].map DocumentToDocument();
 }
@@ -18,102 +17,150 @@ main() {
 mapping PIM::Document::DocumentToDocument():PSM::Document {
 	name := self.name;
 	author := self.author;
-	documentFormat := format;
-	documentFormatCode := formatCode;
-	documentPlatform := platform;
-	result.numColum := 1;
+	documentBackground := mapColor(self.documentBackground);
 	self.pages->forEach(p) {
 		pages += p->map PageToPage();
 	}
 }
 
 mapping PIM::Page::PageToPage():PSM::Page {
+	
+	if (paragraphImpl = null) {
+		var rnd := getRandomReal(); 
+		switch {
+			case(rnd < 0.80) paragraphImpl := "allSimpleParagraph";
+			case(rnd >= 0.8 and rnd < 0.9) paragraphImpl := "allTextBox";
+			case(rnd >= 0.9 and rnd < 0.95) paragraphImpl := "allContentControlBox";
+			else paragraphImpl := "mixture";
+		}
+	};
+	
+	var percSP := 0.0;
+	var percTB := 0.0;
+	var percCB := 0.0;
+	
+	switch {
+		case (paragraphImpl = "allSimpleParagraph") {percSP := 1.0; percTB:=0.0; percCB := 0.0;};
+		case (paragraphImpl = "allTextBox") {percSP := 0.0; percTB:=1.0; percCB := 0.0;};
+		case (paragraphImpl = "allContentControlBox") {percSP := 0.0; percTB:=0.0; percCB := 1.0;};
+		else {percSP := 0.8; percTB:=0.15; percCB := 0.05;};
+	};
+	
+	if (tableImpl = null) {
+		var rnd := getRandomReal(); 
+		switch {
+			case(rnd < 0.80) tableImpl := "allNormalTable";
+			case(rnd >= 0.8 and rnd < 0.95) tableImpl := "allEmbededTable";
+			else tableImpl := "mixture";
+		}
+	};
+	
+	var percNT := 0.0;
+	var percET := 0.0; 
+	
+	switch {
+		case (tableImpl = "allNormalTable") {percNT := 1.0; percET:=0.0;};
+		case (tableImpl = "allEmbededTable") {percNT := 0.0; percET:=1.0;};
+		else {percNT := 0.8; percET:=0.2;};
+	};
+	
+	
 	self.elements->forEach(e) {
 		if (e.oclIsTypeOf(PIM::Paragraph)) {
-			var temp:Real := getRandomReal();
-			if (temp <=0.90) {
+			var temp := getRandomReal();
+			if (temp < percSP) {
 				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
-			} else if (temp<=0.95) {
+			} else if (temp < percSP + percTB) {
 				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
-			} else {
+			} else if (temp < percSP + percTB + percCB){
 				elements += e->oclAsType(PIM::Paragraph)->map ParagraphToControlBox();
 			}
 		};
+		
 		if (e.oclIsTypeOf(PIM::Table)) {
-			var temp:Real := getRandomReal();
-			if (temp <=0.90) {
+			var temp := getRandomReal();
+			if (temp < percNT) {
 				elements += e.oclAsType(PIM::Table)->map TableToWordTable();
-			} else {
+			} else if (temp < percNT + percET) {
 				elements += e.oclAsType(PIM::Table)->map TableToEmbeddedExcel();
 			}
 		};
+		
 		if (e.oclIsTypeOf(PIM::Image)) {
 			elements += e.oclAsType(PIM::Image)->map ImageToImage();
 		};
+	
 	}
 }
 
-mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph {
+abstract mapping PIM::Element::ElementToElement():PSM::Element {
 	ID := generateUID();
 	parentID := self.ID; 
-	paragraphSpacing := 1.0;
-	lineSpacing := 1.0;
-	indent := 1.0;
-	var i:Integer := 1;
-	var si:Integer := self.words->asSequence()->size(); 
-	while (i <= si) {
-	 var pos:Integer := getRandomBetween(i,si);
-	 if (pos - i > 50) {
-	 	pos := i + 50 
-	 };
-	 var tt := self.words->asSequence()->subSequence(i,pos);
-	 var tSize := tt->size();
-	 i := pos + 1;
-	 var stVal:String := turnSeqToString(tt.value->asList());
-	 var temp:Real := getRandomReal();
-	 var sT:Text := null;
-	 if (temp < 0.98 or tt->size() > 3) {
-	 	sT := object SimpleText {
-	 		size := 10;
-	 		color := Color::BLACK;
-	 		value := stVal;
-	 		background := Color::WHITE;
-	 	};
-	 } else {
-	 	sT := object HyperLink {
-			value := stVal;
-			url := "http://www.google.com"	 		
-	 	}
-	 };
-	 
-	 words += sT;
-	 
-	}
+	backgroundColor := mapColor(self.backgroundColor);
 }
 
-mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
-	var i:Integer := 1;
-	var si:Integer := self.words->asSequence()->size(); 
-	ID := generateUID();
-	parentID := self.ID; 
-	while (i <= si) {
-	 var pos:Integer := getRandomBetween(i,si);
-	 if (pos - i > 50) {
-	 	pos := i + 50 
-	 };
-	 var tt := self.words->asSequence()->subSequence(i,pos);
-	 var tSize := tt->size();
-	 i := pos + 1;
-	 var stVal:String := turnSeqToString(tt.value->asList());
-	 var sT := object SimpleText {
-	 	size := 10;
-	 	color := Color::BLACK;
-	 	value :=  stVal;
-	 };
-	 
-	 words += sT;
-	 
-	}
+abstract mapping PIM::TextContainer::TextContainerToTextContainer():PSM::TextContainer 
+	inherits PIM::Element::ElementToElement {
+			fontFamily := FontFamily::TIMESNEWROMAN;
+}
+
+
+mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph 
+	inherits PIM::TextContainer::TextContainerToTextContainer {
+		paragraphSpacing := 1.0;
+		lineSpacing := 1.0;
+		indent := 1.0;
+		var i:Integer := 1;
+		var si:Integer := self.words->asSequence()->size(); 
+		while (i <= si) {
+		 var pos:Integer := getRandomBetween(i,si);
+		 if (pos - i > 50) {
+		 	pos := i + 50 
+		 };
+		 var tt := self.words->asSequence()->subSequence(i,pos);
+		 var tSize := tt->size();
+		 i := pos + 1;
+		 var stVal:String := turnSeqToString(tt.value->asList());
+		 var temp:Real := getRandomReal();
+		 var sT:Text := null;
+		 if (temp < 0.98 or tt->size() > 3) {
+		 	sT := object SimpleText {
+		 		value := stVal;
+		 	};
+		 } else {
+		 	sT := object HyperLink {
+				value := stVal;
+				url := "http://www.google.com"	 		
+		 	}
+		 };
+		 
+		 text += sT;
+		 
+		}
+}
+
+mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox 
+	inherits PIM::TextContainer::TextContainerToTextContainer {
+		var i:Integer := 1;
+		var si:Integer := self.words->asSequence()->size(); 
+		ID := generateUID();
+		parentID := self.ID; 
+		while (i <= si) {
+		 var pos:Integer := getRandomBetween(i,si);
+		 if (pos - i > 50) {
+		 	pos := i + 50 
+		 };
+		 var tt := self.words->asSequence()->subSequence(i,pos);
+		 var tSize := tt->size();
+		 i := pos + 1;
+		 var stVal:String := turnSeqToString(tt.value->asList());
+		 var sT := object SimpleText {
+		 	value :=  stVal;
+		 };
+		 
+		 text += sT;
+		 
+		}
 }
 
 mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
@@ -131,12 +178,10 @@ mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
 	 i := pos + 1;
 	 var stVal:String := turnSeqToString(tt.value->asList());
 	 var sT := object SimpleText {
-	 	size := 10;
-	 	color := Color::BLACK;
 	 	value :=  stVal;
 	 };
 	 
-	 words += sT;
+	 text += sT;
 	 
 	}
 }
@@ -173,4 +218,15 @@ mapping PIM::Image::ImageToImage():PSM::Image {
 	height := self.height;
 	width  := self.width;
 	type   := self.type;
+}
+
+
+helper mapColor(in col:PIM::Color):PSMDocx::Color {
+	switch {
+		case (col = PIM::Color::WHITE) return PSMDocx::Color::WHITE;
+		case (col = PIM::Color::BLACK) return PSMDocx::Color::BLACK;
+		case (col = PIM::Color::BLUE) return PSMDocx::Color::BLUE;
+		case (col = PIM::Color::RED) return PSMDocx::Color::RED;
+		else return null;
+	}
 }
