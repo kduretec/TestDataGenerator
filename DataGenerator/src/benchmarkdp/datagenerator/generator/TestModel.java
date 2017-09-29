@@ -23,7 +23,7 @@ public class TestModel {
 
 	private ModelExtent modelExtent;
 
-	private TestModel parent;
+	private TestModel parent = null;
 
 	public TestModel() {
 

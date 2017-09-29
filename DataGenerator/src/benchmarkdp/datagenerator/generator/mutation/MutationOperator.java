@@ -1,8 +1,6 @@
 package benchmarkdp.datagenerator.generator.mutation;
 
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -19,6 +17,7 @@ import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
 import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.generator.TestModel;
 
 public class MutationOperator implements MutationOperatorInterface {
 
@@ -61,8 +60,8 @@ public class MutationOperator implements MutationOperatorInterface {
 //		return features;
 //	}
 	
-	public List<TestCase> mutateTestCase(TestCase tC) {
-		List<TestCase> tModels = new ArrayList<TestCase>();
+	public void mutateTestCase(TestCase tC) {
+		//List<TestCase> tModels = new ArrayList<TestCase>();
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true);
 		OutputStreamWriter outStream = new OutputStreamWriter(System.out);
@@ -93,10 +92,15 @@ public class MutationOperator implements MutationOperatorInterface {
 				if (source == destination) {
 					tC.getTestModel().setModelExtent(input);
 				} else {
-					TestCase nTM = new TestCase(tC);
-					nTM.getTestModel().setModelExtent(output);
-					nTM.getTestModel().setModelType(destination);
-					tModels.add(nTM);
+					//TestCase nTM = new TestCase(tC);
+					TestModel tm = new TestModel();
+					tm.setParent(tC.getTestModel());
+					tm.setModelExtent(output);
+					tm.setModelType(destination);
+					tC.setTestModel(tm);
+					//nTM.getTestModel().setModelExtent(output);
+					//nTM.getTestModel().setModelType(destination);
+					//tModels.add(nTM);
 				}
 			} else {
 				// turn the result diagnostic into status and send it to error
@@ -109,6 +113,5 @@ public class MutationOperator implements MutationOperatorInterface {
 				}
 			}
 		}
-		return tModels;
 	}
 }

@@ -19,5 +19,7 @@ public interface MutationOperatorInterface {
 	
 	//public List<String> getFeatures();
 	
-	public List<TestCase> mutateTestCase(TestCase tm);
+	//public List<TestCase> mutateTestCase(TestCase tm);
+	
+	public void mutateTestCase(TestCase tm);
 }

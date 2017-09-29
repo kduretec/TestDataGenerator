@@ -42,8 +42,8 @@ public class LibreOfficeMutationOperator extends MutationOperator implements Mut
 	
 	
 	@Override
-	public List<TestCase> mutateTestCase(TestCase tC) {
-		List<TestCase> tModels = new ArrayList<TestCase>();
+	public void mutateTestCase(TestCase tC) {
+		//List<TestCase> tModels = new ArrayList<TestCase>();
 		ExecutionContextImpl context = new ExecutionContextImpl();
 		context.setConfigProperty("keepModeling", true);
 		OutputStreamWriter outStream = new OutputStreamWriter(System.out);
@@ -89,7 +89,7 @@ public class LibreOfficeMutationOperator extends MutationOperator implements Mut
 							TestCase nTM = new TestCase(tC);
 							nTM.getTestModel().setModelExtent(output);
 							nTM.getTestModel().setModelType(destination);
-							tModels.add(nTM);
+							//tModels.add(nTM);
 						}
 					} else {
 						// turn the result diagnostic into status and send it to
@@ -105,7 +105,7 @@ public class LibreOfficeMutationOperator extends MutationOperator implements Mut
 				}
 			}
 		}
-		return tModels;
+		//return tModels;
 
 	}
 	

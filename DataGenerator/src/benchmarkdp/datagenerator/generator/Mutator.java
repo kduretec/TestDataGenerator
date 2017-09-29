@@ -111,22 +111,20 @@ public class Mutator {
 
 		System.out.println("Starting Test Suite generation");
 
-		// // PIM mutations
-		// System.out.println("Starting PIM transformations");
-		// for (int i = 0; i < testCases.size(); i++) {
-		// TestCase tC = testCases.get(i);
-		// System.out.println("Mutating according to test feature:" +
-		// tC.getTestFeature().getName());
-		// if (tC.getTestModel().getModelType() == ModelType.PIM) {
-		// for (int j = 0; j < mutationsPIM.size(); j++) {
-		// MutationOperatorInterface mo = mutationsPIM.get(j);
-		// if (mo.getSourceModel() == ModelType.PIM) {
-		// List<TestCase> newModels = mo.mutateTestCase(tC);
-		// if (newModels.size() > 0) {
-		// testCases.addAll(newModels);
-		// }
-		// }
-		// }
+		 // PIM mutations
+		 System.out.println("Starting PIM transformations");
+		 for (int i = 0; i < testCases.size(); i++) {
+			 TestCase tC = testCases.get(i);
+			 //System.out.println("Mutating according to test feature:" + tC.getTestFeature().getName());
+			 if (tC.getTestModel().getModelType() == ModelType.PIM) {
+			 	for (int j = 0; j < mutationsPIM.size(); j++) {
+			 		MutationOperatorInterface mo = mutationsPIM.get(j);
+			 		if (mo.getSourceModel() == ModelType.PIM) {
+			 			mo.mutateTestCase(tC);
+			 		}
+			 	}
+			 }
+		 }
 		// for (OCLEvaluatorInterface oE : evaluators) {
 		// if (oE.getModelType() == ModelType.PIM) {
 		// oE.evaluateTestModel(tC);
