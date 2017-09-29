@@ -5,6 +5,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.generator.TestModel;
 
 public class OCLMetadata extends AbstractOCLEvaluator{
 
@@ -18,11 +19,16 @@ public class OCLMetadata extends AbstractOCLEvaluator{
 	
 	@Override
 	public void evaluateTestModel(TestCase tC) {
-		EList<EObject> objects = tC.getTestModel().getModelObjects();
-		Object doc =  objects.get(0);
-		Object value = evaluateObject(doc);
-		tC.getMetadata().add(name, value);
+		TestModel tm = tC.getTestModel();
+		while (tm != null) {
+			if (tm.getModelType() == modelType) {
+				EList<EObject> objects = tm.getModelObjects();
+				Object doc =  objects.get(0);
+				Object value = evaluateObject(doc);
+				tC.getMetadata().add(name, value);				
+			}
+			tm = tm.getParent();
+		}
 	}
-
 	
 }

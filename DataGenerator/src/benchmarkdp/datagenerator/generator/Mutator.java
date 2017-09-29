@@ -75,6 +75,8 @@ public class Mutator {
 		initializeMutationsPIM2PSM();
 		initializeMutationsPSM();
 		
+		System.out.println("Mutation operators initialized");
+		
 		testCases = new ArrayList<TestCase>();
 		// List<TestFeature> testFeatures = readFeatureDistributions();
 		List<TestFeature> testFeatures = readSpecialCases();
@@ -93,7 +95,9 @@ public class Mutator {
 
 		System.out.println("Testcases initialized");
 		//
-		// initializeEvaluators();
+		initializeEvaluators();
+		
+		System.out.println("Evaluators initialized");
 		//
 		// initializeCodeGenerator();
 
@@ -109,7 +113,7 @@ public class Mutator {
 
 		System.out.println("Starting Test Suite generation");
 
-		 //PIM mutations
+		 // PIM mutations
 		 System.out.println("Starting PIM transformations");
 		 for (int i = 0; i < testCases.size(); i++) {
 			 TestCase tC = testCases.get(i);
@@ -124,7 +128,7 @@ public class Mutator {
 			 }
 		 }
 		 
-	   // PIM2PSM transformation
+		 // PIM2PSM transformation
 		 System.out.println("Starting PIM2PSM model transformations ");
 		 Random rnd = new Random();
 		 for (int i = 0; i < testCases.size(); i++) {
@@ -149,14 +153,12 @@ public class Mutator {
 				 }
 			 }
 		 }
-		// for (OCLEvaluatorInterface oE : evaluators) {
-		// if (oE.getModelType() == tC.getTestModel().getModelType()) {
-		// oE.evaluateTestModel(tC);
-		// }
-		// }
-		// }
-		//
-		// }
+		
+		 for (TestCase tc : testCases) {
+			 for (OCLEvaluatorInterface oE : evaluators) {
+				 oE.evaluateTestModel(tc);
+			 }
+		 }
 
 		// // code generation
 		// System.out.println("Starting Code generation");
@@ -278,48 +280,8 @@ public class Mutator {
 	}
 
 	private void initializeEvaluators() {
+		
 		evaluators = new ArrayList<OCLEvaluatorInterface>();
-
-		// evaluators.add(new OCLEvaluatorPIM("pagecount",
-		// "self.pages->size()"));
-		// evaluators.add(new OCLEvaluatorPIM("tablecount",
-		// "self.pages.elements->selectByType(Table)->size()"));
-		// evaluators.add(new OCLEvaluatorPIM("paragraphcount",
-		// "self.pages.elements->selectByType(Paragraph)->size()"));
-		// evaluators.add(new OCLEvaluatorPIM("wordcount",
-		// "self.pages.elements->selectByType(Paragraph).words->size()"));
-		//
-		// evaluators.add(new OCLEvaluatorPSMDoc("words-textbox",
-		// "self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
-		// evaluators.add(new OCLEvaluatorPSMDocx("words-textbox",
-		// "self.pages.elements->selectByType(TextBox)->asSequence()->collectNested(words.value->asSequence())"));
-		// evaluators.add(new OCLEvaluatorPSMDocx("words-controlbox",
-		// "self.pages.elements->selectByType(ControlBox)->asSequence()->collectNested(words.value->asSequence())"));
-		// // evaluators.add(new OCLEvaluatorPSMDocx("words",
-		// // "self.pages.elements->selectByType(Paragraph).words.value"));
-		// // evaluators.add(new OCLEvaluatorPSMDoc("words",
-		// // "self.pages.elements->selectByType(Paragraph).words.value"));
-		//
-		// evaluators.add(new OCLEvaluatorPSMDocx("words",
-		// "self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words.value->asSequence())"));
-		// evaluators.add(new OCLEvaluatorPSMDoc("words",
-		// "self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words.value->asSequence())"));
-		//
-		// evaluators.add(new OCLEvaluatorPSMDocx("controlboxcount",
-		// "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
-		//
-		// evaluators.add(new OCLEvaluatorPSMDoc("numCol", "self.numColum"));
-		// evaluators.add(new OCLEvaluatorPSMDocx("numCol", "self.numColum"));
-		//
-		// evaluators.add(new OCLEvaluatorPSMDoc("format",
-		// "self.documentFormat"));
-		// evaluators.add(new OCLEvaluatorPSMDocx("format",
-		// "self.documentFormat"));
-		//
-		// evaluators.add(new OCLEvaluatorPSMDoc("platform",
-		// "self.documentPlatform"));
-		// evaluators.add(new OCLEvaluatorPSMDocx("platform",
-		// "self.documentPlatform"));
 
 		evaluators.add(
 				new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "format", "self.documentFormat"));
@@ -339,12 +301,6 @@ public class Mutator {
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "pagecount", "self.pages->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "freewordcount",
 				"self.pages.elements->selectByType(Paragraph).words->size()"));
-		// evaluators.add(new OCLMetadata(ModelType.PIM,
-		// PIMPackage.Literals.DOCUMENT, "allwordcount",
-		// "Word::allInstances()->asSequence()->size()"));
-		// evaluators.add(new OCLMetadata(ModelType.PIM,
-		// PIMPackage.Literals.DOCUMENT, "freewordcount",
-		// "self.pages.elements->selectByType(Paragraph)->asSequence()->collectNested(words->size())->sum()"));
 
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "textboxcount",
 				"self.pages.elements->selectByKind(TextBox)->asSequence()->size()"));
