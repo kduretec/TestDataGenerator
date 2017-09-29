@@ -2,6 +2,7 @@
  */
 package benchmarkdp.datagenerator.model.PSMDocx.impl;
 
+import benchmarkdp.datagenerator.model.PSMDocx.Alignment;
 import benchmarkdp.datagenerator.model.PSMDocx.Cell;
 import benchmarkdp.datagenerator.model.PSMDocx.Color;
 import benchmarkdp.datagenerator.model.PSMDocx.ControlBox;
@@ -15,14 +16,15 @@ import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxFactory;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Page;
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph;
+import benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
 import benchmarkdp.datagenerator.model.PSMDocx.SimpleText;
-import benchmarkdp.datagenerator.model.PSMDocx.Table;
+import benchmarkdp.datagenerator.model.PSMDocx.TableImpl;
 import benchmarkdp.datagenerator.model.PSMDocx.Text;
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
 import benchmarkdp.datagenerator.model.PSMDocx.TextContainer;
-
 import benchmarkdp.datagenerator.model.PSMDocx.WordTable;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -113,7 +115,7 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass tableEClass = null;
+	private EClass tableImplEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,6 +157,13 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass paragraphImplEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum fontFamilyEEnum = null;
 
 	/**
@@ -163,6 +172,13 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * @generated
 	 */
 	private EEnum colorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum alignmentEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -257,7 +273,7 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDocument_NumColum() {
+	public EAttribute getDocument_DocumentBackground() {
 		return (EAttribute)documentEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -347,6 +363,24 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getElement_BackgroundColor() {
+		return (EAttribute)elementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getElement_Alignment() {
+		return (EAttribute)elementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTextContainer() {
 		return textContainerEClass;
 	}
@@ -356,8 +390,17 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTextContainer_Words() {
-		return (EReference)textContainerEClass.getEStructuralFeatures().get(0);
+	public EAttribute getTextContainer_FontColor() {
+		return (EAttribute)textContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTextContainer_FontFamily() {
+		return (EAttribute)textContainerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -446,42 +489,6 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimpleText_FontFamily() {
-		return (EAttribute)simpleTextEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSimpleText_Size() {
-		return (EAttribute)simpleTextEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSimpleText_Color() {
-		return (EAttribute)simpleTextEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSimpleText_Background() {
-		return (EAttribute)simpleTextEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getHyperLink() {
 		return hyperLinkEClass;
 	}
@@ -500,8 +507,8 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTable() {
-		return tableEClass;
+	public EClass getTableImpl() {
+		return tableImplEClass;
 	}
 
 	/**
@@ -509,8 +516,8 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTable_Row() {
-		return (EReference)tableEClass.getEStructuralFeatures().get(0);
+	public EReference getTableImpl_Row() {
+		return (EReference)tableImplEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -518,8 +525,8 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTable_NumRows() {
-		return (EAttribute)tableEClass.getEStructuralFeatures().get(1);
+	public EAttribute getTableImpl_NumRows() {
+		return (EAttribute)tableImplEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -527,8 +534,8 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTable_NumCol() {
-		return (EAttribute)tableEClass.getEStructuralFeatures().get(2);
+	public EAttribute getTableImpl_NumCol() {
+		return (EAttribute)tableImplEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -626,6 +633,24 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getParagraphImpl() {
+		return paragraphImplEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParagraphImpl_Text() {
+		return (EReference)paragraphImplEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getFontFamily() {
 		return fontFamilyEEnum;
 	}
@@ -637,6 +662,15 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 */
 	public EEnum getColor() {
 		return colorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAlignment() {
+		return alignmentEEnum;
 	}
 
 	/**
@@ -670,7 +704,7 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		documentEClass = createEClass(DOCUMENT);
 		createEAttribute(documentEClass, DOCUMENT__NAME);
 		createEAttribute(documentEClass, DOCUMENT__AUTHOR);
-		createEAttribute(documentEClass, DOCUMENT__NUM_COLUM);
+		createEAttribute(documentEClass, DOCUMENT__DOCUMENT_BACKGROUND);
 		createEAttribute(documentEClass, DOCUMENT__DOCUMENT_FORMAT);
 		createEAttribute(documentEClass, DOCUMENT__DOCUMENT_FORMAT_CODE);
 		createEReference(documentEClass, DOCUMENT__PAGES);
@@ -682,9 +716,12 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		elementEClass = createEClass(ELEMENT);
 		createEAttribute(elementEClass, ELEMENT__ID);
 		createEAttribute(elementEClass, ELEMENT__PARENT_ID);
+		createEAttribute(elementEClass, ELEMENT__BACKGROUND_COLOR);
+		createEAttribute(elementEClass, ELEMENT__ALIGNMENT);
 
 		textContainerEClass = createEClass(TEXT_CONTAINER);
-		createEReference(textContainerEClass, TEXT_CONTAINER__WORDS);
+		createEAttribute(textContainerEClass, TEXT_CONTAINER__FONT_COLOR);
+		createEAttribute(textContainerEClass, TEXT_CONTAINER__FONT_FAMILY);
 
 		textBoxEClass = createEClass(TEXT_BOX);
 
@@ -699,18 +736,14 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		createEAttribute(textEClass, TEXT__VALUE);
 
 		simpleTextEClass = createEClass(SIMPLE_TEXT);
-		createEAttribute(simpleTextEClass, SIMPLE_TEXT__FONT_FAMILY);
-		createEAttribute(simpleTextEClass, SIMPLE_TEXT__SIZE);
-		createEAttribute(simpleTextEClass, SIMPLE_TEXT__COLOR);
-		createEAttribute(simpleTextEClass, SIMPLE_TEXT__BACKGROUND);
 
 		hyperLinkEClass = createEClass(HYPER_LINK);
 		createEAttribute(hyperLinkEClass, HYPER_LINK__URL);
 
-		tableEClass = createEClass(TABLE);
-		createEReference(tableEClass, TABLE__ROW);
-		createEAttribute(tableEClass, TABLE__NUM_ROWS);
-		createEAttribute(tableEClass, TABLE__NUM_COL);
+		tableImplEClass = createEClass(TABLE_IMPL);
+		createEReference(tableImplEClass, TABLE_IMPL__ROW);
+		createEAttribute(tableImplEClass, TABLE_IMPL__NUM_ROWS);
+		createEAttribute(tableImplEClass, TABLE_IMPL__NUM_COL);
 
 		rowEClass = createEClass(ROW);
 		createEReference(rowEClass, ROW__CELL);
@@ -727,9 +760,13 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 
 		wordTableEClass = createEClass(WORD_TABLE);
 
+		paragraphImplEClass = createEClass(PARAGRAPH_IMPL);
+		createEReference(paragraphImplEClass, PARAGRAPH_IMPL__TEXT);
+
 		// Create enums
 		fontFamilyEEnum = createEEnum(FONT_FAMILY);
 		colorEEnum = createEEnum(COLOR);
+		alignmentEEnum = createEEnum(ALIGNMENT);
 	}
 
 	/**
@@ -761,21 +798,22 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 
 		// Add supertypes to classes
 		textContainerEClass.getESuperTypes().add(this.getElement());
-		textBoxEClass.getESuperTypes().add(this.getTextContainer());
-		paragraphEClass.getESuperTypes().add(this.getTextContainer());
-		controlBoxEClass.getESuperTypes().add(this.getTextContainer());
+		textBoxEClass.getESuperTypes().add(this.getParagraphImpl());
+		paragraphEClass.getESuperTypes().add(this.getParagraphImpl());
+		controlBoxEClass.getESuperTypes().add(this.getParagraphImpl());
 		simpleTextEClass.getESuperTypes().add(this.getText());
 		hyperLinkEClass.getESuperTypes().add(this.getText());
-		tableEClass.getESuperTypes().add(this.getElement());
+		tableImplEClass.getESuperTypes().add(this.getTextContainer());
 		imageEClass.getESuperTypes().add(this.getElement());
-		embeddedExcelEClass.getESuperTypes().add(this.getTable());
-		wordTableEClass.getESuperTypes().add(this.getTable());
+		embeddedExcelEClass.getESuperTypes().add(this.getTableImpl());
+		wordTableEClass.getESuperTypes().add(this.getTableImpl());
+		paragraphImplEClass.getESuperTypes().add(this.getTextContainer());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDocument_Name(), ecorePackage.getEString(), "name", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_Author(), ecorePackage.getEString(), "author", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDocument_NumColum(), ecorePackage.getEInt(), "numColum", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDocument_DocumentBackground(), this.getColor(), "documentBackground", "WHITE", 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_DocumentFormat(), ecorePackage.getEString(), "documentFormat", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_DocumentFormatCode(), ecorePackage.getEString(), "documentFormatCode", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Pages(), this.getPage(), null, "pages", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -784,12 +822,15 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		initEClass(pageEClass, Page.class, "Page", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPage_Elements(), this.getElement(), null, "elements", null, 0, -1, Page.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElement_ID(), ecorePackage.getEString(), "ID", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getElement_ParentID(), ecorePackage.getEString(), "parentID", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElement_BackgroundColor(), this.getColor(), "backgroundColor", "WHITE", 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElement_Alignment(), this.getAlignment(), "alignment", "LEFT", 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(textContainerEClass, TextContainer.class, "TextContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTextContainer_Words(), this.getText(), null, "words", null, 0, -1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(textContainerEClass, TextContainer.class, "TextContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTextContainer_FontColor(), this.getColor(), "fontColor", null, 0, 1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTextContainer_FontFamily(), this.getFontFamily(), "fontFamily", null, 0, 1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(textBoxEClass, TextBox.class, "TextBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -800,22 +841,18 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 
 		initEClass(controlBoxEClass, ControlBox.class, "ControlBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(textEClass, Text.class, "Text", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(textEClass, Text.class, "Text", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getText_Value(), ecorePackage.getEString(), "value", null, 0, 1, Text.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(simpleTextEClass, SimpleText.class, "SimpleText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimpleText_FontFamily(), this.getFontFamily(), "fontFamily", null, 0, 1, SimpleText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSimpleText_Size(), ecorePackage.getEInt(), "size", "10", 0, 1, SimpleText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSimpleText_Color(), this.getColor(), "color", null, 0, 1, SimpleText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSimpleText_Background(), this.getColor(), "background", "WHITE", 0, 1, SimpleText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hyperLinkEClass, HyperLink.class, "HyperLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getHyperLink_Url(), ecorePackage.getEString(), "url", null, 0, 1, HyperLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTable_Row(), this.getRow(), null, "row", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTable_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTable_NumCol(), ecorePackage.getEInt(), "numCol", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(tableImplEClass, TableImpl.class, "TableImpl", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTableImpl_Row(), this.getRow(), null, "row", null, 0, -1, TableImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableImpl_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, TableImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableImpl_NumCol(), ecorePackage.getEInt(), "numCol", null, 0, 1, TableImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rowEClass, Row.class, "Row", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRow_Cell(), this.getCell(), null, "cell", null, 0, -1, Row.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -832,6 +869,9 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 
 		initEClass(wordTableEClass, WordTable.class, "WordTable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(paragraphImplEClass, ParagraphImpl.class, "ParagraphImpl", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getParagraphImpl_Text(), this.getText(), null, "text", null, 0, -1, ParagraphImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		// Initialize enums and add enum literals
 		initEEnum(fontFamilyEEnum, FontFamily.class, "FontFamily");
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.CALIBRI);
@@ -842,9 +882,14 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 
 		initEEnum(colorEEnum, Color.class, "Color");
 		addEEnumLiteral(colorEEnum, Color.BLACK);
-		addEEnumLiteral(colorEEnum, Color.WHITE);
 		addEEnumLiteral(colorEEnum, Color.BLUE);
 		addEEnumLiteral(colorEEnum, Color.RED);
+		addEEnumLiteral(colorEEnum, Color.WHITE);
+
+		initEEnum(alignmentEEnum, Alignment.class, "Alignment");
+		addEEnumLiteral(alignmentEEnum, Alignment.LEFT);
+		addEEnumLiteral(alignmentEEnum, Alignment.CENTER);
+		addEEnumLiteral(alignmentEEnum, Alignment.RIGHT);
 
 		// Create resource
 		createResource(eNS_URI);

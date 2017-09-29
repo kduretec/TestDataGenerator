@@ -1,6 +1,6 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PSMDocx;
+package benchmarkdp.datagenerator.model.PSMLibre;
 
 
 /**
@@ -9,9 +9,10 @@ package benchmarkdp.datagenerator.model.PSMDocx;
  * <!-- end-user-doc -->
  *
  *
- * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTextBox()
+ * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getTextBox()
  * @model
  * @generated
  */
 public interface TextBox extends ParagraphImpl {
+
 } // TextBox

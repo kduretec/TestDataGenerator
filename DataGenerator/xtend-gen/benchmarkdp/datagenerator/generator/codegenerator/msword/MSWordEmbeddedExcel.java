@@ -7,7 +7,6 @@ import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel;
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
-import benchmarkdp.datagenerator.model.PSMDocx.Text;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -108,13 +107,9 @@ public class MSWordEmbeddedExcel extends AbstractElementCompiler {
   }
   
   public String compileParagraph(final Paragraph p) {
-    StringConcatenation _builder = new StringConcatenation();
-    String temp = _builder.toString();
-    EList<Text> _words = p.getWords();
-    Text _get = _words.get(0);
-    String _value = _get.getValue();
-    String _plus = (temp + _value);
-    temp = _plus;
-    return temp;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field words is undefined for the type Paragraph"
+      + "\nget cannot be resolved"
+      + "\nvalue cannot be resolved");
   }
 }

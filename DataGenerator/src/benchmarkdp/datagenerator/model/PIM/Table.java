@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Table extends Element {
+public interface Table extends TextContainer {
 	/**
 	 * Returns the value of the '<em><b>Num Rows</b></em>' attribute.
 	 * <!-- begin-user-doc -->

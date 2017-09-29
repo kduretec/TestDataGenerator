@@ -2,6 +2,7 @@
  */
 package benchmarkdp.datagenerator.model.PSMDocx.impl;
 
+import benchmarkdp.datagenerator.model.PSMDocx.Color;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Page;
@@ -32,7 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getAuthor <em>Author</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getNumColum <em>Num Colum</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentBackground <em>Document Background</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentFormat <em>Document Format</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentFormatCode <em>Document Format Code</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getPages <em>Pages</em>}</li>
@@ -83,24 +84,24 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	protected String author = AUTHOR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNumColum() <em>Num Colum</em>}' attribute.
+	 * The default value of the '{@link #getDocumentBackground() <em>Document Background</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNumColum()
+	 * @see #getDocumentBackground()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int NUM_COLUM_EDEFAULT = 0;
+	protected static final Color DOCUMENT_BACKGROUND_EDEFAULT = Color.WHITE;
 
 	/**
-	 * The cached value of the '{@link #getNumColum() <em>Num Colum</em>}' attribute.
+	 * The cached value of the '{@link #getDocumentBackground() <em>Document Background</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNumColum()
+	 * @see #getDocumentBackground()
 	 * @generated
 	 * @ordered
 	 */
-	protected int numColum = NUM_COLUM_EDEFAULT;
+	protected Color documentBackground = DOCUMENT_BACKGROUND_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDocumentFormat() <em>Document Format</em>}' attribute.
@@ -238,8 +239,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getNumColum() {
-		return numColum;
+	public Color getDocumentBackground() {
+		return documentBackground;
 	}
 
 	/**
@@ -247,11 +248,11 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumColum(int newNumColum) {
-		int oldNumColum = numColum;
-		numColum = newNumColum;
+	public void setDocumentBackground(Color newDocumentBackground) {
+		Color oldDocumentBackground = documentBackground;
+		documentBackground = newDocumentBackground == null ? DOCUMENT_BACKGROUND_EDEFAULT : newDocumentBackground;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__NUM_COLUM, oldNumColum, numColum));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND, oldDocumentBackground, documentBackground));
 	}
 
 	/**
@@ -355,8 +356,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getName();
 			case PSMDocxPackage.DOCUMENT__AUTHOR:
 				return getAuthor();
-			case PSMDocxPackage.DOCUMENT__NUM_COLUM:
-				return getNumColum();
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				return getDocumentBackground();
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
 				return getDocumentFormat();
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT_CODE:
@@ -384,8 +385,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMDocxPackage.DOCUMENT__AUTHOR:
 				setAuthor((String)newValue);
 				return;
-			case PSMDocxPackage.DOCUMENT__NUM_COLUM:
-				setNumColum((Integer)newValue);
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				setDocumentBackground((Color)newValue);
 				return;
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
 				setDocumentFormat((String)newValue);
@@ -418,8 +419,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMDocxPackage.DOCUMENT__AUTHOR:
 				setAuthor(AUTHOR_EDEFAULT);
 				return;
-			case PSMDocxPackage.DOCUMENT__NUM_COLUM:
-				setNumColum(NUM_COLUM_EDEFAULT);
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				setDocumentBackground(DOCUMENT_BACKGROUND_EDEFAULT);
 				return;
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
 				setDocumentFormat(DOCUMENT_FORMAT_EDEFAULT);
@@ -449,8 +450,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PSMDocxPackage.DOCUMENT__AUTHOR:
 				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
-			case PSMDocxPackage.DOCUMENT__NUM_COLUM:
-				return numColum != NUM_COLUM_EDEFAULT;
+			case PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				return documentBackground != DOCUMENT_BACKGROUND_EDEFAULT;
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
 				return DOCUMENT_FORMAT_EDEFAULT == null ? documentFormat != null : !DOCUMENT_FORMAT_EDEFAULT.equals(documentFormat);
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT_CODE:
@@ -477,8 +478,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		result.append(name);
 		result.append(", author: ");
 		result.append(author);
-		result.append(", numColum: ");
-		result.append(numColum);
+		result.append(", documentBackground: ");
+		result.append(documentBackground);
 		result.append(", documentFormat: ");
 		result.append(documentFormat);
 		result.append(", documentFormatCode: ");

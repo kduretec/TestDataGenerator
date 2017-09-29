@@ -2,6 +2,7 @@
  */
 package benchmarkdp.datagenerator.model.PIM.impl;
 
+import benchmarkdp.datagenerator.model.PIM.Color;
 import benchmarkdp.datagenerator.model.PIM.Document;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PIM.Page;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getPages <em>Pages</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getDocumentBackground <em>Document Background</em>}</li>
  * </ul>
  *
  * @generated
@@ -87,6 +89,26 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @ordered
 	 */
 	protected EList<Page> pages;
+
+	/**
+	 * The default value of the '{@link #getDocumentBackground() <em>Document Background</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentBackground()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Color DOCUMENT_BACKGROUND_EDEFAULT = Color.WHITE;
+
+	/**
+	 * The cached value of the '{@link #getDocumentBackground() <em>Document Background</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDocumentBackground()
+	 * @generated
+	 * @ordered
+	 */
+	protected Color documentBackground = DOCUMENT_BACKGROUND_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -166,6 +188,27 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Color getDocumentBackground() {
+		return documentBackground;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDocumentBackground(Color newDocumentBackground) {
+		Color oldDocumentBackground = documentBackground;
+		documentBackground = newDocumentBackground == null ? DOCUMENT_BACKGROUND_EDEFAULT : newDocumentBackground;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND, oldDocumentBackground, documentBackground));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -189,6 +232,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getAuthor();
 			case PIMPackage.DOCUMENT__PAGES:
 				return getPages();
+			case PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				return getDocumentBackground();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -212,6 +257,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				getPages().clear();
 				getPages().addAll((Collection<? extends Page>)newValue);
 				return;
+			case PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				setDocumentBackground((Color)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -233,6 +281,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PIMPackage.DOCUMENT__PAGES:
 				getPages().clear();
 				return;
+			case PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				setDocumentBackground(DOCUMENT_BACKGROUND_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -251,6 +302,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
 			case PIMPackage.DOCUMENT__PAGES:
 				return pages != null && !pages.isEmpty();
+			case PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				return documentBackground != DOCUMENT_BACKGROUND_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -269,6 +322,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		result.append(name);
 		result.append(", author: ");
 		result.append(author);
+		result.append(", documentBackground: ");
+		result.append(documentBackground);
 		result.append(')');
 		return result.toString();
 	}

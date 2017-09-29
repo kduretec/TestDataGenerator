@@ -13,5 +13,5 @@ package benchmarkdp.datagenerator.model.PSMDocx;
  * @model
  * @generated
  */
-public interface WordTable extends Table {
+public interface WordTable extends TableImpl {
 } // WordTable

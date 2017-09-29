@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *
  * @generated
  */
-public class TextImpl extends MinimalEObjectImpl.Container implements Text {
+public abstract class TextImpl extends MinimalEObjectImpl.Container implements Text {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->

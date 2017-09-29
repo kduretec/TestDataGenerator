@@ -4,6 +4,7 @@ package benchmarkdp.datagenerator.model.PIM;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -94,13 +95,22 @@ public interface PIMPackage extends EPackage {
 	int DOCUMENT__PAGES = 2;
 
 	/**
+	 * The feature id for the '<em><b>Document Background</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__DOCUMENT_BACKGROUND = 3;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = 3;
+	int DOCUMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -131,13 +141,31 @@ public interface PIMPackage extends EPackage {
 	int ELEMENT__ID = 0;
 
 	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__BACKGROUND_COLOR = 1;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__ALIGNMENT = 2;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 1;
+	int ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Element</em>' class.
@@ -147,6 +175,70 @@ public interface PIMPackage extends EPackage {
 	 * @ordered
 	 */
 	int ELEMENT_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl <em>Text Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl
+	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getTextContainer()
+	 * @generated
+	 */
+	int TEXT_CONTAINER = 9;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__BACKGROUND_COLOR = ELEMENT__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__ALIGNMENT = ELEMENT__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__FONT_COLOR = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Text Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Text Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl <em>Table</em>}' class.
@@ -165,7 +257,34 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__ID = ELEMENT__ID;
+	int TABLE__ID = TEXT_CONTAINER__ID;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__BACKGROUND_COLOR = TEXT_CONTAINER__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__ALIGNMENT = TEXT_CONTAINER__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__FONT_COLOR = TEXT_CONTAINER__FONT_COLOR;
 
 	/**
 	 * The feature id for the '<em><b>Num Rows</b></em>' attribute.
@@ -174,7 +293,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__NUM_ROWS = ELEMENT_FEATURE_COUNT + 0;
+	int TABLE__NUM_ROWS = TEXT_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Num Col</b></em>' attribute.
@@ -183,7 +302,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__NUM_COL = ELEMENT_FEATURE_COUNT + 1;
+	int TABLE__NUM_COL = TEXT_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Row</b></em>' containment reference list.
@@ -192,7 +311,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__ROW = ELEMENT_FEATURE_COUNT + 2;
+	int TABLE__ROW = TEXT_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Table</em>' class.
@@ -201,7 +320,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+	int TABLE_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Table</em>' class.
@@ -210,7 +329,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int TABLE_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.ParagraphImpl <em>Paragraph</em>}' class.
@@ -229,7 +348,34 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__ID = ELEMENT__ID;
+	int PARAGRAPH__ID = TEXT_CONTAINER__ID;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__BACKGROUND_COLOR = TEXT_CONTAINER__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__ALIGNMENT = TEXT_CONTAINER__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__FONT_COLOR = TEXT_CONTAINER__FONT_COLOR;
 
 	/**
 	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
@@ -238,7 +384,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__WORDS = ELEMENT_FEATURE_COUNT + 0;
+	int PARAGRAPH__WORDS = TEXT_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Paragraph</em>' class.
@@ -247,7 +393,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+	int PARAGRAPH_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Paragraph</em>' class.
@@ -256,7 +402,7 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int PARAGRAPH_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.impl.ImageImpl <em>Image</em>}' class.
@@ -276,6 +422,24 @@ public interface PIMPackage extends EPackage {
 	 * @ordered
 	 */
 	int IMAGE__ID = ELEMENT__ID;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__BACKGROUND_COLOR = ELEMENT__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__ALIGNMENT = ELEMENT__ALIGNMENT;
 
 	/**
 	 * The feature id for the '<em><b>Height</b></em>' attribute.
@@ -470,6 +634,26 @@ public interface PIMPackage extends EPackage {
 	 */
 	int WORD_OPERATION_COUNT = 0;
 
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.Color <em>Color</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PIM.Color
+	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getColor()
+	 * @generated
+	 */
+	int COLOR = 10;
+
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PIM.Alignment <em>Alignment</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PIM.Alignment
+	 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getAlignment()
+	 * @generated
+	 */
+	int ALIGNMENT = 11;
+
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Document <em>Document</em>}'.
@@ -515,6 +699,17 @@ public interface PIMPackage extends EPackage {
 	EReference getDocument_Pages();
 
 	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Document#getDocumentBackground <em>Document Background</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Document Background</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Document#getDocumentBackground()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_DocumentBackground();
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Element <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -534,6 +729,28 @@ public interface PIMPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getElement_ID();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Element#getBackgroundColor <em>Background Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Background Color</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Element#getBackgroundColor()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EAttribute getElement_BackgroundColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Element#getAlignment <em>Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alignment</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Element#getAlignment()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EAttribute getElement_Alignment();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Table <em>Table</em>}'.
@@ -727,6 +944,47 @@ public interface PIMPackage extends EPackage {
 	EAttribute getWord_Value();
 
 	/**
+	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.TextContainer <em>Text Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Text Container</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.TextContainer
+	 * @generated
+	 */
+	EClass getTextContainer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.TextContainer#getFontColor <em>Font Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Font Color</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.TextContainer#getFontColor()
+	 * @see #getTextContainer()
+	 * @generated
+	 */
+	EAttribute getTextContainer_FontColor();
+
+	/**
+	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PIM.Color <em>Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Color</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Color
+	 * @generated
+	 */
+	EEnum getColor();
+
+	/**
+	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PIM.Alignment <em>Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Alignment</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Alignment
+	 * @generated
+	 */
+	EEnum getAlignment();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -784,6 +1042,14 @@ public interface PIMPackage extends EPackage {
 		EReference DOCUMENT__PAGES = eINSTANCE.getDocument_Pages();
 
 		/**
+		 * The meta object literal for the '<em><b>Document Background</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__DOCUMENT_BACKGROUND = eINSTANCE.getDocument_DocumentBackground();
+
+		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.ElementImpl <em>Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -800,6 +1066,22 @@ public interface PIMPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ELEMENT__ID = eINSTANCE.getElement_ID();
+
+		/**
+		 * The meta object literal for the '<em><b>Background Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT__BACKGROUND_COLOR = eINSTANCE.getElement_BackgroundColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Alignment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT__ALIGNMENT = eINSTANCE.getElement_Alignment();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl <em>Table</em>}' class.
@@ -958,6 +1240,44 @@ public interface PIMPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute WORD__VALUE = eINSTANCE.getWord_Value();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl <em>Text Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl
+		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getTextContainer()
+		 * @generated
+		 */
+		EClass TEXT_CONTAINER = eINSTANCE.getTextContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT_CONTAINER__FONT_COLOR = eINSTANCE.getTextContainer_FontColor();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.Color <em>Color</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PIM.Color
+		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getColor()
+		 * @generated
+		 */
+		EEnum COLOR = eINSTANCE.getColor();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.Alignment <em>Alignment</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PIM.Alignment
+		 * @see benchmarkdp.datagenerator.model.PIM.impl.PIMPackageImpl#getAlignment()
+		 * @generated
+		 */
+		EEnum ALIGNMENT = eINSTANCE.getAlignment();
 
 	}
 

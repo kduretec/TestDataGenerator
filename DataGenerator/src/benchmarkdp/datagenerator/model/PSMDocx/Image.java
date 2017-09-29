@@ -22,7 +22,6 @@ package benchmarkdp.datagenerator.model.PSMDocx;
  * @generated
  */
 public interface Image extends Element {
-
 	/**
 	 * Returns the value of the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -100,4 +99,5 @@ public interface Image extends Element {
 	 * @generated
 	 */
 	void setType(String value);
+
 } // Image

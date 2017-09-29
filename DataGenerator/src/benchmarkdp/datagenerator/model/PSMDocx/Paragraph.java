@@ -21,7 +21,7 @@ package benchmarkdp.datagenerator.model.PSMDocx;
  * @model
  * @generated
  */
-public interface Paragraph extends TextContainer {
+public interface Paragraph extends ParagraphImpl {
 	/**
 	 * Returns the value of the '<em><b>Indent</b></em>' attribute.
 	 * The default value is <code>"1.0"</code>.

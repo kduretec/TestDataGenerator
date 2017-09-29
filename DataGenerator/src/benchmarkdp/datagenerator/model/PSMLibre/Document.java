@@ -3,6 +3,7 @@
 package benchmarkdp.datagenerator.model.PSMLibre;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getPages <em>Pages</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getAuthor <em>Author</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getNumColum <em>Num Colum</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentBackground <em>Document Background</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFormat <em>Document Format</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentPlatform <em>Document Platform</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFilter <em>Document Filter</em>}</li>
@@ -29,17 +30,17 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Document extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Pages</b></em>' reference list.
+	 * Returns the value of the '<em><b>Pages</b></em>' containment reference list.
 	 * The list contents are of type {@link benchmarkdp.datagenerator.model.PSMLibre.Page}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Pages</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Pages</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pages</em>' reference list.
+	 * @return the value of the '<em>Pages</em>' containment reference list.
 	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_Pages()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Page> getPages();
@@ -97,30 +98,34 @@ public interface Document extends EObject {
 	void setAuthor(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Num Colum</b></em>' attribute.
+	 * Returns the value of the '<em><b>Document Background</b></em>' attribute.
+	 * The default value is <code>"WHITE"</code>.
+	 * The literals are from the enumeration {@link benchmarkdp.datagenerator.model.PSMLibre.Color}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Num Colum</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Document Background</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Num Colum</em>' attribute.
-	 * @see #setNumColum(String)
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_NumColum()
-	 * @model
+	 * @return the value of the '<em>Document Background</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Color
+	 * @see #setDocumentBackground(Color)
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_DocumentBackground()
+	 * @model default="WHITE"
 	 * @generated
 	 */
-	String getNumColum();
+	Color getDocumentBackground();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getNumColum <em>Num Colum</em>}' attribute.
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentBackground <em>Document Background</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Num Colum</em>' attribute.
-	 * @see #getNumColum()
+	 * @param value the new value of the '<em>Document Background</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Color
+	 * @see #getDocumentBackground()
 	 * @generated
 	 */
-	void setNumColum(String value);
+	void setDocumentBackground(Color value);
 
 	/**
 	 * Returns the value of the '<em><b>Document Format</b></em>' attribute.

@@ -84,16 +84,18 @@ public class PSMLibreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PSMLibrePackage.TEXT_CONTAINER: {
-				TextContainer textContainer = (TextContainer)theEObject;
-				T result = caseTextContainer(textContainer);
-				if (result == null) result = caseElement(textContainer);
+			case PSMLibrePackage.PARAGRAPH_IMPL: {
+				ParagraphImpl paragraphImpl = (ParagraphImpl)theEObject;
+				T result = caseParagraphImpl(paragraphImpl);
+				if (result == null) result = caseTextContainer(paragraphImpl);
+				if (result == null) result = caseElement(paragraphImpl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case PSMLibrePackage.PARAGRAPH: {
 				Paragraph paragraph = (Paragraph)theEObject;
 				T result = caseParagraph(paragraph);
+				if (result == null) result = caseParagraphImpl(paragraph);
 				if (result == null) result = caseTextContainer(paragraph);
 				if (result == null) result = caseElement(paragraph);
 				if (result == null) result = defaultCase(theEObject);
@@ -105,16 +107,10 @@ public class PSMLibreSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PSMLibrePackage.SIMPLE_TEXT: {
-				SimpleText simpleText = (SimpleText)theEObject;
-				T result = caseSimpleText(simpleText);
-				if (result == null) result = caseText(simpleText);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case PSMLibrePackage.TABLE: {
 				Table table = (Table)theEObject;
 				T result = caseTable(table);
+				if (result == null) result = caseTextContainer(table);
 				if (result == null) result = caseElement(table);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -135,6 +131,22 @@ public class PSMLibreSwitch<T> extends Switch<T> {
 				Image image = (Image)theEObject;
 				T result = caseImage(image);
 				if (result == null) result = caseElement(image);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMLibrePackage.TEXT_CONTAINER: {
+				TextContainer textContainer = (TextContainer)theEObject;
+				T result = caseTextContainer(textContainer);
+				if (result == null) result = caseElement(textContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMLibrePackage.TEXT_BOX: {
+				TextBox textBox = (TextBox)theEObject;
+				T result = caseTextBox(textBox);
+				if (result == null) result = caseParagraphImpl(textBox);
+				if (result == null) result = caseTextContainer(textBox);
+				if (result == null) result = caseElement(textBox);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -188,17 +200,17 @@ public class PSMLibreSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Text Container</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Paragraph Impl</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Text Container</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Paragraph Impl</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTextContainer(TextContainer object) {
+	public T caseParagraphImpl(ParagraphImpl object) {
 		return null;
 	}
 
@@ -229,21 +241,6 @@ public class PSMLibreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseText(Text object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple Text</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple Text</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSimpleText(SimpleText object) {
 		return null;
 	}
 
@@ -304,6 +301,36 @@ public class PSMLibreSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseImage(Image object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Text Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Text Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTextContainer(TextContainer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Text Box</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Text Box</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTextBox(TextBox object) {
 		return null;
 	}
 

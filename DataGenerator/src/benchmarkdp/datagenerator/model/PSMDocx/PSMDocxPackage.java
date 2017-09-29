@@ -86,13 +86,13 @@ public interface PSMDocxPackage extends EPackage {
 	int DOCUMENT__AUTHOR = 1;
 
 	/**
-	 * The feature id for the '<em><b>Num Colum</b></em>' attribute.
+	 * The feature id for the '<em><b>Document Background</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__NUM_COLUM = 2;
+	int DOCUMENT__DOCUMENT_BACKGROUND = 2;
 
 	/**
 	 * The feature id for the '<em><b>Document Format</b></em>' attribute.
@@ -214,13 +214,31 @@ public interface PSMDocxPackage extends EPackage {
 	int ELEMENT__PARENT_ID = 1;
 
 	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__BACKGROUND_COLOR = 2;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ELEMENT__ALIGNMENT = 3;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 2;
+	int ELEMENT_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Element</em>' class.
@@ -260,13 +278,40 @@ public interface PSMDocxPackage extends EPackage {
 	int TEXT_CONTAINER__PARENT_ID = ELEMENT__PARENT_ID;
 
 	/**
-	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_CONTAINER__WORDS = ELEMENT_FEATURE_COUNT + 0;
+	int TEXT_CONTAINER__BACKGROUND_COLOR = ELEMENT__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__ALIGNMENT = ELEMENT__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__FONT_COLOR = ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_CONTAINER__FONT_FAMILY = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Text Container</em>' class.
@@ -275,7 +320,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_CONTAINER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 1;
+	int TEXT_CONTAINER_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Text Container</em>' class.
@@ -285,6 +330,97 @@ public interface PSMDocxPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEXT_CONTAINER_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.ParagraphImplImpl <em>Paragraph Impl</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.ParagraphImplImpl
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getParagraphImpl()
+	 * @generated
+	 */
+	int PARAGRAPH_IMPL = 16;
+
+	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL__ID = TEXT_CONTAINER__ID;
+
+	/**
+	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL__BACKGROUND_COLOR = TEXT_CONTAINER__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL__ALIGNMENT = TEXT_CONTAINER__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL__FONT_COLOR = TEXT_CONTAINER__FONT_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL__FONT_FAMILY = TEXT_CONTAINER__FONT_FAMILY;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL__TEXT = TEXT_CONTAINER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Paragraph Impl</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Paragraph Impl</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH_IMPL_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TextBoxImpl <em>Text Box</em>}' class.
@@ -303,7 +439,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BOX__ID = TEXT_CONTAINER__ID;
+	int TEXT_BOX__ID = PARAGRAPH_IMPL__ID;
 
 	/**
 	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
@@ -312,16 +448,52 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BOX__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
+	int TEXT_BOX__PARENT_ID = PARAGRAPH_IMPL__PARENT_ID;
 
 	/**
-	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BOX__WORDS = TEXT_CONTAINER__WORDS;
+	int TEXT_BOX__BACKGROUND_COLOR = PARAGRAPH_IMPL__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BOX__ALIGNMENT = PARAGRAPH_IMPL__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BOX__FONT_COLOR = PARAGRAPH_IMPL__FONT_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BOX__FONT_FAMILY = PARAGRAPH_IMPL__FONT_FAMILY;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BOX__TEXT = PARAGRAPH_IMPL__TEXT;
 
 	/**
 	 * The number of structural features of the '<em>Text Box</em>' class.
@@ -330,7 +502,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BOX_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 0;
+	int TEXT_BOX_FEATURE_COUNT = PARAGRAPH_IMPL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Text Box</em>' class.
@@ -339,7 +511,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BOX_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
+	int TEXT_BOX_OPERATION_COUNT = PARAGRAPH_IMPL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.ParagraphImpl <em>Paragraph</em>}' class.
@@ -358,7 +530,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__ID = TEXT_CONTAINER__ID;
+	int PARAGRAPH__ID = PARAGRAPH_IMPL__ID;
 
 	/**
 	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
@@ -367,16 +539,52 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
+	int PARAGRAPH__PARENT_ID = PARAGRAPH_IMPL__PARENT_ID;
 
 	/**
-	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__WORDS = TEXT_CONTAINER__WORDS;
+	int PARAGRAPH__BACKGROUND_COLOR = PARAGRAPH_IMPL__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__ALIGNMENT = PARAGRAPH_IMPL__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__FONT_COLOR = PARAGRAPH_IMPL__FONT_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__FONT_FAMILY = PARAGRAPH_IMPL__FONT_FAMILY;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAGRAPH__TEXT = PARAGRAPH_IMPL__TEXT;
 
 	/**
 	 * The feature id for the '<em><b>Indent</b></em>' attribute.
@@ -385,7 +593,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__INDENT = TEXT_CONTAINER_FEATURE_COUNT + 0;
+	int PARAGRAPH__INDENT = PARAGRAPH_IMPL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Paragraph Spacing</b></em>' attribute.
@@ -394,7 +602,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__PARAGRAPH_SPACING = TEXT_CONTAINER_FEATURE_COUNT + 1;
+	int PARAGRAPH__PARAGRAPH_SPACING = PARAGRAPH_IMPL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Line Spacing</b></em>' attribute.
@@ -403,7 +611,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH__LINE_SPACING = TEXT_CONTAINER_FEATURE_COUNT + 2;
+	int PARAGRAPH__LINE_SPACING = PARAGRAPH_IMPL_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Paragraph</em>' class.
@@ -412,7 +620,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 3;
+	int PARAGRAPH_FEATURE_COUNT = PARAGRAPH_IMPL_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Paragraph</em>' class.
@@ -421,7 +629,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAGRAPH_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
+	int PARAGRAPH_OPERATION_COUNT = PARAGRAPH_IMPL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.ControlBoxImpl <em>Control Box</em>}' class.
@@ -440,7 +648,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_BOX__ID = TEXT_CONTAINER__ID;
+	int CONTROL_BOX__ID = PARAGRAPH_IMPL__ID;
 
 	/**
 	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
@@ -449,16 +657,52 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_BOX__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
+	int CONTROL_BOX__PARENT_ID = PARAGRAPH_IMPL__PARENT_ID;
 
 	/**
-	 * The feature id for the '<em><b>Words</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_BOX__WORDS = TEXT_CONTAINER__WORDS;
+	int CONTROL_BOX__BACKGROUND_COLOR = PARAGRAPH_IMPL__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_BOX__ALIGNMENT = PARAGRAPH_IMPL__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_BOX__FONT_COLOR = PARAGRAPH_IMPL__FONT_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_BOX__FONT_FAMILY = PARAGRAPH_IMPL__FONT_FAMILY;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_BOX__TEXT = PARAGRAPH_IMPL__TEXT;
 
 	/**
 	 * The number of structural features of the '<em>Control Box</em>' class.
@@ -467,7 +711,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_BOX_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 0;
+	int CONTROL_BOX_FEATURE_COUNT = PARAGRAPH_IMPL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Control Box</em>' class.
@@ -476,7 +720,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_BOX_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
+	int CONTROL_BOX_OPERATION_COUNT = PARAGRAPH_IMPL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TextImpl <em>Text</em>}' class.
@@ -535,49 +779,13 @@ public interface PSMDocxPackage extends EPackage {
 	int SIMPLE_TEXT__VALUE = TEXT__VALUE;
 
 	/**
-	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_TEXT__FONT_FAMILY = TEXT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_TEXT__SIZE = TEXT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Color</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_TEXT__COLOR = TEXT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Background</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_TEXT__BACKGROUND = TEXT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Simple Text</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_TEXT_FEATURE_COUNT = TEXT_FEATURE_COUNT + 4;
+	int SIMPLE_TEXT_FEATURE_COUNT = TEXT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Simple Text</em>' class.
@@ -635,14 +843,14 @@ public interface PSMDocxPackage extends EPackage {
 	int HYPER_LINK_OPERATION_COUNT = TEXT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImpl <em>Table</em>}' class.
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImplImpl <em>Table Impl</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.TableImpl
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getTable()
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.TableImplImpl
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getTableImpl()
 	 * @generated
 	 */
-	int TABLE = 10;
+	int TABLE_IMPL = 10;
 
 	/**
 	 * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -651,7 +859,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__ID = ELEMENT__ID;
+	int TABLE_IMPL__ID = TEXT_CONTAINER__ID;
 
 	/**
 	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
@@ -660,7 +868,43 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__PARENT_ID = ELEMENT__PARENT_ID;
+	int TABLE_IMPL__PARENT_ID = TEXT_CONTAINER__PARENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_IMPL__BACKGROUND_COLOR = TEXT_CONTAINER__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_IMPL__ALIGNMENT = TEXT_CONTAINER__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_IMPL__FONT_COLOR = TEXT_CONTAINER__FONT_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_IMPL__FONT_FAMILY = TEXT_CONTAINER__FONT_FAMILY;
 
 	/**
 	 * The feature id for the '<em><b>Row</b></em>' containment reference list.
@@ -669,7 +913,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__ROW = ELEMENT_FEATURE_COUNT + 0;
+	int TABLE_IMPL__ROW = TEXT_CONTAINER_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Num Rows</b></em>' attribute.
@@ -678,7 +922,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__NUM_ROWS = ELEMENT_FEATURE_COUNT + 1;
+	int TABLE_IMPL__NUM_ROWS = TEXT_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Num Col</b></em>' attribute.
@@ -687,25 +931,25 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE__NUM_COL = ELEMENT_FEATURE_COUNT + 2;
+	int TABLE_IMPL__NUM_COL = TEXT_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Table</em>' class.
+	 * The number of structural features of the '<em>Table Impl</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+	int TABLE_IMPL_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Table</em>' class.
+	 * The number of operations of the '<em>Table Impl</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
+	int TABLE_IMPL_OPERATION_COUNT = TEXT_CONTAINER_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.RowImpl <em>Row</em>}' class.
@@ -810,6 +1054,24 @@ public interface PSMDocxPackage extends EPackage {
 	int IMAGE__PARENT_ID = ELEMENT__PARENT_ID;
 
 	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__BACKGROUND_COLOR = ELEMENT__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMAGE__ALIGNMENT = ELEMENT__ALIGNMENT;
+
+	/**
 	 * The feature id for the '<em><b>Width</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -871,7 +1133,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMBEDDED_EXCEL__ID = TABLE__ID;
+	int EMBEDDED_EXCEL__ID = TABLE_IMPL__ID;
 
 	/**
 	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
@@ -880,7 +1142,43 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMBEDDED_EXCEL__PARENT_ID = TABLE__PARENT_ID;
+	int EMBEDDED_EXCEL__PARENT_ID = TABLE_IMPL__PARENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__BACKGROUND_COLOR = TABLE_IMPL__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__ALIGNMENT = TABLE_IMPL__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__FONT_COLOR = TABLE_IMPL__FONT_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__FONT_FAMILY = TABLE_IMPL__FONT_FAMILY;
 
 	/**
 	 * The feature id for the '<em><b>Row</b></em>' containment reference list.
@@ -889,7 +1187,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMBEDDED_EXCEL__ROW = TABLE__ROW;
+	int EMBEDDED_EXCEL__ROW = TABLE_IMPL__ROW;
 
 	/**
 	 * The feature id for the '<em><b>Num Rows</b></em>' attribute.
@@ -898,7 +1196,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMBEDDED_EXCEL__NUM_ROWS = TABLE__NUM_ROWS;
+	int EMBEDDED_EXCEL__NUM_ROWS = TABLE_IMPL__NUM_ROWS;
 
 	/**
 	 * The feature id for the '<em><b>Num Col</b></em>' attribute.
@@ -907,7 +1205,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMBEDDED_EXCEL__NUM_COL = TABLE__NUM_COL;
+	int EMBEDDED_EXCEL__NUM_COL = TABLE_IMPL__NUM_COL;
 
 	/**
 	 * The number of structural features of the '<em>Embedded Excel</em>' class.
@@ -916,7 +1214,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMBEDDED_EXCEL_FEATURE_COUNT = TABLE_FEATURE_COUNT + 0;
+	int EMBEDDED_EXCEL_FEATURE_COUNT = TABLE_IMPL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Embedded Excel</em>' class.
@@ -925,7 +1223,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EMBEDDED_EXCEL_OPERATION_COUNT = TABLE_OPERATION_COUNT + 0;
+	int EMBEDDED_EXCEL_OPERATION_COUNT = TABLE_IMPL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.WordTableImpl <em>Word Table</em>}' class.
@@ -944,7 +1242,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_TABLE__ID = TABLE__ID;
+	int WORD_TABLE__ID = TABLE_IMPL__ID;
 
 	/**
 	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
@@ -953,7 +1251,43 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_TABLE__PARENT_ID = TABLE__PARENT_ID;
+	int WORD_TABLE__PARENT_ID = TABLE_IMPL__PARENT_ID;
+
+	/**
+	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__BACKGROUND_COLOR = TABLE_IMPL__BACKGROUND_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__ALIGNMENT = TABLE_IMPL__ALIGNMENT;
+
+	/**
+	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__FONT_COLOR = TABLE_IMPL__FONT_COLOR;
+
+	/**
+	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__FONT_FAMILY = TABLE_IMPL__FONT_FAMILY;
 
 	/**
 	 * The feature id for the '<em><b>Row</b></em>' containment reference list.
@@ -962,7 +1296,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_TABLE__ROW = TABLE__ROW;
+	int WORD_TABLE__ROW = TABLE_IMPL__ROW;
 
 	/**
 	 * The feature id for the '<em><b>Num Rows</b></em>' attribute.
@@ -971,7 +1305,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_TABLE__NUM_ROWS = TABLE__NUM_ROWS;
+	int WORD_TABLE__NUM_ROWS = TABLE_IMPL__NUM_ROWS;
 
 	/**
 	 * The feature id for the '<em><b>Num Col</b></em>' attribute.
@@ -980,7 +1314,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_TABLE__NUM_COL = TABLE__NUM_COL;
+	int WORD_TABLE__NUM_COL = TABLE_IMPL__NUM_COL;
 
 	/**
 	 * The number of structural features of the '<em>Word Table</em>' class.
@@ -989,7 +1323,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_TABLE_FEATURE_COUNT = TABLE_FEATURE_COUNT + 0;
+	int WORD_TABLE_FEATURE_COUNT = TABLE_IMPL_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Word Table</em>' class.
@@ -998,7 +1332,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORD_TABLE_OPERATION_COUNT = TABLE_OPERATION_COUNT + 0;
+	int WORD_TABLE_OPERATION_COUNT = TABLE_IMPL_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.FontFamily <em>Font Family</em>}' enum.
@@ -1008,7 +1342,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getFontFamily()
 	 * @generated
 	 */
-	int FONT_FAMILY = 16;
+	int FONT_FAMILY = 17;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.Color <em>Color</em>}' enum.
@@ -1018,7 +1352,17 @@ public interface PSMDocxPackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getColor()
 	 * @generated
 	 */
-	int COLOR = 17;
+	int COLOR = 18;
+
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.Alignment <em>Alignment</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Alignment
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getAlignment()
+	 * @generated
+	 */
+	int ALIGNMENT = 19;
 
 
 	/**
@@ -1054,15 +1398,15 @@ public interface PSMDocxPackage extends EPackage {
 	EAttribute getDocument_Author();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getNumColum <em>Num Colum</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentBackground <em>Document Background</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Num Colum</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Document#getNumColum()
+	 * @return the meta object for the attribute '<em>Document Background</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentBackground()
 	 * @see #getDocument()
 	 * @generated
 	 */
-	EAttribute getDocument_NumColum();
+	EAttribute getDocument_DocumentBackground();
 
 	/**
 	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentFormat <em>Document Format</em>}'.
@@ -1162,6 +1506,28 @@ public interface PSMDocxPackage extends EPackage {
 	EAttribute getElement_ParentID();
 
 	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Element#getBackgroundColor <em>Background Color</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Background Color</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Element#getBackgroundColor()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EAttribute getElement_BackgroundColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Element#getAlignment <em>Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alignment</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Element#getAlignment()
+	 * @see #getElement()
+	 * @generated
+	 */
+	EAttribute getElement_Alignment();
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.TextContainer <em>Text Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1172,15 +1538,26 @@ public interface PSMDocxPackage extends EPackage {
 	EClass getTextContainer();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link benchmarkdp.datagenerator.model.PSMDocx.TextContainer#getWords <em>Words</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.TextContainer#getFontColor <em>Font Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Words</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.TextContainer#getWords()
+	 * @return the meta object for the attribute '<em>Font Color</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TextContainer#getFontColor()
 	 * @see #getTextContainer()
 	 * @generated
 	 */
-	EReference getTextContainer_Words();
+	EAttribute getTextContainer_FontColor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.TextContainer#getFontFamily <em>Font Family</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Font Family</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TextContainer#getFontFamily()
+	 * @see #getTextContainer()
+	 * @generated
+	 */
+	EAttribute getTextContainer_FontFamily();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.TextBox <em>Text Box</em>}'.
@@ -1277,50 +1654,6 @@ public interface PSMDocxPackage extends EPackage {
 	EClass getSimpleText();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.SimpleText#getFontFamily <em>Font Family</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Font Family</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.SimpleText#getFontFamily()
-	 * @see #getSimpleText()
-	 * @generated
-	 */
-	EAttribute getSimpleText_FontFamily();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.SimpleText#getSize <em>Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Size</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.SimpleText#getSize()
-	 * @see #getSimpleText()
-	 * @generated
-	 */
-	EAttribute getSimpleText_Size();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.SimpleText#getColor <em>Color</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Color</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.SimpleText#getColor()
-	 * @see #getSimpleText()
-	 * @generated
-	 */
-	EAttribute getSimpleText_Color();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.SimpleText#getBackground <em>Background</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Background</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.SimpleText#getBackground()
-	 * @see #getSimpleText()
-	 * @generated
-	 */
-	EAttribute getSimpleText_Background();
-
-	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.HyperLink <em>Hyper Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1342,47 +1675,47 @@ public interface PSMDocxPackage extends EPackage {
 	EAttribute getHyperLink_Url();
 
 	/**
-	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.Table <em>Table</em>}'.
+	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl <em>Table Impl</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Table</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Table
+	 * @return the meta object for class '<em>Table Impl</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableImpl
 	 * @generated
 	 */
-	EClass getTable();
+	EClass getTableImpl();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link benchmarkdp.datagenerator.model.PSMDocx.Table#getRow <em>Row</em>}'.
+	 * Returns the meta object for the containment reference list '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getRow <em>Row</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Row</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Table#getRow()
-	 * @see #getTable()
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getRow()
+	 * @see #getTableImpl()
 	 * @generated
 	 */
-	EReference getTable_Row();
+	EReference getTableImpl_Row();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Table#getNumRows <em>Num Rows</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumRows <em>Num Rows</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Num Rows</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Table#getNumRows()
-	 * @see #getTable()
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumRows()
+	 * @see #getTableImpl()
 	 * @generated
 	 */
-	EAttribute getTable_NumRows();
+	EAttribute getTableImpl_NumRows();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Table#getNumCol <em>Num Col</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumCol <em>Num Col</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Num Col</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Table#getNumCol()
-	 * @see #getTable()
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumCol()
+	 * @see #getTableImpl()
 	 * @generated
 	 */
-	EAttribute getTable_NumCol();
+	EAttribute getTableImpl_NumCol();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.Row <em>Row</em>}'.
@@ -1490,6 +1823,27 @@ public interface PSMDocxPackage extends EPackage {
 	EClass getWordTable();
 
 	/**
+	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl <em>Paragraph Impl</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Paragraph Impl</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl
+	 * @generated
+	 */
+	EClass getParagraphImpl();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Text</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl#getText()
+	 * @see #getParagraphImpl()
+	 * @generated
+	 */
+	EReference getParagraphImpl_Text();
+
+	/**
 	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMDocx.FontFamily <em>Font Family</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1508,6 +1862,16 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getColor();
+
+	/**
+	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMDocx.Alignment <em>Alignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Alignment</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Alignment
+	 * @generated
+	 */
+	EEnum getAlignment();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1559,12 +1923,12 @@ public interface PSMDocxPackage extends EPackage {
 		EAttribute DOCUMENT__AUTHOR = eINSTANCE.getDocument_Author();
 
 		/**
-		 * The meta object literal for the '<em><b>Num Colum</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Document Background</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DOCUMENT__NUM_COLUM = eINSTANCE.getDocument_NumColum();
+		EAttribute DOCUMENT__DOCUMENT_BACKGROUND = eINSTANCE.getDocument_DocumentBackground();
 
 		/**
 		 * The meta object literal for the '<em><b>Document Format</b></em>' attribute feature.
@@ -1643,6 +2007,22 @@ public interface PSMDocxPackage extends EPackage {
 		EAttribute ELEMENT__PARENT_ID = eINSTANCE.getElement_ParentID();
 
 		/**
+		 * The meta object literal for the '<em><b>Background Color</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT__BACKGROUND_COLOR = eINSTANCE.getElement_BackgroundColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Alignment</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ELEMENT__ALIGNMENT = eINSTANCE.getElement_Alignment();
+
+		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TextContainerImpl <em>Text Container</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1653,12 +2033,20 @@ public interface PSMDocxPackage extends EPackage {
 		EClass TEXT_CONTAINER = eINSTANCE.getTextContainer();
 
 		/**
-		 * The meta object literal for the '<em><b>Words</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Font Color</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEXT_CONTAINER__WORDS = eINSTANCE.getTextContainer_Words();
+		EAttribute TEXT_CONTAINER__FONT_COLOR = eINSTANCE.getTextContainer_FontColor();
+
+		/**
+		 * The meta object literal for the '<em><b>Font Family</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT_CONTAINER__FONT_FAMILY = eINSTANCE.getTextContainer_FontFamily();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TextBoxImpl <em>Text Box</em>}' class.
@@ -1743,38 +2131,6 @@ public interface PSMDocxPackage extends EPackage {
 		EClass SIMPLE_TEXT = eINSTANCE.getSimpleText();
 
 		/**
-		 * The meta object literal for the '<em><b>Font Family</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMPLE_TEXT__FONT_FAMILY = eINSTANCE.getSimpleText_FontFamily();
-
-		/**
-		 * The meta object literal for the '<em><b>Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMPLE_TEXT__SIZE = eINSTANCE.getSimpleText_Size();
-
-		/**
-		 * The meta object literal for the '<em><b>Color</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMPLE_TEXT__COLOR = eINSTANCE.getSimpleText_Color();
-
-		/**
-		 * The meta object literal for the '<em><b>Background</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMPLE_TEXT__BACKGROUND = eINSTANCE.getSimpleText_Background();
-
-		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.HyperLinkImpl <em>Hyper Link</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1793,14 +2149,14 @@ public interface PSMDocxPackage extends EPackage {
 		EAttribute HYPER_LINK__URL = eINSTANCE.getHyperLink_Url();
 
 		/**
-		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImpl <em>Table</em>}' class.
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImplImpl <em>Table Impl</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.TableImpl
-		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getTable()
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.TableImplImpl
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getTableImpl()
 		 * @generated
 		 */
-		EClass TABLE = eINSTANCE.getTable();
+		EClass TABLE_IMPL = eINSTANCE.getTableImpl();
 
 		/**
 		 * The meta object literal for the '<em><b>Row</b></em>' containment reference list feature.
@@ -1808,7 +2164,7 @@ public interface PSMDocxPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TABLE__ROW = eINSTANCE.getTable_Row();
+		EReference TABLE_IMPL__ROW = eINSTANCE.getTableImpl_Row();
 
 		/**
 		 * The meta object literal for the '<em><b>Num Rows</b></em>' attribute feature.
@@ -1816,7 +2172,7 @@ public interface PSMDocxPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TABLE__NUM_ROWS = eINSTANCE.getTable_NumRows();
+		EAttribute TABLE_IMPL__NUM_ROWS = eINSTANCE.getTableImpl_NumRows();
 
 		/**
 		 * The meta object literal for the '<em><b>Num Col</b></em>' attribute feature.
@@ -1824,7 +2180,7 @@ public interface PSMDocxPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TABLE__NUM_COL = eINSTANCE.getTable_NumCol();
+		EAttribute TABLE_IMPL__NUM_COL = eINSTANCE.getTableImpl_NumCol();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.RowImpl <em>Row</em>}' class.
@@ -1917,6 +2273,24 @@ public interface PSMDocxPackage extends EPackage {
 		EClass WORD_TABLE = eINSTANCE.getWordTable();
 
 		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.ParagraphImplImpl <em>Paragraph Impl</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.ParagraphImplImpl
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getParagraphImpl()
+		 * @generated
+		 */
+		EClass PARAGRAPH_IMPL = eINSTANCE.getParagraphImpl();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAGRAPH_IMPL__TEXT = eINSTANCE.getParagraphImpl_Text();
+
+		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.FontFamily <em>Font Family</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1935,6 +2309,16 @@ public interface PSMDocxPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum COLOR = eINSTANCE.getColor();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.Alignment <em>Alignment</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.Alignment
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getAlignment()
+		 * @generated
+		 */
+		EEnum ALIGNMENT = eINSTANCE.getAlignment();
 
 	}
 

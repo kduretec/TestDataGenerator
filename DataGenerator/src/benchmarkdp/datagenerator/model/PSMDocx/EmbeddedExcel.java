@@ -13,5 +13,5 @@ package benchmarkdp.datagenerator.model.PSMDocx;
  * @model
  * @generated
  */
-public interface EmbeddedExcel extends Table {
+public interface EmbeddedExcel extends TableImpl {
 } // EmbeddedExcel

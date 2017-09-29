@@ -21,8 +21,7 @@ package benchmarkdp.datagenerator.model.PSMLibre;
  * @model
  * @generated
  */
-public interface Paragraph extends TextContainer {
-
+public interface Paragraph extends ParagraphImpl {
 	/**
 	 * Returns the value of the '<em><b>Paragraph Spacing</b></em>' attribute.
 	 * The default value is <code>"1.0"</code>.
@@ -103,4 +102,5 @@ public interface Paragraph extends TextContainer {
 	 * @generated
 	 */
 	void setIndent(double value);
+
 } // Paragraph

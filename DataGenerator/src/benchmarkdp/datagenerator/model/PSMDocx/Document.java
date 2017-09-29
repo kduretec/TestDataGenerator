@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getAuthor <em>Author</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getNumColum <em>Num Colum</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentBackground <em>Document Background</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentFormat <em>Document Format</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentFormatCode <em>Document Format Code</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getPages <em>Pages</em>}</li>
@@ -82,30 +82,34 @@ public interface Document extends EObject {
 	void setAuthor(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Num Colum</b></em>' attribute.
+	 * Returns the value of the '<em><b>Document Background</b></em>' attribute.
+	 * The default value is <code>"WHITE"</code>.
+	 * The literals are from the enumeration {@link benchmarkdp.datagenerator.model.PSMDocx.Color}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Num Colum</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Document Background</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Num Colum</em>' attribute.
-	 * @see #setNumColum(int)
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument_NumColum()
-	 * @model
+	 * @return the value of the '<em>Document Background</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Color
+	 * @see #setDocumentBackground(Color)
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument_DocumentBackground()
+	 * @model default="WHITE"
 	 * @generated
 	 */
-	int getNumColum();
+	Color getDocumentBackground();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getNumColum <em>Num Colum</em>}' attribute.
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentBackground <em>Document Background</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Num Colum</em>' attribute.
-	 * @see #getNumColum()
+	 * @param value the new value of the '<em>Document Background</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Color
+	 * @see #getDocumentBackground()
 	 * @generated
 	 */
-	void setNumColum(int value);
+	void setDocumentBackground(Color value);
 
 	/**
 	 * Returns the value of the '<em><b>Document Format</b></em>' attribute.

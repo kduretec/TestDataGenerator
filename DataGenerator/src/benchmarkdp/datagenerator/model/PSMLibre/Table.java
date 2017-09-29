@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Table extends Element {
+public interface Table extends TextContainer {
 	/**
 	 * Returns the value of the '<em><b>Num Rows</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -76,17 +76,17 @@ public interface Table extends Element {
 	void setNumCol(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Row</b></em>' reference list.
+	 * Returns the value of the '<em><b>Row</b></em>' containment reference list.
 	 * The list contents are of type {@link benchmarkdp.datagenerator.model.PSMLibre.Row}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Row</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Row</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Row</em>' reference list.
+	 * @return the value of the '<em>Row</em>' containment reference list.
 	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getTable_Row()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Row> getRow();

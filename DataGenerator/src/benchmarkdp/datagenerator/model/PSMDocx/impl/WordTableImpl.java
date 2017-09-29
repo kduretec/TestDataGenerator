@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class WordTableImpl extends TableImpl implements WordTable {
+public class WordTableImpl extends TableImplImpl implements WordTable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

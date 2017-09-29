@@ -80,8 +80,8 @@ public class PSMLibreAdapterFactory extends AdapterFactoryImpl {
 				return createElementAdapter();
 			}
 			@Override
-			public Adapter caseTextContainer(TextContainer object) {
-				return createTextContainerAdapter();
+			public Adapter caseParagraphImpl(ParagraphImpl object) {
+				return createParagraphImplAdapter();
 			}
 			@Override
 			public Adapter caseParagraph(Paragraph object) {
@@ -90,10 +90,6 @@ public class PSMLibreAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseText(Text object) {
 				return createTextAdapter();
-			}
-			@Override
-			public Adapter caseSimpleText(SimpleText object) {
-				return createSimpleTextAdapter();
 			}
 			@Override
 			public Adapter caseTable(Table object) {
@@ -110,6 +106,14 @@ public class PSMLibreAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseImage(Image object) {
 				return createImageAdapter();
+			}
+			@Override
+			public Adapter caseTextContainer(TextContainer object) {
+				return createTextContainerAdapter();
+			}
+			@Override
+			public Adapter caseTextBox(TextBox object) {
+				return createTextBoxAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -174,16 +178,16 @@ public class PSMLibreAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMLibre.TextContainer <em>Text Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMLibre.ParagraphImpl <em>Paragraph Impl</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.TextContainer
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.ParagraphImpl
 	 * @generated
 	 */
-	public Adapter createTextContainerAdapter() {
+	public Adapter createParagraphImplAdapter() {
 		return null;
 	}
 
@@ -212,20 +216,6 @@ public class PSMLibreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTextAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMLibre.SimpleText <em>Simple Text</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.SimpleText
-	 * @generated
-	 */
-	public Adapter createSimpleTextAdapter() {
 		return null;
 	}
 
@@ -282,6 +272,34 @@ public class PSMLibreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMLibre.TextContainer <em>Text Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.TextContainer
+	 * @generated
+	 */
+	public Adapter createTextContainerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMLibre.TextBox <em>Text Box</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.TextBox
+	 * @generated
+	 */
+	public Adapter createTextBoxAdapter() {
 		return null;
 	}
 

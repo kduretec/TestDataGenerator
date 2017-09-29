@@ -104,6 +104,10 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 				return createWordAdapter();
 			}
 			@Override
+			public Adapter caseTextContainer(TextContainer object) {
+				return createTextContainerAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -148,20 +152,6 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Word <em>Word</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PIM.Word
-	 * @generated
-	 */
-	public Adapter createWordAdapter() {
 		return null;
 	}
 
@@ -246,6 +236,34 @@ public class PIMAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPageAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.Word <em>Word</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see benchmarkdp.datagenerator.model.PIM.Word
+	 * @generated
+	 */
+	public Adapter createWordAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PIM.TextContainer <em>Text Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see benchmarkdp.datagenerator.model.PIM.TextContainer
+	 * @generated
+	 */
+	public Adapter createTextContainerAdapter() {
 		return null;
 	}
 

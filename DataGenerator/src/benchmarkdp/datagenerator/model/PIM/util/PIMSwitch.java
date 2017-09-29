@@ -81,6 +81,7 @@ public class PIMSwitch<T> extends Switch<T> {
 			case PIMPackage.TABLE: {
 				Table table = (Table)theEObject;
 				T result = caseTable(table);
+				if (result == null) result = caseTextContainer(table);
 				if (result == null) result = caseElement(table);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -88,6 +89,7 @@ public class PIMSwitch<T> extends Switch<T> {
 			case PIMPackage.PARAGRAPH: {
 				Paragraph paragraph = (Paragraph)theEObject;
 				T result = caseParagraph(paragraph);
+				if (result == null) result = caseTextContainer(paragraph);
 				if (result == null) result = caseElement(paragraph);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -123,6 +125,13 @@ public class PIMSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case PIMPackage.TEXT_CONTAINER: {
+				TextContainer textContainer = (TextContainer)theEObject;
+				T result = caseTextContainer(textContainer);
+				if (result == null) result = caseElement(textContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -154,21 +163,6 @@ public class PIMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseElement(Element object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Word</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Word</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWord(Word object) {
 		return null;
 	}
 
@@ -259,6 +253,36 @@ public class PIMSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePage(Page object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Word</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Word</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWord(Word object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Text Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Text Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTextContainer(TextContainer object) {
 		return null;
 	}
 

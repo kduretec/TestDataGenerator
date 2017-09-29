@@ -6,23 +6,23 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Table</b></em>'.
+ * A representation of the model object '<em><b>Table Impl</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Table#getRow <em>Row</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Table#getNumRows <em>Num Rows</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Table#getNumCol <em>Num Col</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getRow <em>Row</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumRows <em>Num Rows</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumCol <em>Num Col</em>}</li>
  * </ul>
  *
- * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTable()
- * @model
+ * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTableImpl()
+ * @model abstract="true"
  * @generated
  */
-public interface Table extends Element {
+public interface TableImpl extends TextContainer {
 	/**
 	 * Returns the value of the '<em><b>Row</b></em>' containment reference list.
 	 * The list contents are of type {@link benchmarkdp.datagenerator.model.PSMDocx.Row}.
@@ -33,7 +33,7 @@ public interface Table extends Element {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Row</em>' containment reference list.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTable_Row()
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTableImpl_Row()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -49,14 +49,14 @@ public interface Table extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Num Rows</em>' attribute.
 	 * @see #setNumRows(int)
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTable_NumRows()
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTableImpl_NumRows()
 	 * @model
 	 * @generated
 	 */
 	int getNumRows();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Table#getNumRows <em>Num Rows</em>}' attribute.
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumRows <em>Num Rows</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Num Rows</em>' attribute.
@@ -75,14 +75,14 @@ public interface Table extends Element {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Num Col</em>' attribute.
 	 * @see #setNumCol(int)
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTable_NumCol()
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTableImpl_NumCol()
 	 * @model
 	 * @generated
 	 */
 	int getNumCol();
 
 	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Table#getNumCol <em>Num Col</em>}' attribute.
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumCol <em>Num Col</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Num Col</em>' attribute.
@@ -91,4 +91,4 @@ public interface Table extends Element {
 	 */
 	void setNumCol(int value);
 
-} // Table
+} // TableImpl

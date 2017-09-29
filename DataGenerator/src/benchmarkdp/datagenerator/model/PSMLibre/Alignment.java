@@ -1,6 +1,6 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PSMDocx;
+package benchmarkdp.datagenerator.model.PSMLibre;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,147 +10,121 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Color</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Alignment</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getColor()
+ * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getAlignment()
  * @model
  * @generated
  */
-public enum Color implements Enumerator {
+public enum Alignment implements Enumerator {
 	/**
-	 * The '<em><b>BLACK</b></em>' literal object.
+	 * The '<em><b>LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BLACK_VALUE
+	 * @see #LEFT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BLACK(0, "BLACK", "BLACK"),
+	LEFT(0, "LEFT", "LEFT"),
 
 	/**
-	 * The '<em><b>BLUE</b></em>' literal object.
+	 * The '<em><b>CENTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #BLUE_VALUE
+	 * @see #CENTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	BLUE(1, "BLUE", "BLUE"),
+	CENTER(1, "CENTER", "CENTER"),
 
 	/**
-	 * The '<em><b>RED</b></em>' literal object.
+	 * The '<em><b>RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #RED_VALUE
+	 * @see #RIGHT_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	RED(2, "RED", "RED"),
+	RIGHT(2, "RIGHT", "RIGHT");
 
 	/**
-	 * The '<em><b>WHITE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WHITE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WHITE(3, "WHITE", "WHITE");
-
-	/**
-	 * The '<em><b>BLACK</b></em>' literal value.
+	 * The '<em><b>LEFT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BLACK</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>LEFT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BLACK
+	 * @see #LEFT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BLACK_VALUE = 0;
+	public static final int LEFT_VALUE = 0;
 
 	/**
-	 * The '<em><b>BLUE</b></em>' literal value.
+	 * The '<em><b>CENTER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>BLUE</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>CENTER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #BLUE
+	 * @see #CENTER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BLUE_VALUE = 1;
+	public static final int CENTER_VALUE = 1;
 
 	/**
-	 * The '<em><b>RED</b></em>' literal value.
+	 * The '<em><b>RIGHT</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>RED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>RIGHT</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #RED
+	 * @see #RIGHT
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RED_VALUE = 2;
+	public static final int RIGHT_VALUE = 2;
 
 	/**
-	 * The '<em><b>WHITE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WHITE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WHITE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WHITE_VALUE = 3;
-
-	/**
-	 * An array of all the '<em><b>Color</b></em>' enumerators.
+	 * An array of all the '<em><b>Alignment</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Color[] VALUES_ARRAY =
-		new Color[] {
-			BLACK,
-			BLUE,
-			RED,
-			WHITE,
+	private static final Alignment[] VALUES_ARRAY =
+		new Alignment[] {
+			LEFT,
+			CENTER,
+			RIGHT,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Color</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Alignment</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Color> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Alignment> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Color</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Alignment</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param literal the literal.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static Color get(String literal) {
+	public static Alignment get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			Color result = VALUES_ARRAY[i];
+			Alignment result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -159,16 +133,16 @@ public enum Color implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Color</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Alignment</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param name the name.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static Color getByName(String name) {
+	public static Alignment getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			Color result = VALUES_ARRAY[i];
+			Alignment result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -177,19 +151,18 @@ public enum Color implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Color</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Alignment</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the integer value.
 	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
-	public static Color get(int value) {
+	public static Alignment get(int value) {
 		switch (value) {
-			case BLACK_VALUE: return BLACK;
-			case BLUE_VALUE: return BLUE;
-			case RED_VALUE: return RED;
-			case WHITE_VALUE: return WHITE;
+			case LEFT_VALUE: return LEFT;
+			case CENTER_VALUE: return CENTER;
+			case RIGHT_VALUE: return RIGHT;
 		}
 		return null;
 	}
@@ -221,7 +194,7 @@ public enum Color implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Color(int value, String name, String literal) {
+	private Alignment(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -265,4 +238,4 @@ public enum Color implements Enumerator {
 		return literal;
 	}
 	
-} //Color
+} //Alignment

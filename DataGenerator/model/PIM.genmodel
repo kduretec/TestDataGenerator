@@ -27,7 +27,7 @@
     <genClasses ecoreClass="PIM.ecore#//Element">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/ID"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/backgroundColor"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/allignment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/alignment"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Table">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Table/numRows"/>

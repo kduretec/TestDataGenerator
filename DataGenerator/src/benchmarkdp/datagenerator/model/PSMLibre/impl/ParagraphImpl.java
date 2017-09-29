@@ -6,7 +6,9 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -24,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ParagraphImpl extends TextContainerImpl implements Paragraph {
+public class ParagraphImpl extends ParagraphImplImpl implements Paragraph {
 	/**
 	 * The default value of the '{@link #getParagraphSpacing() <em>Paragraph Spacing</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -34,6 +36,7 @@ public class ParagraphImpl extends TextContainerImpl implements Paragraph {
 	 * @ordered
 	 */
 	protected static final double PARAGRAPH_SPACING_EDEFAULT = 1.0;
+
 	/**
 	 * The cached value of the '{@link #getParagraphSpacing() <em>Paragraph Spacing</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -43,6 +46,7 @@ public class ParagraphImpl extends TextContainerImpl implements Paragraph {
 	 * @ordered
 	 */
 	protected double paragraphSpacing = PARAGRAPH_SPACING_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getLineSpacing() <em>Line Spacing</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,6 +56,7 @@ public class ParagraphImpl extends TextContainerImpl implements Paragraph {
 	 * @ordered
 	 */
 	protected static final double LINE_SPACING_EDEFAULT = 1.0;
+
 	/**
 	 * The cached value of the '{@link #getLineSpacing() <em>Line Spacing</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,6 +66,7 @@ public class ParagraphImpl extends TextContainerImpl implements Paragraph {
 	 * @ordered
 	 */
 	protected double lineSpacing = LINE_SPACING_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getIndent() <em>Indent</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,6 +76,7 @@ public class ParagraphImpl extends TextContainerImpl implements Paragraph {
 	 * @ordered
 	 */
 	protected static final double INDENT_EDEFAULT = 1.0;
+
 	/**
 	 * The cached value of the '{@link #getIndent() <em>Indent</em>}' attribute.
 	 * <!-- begin-user-doc -->

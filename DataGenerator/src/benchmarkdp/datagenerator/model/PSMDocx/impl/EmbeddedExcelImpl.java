@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class EmbeddedExcelImpl extends TableImpl implements EmbeddedExcel {
+public class EmbeddedExcelImpl extends TableImplImpl implements EmbeddedExcel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

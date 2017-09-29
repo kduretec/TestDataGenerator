@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class TableImpl extends ElementImpl implements Table {
+public class TableImpl extends TextContainerImpl implements Table {
 	/**
 	 * The default value of the '{@link #getNumRows() <em>Num Rows</em>}' attribute.
 	 * <!-- begin-user-doc -->

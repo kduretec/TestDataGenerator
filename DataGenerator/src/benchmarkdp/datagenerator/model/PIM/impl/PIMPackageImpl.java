@@ -2,7 +2,9 @@
  */
 package benchmarkdp.datagenerator.model.PIM.impl;
 
+import benchmarkdp.datagenerator.model.PIM.Alignment;
 import benchmarkdp.datagenerator.model.PIM.Cell;
+import benchmarkdp.datagenerator.model.PIM.Color;
 import benchmarkdp.datagenerator.model.PIM.Document;
 import benchmarkdp.datagenerator.model.PIM.Element;
 import benchmarkdp.datagenerator.model.PIM.Image;
@@ -12,10 +14,12 @@ import benchmarkdp.datagenerator.model.PIM.Page;
 import benchmarkdp.datagenerator.model.PIM.Paragraph;
 import benchmarkdp.datagenerator.model.PIM.Row;
 import benchmarkdp.datagenerator.model.PIM.Table;
+import benchmarkdp.datagenerator.model.PIM.TextContainer;
 import benchmarkdp.datagenerator.model.PIM.Word;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -90,6 +94,27 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * @generated
 	 */
 	private EClass wordEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass textContainerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum colorEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum alignmentEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -193,6 +218,15 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDocument_DocumentBackground() {
+		return (EAttribute)documentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getElement() {
 		return elementEClass;
 	}
@@ -204,6 +238,24 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 */
 	public EAttribute getElement_ID() {
 		return (EAttribute)elementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getElement_BackgroundColor() {
+		return (EAttribute)elementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getElement_Alignment() {
+		return (EAttribute)elementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -373,6 +425,42 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTextContainer() {
+		return textContainerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTextContainer_FontColor() {
+		return (EAttribute)textContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getColor() {
+		return colorEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getAlignment() {
+		return alignmentEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PIMFactory getPIMFactory() {
 		return (PIMFactory)getEFactoryInstance();
 	}
@@ -400,9 +488,12 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		createEAttribute(documentEClass, DOCUMENT__NAME);
 		createEAttribute(documentEClass, DOCUMENT__AUTHOR);
 		createEReference(documentEClass, DOCUMENT__PAGES);
+		createEAttribute(documentEClass, DOCUMENT__DOCUMENT_BACKGROUND);
 
 		elementEClass = createEClass(ELEMENT);
 		createEAttribute(elementEClass, ELEMENT__ID);
+		createEAttribute(elementEClass, ELEMENT__BACKGROUND_COLOR);
+		createEAttribute(elementEClass, ELEMENT__ALIGNMENT);
 
 		tableEClass = createEClass(TABLE);
 		createEAttribute(tableEClass, TABLE__NUM_ROWS);
@@ -428,6 +519,13 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 
 		wordEClass = createEClass(WORD);
 		createEAttribute(wordEClass, WORD__VALUE);
+
+		textContainerEClass = createEClass(TEXT_CONTAINER);
+		createEAttribute(textContainerEClass, TEXT_CONTAINER__FONT_COLOR);
+
+		// Create enums
+		colorEEnum = createEEnum(COLOR);
+		alignmentEEnum = createEEnum(ALIGNMENT);
 	}
 
 	/**
@@ -458,18 +556,22 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		tableEClass.getESuperTypes().add(this.getElement());
-		paragraphEClass.getESuperTypes().add(this.getElement());
+		tableEClass.getESuperTypes().add(this.getTextContainer());
+		paragraphEClass.getESuperTypes().add(this.getTextContainer());
 		imageEClass.getESuperTypes().add(this.getElement());
+		textContainerEClass.getESuperTypes().add(this.getElement());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDocument_Name(), ecorePackage.getEString(), "name", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_Author(), ecorePackage.getEString(), "author", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Pages(), this.getPage(), null, "pages", null, 1, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDocument_DocumentBackground(), this.getColor(), "documentBackground", "WHITE", 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(elementEClass, Element.class, "Element", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getElement_ID(), ecorePackage.getEString(), "ID", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElement_BackgroundColor(), this.getColor(), "backgroundColor", "WHITE", 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getElement_Alignment(), this.getAlignment(), "alignment", "LEFT", 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTable_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -495,6 +597,21 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 
 		initEClass(wordEClass, Word.class, "Word", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWord_Value(), ecorePackage.getEString(), "value", null, 0, 1, Word.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(textContainerEClass, TextContainer.class, "TextContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTextContainer_FontColor(), this.getColor(), "fontColor", "BLACK", 0, 1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(colorEEnum, Color.class, "Color");
+		addEEnumLiteral(colorEEnum, Color.BLACK);
+		addEEnumLiteral(colorEEnum, Color.BLUE);
+		addEEnumLiteral(colorEEnum, Color.RED);
+		addEEnumLiteral(colorEEnum, Color.WHITE);
+
+		initEEnum(alignmentEEnum, Alignment.class, "Alignment");
+		addEEnumLiteral(alignmentEEnum, Alignment.LEFT);
+		addEEnumLiteral(alignmentEEnum, Alignment.CENTER);
+		addEEnumLiteral(alignmentEEnum, Alignment.RIGHT);
 
 		// Create resource
 		createResource(eNS_URI);

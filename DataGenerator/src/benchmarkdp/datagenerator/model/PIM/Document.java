@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Document#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Document#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Document#getPages <em>Pages</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.Document#getDocumentBackground <em>Document Background</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getDocument()
@@ -92,5 +93,35 @@ public interface Document extends EObject {
 	 * @generated
 	 */
 	EList<Page> getPages();
+
+	/**
+	 * Returns the value of the '<em><b>Document Background</b></em>' attribute.
+	 * The default value is <code>"WHITE"</code>.
+	 * The literals are from the enumeration {@link benchmarkdp.datagenerator.model.PIM.Color}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Document Background</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Document Background</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PIM.Color
+	 * @see #setDocumentBackground(Color)
+	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getDocument_DocumentBackground()
+	 * @model default="WHITE"
+	 * @generated
+	 */
+	Color getDocumentBackground();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Document#getDocumentBackground <em>Document Background</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Document Background</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PIM.Color
+	 * @see #getDocumentBackground()
+	 * @generated
+	 */
+	void setDocumentBackground(Color value);
 
 } // Document

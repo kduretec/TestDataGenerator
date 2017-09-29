@@ -1,11 +1,10 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PSMLibre.impl;
+package benchmarkdp.datagenerator.model.PIM.impl;
 
-import benchmarkdp.datagenerator.model.PSMLibre.Color;
-import benchmarkdp.datagenerator.model.PSMLibre.FontFamily;
-import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
-import benchmarkdp.datagenerator.model.PSMLibre.TextContainer;
+import benchmarkdp.datagenerator.model.PIM.Color;
+import benchmarkdp.datagenerator.model.PIM.PIMPackage;
+import benchmarkdp.datagenerator.model.PIM.TextContainer;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -21,33 +20,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.TextContainerImpl#getFontFamily <em>Font Family</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.TextContainerImpl#getFontColor <em>Font Color</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.TextContainerImpl#getFontColor <em>Font Color</em>}</li>
  * </ul>
  *
  * @generated
  */
 public abstract class TextContainerImpl extends ElementImpl implements TextContainer {
-	/**
-	 * The default value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFontFamily()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final FontFamily FONT_FAMILY_EDEFAULT = FontFamily.ARIAL;
-
-	/**
-	 * The cached value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFontFamily()
-	 * @generated
-	 * @ordered
-	 */
-	protected FontFamily fontFamily = FONT_FAMILY_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getFontColor() <em>Font Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -84,28 +62,7 @@ public abstract class TextContainerImpl extends ElementImpl implements TextConta
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PSMLibrePackage.Literals.TEXT_CONTAINER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FontFamily getFontFamily() {
-		return fontFamily;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFontFamily(FontFamily newFontFamily) {
-		FontFamily oldFontFamily = fontFamily;
-		fontFamily = newFontFamily == null ? FONT_FAMILY_EDEFAULT : newFontFamily;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.TEXT_CONTAINER__FONT_FAMILY, oldFontFamily, fontFamily));
+		return PIMPackage.Literals.TEXT_CONTAINER;
 	}
 
 	/**
@@ -126,7 +83,7 @@ public abstract class TextContainerImpl extends ElementImpl implements TextConta
 		Color oldFontColor = fontColor;
 		fontColor = newFontColor == null ? FONT_COLOR_EDEFAULT : newFontColor;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.TEXT_CONTAINER__FONT_COLOR, oldFontColor, fontColor));
+			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.TEXT_CONTAINER__FONT_COLOR, oldFontColor, fontColor));
 	}
 
 	/**
@@ -137,9 +94,7 @@ public abstract class TextContainerImpl extends ElementImpl implements TextConta
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PSMLibrePackage.TEXT_CONTAINER__FONT_FAMILY:
-				return getFontFamily();
-			case PSMLibrePackage.TEXT_CONTAINER__FONT_COLOR:
+			case PIMPackage.TEXT_CONTAINER__FONT_COLOR:
 				return getFontColor();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -153,10 +108,7 @@ public abstract class TextContainerImpl extends ElementImpl implements TextConta
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PSMLibrePackage.TEXT_CONTAINER__FONT_FAMILY:
-				setFontFamily((FontFamily)newValue);
-				return;
-			case PSMLibrePackage.TEXT_CONTAINER__FONT_COLOR:
+			case PIMPackage.TEXT_CONTAINER__FONT_COLOR:
 				setFontColor((Color)newValue);
 				return;
 		}
@@ -171,10 +123,7 @@ public abstract class TextContainerImpl extends ElementImpl implements TextConta
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PSMLibrePackage.TEXT_CONTAINER__FONT_FAMILY:
-				setFontFamily(FONT_FAMILY_EDEFAULT);
-				return;
-			case PSMLibrePackage.TEXT_CONTAINER__FONT_COLOR:
+			case PIMPackage.TEXT_CONTAINER__FONT_COLOR:
 				setFontColor(FONT_COLOR_EDEFAULT);
 				return;
 		}
@@ -189,9 +138,7 @@ public abstract class TextContainerImpl extends ElementImpl implements TextConta
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PSMLibrePackage.TEXT_CONTAINER__FONT_FAMILY:
-				return fontFamily != FONT_FAMILY_EDEFAULT;
-			case PSMLibrePackage.TEXT_CONTAINER__FONT_COLOR:
+			case PIMPackage.TEXT_CONTAINER__FONT_COLOR:
 				return fontColor != FONT_COLOR_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -207,9 +154,7 @@ public abstract class TextContainerImpl extends ElementImpl implements TextConta
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (fontFamily: ");
-		result.append(fontFamily);
-		result.append(", fontColor: ");
+		result.append(" (fontColor: ");
 		result.append(fontColor);
 		result.append(')');
 		return result.toString();

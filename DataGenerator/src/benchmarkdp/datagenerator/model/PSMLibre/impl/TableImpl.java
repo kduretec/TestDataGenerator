@@ -9,14 +9,17 @@ import benchmarkdp.datagenerator.model.PSMLibre.Table;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +36,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *
  * @generated
  */
-public class TableImpl extends ElementImpl implements Table {
+public class TableImpl extends TextContainerImpl implements Table {
 	/**
 	 * The default value of the '{@link #getNumRows() <em>Num Rows</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -75,7 +78,7 @@ public class TableImpl extends ElementImpl implements Table {
 	protected int numCol = NUM_COL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getRow() <em>Row</em>}' reference list.
+	 * The cached value of the '{@link #getRow() <em>Row</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRow()
@@ -152,9 +155,23 @@ public class TableImpl extends ElementImpl implements Table {
 	 */
 	public EList<Row> getRow() {
 		if (row == null) {
-			row = new EObjectResolvingEList<Row>(Row.class, this, PSMLibrePackage.TABLE__ROW);
+			row = new EObjectContainmentEList<Row>(Row.class, this, PSMLibrePackage.TABLE__ROW);
 		}
 		return row;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case PSMLibrePackage.TABLE__ROW:
+				return ((InternalEList<?>)getRow()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

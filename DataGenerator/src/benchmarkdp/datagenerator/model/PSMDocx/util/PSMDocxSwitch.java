@@ -94,6 +94,7 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 			case PSMDocxPackage.TEXT_BOX: {
 				TextBox textBox = (TextBox)theEObject;
 				T result = caseTextBox(textBox);
+				if (result == null) result = caseParagraphImpl(textBox);
 				if (result == null) result = caseTextContainer(textBox);
 				if (result == null) result = caseElement(textBox);
 				if (result == null) result = defaultCase(theEObject);
@@ -102,6 +103,7 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 			case PSMDocxPackage.PARAGRAPH: {
 				Paragraph paragraph = (Paragraph)theEObject;
 				T result = caseParagraph(paragraph);
+				if (result == null) result = caseParagraphImpl(paragraph);
 				if (result == null) result = caseTextContainer(paragraph);
 				if (result == null) result = caseElement(paragraph);
 				if (result == null) result = defaultCase(theEObject);
@@ -110,6 +112,7 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 			case PSMDocxPackage.CONTROL_BOX: {
 				ControlBox controlBox = (ControlBox)theEObject;
 				T result = caseControlBox(controlBox);
+				if (result == null) result = caseParagraphImpl(controlBox);
 				if (result == null) result = caseTextContainer(controlBox);
 				if (result == null) result = caseElement(controlBox);
 				if (result == null) result = defaultCase(theEObject);
@@ -135,10 +138,11 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case PSMDocxPackage.TABLE: {
-				Table table = (Table)theEObject;
-				T result = caseTable(table);
-				if (result == null) result = caseElement(table);
+			case PSMDocxPackage.TABLE_IMPL: {
+				TableImpl tableImpl = (TableImpl)theEObject;
+				T result = caseTableImpl(tableImpl);
+				if (result == null) result = caseTextContainer(tableImpl);
+				if (result == null) result = caseElement(tableImpl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -164,7 +168,8 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 			case PSMDocxPackage.EMBEDDED_EXCEL: {
 				EmbeddedExcel embeddedExcel = (EmbeddedExcel)theEObject;
 				T result = caseEmbeddedExcel(embeddedExcel);
-				if (result == null) result = caseTable(embeddedExcel);
+				if (result == null) result = caseTableImpl(embeddedExcel);
+				if (result == null) result = caseTextContainer(embeddedExcel);
 				if (result == null) result = caseElement(embeddedExcel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -172,8 +177,17 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 			case PSMDocxPackage.WORD_TABLE: {
 				WordTable wordTable = (WordTable)theEObject;
 				T result = caseWordTable(wordTable);
-				if (result == null) result = caseTable(wordTable);
+				if (result == null) result = caseTableImpl(wordTable);
+				if (result == null) result = caseTextContainer(wordTable);
 				if (result == null) result = caseElement(wordTable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case PSMDocxPackage.PARAGRAPH_IMPL: {
+				ParagraphImpl paragraphImpl = (ParagraphImpl)theEObject;
+				T result = caseParagraphImpl(paragraphImpl);
+				if (result == null) result = caseTextContainer(paragraphImpl);
+				if (result == null) result = caseElement(paragraphImpl);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -332,17 +346,17 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Table</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Table Impl</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Table</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Table Impl</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTable(Table object) {
+	public T caseTableImpl(TableImpl object) {
 		return null;
 	}
 
@@ -418,6 +432,21 @@ public class PSMDocxSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseWordTable(WordTable object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Paragraph Impl</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Paragraph Impl</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParagraphImpl(ParagraphImpl object) {
 		return null;
 	}
 

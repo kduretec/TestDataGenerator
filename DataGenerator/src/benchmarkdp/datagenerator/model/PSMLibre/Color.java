@@ -29,16 +29,6 @@ public enum Color implements Enumerator {
 	BLACK(0, "BLACK", "BLACK"),
 
 	/**
-	 * The '<em><b>WHITE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #WHITE_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	WHITE(1, "WHITE", "WHITE"),
-
-	/**
 	 * The '<em><b>BLUE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46,7 +36,7 @@ public enum Color implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	BLUE(2, "BLUE", "BLUE"),
+	BLUE(1, "BLUE", "BLUE"),
 
 	/**
 	 * The '<em><b>RED</b></em>' literal object.
@@ -56,7 +46,17 @@ public enum Color implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	RED(3, "RED", "RED");
+	RED(2, "RED", "RED"),
+
+	/**
+	 * The '<em><b>WHITE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #WHITE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	WHITE(3, "WHITE", "WHITE");
 
 	/**
 	 * The '<em><b>BLACK</b></em>' literal value.
@@ -74,21 +74,6 @@ public enum Color implements Enumerator {
 	public static final int BLACK_VALUE = 0;
 
 	/**
-	 * The '<em><b>WHITE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>WHITE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #WHITE
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WHITE_VALUE = 1;
-
-	/**
 	 * The '<em><b>BLUE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -101,7 +86,7 @@ public enum Color implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int BLUE_VALUE = 2;
+	public static final int BLUE_VALUE = 1;
 
 	/**
 	 * The '<em><b>RED</b></em>' literal value.
@@ -116,7 +101,22 @@ public enum Color implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int RED_VALUE = 3;
+	public static final int RED_VALUE = 2;
+
+	/**
+	 * The '<em><b>WHITE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WHITE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WHITE
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WHITE_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Color</b></em>' enumerators.
@@ -127,9 +127,9 @@ public enum Color implements Enumerator {
 	private static final Color[] VALUES_ARRAY =
 		new Color[] {
 			BLACK,
-			WHITE,
 			BLUE,
 			RED,
+			WHITE,
 		};
 
 	/**
@@ -187,9 +187,9 @@ public enum Color implements Enumerator {
 	public static Color get(int value) {
 		switch (value) {
 			case BLACK_VALUE: return BLACK;
-			case WHITE_VALUE: return WHITE;
 			case BLUE_VALUE: return BLUE;
 			case RED_VALUE: return RED;
+			case WHITE_VALUE: return WHITE;
 		}
 		return null;
 	}

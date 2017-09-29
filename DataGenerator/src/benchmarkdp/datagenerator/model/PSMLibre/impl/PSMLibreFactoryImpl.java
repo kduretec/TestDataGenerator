@@ -2,7 +2,20 @@
  */
 package benchmarkdp.datagenerator.model.PSMLibre.impl;
 
-import benchmarkdp.datagenerator.model.PSMLibre.*;
+import benchmarkdp.datagenerator.model.PSMLibre.Alignment;
+import benchmarkdp.datagenerator.model.PSMLibre.Cell;
+import benchmarkdp.datagenerator.model.PSMLibre.Color;
+import benchmarkdp.datagenerator.model.PSMLibre.Document;
+import benchmarkdp.datagenerator.model.PSMLibre.FontFamily;
+import benchmarkdp.datagenerator.model.PSMLibre.Image;
+import benchmarkdp.datagenerator.model.PSMLibre.PSMLibreFactory;
+import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
+import benchmarkdp.datagenerator.model.PSMLibre.Page;
+import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
+import benchmarkdp.datagenerator.model.PSMLibre.Row;
+import benchmarkdp.datagenerator.model.PSMLibre.Table;
+import benchmarkdp.datagenerator.model.PSMLibre.Text;
+import benchmarkdp.datagenerator.model.PSMLibre.TextBox;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -59,15 +72,13 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 		switch (eClass.getClassifierID()) {
 			case PSMLibrePackage.DOCUMENT: return createDocument();
 			case PSMLibrePackage.PAGE: return createPage();
-			case PSMLibrePackage.ELEMENT: return createElement();
-			case PSMLibrePackage.TEXT_CONTAINER: return createTextContainer();
 			case PSMLibrePackage.PARAGRAPH: return createParagraph();
 			case PSMLibrePackage.TEXT: return createText();
-			case PSMLibrePackage.SIMPLE_TEXT: return createSimpleText();
 			case PSMLibrePackage.TABLE: return createTable();
 			case PSMLibrePackage.ROW: return createRow();
 			case PSMLibrePackage.CELL: return createCell();
 			case PSMLibrePackage.IMAGE: return createImage();
+			case PSMLibrePackage.TEXT_BOX: return createTextBox();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -85,6 +96,8 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 				return createFontFamilyFromString(eDataType, initialValue);
 			case PSMLibrePackage.COLOR:
 				return createColorFromString(eDataType, initialValue);
+			case PSMLibrePackage.ALIGNMENT:
+				return createAlignmentFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -102,6 +115,8 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 				return convertFontFamilyToString(eDataType, instanceValue);
 			case PSMLibrePackage.COLOR:
 				return convertColorToString(eDataType, instanceValue);
+			case PSMLibrePackage.ALIGNMENT:
+				return convertAlignmentToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -132,26 +147,6 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element createElement() {
-		ElementImpl element = new ElementImpl();
-		return element;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TextContainer createTextContainer() {
-		TextContainerImpl textContainer = new TextContainerImpl();
-		return textContainer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Paragraph createParagraph() {
 		ParagraphImpl paragraph = new ParagraphImpl();
 		return paragraph;
@@ -165,16 +160,6 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 	public Text createText() {
 		TextImpl text = new TextImpl();
 		return text;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimpleText createSimpleText() {
-		SimpleTextImpl simpleText = new SimpleTextImpl();
-		return simpleText;
 	}
 
 	/**
@@ -222,6 +207,16 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TextBox createTextBox() {
+		TextBoxImpl textBox = new TextBoxImpl();
+		return textBox;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FontFamily createFontFamilyFromString(EDataType eDataType, String initialValue) {
 		FontFamily result = FontFamily.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
@@ -254,6 +249,26 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 	 * @generated
 	 */
 	public String convertColorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Alignment createAlignmentFromString(EDataType eDataType, String initialValue) {
+		Alignment result = Alignment.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAlignmentToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

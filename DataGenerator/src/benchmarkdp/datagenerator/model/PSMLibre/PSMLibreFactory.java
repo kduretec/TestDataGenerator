@@ -40,24 +40,6 @@ public interface PSMLibreFactory extends EFactory {
 	Page createPage();
 
 	/**
-	 * Returns a new object of class '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element</em>'.
-	 * @generated
-	 */
-	Element createElement();
-
-	/**
-	 * Returns a new object of class '<em>Text Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text Container</em>'.
-	 * @generated
-	 */
-	TextContainer createTextContainer();
-
-	/**
 	 * Returns a new object of class '<em>Paragraph</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -74,15 +56,6 @@ public interface PSMLibreFactory extends EFactory {
 	 * @generated
 	 */
 	Text createText();
-
-	/**
-	 * Returns a new object of class '<em>Simple Text</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Text</em>'.
-	 * @generated
-	 */
-	SimpleText createSimpleText();
 
 	/**
 	 * Returns a new object of class '<em>Table</em>'.
@@ -119,6 +92,15 @@ public interface PSMLibreFactory extends EFactory {
 	 * @generated
 	 */
 	Image createImage();
+
+	/**
+	 * Returns a new object of class '<em>Text Box</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Text Box</em>'.
+	 * @generated
+	 */
+	TextBox createTextBox();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getText()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Text extends EObject {

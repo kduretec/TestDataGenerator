@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ParagraphImpl extends TextContainerImpl implements Paragraph {
+public class ParagraphImpl extends ParagraphImplImpl implements Paragraph {
 	/**
 	 * The default value of the '{@link #getIndent() <em>Indent</em>}' attribute.
 	 * <!-- begin-user-doc -->

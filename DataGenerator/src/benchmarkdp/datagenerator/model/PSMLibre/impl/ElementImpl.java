@@ -2,10 +2,13 @@
  */
 package benchmarkdp.datagenerator.model.PSMLibre.impl;
 
+import benchmarkdp.datagenerator.model.PSMLibre.Alignment;
+import benchmarkdp.datagenerator.model.PSMLibre.Color;
 import benchmarkdp.datagenerator.model.PSMLibre.Element;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -21,11 +24,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.ElementImpl#getID <em>ID</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.ElementImpl#getParentID <em>Parent ID</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.ElementImpl#getBackgroundColor <em>Background Color</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.ElementImpl#getAlignment <em>Alignment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ElementImpl extends MinimalEObjectImpl.Container implements Element {
+public abstract class ElementImpl extends MinimalEObjectImpl.Container implements Element {
 	/**
 	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,6 +40,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected static final String ID_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -44,6 +50,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getParentID() <em>Parent ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,6 +60,7 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected static final String PARENT_ID_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getParentID() <em>Parent ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,6 +70,46 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected String parentID = PARENT_ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBackgroundColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Color BACKGROUND_COLOR_EDEFAULT = Color.WHITE;
+
+	/**
+	 * The cached value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBackgroundColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Color backgroundColor = BACKGROUND_COLOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlignment()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Alignment ALIGNMENT_EDEFAULT = Alignment.LEFT;
+
+	/**
+	 * The cached value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlignment()
+	 * @generated
+	 * @ordered
+	 */
+	protected Alignment alignment = ALIGNMENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -129,6 +177,48 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBackgroundColor(Color newBackgroundColor) {
+		Color oldBackgroundColor = backgroundColor;
+		backgroundColor = newBackgroundColor == null ? BACKGROUND_COLOR_EDEFAULT : newBackgroundColor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.ELEMENT__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Alignment getAlignment() {
+		return alignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAlignment(Alignment newAlignment) {
+		Alignment oldAlignment = alignment;
+		alignment = newAlignment == null ? ALIGNMENT_EDEFAULT : newAlignment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.ELEMENT__ALIGNMENT, oldAlignment, alignment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -136,6 +226,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return getID();
 			case PSMLibrePackage.ELEMENT__PARENT_ID:
 				return getParentID();
+			case PSMLibrePackage.ELEMENT__BACKGROUND_COLOR:
+				return getBackgroundColor();
+			case PSMLibrePackage.ELEMENT__ALIGNMENT:
+				return getAlignment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -153,6 +247,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return;
 			case PSMLibrePackage.ELEMENT__PARENT_ID:
 				setParentID((String)newValue);
+				return;
+			case PSMLibrePackage.ELEMENT__BACKGROUND_COLOR:
+				setBackgroundColor((Color)newValue);
+				return;
+			case PSMLibrePackage.ELEMENT__ALIGNMENT:
+				setAlignment((Alignment)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -172,6 +272,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case PSMLibrePackage.ELEMENT__PARENT_ID:
 				setParentID(PARENT_ID_EDEFAULT);
 				return;
+			case PSMLibrePackage.ELEMENT__BACKGROUND_COLOR:
+				setBackgroundColor(BACKGROUND_COLOR_EDEFAULT);
+				return;
+			case PSMLibrePackage.ELEMENT__ALIGNMENT:
+				setAlignment(ALIGNMENT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -188,6 +294,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case PSMLibrePackage.ELEMENT__PARENT_ID:
 				return PARENT_ID_EDEFAULT == null ? parentID != null : !PARENT_ID_EDEFAULT.equals(parentID);
+			case PSMLibrePackage.ELEMENT__BACKGROUND_COLOR:
+				return backgroundColor != BACKGROUND_COLOR_EDEFAULT;
+			case PSMLibrePackage.ELEMENT__ALIGNMENT:
+				return alignment != ALIGNMENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -206,6 +316,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		result.append(id);
 		result.append(", parentID: ");
 		result.append(parentID);
+		result.append(", backgroundColor: ");
+		result.append(backgroundColor);
+		result.append(", alignment: ");
+		result.append(alignment);
 		result.append(')');
 		return result.toString();
 	}

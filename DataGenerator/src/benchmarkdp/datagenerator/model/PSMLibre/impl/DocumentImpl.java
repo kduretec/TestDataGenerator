@@ -2,18 +2,26 @@
  */
 package benchmarkdp.datagenerator.model.PSMLibre.impl;
 
+import benchmarkdp.datagenerator.model.PSMLibre.Color;
 import benchmarkdp.datagenerator.model.PSMLibre.Document;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 import benchmarkdp.datagenerator.model.PSMLibre.Page;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +34,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getPages <em>Pages</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getName <em>Name</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getAuthor <em>Author</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getNumColum <em>Num Colum</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentBackground <em>Document Background</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentFormat <em>Document Format</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentPlatform <em>Document Platform</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentFilter <em>Document Filter</em>}</li>
@@ -36,7 +44,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class DocumentImpl extends MinimalEObjectImpl.Container implements Document {
 	/**
-	 * The cached value of the '{@link #getPages() <em>Pages</em>}' reference list.
+	 * The cached value of the '{@link #getPages() <em>Pages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPages()
@@ -86,24 +94,24 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	protected String author = AUTHOR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getNumColum() <em>Num Colum</em>}' attribute.
+	 * The default value of the '{@link #getDocumentBackground() <em>Document Background</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNumColum()
+	 * @see #getDocumentBackground()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String NUM_COLUM_EDEFAULT = null;
+	protected static final Color DOCUMENT_BACKGROUND_EDEFAULT = Color.WHITE;
 
 	/**
-	 * The cached value of the '{@link #getNumColum() <em>Num Colum</em>}' attribute.
+	 * The cached value of the '{@link #getDocumentBackground() <em>Document Background</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNumColum()
+	 * @see #getDocumentBackground()
 	 * @generated
 	 * @ordered
 	 */
-	protected String numColum = NUM_COLUM_EDEFAULT;
+	protected Color documentBackground = DOCUMENT_BACKGROUND_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDocumentFormat() <em>Document Format</em>}' attribute.
@@ -191,7 +199,7 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 */
 	public EList<Page> getPages() {
 		if (pages == null) {
-			pages = new EObjectResolvingEList<Page>(Page.class, this, PSMLibrePackage.DOCUMENT__PAGES);
+			pages = new EObjectContainmentEList<Page>(Page.class, this, PSMLibrePackage.DOCUMENT__PAGES);
 		}
 		return pages;
 	}
@@ -243,8 +251,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getNumColum() {
-		return numColum;
+	public Color getDocumentBackground() {
+		return documentBackground;
 	}
 
 	/**
@@ -252,11 +260,11 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNumColum(String newNumColum) {
-		String oldNumColum = numColum;
-		numColum = newNumColum;
+	public void setDocumentBackground(Color newDocumentBackground) {
+		Color oldDocumentBackground = documentBackground;
+		documentBackground = newDocumentBackground == null ? DOCUMENT_BACKGROUND_EDEFAULT : newDocumentBackground;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__NUM_COLUM, oldNumColum, numColum));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND, oldDocumentBackground, documentBackground));
 	}
 
 	/**
@@ -328,6 +336,20 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case PSMLibrePackage.DOCUMENT__PAGES:
+				return ((InternalEList<?>)getPages()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PSMLibrePackage.DOCUMENT__PAGES:
@@ -336,8 +358,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getName();
 			case PSMLibrePackage.DOCUMENT__AUTHOR:
 				return getAuthor();
-			case PSMLibrePackage.DOCUMENT__NUM_COLUM:
-				return getNumColum();
+			case PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				return getDocumentBackground();
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FORMAT:
 				return getDocumentFormat();
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
@@ -367,8 +389,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMLibrePackage.DOCUMENT__AUTHOR:
 				setAuthor((String)newValue);
 				return;
-			case PSMLibrePackage.DOCUMENT__NUM_COLUM:
-				setNumColum((String)newValue);
+			case PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				setDocumentBackground((Color)newValue);
 				return;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FORMAT:
 				setDocumentFormat((String)newValue);
@@ -400,8 +422,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMLibrePackage.DOCUMENT__AUTHOR:
 				setAuthor(AUTHOR_EDEFAULT);
 				return;
-			case PSMLibrePackage.DOCUMENT__NUM_COLUM:
-				setNumColum(NUM_COLUM_EDEFAULT);
+			case PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				setDocumentBackground(DOCUMENT_BACKGROUND_EDEFAULT);
 				return;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FORMAT:
 				setDocumentFormat(DOCUMENT_FORMAT_EDEFAULT);
@@ -430,8 +452,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case PSMLibrePackage.DOCUMENT__AUTHOR:
 				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
-			case PSMLibrePackage.DOCUMENT__NUM_COLUM:
-				return NUM_COLUM_EDEFAULT == null ? numColum != null : !NUM_COLUM_EDEFAULT.equals(numColum);
+			case PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND:
+				return documentBackground != DOCUMENT_BACKGROUND_EDEFAULT;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FORMAT:
 				return DOCUMENT_FORMAT_EDEFAULT == null ? documentFormat != null : !DOCUMENT_FORMAT_EDEFAULT.equals(documentFormat);
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
@@ -456,8 +478,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		result.append(name);
 		result.append(", author: ");
 		result.append(author);
-		result.append(", numColum: ");
-		result.append(numColum);
+		result.append(", documentBackground: ");
+		result.append(documentBackground);
 		result.append(", documentFormat: ");
 		result.append(documentFormat);
 		result.append(", documentPlatform: ");

@@ -7,10 +7,18 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 import benchmarkdp.datagenerator.model.PSMLibre.Page;
 
 import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +35,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class PageImpl extends MinimalEObjectImpl.Container implements Page {
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getElements()
@@ -35,6 +43,7 @@ public class PageImpl extends MinimalEObjectImpl.Container implements Page {
 	 * @ordered
 	 */
 	protected EList<Element> elements;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,9 +70,23 @@ public class PageImpl extends MinimalEObjectImpl.Container implements Page {
 	 */
 	public EList<Element> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<Element>(Element.class, this, PSMLibrePackage.PAGE__ELEMENTS);
+			elements = new EObjectContainmentEList<Element>(Element.class, this, PSMLibrePackage.PAGE__ELEMENTS);
 		}
 		return elements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case PSMLibrePackage.PAGE__ELEMENTS:
+				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

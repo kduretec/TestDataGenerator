@@ -108,8 +108,8 @@ public class PSMDocxAdapterFactory extends AdapterFactoryImpl {
 				return createHyperLinkAdapter();
 			}
 			@Override
-			public Adapter caseTable(Table object) {
-				return createTableAdapter();
+			public Adapter caseTableImpl(TableImpl object) {
+				return createTableImplAdapter();
 			}
 			@Override
 			public Adapter caseRow(Row object) {
@@ -130,6 +130,10 @@ public class PSMDocxAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseWordTable(WordTable object) {
 				return createWordTableAdapter();
+			}
+			@Override
+			public Adapter caseParagraphImpl(ParagraphImpl object) {
+				return createParagraphImplAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -292,16 +296,16 @@ public class PSMDocxAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMDocx.Table <em>Table</em>}'.
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl <em>Table Impl</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Table
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableImpl
 	 * @generated
 	 */
-	public Adapter createTableAdapter() {
+	public Adapter createTableImplAdapter() {
 		return null;
 	}
 
@@ -372,6 +376,20 @@ public class PSMDocxAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWordTableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl <em>Paragraph Impl</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl
+	 * @generated
+	 */
+	public Adapter createParagraphImplAdapter() {
 		return null;
 	}
 

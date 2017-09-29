@@ -12,7 +12,7 @@ import benchmarkdp.datagenerator.generator.Text;
 import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
-import benchmarkdp.datagenerator.model.PSMDocx.Table;
+import benchmarkdp.datagenerator.model.PSMDocx.TableImpl;
 import benchmarkdp.datagenerator.model.PSMDocx.TextContainer;
 
 public class OCLMSWordText extends AbstractOCLEvaluator {
@@ -49,8 +49,8 @@ public class OCLMSWordText extends AbstractOCLEvaluator {
 					}
 					String rT = sb.toString().trim();
 					txt.setRawText(rT);
-				} else if (docEl instanceof Table) {
-					Table tbl = (Table) docEl;
+				} else if (docEl instanceof TableImpl) {
+					TableImpl tbl = (TableImpl) docEl;
 					EList<Row> rows = tbl.getRow();
 					initialize(PSMDocxPackage.Literals.ROW,
 							"self.cell.elements->selectByKind(TextContainer)->asSequence()->collectNested(words.value->asSequence())");

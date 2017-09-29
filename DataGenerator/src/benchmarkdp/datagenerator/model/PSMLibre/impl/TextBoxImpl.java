@@ -1,10 +1,9 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PSMDocx.impl;
+package benchmarkdp.datagenerator.model.PSMLibre.impl;
 
-import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
-import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
-
+import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
+import benchmarkdp.datagenerator.model.PSMLibre.TextBox;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -31,7 +30,7 @@ public class TextBoxImpl extends ParagraphImplImpl implements TextBox {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PSMDocxPackage.Literals.TEXT_BOX;
+		return PSMLibrePackage.Literals.TEXT_BOX;
 	}
 
 } //TextBoxImpl

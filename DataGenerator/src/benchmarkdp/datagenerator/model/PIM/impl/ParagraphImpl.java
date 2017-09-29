@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ParagraphImpl extends ElementImpl implements Paragraph {
+public class ParagraphImpl extends TextContainerImpl implements Paragraph {
 	/**
 	 * The cached value of the '{@link #getWords() <em>Words</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

@@ -1,6 +1,6 @@
 /**
  */
-package benchmarkdp.datagenerator.model.PSMDocx;
+package benchmarkdp.datagenerator.model.PIM;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,7 +13,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Color</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getColor()
+ * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getColor()
  * @model
  * @generated
  */

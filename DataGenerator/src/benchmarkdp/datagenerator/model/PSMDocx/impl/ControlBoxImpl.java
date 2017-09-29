@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ControlBoxImpl extends TextContainerImpl implements ControlBox {
+public class ControlBoxImpl extends ParagraphImplImpl implements ControlBox {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

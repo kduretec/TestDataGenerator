@@ -2,6 +2,8 @@
  */
 package benchmarkdp.datagenerator.model.PIM.impl;
 
+import benchmarkdp.datagenerator.model.PIM.Alignment;
+import benchmarkdp.datagenerator.model.PIM.Color;
 import benchmarkdp.datagenerator.model.PIM.Element;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 
@@ -21,11 +23,13 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.ElementImpl#getID <em>ID</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.ElementImpl#getBackgroundColor <em>Background Color</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.ElementImpl#getAlignment <em>Alignment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ElementImpl extends MinimalEObjectImpl.Container implements Element {
+public abstract class ElementImpl extends MinimalEObjectImpl.Container implements Element {
 	/**
 	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,6 +49,46 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBackgroundColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Color BACKGROUND_COLOR_EDEFAULT = Color.WHITE;
+
+	/**
+	 * The cached value of the '{@link #getBackgroundColor() <em>Background Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBackgroundColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Color backgroundColor = BACKGROUND_COLOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlignment()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Alignment ALIGNMENT_EDEFAULT = Alignment.LEFT;
+
+	/**
+	 * The cached value of the '{@link #getAlignment() <em>Alignment</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAlignment()
+	 * @generated
+	 * @ordered
+	 */
+	protected Alignment alignment = ALIGNMENT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,11 +135,57 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBackgroundColor(Color newBackgroundColor) {
+		Color oldBackgroundColor = backgroundColor;
+		backgroundColor = newBackgroundColor == null ? BACKGROUND_COLOR_EDEFAULT : newBackgroundColor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.ELEMENT__BACKGROUND_COLOR, oldBackgroundColor, backgroundColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Alignment getAlignment() {
+		return alignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAlignment(Alignment newAlignment) {
+		Alignment oldAlignment = alignment;
+		alignment = newAlignment == null ? ALIGNMENT_EDEFAULT : newAlignment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.ELEMENT__ALIGNMENT, oldAlignment, alignment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case PIMPackage.ELEMENT__ID:
 				return getID();
+			case PIMPackage.ELEMENT__BACKGROUND_COLOR:
+				return getBackgroundColor();
+			case PIMPackage.ELEMENT__ALIGNMENT:
+				return getAlignment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +200,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		switch (featureID) {
 			case PIMPackage.ELEMENT__ID:
 				setID((String)newValue);
+				return;
+			case PIMPackage.ELEMENT__BACKGROUND_COLOR:
+				setBackgroundColor((Color)newValue);
+				return;
+			case PIMPackage.ELEMENT__ALIGNMENT:
+				setAlignment((Alignment)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,6 +222,12 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 			case PIMPackage.ELEMENT__ID:
 				setID(ID_EDEFAULT);
 				return;
+			case PIMPackage.ELEMENT__BACKGROUND_COLOR:
+				setBackgroundColor(BACKGROUND_COLOR_EDEFAULT);
+				return;
+			case PIMPackage.ELEMENT__ALIGNMENT:
+				setAlignment(ALIGNMENT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,6 +242,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		switch (featureID) {
 			case PIMPackage.ELEMENT__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case PIMPackage.ELEMENT__BACKGROUND_COLOR:
+				return backgroundColor != BACKGROUND_COLOR_EDEFAULT;
+			case PIMPackage.ELEMENT__ALIGNMENT:
+				return alignment != ALIGNMENT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -156,6 +262,10 @@ public class ElementImpl extends MinimalEObjectImpl.Container implements Element
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (ID: ");
 		result.append(id);
+		result.append(", backgroundColor: ");
+		result.append(backgroundColor);
+		result.append(", alignment: ");
+		result.append(alignment);
 		result.append(')');
 		return result.toString();
 	}

@@ -4,7 +4,6 @@ import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.model.PSMDocx.Element
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph
-import benchmarkdp.datagenerator.model.PSMDocx.Table
 import benchmarkdp.datagenerator.model.PSMDocx.WordTable
 import org.eclipse.emf.ecore.EObject
 

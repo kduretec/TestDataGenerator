@@ -5,6 +5,7 @@ package benchmarkdp.datagenerator.model.PIM.impl;
 import benchmarkdp.datagenerator.model.PIM.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -57,7 +58,6 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case PIMPackage.DOCUMENT: return createDocument();
-			case PIMPackage.ELEMENT: return createElement();
 			case PIMPackage.TABLE: return createTable();
 			case PIMPackage.PARAGRAPH: return createParagraph();
 			case PIMPackage.IMAGE: return createImage();
@@ -75,9 +75,16 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Document createDocument() {
-		DocumentImpl document = new DocumentImpl();
-		return document;
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case PIMPackage.COLOR:
+				return createColorFromString(eDataType, initialValue);
+			case PIMPackage.ALIGNMENT:
+				return createAlignmentFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
 	}
 
 	/**
@@ -85,9 +92,26 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element createElement() {
-		ElementImpl element = new ElementImpl();
-		return element;
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case PIMPackage.COLOR:
+				return convertColorToString(eDataType, instanceValue);
+			case PIMPackage.ALIGNMENT:
+				return convertAlignmentToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Document createDocument() {
+		DocumentImpl document = new DocumentImpl();
+		return document;
 	}
 
 	/**
@@ -158,6 +182,46 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 	public Word createWord() {
 		WordImpl word = new WordImpl();
 		return word;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Color createColorFromString(EDataType eDataType, String initialValue) {
+		Color result = Color.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertColorToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Alignment createAlignmentFromString(EDataType eDataType, String initialValue) {
+		Alignment result = Alignment.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertAlignmentToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

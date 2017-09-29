@@ -40,24 +40,6 @@ public interface PSMDocxFactory extends EFactory {
 	Page createPage();
 
 	/**
-	 * Returns a new object of class '<em>Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Element</em>'.
-	 * @generated
-	 */
-	Element createElement();
-
-	/**
-	 * Returns a new object of class '<em>Text Container</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text Container</em>'.
-	 * @generated
-	 */
-	TextContainer createTextContainer();
-
-	/**
 	 * Returns a new object of class '<em>Text Box</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -85,15 +67,6 @@ public interface PSMDocxFactory extends EFactory {
 	ControlBox createControlBox();
 
 	/**
-	 * Returns a new object of class '<em>Text</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text</em>'.
-	 * @generated
-	 */
-	Text createText();
-
-	/**
 	 * Returns a new object of class '<em>Simple Text</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -110,15 +83,6 @@ public interface PSMDocxFactory extends EFactory {
 	 * @generated
 	 */
 	HyperLink createHyperLink();
-
-	/**
-	 * Returns a new object of class '<em>Table</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Table</em>'.
-	 * @generated
-	 */
-	Table createTable();
 
 	/**
 	 * Returns a new object of class '<em>Row</em>'.

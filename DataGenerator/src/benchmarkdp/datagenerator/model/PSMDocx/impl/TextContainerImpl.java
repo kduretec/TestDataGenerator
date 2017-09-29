@@ -2,21 +2,16 @@
  */
 package benchmarkdp.datagenerator.model.PSMDocx.impl;
 
+import benchmarkdp.datagenerator.model.PSMDocx.Color;
+import benchmarkdp.datagenerator.model.PSMDocx.FontFamily;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
-import benchmarkdp.datagenerator.model.PSMDocx.Text;
 import benchmarkdp.datagenerator.model.PSMDocx.TextContainer;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,21 +21,52 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TextContainerImpl#getWords <em>Words</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TextContainerImpl#getFontColor <em>Font Color</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TextContainerImpl#getFontFamily <em>Font Family</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TextContainerImpl extends ElementImpl implements TextContainer {
+public abstract class TextContainerImpl extends ElementImpl implements TextContainer {
 	/**
-	 * The cached value of the '{@link #getWords() <em>Words</em>}' containment reference list.
+	 * The default value of the '{@link #getFontColor() <em>Font Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWords()
+	 * @see #getFontColor()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Text> words;
+	protected static final Color FONT_COLOR_EDEFAULT = Color.BLACK;
+
+	/**
+	 * The cached value of the '{@link #getFontColor() <em>Font Color</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFontColor()
+	 * @generated
+	 * @ordered
+	 */
+	protected Color fontColor = FONT_COLOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFontFamily()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final FontFamily FONT_FAMILY_EDEFAULT = FontFamily.CALIBRI;
+
+	/**
+	 * The cached value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFontFamily()
+	 * @generated
+	 * @ordered
+	 */
+	protected FontFamily fontFamily = FONT_FAMILY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -66,11 +92,8 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Text> getWords() {
-		if (words == null) {
-			words = new EObjectContainmentEList<Text>(Text.class, this, PSMDocxPackage.TEXT_CONTAINER__WORDS);
-		}
-		return words;
+	public Color getFontColor() {
+		return fontColor;
 	}
 
 	/**
@@ -78,13 +101,32 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case PSMDocxPackage.TEXT_CONTAINER__WORDS:
-				return ((InternalEList<?>)getWords()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+	public void setFontColor(Color newFontColor) {
+		Color oldFontColor = fontColor;
+		fontColor = newFontColor == null ? FONT_COLOR_EDEFAULT : newFontColor;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.TEXT_CONTAINER__FONT_COLOR, oldFontColor, fontColor));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FontFamily getFontFamily() {
+		return fontFamily;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFontFamily(FontFamily newFontFamily) {
+		FontFamily oldFontFamily = fontFamily;
+		fontFamily = newFontFamily == null ? FONT_FAMILY_EDEFAULT : newFontFamily;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.TEXT_CONTAINER__FONT_FAMILY, oldFontFamily, fontFamily));
 	}
 
 	/**
@@ -95,8 +137,10 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PSMDocxPackage.TEXT_CONTAINER__WORDS:
-				return getWords();
+			case PSMDocxPackage.TEXT_CONTAINER__FONT_COLOR:
+				return getFontColor();
+			case PSMDocxPackage.TEXT_CONTAINER__FONT_FAMILY:
+				return getFontFamily();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -106,13 +150,14 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PSMDocxPackage.TEXT_CONTAINER__WORDS:
-				getWords().clear();
-				getWords().addAll((Collection<? extends Text>)newValue);
+			case PSMDocxPackage.TEXT_CONTAINER__FONT_COLOR:
+				setFontColor((Color)newValue);
+				return;
+			case PSMDocxPackage.TEXT_CONTAINER__FONT_FAMILY:
+				setFontFamily((FontFamily)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +171,11 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PSMDocxPackage.TEXT_CONTAINER__WORDS:
-				getWords().clear();
+			case PSMDocxPackage.TEXT_CONTAINER__FONT_COLOR:
+				setFontColor(FONT_COLOR_EDEFAULT);
+				return;
+			case PSMDocxPackage.TEXT_CONTAINER__FONT_FAMILY:
+				setFontFamily(FONT_FAMILY_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,10 +189,30 @@ public class TextContainerImpl extends ElementImpl implements TextContainer {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PSMDocxPackage.TEXT_CONTAINER__WORDS:
-				return words != null && !words.isEmpty();
+			case PSMDocxPackage.TEXT_CONTAINER__FONT_COLOR:
+				return fontColor != FONT_COLOR_EDEFAULT;
+			case PSMDocxPackage.TEXT_CONTAINER__FONT_FAMILY:
+				return fontFamily != FONT_FAMILY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (fontColor: ");
+		result.append(fontColor);
+		result.append(", fontFamily: ");
+		result.append(fontFamily);
+		result.append(')');
+		return result.toString();
 	}
 
 } //TextContainerImpl

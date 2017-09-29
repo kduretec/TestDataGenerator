@@ -6,7 +6,9 @@ import benchmarkdp.datagenerator.model.PSMDocx.Image;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -34,6 +36,7 @@ public class ImageImpl extends ElementImpl implements Image {
 	 * @ordered
 	 */
 	protected static final int WIDTH_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getWidth() <em>Width</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -43,6 +46,7 @@ public class ImageImpl extends ElementImpl implements Image {
 	 * @ordered
 	 */
 	protected int width = WIDTH_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,6 +56,7 @@ public class ImageImpl extends ElementImpl implements Image {
 	 * @ordered
 	 */
 	protected static final int HEIGHT_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getHeight() <em>Height</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,6 +66,7 @@ public class ImageImpl extends ElementImpl implements Image {
 	 * @ordered
 	 */
 	protected int height = HEIGHT_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,6 +76,7 @@ public class ImageImpl extends ElementImpl implements Image {
 	 * @ordered
 	 */
 	protected static final String TYPE_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->

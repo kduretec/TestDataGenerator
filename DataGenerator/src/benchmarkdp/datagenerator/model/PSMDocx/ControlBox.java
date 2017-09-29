@@ -13,5 +13,5 @@ package benchmarkdp.datagenerator.model.PSMDocx;
  * @model
  * @generated
  */
-public interface ControlBox extends TextContainer {
+public interface ControlBox extends ParagraphImpl {
 } // ControlBox

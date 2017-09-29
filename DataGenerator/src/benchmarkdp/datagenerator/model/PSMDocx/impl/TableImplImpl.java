@@ -4,7 +4,7 @@ package benchmarkdp.datagenerator.model.PSMDocx.impl;
 
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
-import benchmarkdp.datagenerator.model.PSMDocx.Table;
+import benchmarkdp.datagenerator.model.PSMDocx.TableImpl;
 
 import java.util.Collection;
 
@@ -17,25 +17,26 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Table</b></em>'.
+ * An implementation of the model object '<em><b>Table Impl</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImpl#getRow <em>Row</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImpl#getNumRows <em>Num Rows</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImpl#getNumCol <em>Num Col</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImplImpl#getRow <em>Row</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImplImpl#getNumRows <em>Num Rows</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.TableImplImpl#getNumCol <em>Num Col</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class TableImpl extends ElementImpl implements Table {
+public abstract class TableImplImpl extends TextContainerImpl implements TableImpl {
 	/**
 	 * The cached value of the '{@link #getRow() <em>Row</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -45,6 +46,7 @@ public class TableImpl extends ElementImpl implements Table {
 	 * @ordered
 	 */
 	protected EList<Row> row;
+
 	/**
 	 * The default value of the '{@link #getNumRows() <em>Num Rows</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,6 +56,7 @@ public class TableImpl extends ElementImpl implements Table {
 	 * @ordered
 	 */
 	protected static final int NUM_ROWS_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getNumRows() <em>Num Rows</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,6 +66,7 @@ public class TableImpl extends ElementImpl implements Table {
 	 * @ordered
 	 */
 	protected int numRows = NUM_ROWS_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getNumCol() <em>Num Col</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -72,6 +76,7 @@ public class TableImpl extends ElementImpl implements Table {
 	 * @ordered
 	 */
 	protected static final int NUM_COL_EDEFAULT = 0;
+
 	/**
 	 * The cached value of the '{@link #getNumCol() <em>Num Col</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,12 +86,13 @@ public class TableImpl extends ElementImpl implements Table {
 	 * @ordered
 	 */
 	protected int numCol = NUM_COL_EDEFAULT;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TableImpl() {
+	protected TableImplImpl() {
 		super();
 	}
 
@@ -97,7 +103,7 @@ public class TableImpl extends ElementImpl implements Table {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return PSMDocxPackage.Literals.TABLE;
+		return PSMDocxPackage.Literals.TABLE_IMPL;
 	}
 
 	/**
@@ -107,7 +113,7 @@ public class TableImpl extends ElementImpl implements Table {
 	 */
 	public EList<Row> getRow() {
 		if (row == null) {
-			row = new EObjectContainmentEList<Row>(Row.class, this, PSMDocxPackage.TABLE__ROW);
+			row = new EObjectContainmentEList<Row>(Row.class, this, PSMDocxPackage.TABLE_IMPL__ROW);
 		}
 		return row;
 	}
@@ -130,7 +136,7 @@ public class TableImpl extends ElementImpl implements Table {
 		int oldNumRows = numRows;
 		numRows = newNumRows;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.TABLE__NUM_ROWS, oldNumRows, numRows));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.TABLE_IMPL__NUM_ROWS, oldNumRows, numRows));
 	}
 
 	/**
@@ -151,7 +157,7 @@ public class TableImpl extends ElementImpl implements Table {
 		int oldNumCol = numCol;
 		numCol = newNumCol;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.TABLE__NUM_COL, oldNumCol, numCol));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.TABLE_IMPL__NUM_COL, oldNumCol, numCol));
 	}
 
 	/**
@@ -162,7 +168,7 @@ public class TableImpl extends ElementImpl implements Table {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case PSMDocxPackage.TABLE__ROW:
+			case PSMDocxPackage.TABLE_IMPL__ROW:
 				return ((InternalEList<?>)getRow()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -176,11 +182,11 @@ public class TableImpl extends ElementImpl implements Table {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PSMDocxPackage.TABLE__ROW:
+			case PSMDocxPackage.TABLE_IMPL__ROW:
 				return getRow();
-			case PSMDocxPackage.TABLE__NUM_ROWS:
+			case PSMDocxPackage.TABLE_IMPL__NUM_ROWS:
 				return getNumRows();
-			case PSMDocxPackage.TABLE__NUM_COL:
+			case PSMDocxPackage.TABLE_IMPL__NUM_COL:
 				return getNumCol();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -195,14 +201,14 @@ public class TableImpl extends ElementImpl implements Table {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PSMDocxPackage.TABLE__ROW:
+			case PSMDocxPackage.TABLE_IMPL__ROW:
 				getRow().clear();
 				getRow().addAll((Collection<? extends Row>)newValue);
 				return;
-			case PSMDocxPackage.TABLE__NUM_ROWS:
+			case PSMDocxPackage.TABLE_IMPL__NUM_ROWS:
 				setNumRows((Integer)newValue);
 				return;
-			case PSMDocxPackage.TABLE__NUM_COL:
+			case PSMDocxPackage.TABLE_IMPL__NUM_COL:
 				setNumCol((Integer)newValue);
 				return;
 		}
@@ -217,13 +223,13 @@ public class TableImpl extends ElementImpl implements Table {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PSMDocxPackage.TABLE__ROW:
+			case PSMDocxPackage.TABLE_IMPL__ROW:
 				getRow().clear();
 				return;
-			case PSMDocxPackage.TABLE__NUM_ROWS:
+			case PSMDocxPackage.TABLE_IMPL__NUM_ROWS:
 				setNumRows(NUM_ROWS_EDEFAULT);
 				return;
-			case PSMDocxPackage.TABLE__NUM_COL:
+			case PSMDocxPackage.TABLE_IMPL__NUM_COL:
 				setNumCol(NUM_COL_EDEFAULT);
 				return;
 		}
@@ -238,11 +244,11 @@ public class TableImpl extends ElementImpl implements Table {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PSMDocxPackage.TABLE__ROW:
+			case PSMDocxPackage.TABLE_IMPL__ROW:
 				return row != null && !row.isEmpty();
-			case PSMDocxPackage.TABLE__NUM_ROWS:
+			case PSMDocxPackage.TABLE_IMPL__NUM_ROWS:
 				return numRows != NUM_ROWS_EDEFAULT;
-			case PSMDocxPackage.TABLE__NUM_COL:
+			case PSMDocxPackage.TABLE_IMPL__NUM_COL:
 				return numCol != NUM_COL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
@@ -266,4 +272,4 @@ public class TableImpl extends ElementImpl implements Table {
 		return result.toString();
 	}
 
-} //TableImpl
+} //TableImplImpl
