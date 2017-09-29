@@ -1,0 +1,14 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PSM uses PSMDocx('http://benchmarkdp.datagenerator.model.PSMDocx');
+
+transformation MutatePlatform(inout model:PSM);
+
+main() {
+	var doc := model.objectsOfType(Document);
+	doc->map ChangePlatform();
+}
+
+mapping inout Document::ChangePlatform() {
+	
+}
