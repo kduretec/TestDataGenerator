@@ -37,7 +37,7 @@ class MSWordTable extends AbstractElementCompiler{
 		cState.setVariable("inTable", new Boolean(false))
 	}
 	
-	def compileTableElements(Table t, CompilerState cState) {
+	def compileTableElements(WordTable t, CompilerState cState) {
 		
 		for (var i = 1; i <= t.numRows; i++) {
 			for (var j = 1; j <= t.numCol; j++) {

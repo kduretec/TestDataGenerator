@@ -29,7 +29,7 @@ class MSWordParagraph extends AbstractElementCompiler{
 		parag = parag + 1
 		cState.setVariable("parag", new Integer(parag))
 		
-		for (Text txt : par.words) {
+		for (Text txt : par.text) {
 			switch txt {
 				SimpleText: compiler.compile("SimpleText", txt)
 				HyperLink: compiler.compile("HyperLink", txt)

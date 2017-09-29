@@ -2,15 +2,37 @@ package benchmarkdp.datagenerator.generator.codegenerator.msword;
 
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
+import benchmarkdp.datagenerator.model.PSMDocx.SimpleText;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class MSWordSimpleText extends AbstractElementCompiler {
   @Override
   public void compile(final EObject object, final CompilerState cState) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field color is undefined for the type SimpleText"
-      + "\nThe method or field background is undefined for the type SimpleText"
-      + "\nThe method or field size is undefined for the type SimpleText");
+    SimpleText t = ((SimpleText) object);
+    Object _variable = cState.getVariable("temp");
+    String temp = ((String) _variable);
+    temp = (temp + "oSelection.Font.Color = ");
+    cState.setVariable("temp", temp);
+    Object _variable_1 = cState.getVariable("temp");
+    temp = ((String) _variable_1);
+    temp = (temp + "\noSelection.Shading.BackgroundPatternColor = ");
+    cState.setVariable("temp", temp);
+    Object _variable_2 = cState.getVariable("temp");
+    temp = ((String) _variable_2);
+    temp = (temp + "\n");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("oSelection.Font.Size = ");
+    _builder.append(12, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("oSelection.TypeText(\" ");
+    String _value = t.getValue();
+    _builder.append(_value, "");
+    _builder.append(" \")");
+    _builder.newLineIfNotEmpty();
+    String _plus = (temp + _builder);
+    temp = _plus;
+    cState.setVariable("temp", temp);
   }
 }

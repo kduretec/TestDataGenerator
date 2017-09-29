@@ -22,7 +22,7 @@ class MSWordDocument extends AbstractElementCompiler {
 			Set objFile = objFSO.CreateTextFile(grFile, True)
 			Set objFileMetadata = objFSO.CreateTextFile(grFileMetadata, True)
 			Set oDoc = objWord.Documents.Add()
-			oDoc.PageSetup.TextColumns.SetCount(«d.numColum») 
+			oDoc.PageSetup.TextColumns.SetCount(«1») 
 			Set oSelection = objWord.Selection 
 			
 			i = 1 

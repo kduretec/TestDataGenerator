@@ -1,12 +1,10 @@
 package benchmarkdp.datagenerator.generator.codegenerator.libreoffice
 
-import benchmarkdp.datagenerator.model.PSMLibre.Paragraph
-import benchmarkdp.datagenerator.model.PSMLibre.SimpleText
-import benchmarkdp.datagenerator.model.PSMLibre.Text
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler
-import org.eclipse.emf.ecore.EObject
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
-import org.eclipse.xtend2.lib.StringConcatenation
+import benchmarkdp.datagenerator.model.PSMLibre.Paragraph
+import benchmarkdp.datagenerator.model.PSMLibre.Text
+import org.eclipse.emf.ecore.EObject
 
 class LibreParagraph extends AbstractElementCompiler {
 	
@@ -37,14 +35,14 @@ class LibreParagraph extends AbstractElementCompiler {
 		}
 		cState.setVariable("parag", new Integer(parag))
 		var counter = 0; 
-		for (Text txt : par.words) {
+		for (Text txt : par.text) {
 			if (inTable && counter > 0) { 
 				temp = cState.getVariable("temp") as String
 				temp = temp + " + "
 				cState.setVariable("temp", temp)
 			}
 			switch txt {
-				SimpleText: compiler.compile("SimpleText", txt)
+				Text: compiler.compile("SimpleText", txt)
 			}
 			counter = counter + 1
 		}			

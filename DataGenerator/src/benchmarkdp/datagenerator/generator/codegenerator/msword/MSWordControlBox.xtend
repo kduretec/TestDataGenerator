@@ -27,7 +27,7 @@ class MSWordControlBox extends AbstractElementCompiler{
 		var parag = paragNum.intValue
 		parag = parag + 1
 		cState.setVariable("parag", new Integer(parag))
-		for (Text txt : cb.words) {
+		for (Text txt : cb.text) {
 			switch txt {
 				SimpleText : compileSimpleText(txt, cState)
 				HyperLink : compiler.compile("HyperLink", txt)

@@ -27,7 +27,7 @@ class MSWordTextBox extends AbstractElementCompiler{
 		temp = temp + "\ntextBox.TextFrame.TextRange.Text = \""
 		cState.setVariable("temp", temp)
 
-		for (Text txt : tb.words) {
+		for (Text txt : tb.text) {
 			switch txt {
 				SimpleText: compileSimpleText(txt, cState)
 				HyperLink: compiler.compile("HyperLink", txt)

@@ -14,15 +14,15 @@ class MSWordSimpleText extends AbstractElementCompiler{
 		
 		temp = temp + "oSelection.Font.Color = "
 		cState.setVariable("temp", temp)
-		compiler.compile("Color", t.color)
+		//compiler.compile("Color", t.color)
 		temp = cState.getVariable("temp") as String 
 		temp = temp + "\noSelection.Shading.BackgroundPatternColor = "
 		cState.setVariable("temp", temp)
-		compiler.compile("Color", t.background)
+		//compiler.compile("Color", t.background)
 		temp = cState.getVariable("temp") as String
 		temp = temp + "\n";
 		temp = temp + '''
-			oSelection.Font.Size = «t.size»
+			oSelection.Font.Size = «12»
 			oSelection.TypeText(" «t.value» ")
 		'''
 	
