@@ -20,6 +20,8 @@ import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
 
+@Deprecated
+// Not needed anymore as MutatorOperator is enough for the new design
 public class LibreOfficeMutationOperator extends MutationOperator implements MutationOperatorInterface {
 
 	private List<String> formats;

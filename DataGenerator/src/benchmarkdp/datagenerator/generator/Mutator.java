@@ -104,7 +104,7 @@ public class Mutator {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Mutator mut = new Mutator();
-		// mut.mutate();
+	    mut.mutate();
 	}
 
 	public void mutate() {

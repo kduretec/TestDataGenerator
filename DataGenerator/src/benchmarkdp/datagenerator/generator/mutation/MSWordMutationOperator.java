@@ -21,6 +21,8 @@ import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.TestModel;
 
+@Deprecated
+//Not needed anymore as MutatorOperator is enough for the new design
 public class MSWordMutationOperator extends MutationOperator implements MutationOperatorInterface {
 
 	private List<String> formats;
