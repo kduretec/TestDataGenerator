@@ -67,13 +67,13 @@ public class Mutator {
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("xmi", new XMIResourceFactoryImpl());
 
-		System.out.println("Initialized modelling environment");
+		System.out.println("Modelling environment initialized");
 
-		// mutationsPIM = new ArrayList<MutationOperatorInterface>();
+		mutationsPIM = new ArrayList<MutationOperatorInterface>();
 		// mutationsPIM2PSM = new ArrayList<MutationOperatorInterface>();
 		// mutationsPSM = new ArrayList<MutationOperatorInterface>();
 		//
-		// initializeMutationsPIM();
+		initializeMutationsPIM();
 		// initializeMutationsPIM2PSM();
 		// initializeMutationsPSM();
 		//
@@ -93,7 +93,7 @@ public class Mutator {
 			testCases.add(tCase);
 		}
 
-		System.out.println("Initialized testcases");
+		System.out.println("Testcases initialized");
 		//
 		// initializeEvaluators();
 		//
@@ -265,41 +265,43 @@ public class Mutator {
 
 	private void initializeMutationsPIM() {
 		mutationsPIM.add(new MutationOperator("AddPage", ModelType.PIM, ModelType.PIM,
-				Utils.pimTransformation + "AddPage.qvto", Arrays.asList("pagecount")));
+				Utils.pimTransformation + "AddPage.qvto"));
 		mutationsPIM.add(new MutationOperator("AddParagraph", ModelType.PIM, ModelType.PIM,
-				Utils.pimTransformation + "AddParagraph.qvto", Arrays.asList("pagecount", "wordcount")));
+				Utils.pimTransformation + "AddParagraph.qvto"));
 		mutationsPIM.add(new MutationOperator("AddTable", ModelType.PIM, ModelType.PIM,
-				Utils.pimTransformation + "AddTable.qvto", Arrays.asList("tablecount")));
+				Utils.pimTransformation + "AddTable.qvto"));
 		mutationsPIM.add(new MutationOperator("AddImage", ModelType.PIM, ModelType.PIM,
-				Utils.pimTransformation + "AddImage.qvto", Arrays.asList("imagecount")));
+				Utils.pimTransformation + "AddImage.qvto"));
 		mutationsPIM.add(new MutationOperator("AddWord", ModelType.PIM, ModelType.PIM,
-				Utils.pimTransformation + "AddWord.qvto", Arrays.asList("wordcount")));
+				Utils.pimTransformation + "AddWord.qvto"));
+		mutationsPIM.add(new MutationOperator("MutateColor", ModelType.PIM, ModelType.PIM,
+				Utils.pimTransformation + "MutateColor.qvto"));
 	}
 
-	private void initializeMutationsPIM2PSM() {
-		// mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc",
-		// ModelType.PIM, ModelType.PSMDoc,
-		// Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox,
-		// format, platform"),
-		// Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
-		mutationsPIM2PSM.add(new MSWordMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-				Utils.pim2psmTransformation + "PIM2Docx.qvto",
-				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf"),
-				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
-		mutationsPIM2PSM.add(new LibreOfficeMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
-				Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList("format", "platform"),
-				Arrays.asList("odt", "pdf"), Arrays.asList("Ubuntu14-LibreOffice")));
-	}
+//	private void initializeMutationsPIM2PSM() {
+//		// mutationsPIM2PSM.add(new ComplexMutationOperator("PIM2Doc",
+//		// ModelType.PIM, ModelType.PSMDoc,
+//		// Utils.pim2psmTransformation + "PIM2Doc.qvto", Arrays.asList("textbox,
+//		// format, platform"),
+//		// Arrays.asList("doc", "pdf"), Arrays.asList("Win7-Office2007")));
+//		mutationsPIM2PSM.add(new MSWordMutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+//				Utils.pim2psmTransformation + "PIM2Docx.qvto",
+//				Arrays.asList("textbox", "controlbox", "format", "platform"), Arrays.asList("docx", "pdf"),
+//				Arrays.asList("Win7-Office2007", "Win7-Office2010")));
+//		mutationsPIM2PSM.add(new LibreOfficeMutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
+//				Utils.pim2psmTransformation + "PIM2Libre.qvto", Arrays.asList("format", "platform"),
+//				Arrays.asList("odt", "pdf"), Arrays.asList("Ubuntu14-LibreOffice")));
+//	}
 
-	private void initializeMutationsPSM() {
-		mutationsPSM.add(new MutationOperator("ChangeTextColor", ModelType.PSMDoc, ModelType.PSMDoc,
-				Utils.psmDocTransformation + "ChangeTextColor.qvto", Arrays.asList("textcolor")));
-		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDoc, ModelType.PSMDoc,
-				Utils.psmDocTransformation + "ChangeTextSize.qvto", Arrays.asList("textsize")));
-		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDocx, ModelType.PSMDocx,
-				Utils.psmDocxTransformation + "ChangeTextColorDocx.qvto", Arrays.asList("textcolor")));
-
-	}
+//	private void initializeMutationsPSM() {
+//		mutationsPSM.add(new MutationOperator("ChangeTextColor", ModelType.PSMDoc, ModelType.PSMDoc,
+//				Utils.psmDocTransformation + "ChangeTextColor.qvto", Arrays.asList("textcolor")));
+//		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDoc, ModelType.PSMDoc,
+//				Utils.psmDocTransformation + "ChangeTextSize.qvto", Arrays.asList("textsize")));
+//		mutationsPSM.add(new MutationOperator("ChangeTextSize", ModelType.PSMDocx, ModelType.PSMDocx,
+//				Utils.psmDocxTransformation + "ChangeTextColorDocx.qvto", Arrays.asList("textcolor")));
+//
+//	}
 
 	private void initializeEvaluators() {
 		evaluators = new ArrayList<OCLEvaluatorInterface>();

@@ -10,9 +10,7 @@ public class TestFeature {
 	private Map<String, String> features;
 	
 	public TestFeature() {
-		
-		features = new HashMap<String,String>();
-		
+		features = new HashMap<String,String>();	
 	}
 	
 	public boolean isFeatureAvailable(String feature) {
@@ -21,6 +19,10 @@ public class TestFeature {
 	
 	public String getFeature(String feature) {
 		return features.get(feature);
+	}
+	
+	public Map<String, String> getAllFeatures() {
+		return features;
 	}
 	
 	public void addFeature(String feature, String value) {

@@ -29,9 +29,9 @@ public class MSWordMutationOperator extends MutationOperator implements Mutation
 
 	private Map<String, String> formatMapping;
 
-	public MSWordMutationOperator(String n, ModelType s, ModelType d, String link, List<String> f, List<String> form,
+	public MSWordMutationOperator(String n, ModelType s, ModelType d, String link, List<String> form,
 			List<String> plat) {
-		super(n, s, d, link, f);
+		super(n, s, d, link);
 		formats = form;
 		platforms = plat;
 		formatMapping = new HashMap<String, String>();
@@ -55,19 +55,19 @@ public class MSWordMutationOperator extends MutationOperator implements Mutation
 			List<Object> tForm = new ArrayList<Object>();
 			List<Object> tPlat = new ArrayList<Object>();
 			// set the transformation parameters
-			for (String feature : features) {
-				Object value = null;
-				if (tC.getTestFeature().isFeatureAvailable(feature)) {
-					value = tC.getTestFeature().getFeature(feature);
-					if (feature == "format") {
-						tForm.add(value);
-					} else if (feature == "platform") {
-						tPlat.add(value);
-					} else {
-						context.setConfigProperty(feature, value);
-					}
-				}
-			}
+//			for (String feature : features) {
+//				Object value = null;
+//				if (tC.getTestFeature().isFeatureAvailable(feature)) {
+//					value = tC.getTestFeature().getFeature(feature);
+//					if (feature == "format") {
+//						tForm.add(value);
+//					} else if (feature == "platform") {
+//						tPlat.add(value);
+//					} else {
+//						context.setConfigProperty(feature, value);
+//					}
+//				}
+//			}
 			if (tForm.isEmpty()) {
 				tForm.addAll(formats);
 			}

@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.generator.mutation;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -18,7 +19,6 @@ import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
 import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
-import benchmarkdp.datagenerator.generator.TestModel;
 
 public class MutationOperator implements MutationOperatorInterface {
 
@@ -30,15 +30,15 @@ public class MutationOperator implements MutationOperatorInterface {
 		
 	protected TransformationExecutor executor;
 	
-	protected List<String> features; 
+	//protected List<String> features; 
 	
-	public MutationOperator(String n, ModelType s, ModelType d, String link, List<String> f) {
+	public MutationOperator(String n, ModelType s, ModelType d, String link) {
 		name = n;
 		source = s;
 		destination = d;
 		transformationURI = URI.createURI(link);
 		executor = new TransformationExecutor(transformationURI);
-		features = f;
+		//features = f;
 	}
 	
 	public TransformationExecutor getTransformationExecutor() {
@@ -57,9 +57,9 @@ public class MutationOperator implements MutationOperatorInterface {
 		return destination;
 	}
 	
-	public List<String> getFeatures() {
-		return features;
-	}
+//	public List<String> getFeatures() {
+//		return features;
+//	}
 	
 	public List<TestCase> mutateTestCase(TestCase tC) {
 		List<TestCase> tModels = new ArrayList<TestCase>();
@@ -71,13 +71,19 @@ public class MutationOperator implements MutationOperatorInterface {
 		if (tC.getTestModel().getModelType() == source) {
 
 			// set the transformation parameters
-			for (String feature : features) {
-				Object value = null;
-				if (tC.getTestFeature().isFeatureAvailable(feature)) {
-					value = tC.getTestFeature().getFeature(feature);
-				}
-				context.setConfigProperty(feature, value);
+//			for (String feature : features) {
+//				Object value = null;
+//				if (tC.getTestFeature().isFeatureAvailable(feature)) {
+//					value = tC.getTestFeature().getFeature(feature);
+//				}
+//				context.setConfigProperty(feature, value);
+//			}
+			
+			Map<String, String> testFeatures = tC.getTestFeature().getAllFeatures();
+			for (Map.Entry<String, String> feat : testFeatures.entrySet()) {
+				context.setConfigProperty(feat.getKey(), feat.getValue());
 			}
+			
 
 			TransformationExecutor executor = getTransformationExecutor();
 			ModelExtent input = tC.getTestModel().getModelExtent();

@@ -17,7 +17,7 @@ public interface MutationOperatorInterface {
 	
 	public ModelType getDestinationModel();
 	
-	public List<String> getFeatures();
+	//public List<String> getFeatures();
 	
 	public List<TestCase> mutateTestCase(TestCase tm);
 }
