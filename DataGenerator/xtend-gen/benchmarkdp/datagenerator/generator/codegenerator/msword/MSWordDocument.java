@@ -2,6 +2,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.msword;
 
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
+import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.Page;
 import org.eclipse.emf.common.util.EList;
@@ -22,12 +23,14 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("objWord.Visible = True ");
     _builder.newLine();
-    _builder.append("grFile = \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\GroundTruth\\GeneratedText\\");
+    _builder.append("grFile = \"\"");
+    _builder.append(Utils.windowsGeneratedTextPath, "");
     Object _variable_1 = cState.getVariable("documentName");
     _builder.append(_variable_1, "");
     _builder.append(".txt\" \t\t\t\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("grFileMetadata = \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\GroundTruth\\GeneratedMetadata\\");
+    _builder.append("grFileMetadata = \"");
+    _builder.append(Utils.windowsGeneratedMetadataPath, "");
     Object _variable_2 = cState.getVariable("documentName");
     _builder.append(_variable_2, "");
     _builder.append(".txt\"");
@@ -58,11 +61,11 @@ public class MSWordDocument extends AbstractElementCompiler {
     String _plus = (temp + _builder);
     temp = _plus;
     cState.setVariable("temp", temp);
-    this.compileDocumentElements(d, cState);
     Object _variable_3 = cState.getVariable("temp");
     temp = ((String) _variable_3);
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("oDoc.SaveAs \"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\Documents\\");
+    _builder_1.append("oDoc.SaveAs \"");
+    _builder_1.append(Utils.windowsDocPath, "");
     Object _variable_4 = cState.getVariable("documentName");
     _builder_1.append(_variable_4, "");
     _builder_1.append(".");

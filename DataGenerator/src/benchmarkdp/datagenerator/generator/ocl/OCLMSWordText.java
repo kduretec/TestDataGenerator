@@ -39,9 +39,9 @@ public class OCLMSWordText extends AbstractOCLEvaluator {
 				Element docEl = (Element) el;
 				Text txt = new Text();
 				txt.setID(docEl.getID());
-				System.out.println("Hello here");
+				//System.out.println("Hello here");
 				if (docEl instanceof ParagraphImpl) {
-					System.out.println("Paragraph detected");
+					//System.out.println("Paragraph detected");
 					initialize(PSMDocxPackage.Literals.PARAGRAPH_IMPL, "self.text.value->asSequence()");
 					Object words = evaluateObject(docEl);
 					List<String> wList = (List<String>) words;

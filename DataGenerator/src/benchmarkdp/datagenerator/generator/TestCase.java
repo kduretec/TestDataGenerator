@@ -113,9 +113,9 @@ public class TestCase {
 		if (textElements != null) {
 			textElements.saveToXML(Utils.modelTextPath, testCaseName);
 		}
-//		if (generatedCode != null) {
-//			generatedCode.saveToFile(Utils.macroPath, testCaseName);
-//		}
+		if (generatedCode != null) {
+			generatedCode.saveToFile(Utils.macroPath, testCaseName);
+		}
 	}
 
 }

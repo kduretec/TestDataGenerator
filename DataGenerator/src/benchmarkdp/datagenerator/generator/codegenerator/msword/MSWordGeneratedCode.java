@@ -28,9 +28,14 @@ public class MSWordGeneratedCode implements IGeneratedCode {
 	public void saveToFile(String filePath, String testCaseName) {
 		if (generatedCode != null) {
 			try {
-				String file;
-				file = filePath + platform + "/" + testCaseName + "." + fileExtension;
-				File f = new File(file);
+				String platPath = filePath + "/" + platform;
+				File f = new File(platPath);
+				if (!f.exists()) {
+					f.mkdir();
+				}
+				
+				String file = platPath + "/" + testCaseName + "." + fileExtension;
+				f = new File(file);
 				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 				bw.write(generatedCode + "\n");
 				bw.close();

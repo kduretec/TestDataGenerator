@@ -2,9 +2,10 @@ package benchmarkdp.datagenerator.generator.codegenerator.msword
 
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
+import benchmarkdp.datagenerator.generator.utils.Utils
 import benchmarkdp.datagenerator.model.PSMDocx.Document
-import org.eclipse.emf.ecore.EObject
 import benchmarkdp.datagenerator.model.PSMDocx.Page
+import org.eclipse.emf.ecore.EObject
 
 class MSWordDocument extends AbstractElementCompiler {
 	
@@ -16,8 +17,8 @@ class MSWordDocument extends AbstractElementCompiler {
 			Const END_OF_STORY = 6 
 			Set objWord = CreateObject("Word.Application") 
 			objWord.Visible = True 
-			grFile = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\GeneratedText\«cState.getVariable("documentName")».txt" 				
-			grFileMetadata = "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\GroundTruth\GeneratedMetadata\«cState.getVariable("documentName")».txt"
+			grFile = ""«Utils::windowsGeneratedTextPath»«cState.getVariable("documentName")».txt" 				
+			grFileMetadata = "«Utils::windowsGeneratedMetadataPath»«cState.getVariable("documentName")».txt"
 			Set objFSO = CreateObject("Scripting.FileSystemObject")
 			Set objFile = objFSO.CreateTextFile(grFile, True)
 			Set objFileMetadata = objFSO.CreateTextFile(grFileMetadata, True)
@@ -32,11 +33,11 @@ class MSWordDocument extends AbstractElementCompiler {
 		'''
 		cState.setVariable("temp", temp)
 		
-		compileDocumentElements(d, cState)
+		//compileDocumentElements(d, cState)
 		
 		temp = cState.getVariable("temp") as String 
 		temp = temp + '''
-			oDoc.SaveAs "c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Documents\«cState.getVariable("documentName")».«d.documentFormat»", «d.documentFormatCode»
+			oDoc.SaveAs "«Utils::windowsDocPath»«cState.getVariable("documentName")».«d.documentFormat»", «d.documentFormatCode»
 					
 			objFileMetadata.Write "pagecount " & oDoc.ComputeStatistics(2) & vbCrLf
 			objFileMetadata.Write "wordcount " & oDoc.ComputeStatistics(0) & vbCrLf
