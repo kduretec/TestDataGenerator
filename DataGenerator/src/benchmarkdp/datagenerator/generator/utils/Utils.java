@@ -10,15 +10,26 @@ public class Utils {
 
 	public static String windowsBasePath = "c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\publications\\INFSOF\\experiments\\Generated\\"
 			+ experimentName + "\\";
-	
+
 	public static String windowsDocPath = windowsBasePath + "Documents\\";
-	
+
 	public static String windowsGroundTruthPath = windowsBasePath + "GroundTruth\\";
-	
+
 	public static String windowsGeneratedMetadataPath = windowsGroundTruthPath + "GeneratedMetadata\\";
-	
+
 	public static String windowsGeneratedTextPath = windowsGroundTruthPath + "GeneratedText\\";
+
+	public static String linuxBasePath = "/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/INFSOF/experiments/Generated/"
+			+ experimentName + "/";
 	
+	public static String linuxDocsPath = linuxBasePath + "Documents/";
+	
+	public static String linuxGroundTruthPath = linuxBasePath + "GroundTruth/";
+	
+	public static String linuxGeneratedMetadataPath = linuxGroundTruthPath + "GeneratedMetadata/";
+	
+	public static String linuxGeneratedTextPath = linuxGroundTruthPath + "GeneratedText/";
+
 	public static String docsPath = basePath + "Documents/";
 
 	public static String resultsPath = basePath + "Results/";

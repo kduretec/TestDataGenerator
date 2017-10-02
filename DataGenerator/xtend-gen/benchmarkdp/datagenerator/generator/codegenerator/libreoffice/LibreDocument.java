@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.libreoffice;
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratedCode;
+import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PSMLibre.Document;
 import benchmarkdp.datagenerator.model.PSMLibre.Page;
 import org.eclipse.emf.common.util.EList;
@@ -43,7 +44,8 @@ public class LibreDocument extends AbstractElementCompiler {
     _builder.append("file = FreeFile()");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("Open \"file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/GeneratedText/");
+    _builder.append("Open \"file://");
+    _builder.append(Utils.linuxGeneratedTextPath, "\t");
     Object _variable = this.cS.getVariable("documentName");
     _builder.append(_variable, "\t");
     _builder.append(".txt\" For Output As #file");
@@ -52,7 +54,8 @@ public class LibreDocument extends AbstractElementCompiler {
     _builder.append("fileMetadata = FreeFile()");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("Open \"file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/GeneratedMetadata/");
+    _builder.append("Open \"file://");
+    _builder.append(Utils.linuxGeneratedMetadataPath, "\t");
     Object _variable_1 = this.cS.getVariable("documentName");
     _builder.append(_variable_1, "\t");
     _builder.append(".txt\" For Output As #fileMetadata  ");
@@ -70,7 +73,8 @@ public class LibreDocument extends AbstractElementCompiler {
     LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_2);
     lC.addCodeElement(mainPart);
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("Url2 = \"file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Documents/");
+    _builder_1.append("Url2 = \"file://");
+    _builder_1.append(Utils.linuxDocsPath, "");
     Object _variable_3 = cState.getVariable("documentName");
     _builder_1.append(_variable_3, "");
     _builder_1.append(".");

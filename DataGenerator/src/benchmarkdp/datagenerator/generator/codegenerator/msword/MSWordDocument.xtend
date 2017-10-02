@@ -17,7 +17,7 @@ class MSWordDocument extends AbstractElementCompiler {
 			Const END_OF_STORY = 6 
 			Set objWord = CreateObject("Word.Application") 
 			objWord.Visible = True 
-			grFile = ""«Utils::windowsGeneratedTextPath»«cState.getVariable("documentName")».txt" 				
+			grFile = "«Utils::windowsGeneratedTextPath»«cState.getVariable("documentName")».txt" 				
 			grFileMetadata = "«Utils::windowsGeneratedMetadataPath»«cState.getVariable("documentName")».txt"
 			Set objFSO = CreateObject("Scripting.FileSystemObject")
 			Set objFile = objFSO.CreateTextFile(grFile, True)

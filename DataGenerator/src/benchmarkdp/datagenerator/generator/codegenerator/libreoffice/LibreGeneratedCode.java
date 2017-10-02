@@ -43,7 +43,13 @@ public class LibreGeneratedCode implements IGeneratedCode {
 
 	@Override
 	public void saveToFile(String filePath, String testCaseName) {
-		String path = filePath + platform + "/";
+		
+		String platPath = filePath + "/" + platform + "/";
+		File f = new File(platPath);
+		if (!f.exists()) {
+			f.mkdir();
+		}
+		
 		String fileMain = getFileStart("main_" + testCaseName);
 		fileMain = fileMain + codeElements.get(0);
 
@@ -55,11 +61,11 @@ public class LibreGeneratedCode implements IGeneratedCode {
 			tempFile = tempFile + codeElements.get(i);
 			tempFile = tempFile + "End Sub\n";
 			tempFile = tempFile + getFileEnd();
-			save(tempFile, path, scriptName);
+			save(tempFile, platPath, scriptName);
 		}
 		fileMain = fileMain + codeElements.get(1);
 		fileMain = fileMain + getFileEnd();
-		save(fileMain, path, "main_" + testCaseName);
+		save(fileMain, platPath, "main_" + testCaseName);
 
 		String helpersName = "helpers";
 		String fileHelper = getFileStart(helpersName);
@@ -67,7 +73,7 @@ public class LibreGeneratedCode implements IGeneratedCode {
 			fileHelper = fileHelper + helperFunctions.get(i);
 		}
 		fileHelper = fileHelper + getFileEnd();
-		save(fileHelper, path, helpersName);
+		save(fileHelper, platPath, helpersName);
 	}
 
 	private String getFileStart(String scriptName) {

@@ -134,7 +134,7 @@ public class Mutator {
 			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
 				// MutationOperatorInterface mo =
 				// mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-				MutationOperatorInterface mo = mutationsPIM2PSM.get(0);
+				MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
 				if (tC.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 						&& mo.getDestinationModel() != ModelType.PIM) {
 					mo.mutateTestCase(tC);

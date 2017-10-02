@@ -23,7 +23,7 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("objWord.Visible = True ");
     _builder.newLine();
-    _builder.append("grFile = \"\"");
+    _builder.append("grFile = \"");
     _builder.append(Utils.windowsGeneratedTextPath, "");
     Object _variable_1 = cState.getVariable("documentName");
     _builder.append(_variable_1, "");

@@ -1,5 +1,17 @@
-transformation MutatePlatform();
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PSM uses PSMLibre('http://benchmarkdp.datagenerator.model.PSMLibre');
+
+
+transformation MutatePlatform(inout model:PSM);
 
 main() {
+	var doc := model.objectsOfType(Document);
+	doc->map ChangePlatform();
+}
 
+mapping inout Document::ChangePlatform() {
+	self.documentFormat := "odt";
+	self.documentFilter := "writer8";
+	self.documentPlatform := "Ubuntu14";
 }
