@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class TestFeature {
 
-	private String name;
+	private String name = null;
 	
 	private Map<String, String> features;
 	

@@ -40,7 +40,7 @@ public class OCLMSWordText extends AbstractOCLEvaluator {
 				Text txt = new Text();
 				txt.setID(docEl.getID());
 				if (docEl instanceof TextContainer) {
-					initialize(PSMDocxPackage.Literals.TEXT_CONTAINER, "self.words.value->asSequence()");
+					initialize(PSMDocxPackage.Literals.PARAGRAPH_IMPL, "self.text.value->asSequence()");
 					Object words = evaluateObject(docEl);
 					List<String> wList = (List<String>) words;
 					StringBuilder sb = new StringBuilder();

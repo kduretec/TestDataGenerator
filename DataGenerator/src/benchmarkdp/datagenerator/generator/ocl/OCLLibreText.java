@@ -41,7 +41,7 @@ public class OCLLibreText extends AbstractOCLEvaluator {
 				txt.setID(docEl.getID());
 
 				if (docEl instanceof TextContainer) {
-					initialize(PSMLibrePackage.Literals.TEXT_CONTAINER, "self.words.value->asSequence()");
+					initialize(PSMLibrePackage.Literals.PARAGRAPH_IMPL, "self.text.value->asSequence()");
 					Object words = evaluateObject(docEl);
 					List<String> wList = (List<String>) words;
 					StringBuilder sb = new StringBuilder();

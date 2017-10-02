@@ -34,7 +34,6 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 public class Mutator {
 
 	int n = 20; // number of test cases to generate
-	int m = 3;
 
 	private List<MutationOperatorInterface> mutationsPIM;
 	private List<MutationOperatorInterface> mutationsPIM2PSM;
@@ -153,12 +152,12 @@ public class Mutator {
 				 }
 			 }
 		 }
-		
-		 for (TestCase tc : testCases) {
-			 for (OCLEvaluatorInterface oE : evaluators) {
-				 oE.evaluateTestModel(tc);
-			 }
-		 }
+//		
+//		 for (TestCase tc : testCases) {
+//			 for (OCLEvaluatorInterface oE : evaluators) {
+//				 oE.evaluateTestModel(tc);
+//			 }
+//		 }
 
 		// // code generation
 		// System.out.println("Starting Code generation");
@@ -178,10 +177,11 @@ public class Mutator {
 		// }
 		//
 		//
-		// System.out.println("Size of models " + testCases.size());
-		// for (TestCase tm : testCases) {
-		// tm.saveTestCaseComponents();
-		// }
+		 System.out.println("Number of test cases: " + testCases.size());
+		 for (TestCase tc : testCases) {
+			 System.out.println("Saving testcase:" + tc.getTestCaseName());
+			 tc.saveTestCaseComponents();
+		 }
 		//
 		// for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
 		// cob.afterGeneration();

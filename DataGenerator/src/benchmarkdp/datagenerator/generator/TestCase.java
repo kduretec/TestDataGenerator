@@ -41,6 +41,7 @@ public class TestCase {
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
 		testCaseName = ID.replace("-", "");
+		System.out.println("Name testcase: " + testCaseName);
 		metadata = new Metadata();
 		textElements = new TextElements();
 		testModel = new TestModel();
@@ -72,7 +73,9 @@ public class TestCase {
 	}
 
 	public void setTestFeature(TestFeature testFeature) {
-		this.testCaseName  = testFeature.getName();
+		if (testFeature.getName() != null) {
+			this.testCaseName = testFeature.getName();
+		}
 		this.testFeature = testFeature;
 	}
 
@@ -102,19 +105,18 @@ public class TestCase {
 
 	public void saveTestCaseComponents() {
 
-		if (generatedCode != null) {
-			if (testModel != null) {
-				String path = Utils.modelsPath;
-				testModel.saveModelToFile(path, testCaseName);
-			}
-			if (metadata != null) {
-				metadata.saveToXML(Utils.modelMetadataPath, testCaseName);
-			}
-			if (textElements != null) {
-				textElements.saveToXML(Utils.modelTextPath, testCaseName);
-			}
-			generatedCode.saveToFile(Utils.macroPath, testCaseName);
+		if (testModel != null) {
+			testModel.saveModelToFile(Utils.modelsPath, testCaseName);
 		}
+//		if (metadata != null) {
+//			metadata.saveToXML(Utils.modelMetadataPath, testCaseName);
+//		}
+//		if (textElements != null) {
+//			textElements.saveToXML(Utils.modelTextPath, testCaseName);
+//		}
+//		if (generatedCode != null) {
+//			generatedCode.saveToFile(Utils.macroPath, testCaseName);
+//		}
 	}
 
 }
