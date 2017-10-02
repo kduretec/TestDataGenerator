@@ -13,7 +13,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
 import benchmarkdp.datagenerator.model.PSMDocx.TableImpl;
-import benchmarkdp.datagenerator.model.PSMDocx.TextContainer;
+import benchmarkdp.datagenerator.model.PSMDocx.impl.ParagraphImpl;
 
 public class OCLMSWordText extends AbstractOCLEvaluator {
 
@@ -39,7 +39,9 @@ public class OCLMSWordText extends AbstractOCLEvaluator {
 				Element docEl = (Element) el;
 				Text txt = new Text();
 				txt.setID(docEl.getID());
-				if (docEl instanceof TextContainer) {
+				System.out.println("Hello here");
+				if (docEl instanceof ParagraphImpl) {
+					System.out.println("Paragraph detected");
 					initialize(PSMDocxPackage.Literals.PARAGRAPH_IMPL, "self.text.value->asSequence()");
 					Object words = evaluateObject(docEl);
 					List<String> wList = (List<String>) words;
@@ -53,7 +55,7 @@ public class OCLMSWordText extends AbstractOCLEvaluator {
 					TableImpl tbl = (TableImpl) docEl;
 					EList<Row> rows = tbl.getRow();
 					initialize(PSMDocxPackage.Literals.ROW,
-							"self.cell.elements->selectByKind(TextContainer)->asSequence()->collectNested(words.value->asSequence())");
+							"self.cell.elements->selectByKind(ParagraphImpl)->asSequence()->collectNested(text.value->asSequence())");
 					for (Row r : rows) {
 						Object rValue = evaluateObject(r);
 						List<Object> lS = (List<Object>) rValue;

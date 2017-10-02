@@ -96,8 +96,26 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph
 		}
 }
 
-mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox {
-	
+mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox 
+	inherits PIM::TextContainer::TextContainerToTextContainer {
+		var i:Integer := 1;
+		var si:Integer := self.words->asSequence()->size(); 
+		while (i <= si) {
+		 var pos:Integer := getRandomBetween(i,si);
+		 if (pos - i > 20) {
+		 	pos := i + 20 
+		 };
+		 var tt := self.words->asSequence()->subSequence(i,pos);
+		 var tSize := tt->size();
+		 i := pos + 1;
+		 var stVal:String := turnSeqToString(tt.value->asList());
+		 var temp:Real := getRandomReal();
+		 var sT:Text := null;
+	 	 sT := object Text {
+	 		value := stVal;
+	 	 };
+		 text += sT;		 
+		}
 }
 
 mapping PIM::Table::TableToTable():PSM::Table {

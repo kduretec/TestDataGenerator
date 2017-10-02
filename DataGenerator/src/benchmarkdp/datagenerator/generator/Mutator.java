@@ -133,7 +133,8 @@ public class Mutator {
 		 for (int i = 0; i < testCases.size(); i++) {
 			 TestCase tC = testCases.get(i);
 			 for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-			 	MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+			 	//MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+			 	MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
 			 	if (tC.getTestModel().getModelType() == ModelType.PIM &&
 			 			mo.getSourceModel() == ModelType.PIM && mo.getDestinationModel() != ModelType.PIM) {
 			 		mo.mutateTestCase(tC);
@@ -152,12 +153,12 @@ public class Mutator {
 				 }
 			 }
 		 }
-//		
-//		 for (TestCase tc : testCases) {
-//			 for (OCLEvaluatorInterface oE : evaluators) {
-//				 oE.evaluateTestModel(tc);
-//			 }
-//		 }
+		
+		 for (TestCase tc : testCases) {
+			 for (OCLEvaluatorInterface oE : evaluators) {
+				 oE.evaluateTestModel(tc);
+			 }
+		 }
 
 		// // code generation
 		// System.out.println("Starting Code generation");
@@ -283,14 +284,14 @@ public class Mutator {
 		
 		evaluators = new ArrayList<OCLEvaluatorInterface>();
 
-		evaluators.add(
-				new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "format", "self.documentFormat"));
-		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "format",
-				"self.documentFormat"));
-		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "platform",
-				"self.documentPlatform"));
-		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "platform",
-				"self.documentPlatform"));
+//		evaluators.add(
+//				new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "format", "self.documentFormat"));
+//		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "format",
+//				"self.documentFormat"));
+//		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "platform",
+//				"self.documentPlatform"));
+//		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "platform",
+//				"self.documentPlatform"));
 
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "tablecount",
 				"self.pages.elements->selectByType(Table)->size()"));

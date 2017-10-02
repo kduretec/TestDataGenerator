@@ -41,7 +41,6 @@ public class TestCase {
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
 		testCaseName = ID.replace("-", "");
-		System.out.println("Name testcase: " + testCaseName);
 		metadata = new Metadata();
 		textElements = new TextElements();
 		testModel = new TestModel();
@@ -108,12 +107,12 @@ public class TestCase {
 		if (testModel != null) {
 			testModel.saveModelToFile(Utils.modelsPath, testCaseName);
 		}
-//		if (metadata != null) {
-//			metadata.saveToXML(Utils.modelMetadataPath, testCaseName);
-//		}
-//		if (textElements != null) {
-//			textElements.saveToXML(Utils.modelTextPath, testCaseName);
-//		}
+		if (metadata != null) {
+			metadata.saveToXML(Utils.modelMetadataPath, testCaseName);
+		}
+		if (textElements != null) {
+			textElements.saveToXML(Utils.modelTextPath, testCaseName);
+		}
 //		if (generatedCode != null) {
 //			generatedCode.saveToFile(Utils.macroPath, testCaseName);
 //		}

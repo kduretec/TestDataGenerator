@@ -9,12 +9,11 @@ import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.TestModel;
 import benchmarkdp.datagenerator.generator.Text;
-import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
+import benchmarkdp.datagenerator.model.PSMLibre.ParagraphImpl;
 import benchmarkdp.datagenerator.model.PSMLibre.Element;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 import benchmarkdp.datagenerator.model.PSMLibre.Row;
 import benchmarkdp.datagenerator.model.PSMLibre.Table;
-import benchmarkdp.datagenerator.model.PSMLibre.TextContainer;
 
 public class OCLLibreText extends AbstractOCLEvaluator {
 
@@ -40,7 +39,7 @@ public class OCLLibreText extends AbstractOCLEvaluator {
 				Text txt = new Text();
 				txt.setID(docEl.getID());
 
-				if (docEl instanceof TextContainer) {
+				if (docEl instanceof ParagraphImpl) {
 					initialize(PSMLibrePackage.Literals.PARAGRAPH_IMPL, "self.text.value->asSequence()");
 					Object words = evaluateObject(docEl);
 					List<String> wList = (List<String>) words;
@@ -54,7 +53,7 @@ public class OCLLibreText extends AbstractOCLEvaluator {
 					Table tbl = (Table) docEl;
 					EList<Row> rows = tbl.getRow();
 					initialize(PSMLibrePackage.Literals.ROW,
-							"self.cell.elements->selectByKind(TextContainer)->asSequence()->collectNested(words.value->asSequence())");
+							"self.cell.elements->selectByKind(ParagraphImpl)->asSequence()->collectNested(text.value->asSequence())");
 					for (Row r : rows) {
 						Object rValue = evaluateObject(r);
 						List<Object> lS = (List<Object>) rValue;

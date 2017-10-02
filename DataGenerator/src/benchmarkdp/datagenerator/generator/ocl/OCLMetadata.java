@@ -21,10 +21,12 @@ public class OCLMetadata extends AbstractOCLEvaluator{
 	public void evaluateTestModel(TestCase tC) {
 		TestModel tm = tC.getTestModel();
 		while (tm != null) {
+			//System.out.println("Evaluating " + tC.getTestCaseName());
 			if (tm.getModelType() == modelType) {
 				EList<EObject> objects = tm.getModelObjects();
 				Object doc =  objects.get(0);
 				Object value = evaluateObject(doc);
+				//System.out.println("Adding metadata : " + name + " ; " + value.toString());
 				tC.getMetadata().add(name, value);				
 			}
 			tm = tm.getParent();
