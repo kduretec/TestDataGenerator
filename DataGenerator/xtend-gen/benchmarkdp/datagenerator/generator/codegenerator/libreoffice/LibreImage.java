@@ -34,6 +34,8 @@ public class LibreImage extends AbstractElementCompiler {
     _builder.newLineIfNotEmpty();
     _builder.append("oText.insertTextContent(oText.getEnd(), oGraph, False )");
     _builder.newLine();
+    _builder.append("oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)");
+    _builder.newLine();
     String _plus = (temp + _builder);
     temp = _plus;
     cState.setVariable("temp", temp);

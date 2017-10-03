@@ -12,5 +12,7 @@ main() {
 mapping inout Document::ChangePlatform() {
 	self.documentFormat := "docx";
 	self.documentFormatCode := "16";
+	//self.documentFormat := "rtf";
+	//self.documentFormatCode := "6";
 	self.documentPlatform := "Win7-Office2007";
 }

@@ -19,6 +19,7 @@ class LibreImage extends AbstractElementCompiler{
 			oGraph.Width = TwipsPerPixelX() * «img.width» * 2540.0 / 1440 
 			oGraph.Height = TwipsPerPixelY() * «img.height» * 2540.0 / 1440 
 			oText.insertTextContent(oText.getEnd(), oGraph, False )
+			oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)
 		'''
 		cState.setVariable("temp", temp)
 	}
