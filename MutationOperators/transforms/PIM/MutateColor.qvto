@@ -19,7 +19,7 @@ mapping inout Document::ChangeColors() {
 	self.documentBackground := Color::WHITE;
 	self.pages.elements->forEach(el) {
 		el->map ElementBackground();
-		if (el.oclIsTypeOf(PIM::TextContainer)) {
+		if (el.oclIsKindOf(PIM::TextContainer)) {
 			el.oclAsType(PIM::TextContainer)->map TextFont();
 		}
 	};

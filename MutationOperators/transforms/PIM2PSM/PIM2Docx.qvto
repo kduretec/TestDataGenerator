@@ -101,7 +101,8 @@ abstract mapping PIM::Element::ElementToElement():PSM::Element {
 
 abstract mapping PIM::TextContainer::TextContainerToTextContainer():PSM::TextContainer 
 	inherits PIM::Element::ElementToElement {
-			fontFamily := FontFamily::TIMESNEWROMAN;
+			fontFamily := FontFamily::CALIBRI;
+			fontColor := mapColor(self.fontColor);
 }
 
 

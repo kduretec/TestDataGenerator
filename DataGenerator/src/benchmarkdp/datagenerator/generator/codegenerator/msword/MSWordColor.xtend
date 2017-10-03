@@ -26,7 +26,7 @@ class MSWordColor extends AbstractElementCompiler implements IEnumCompiler {
 		if (c == Color::BLUE) {
 			temp = temp + "0,0,255"
 		}
-		temp = temp + ")"
+		temp = temp + ")\n"
 		
 		cState.setVariable("temp", temp)
 		

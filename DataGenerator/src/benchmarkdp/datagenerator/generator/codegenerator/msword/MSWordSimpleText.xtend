@@ -12,11 +12,11 @@ class MSWordSimpleText extends AbstractElementCompiler{
 		var t = object as SimpleText
 		var temp = cState.getVariable("temp") as String 
 		
-		temp = temp + "oSelection.Font.Color = "
+		temp = temp + "'oSelection.Font.Color = "
 		cState.setVariable("temp", temp)
 		//compiler.compile("Color", t.color)
 		temp = cState.getVariable("temp") as String 
-		temp = temp + "\noSelection.Shading.BackgroundPatternColor = "
+		temp = temp + "\n'oSelection.Shading.BackgroundPatternColor = "
 		cState.setVariable("temp", temp)
 		//compiler.compile("Color", t.background)
 		temp = cState.getVariable("temp") as String

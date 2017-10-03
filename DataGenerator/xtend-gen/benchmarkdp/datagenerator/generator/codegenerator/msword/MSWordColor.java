@@ -32,7 +32,7 @@ public class MSWordColor extends AbstractElementCompiler implements IEnumCompile
     if (_equals_3) {
       temp = (temp + "0,0,255");
     }
-    temp = (temp + ")");
+    temp = (temp + ")\n");
     cState.setVariable("temp", temp);
   }
   

@@ -22,7 +22,7 @@ public class MSWordImage extends AbstractElementCompiler {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("oSelection.TypeParagraph()");
     _builder.newLine();
-    _builder.append("Set oImg = oSelection.InlineShapes.AddPicture(\"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\benchmarking\\publications\\JSS\\Generated\\Macro\\Images\\Desert.jpg\")");
+    _builder.append("Set oImg = oSelection.InlineShapes.AddPicture(\"c:\\Users\\Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\publications\\INFSOF\\experiments\\Generated\\Helpers\\Images\\Desert.jpg\")");
     _builder.newLine();
     _builder.append("oImg.Height = ");
     int _height = img.getHeight();

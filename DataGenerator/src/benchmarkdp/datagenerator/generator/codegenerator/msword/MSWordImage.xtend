@@ -17,7 +17,7 @@ class MSWordImage extends AbstractElementCompiler{
 		cState.setVariable("inlineShape", new Integer(iN))
 		temp = temp + '''
 			oSelection.TypeParagraph()
-			Set oImg = oSelection.InlineShapes.AddPicture("c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\benchmarking\publications\JSS\Generated\Macro\Images\Desert.jpg")
+			Set oImg = oSelection.InlineShapes.AddPicture("c:\Users\Kresimir Duretec\Dropbox\Work\Projects\BenchmarkDP\publications\INFSOF\experiments\Generated\Helpers\Images\Desert.jpg")
 			oImg.Height = «img.height»
 			oImg.Width = «img.width»
 			oSelection.TypeParagraph()

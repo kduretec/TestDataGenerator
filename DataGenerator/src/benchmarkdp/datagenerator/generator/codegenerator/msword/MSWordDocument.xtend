@@ -23,6 +23,13 @@ class MSWordDocument extends AbstractElementCompiler {
 			Set objFile = objFSO.CreateTextFile(grFile, True)
 			Set objFileMetadata = objFSO.CreateTextFile(grFileMetadata, True)
 			Set oDoc = objWord.Documents.Add()
+			oDoc.Background.Fill.Visible = True
+			oDoc.Background.Fill.ForeColor.RGB = '''
+			cState.setVariable("temp", temp)
+			compiler.compile("Color", d.documentBackground)
+			temp = cState.getVariable("temp") as String 
+			temp = temp + '''
+			 
 			oDoc.PageSetup.TextColumns.SetCount(«1») 
 			Set oSelection = objWord.Selection 
 			
@@ -33,7 +40,7 @@ class MSWordDocument extends AbstractElementCompiler {
 		'''
 		cState.setVariable("temp", temp)
 		
-		//compileDocumentElements(d, cState)
+		compileDocumentElements(d, cState)
 		
 		temp = cState.getVariable("temp") as String 
 		temp = temp + '''

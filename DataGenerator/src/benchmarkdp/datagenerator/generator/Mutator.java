@@ -33,7 +33,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 20; // number of test cases to generate
+	int n = 1; // number of test cases to generate
 
 	private List<MutationOperatorInterface> mutationsPIM;
 	private List<MutationOperatorInterface> mutationsPIM2PSM;
@@ -132,9 +132,8 @@ public class Mutator {
 		for (int i = 0; i < testCases.size(); i++) {
 			TestCase tC = testCases.get(i);
 			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-				// MutationOperatorInterface mo =
-				// mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-				MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
+				//MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+				MutationOperatorInterface mo = mutationsPIM2PSM.get(0);
 				if (tC.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 						&& mo.getDestinationModel() != ModelType.PIM) {
 					mo.mutateTestCase(tC);

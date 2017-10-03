@@ -27,6 +27,21 @@ class MSWordParagraph extends AbstractElementCompiler{
 		}
 		
 		parag = parag + 1
+		if (!inTable) { 
+			temp = temp + ''' 
+			oDoc.Paragraphs(oDoc.Paragraphs.Count).Range.Select
+			oSelection.ParagraphFormat.Shading.BackgroundPatternColor = '''
+			cState.setVariable("temp", temp)
+			compiler.compile("Color", par.backgroundColor)
+			temp = cState.getVariable("temp") as String
+			temp = temp + ''' 
+			oSelection.Font.Color = '''
+			cState.setVariable("temp", temp)
+			compiler.compile("Color", par.fontColor)			
+		}
+		
+		temp = cState.getVariable("temp") as String
+		
 		cState.setVariable("parag", new Integer(parag))
 		
 		for (Text txt : par.text) {
