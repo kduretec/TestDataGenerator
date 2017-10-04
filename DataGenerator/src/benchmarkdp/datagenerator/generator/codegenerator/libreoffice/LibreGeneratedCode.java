@@ -44,7 +44,7 @@ public class LibreGeneratedCode implements IGeneratedCode {
 	@Override
 	public void saveToFile(String filePath, String testCaseName) {
 		
-		String platPath = filePath + "/" + platform + "/";
+		String platPath = filePath  + platform + "/";
 		File f = new File(platPath);
 		if (!f.exists()) {
 			f.mkdir();
