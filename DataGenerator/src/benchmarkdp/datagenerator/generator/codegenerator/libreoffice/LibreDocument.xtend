@@ -15,22 +15,28 @@ class LibreDocument extends AbstractElementCompiler {
 		cS = cState;
 		cS.setVariable("temp", "")
 		cS.setVariable("inTable", new Boolean(false))
+		compiler.compile("Color", d.documentBackground);
+		var colorStr = cState.getVariable("temp") as String
 		var mainPart = '''
 			REM ***** BASIC *****
 			Sub Main 
-				Dim Dummy()
-				Dim Url As String
-				Dim oDoc As Object
+			Dim Dummy()
+			Dim Url As String
+			Dim oDoc As Object
 				
-				Url = "private:factory/swriter"
-				file = FreeFile()
-				Open "file://«Utils::linuxGeneratedTextPath»«cS.getVariable("documentName")».txt" For Output As #file
-				fileMetadata = FreeFile()
-				Open "file://«Utils::linuxGeneratedMetadataPath»«cS.getVariable("documentName")».txt" For Output As #fileMetadata  
-				oDoc = StarDesktop.loadComponentFromURL(Url, "_blank", 0, Array())
-				
-				oText = oDoc.getText()
+			Url = "private:factory/swriter"
+			file = FreeFile()
+			Open "file://«Utils::linuxGeneratedTextPath»«cS.getVariable("documentName")».txt" For Output As #file
+			fileMetadata = FreeFile()
+			Open "file://«Utils::linuxGeneratedMetadataPath»«cS.getVariable("documentName")».txt" For Output As #fileMetadata  
+			oDoc = StarDesktop.loadComponentFromURL(Url, "_blank", 0, Array())
+			oStyleFamilies = ThisComponent.getStyleFamilies()
+			oPageStyle = oStyleFamilies.getByName("PageStyles")
+			oMyPageStyle = oPageStyle.getByName("Default Style")
+			oMyPageStyle.BackColor = «colorStr»	
+			oText = oDoc.getText()
 		'''
+		cS.setVariable("temp", "")
 		var lC = cS.getVariable("libreCode") as LibreGeneratedCode
 		lC.addCodeElement(mainPart)
 

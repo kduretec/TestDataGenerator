@@ -7,6 +7,7 @@ import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
 import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler;
+import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreColor;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreDocument;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratedCode;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreImage;
@@ -47,6 +48,8 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     this.compiler.addCompiler("Image", _libreImage);
     LibreSimpleText _libreSimpleText = new LibreSimpleText();
     this.compiler.addCompiler("SimpleText", _libreSimpleText);
+    LibreColor _libreColor = new LibreColor();
+    this.compiler.addCompiler("Color", _libreColor);
   }
   
   @Override

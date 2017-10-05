@@ -32,6 +32,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		compiler.addCompiler("Table", new LibreTable())
 		compiler.addCompiler("Image", new LibreImage())
 		compiler.addCompiler("SimpleText", new LibreSimpleText())
+		compiler.addCompiler("Color", new LibreColor())
 		
 	}
 

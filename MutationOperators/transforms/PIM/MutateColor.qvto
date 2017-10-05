@@ -16,7 +16,7 @@ main() {
 }
 
 mapping inout Document::ChangeColors() {
-	self.documentBackground := Color::WHITE;
+	self.documentBackground := Color::BLUE;
 	self.pages.elements->forEach(el) {
 		el->map ElementBackground();
 		if (el.oclIsKindOf(PIM::TextContainer)) {
