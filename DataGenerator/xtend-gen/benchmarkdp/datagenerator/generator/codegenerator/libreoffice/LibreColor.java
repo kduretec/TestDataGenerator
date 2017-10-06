@@ -37,7 +37,7 @@ public class LibreColor extends AbstractElementCompiler implements IEnumCompiler
     if (_equals_3) {
       temp = (temp + "0,0,255");
     }
-    temp = (temp + ")\n");
+    temp = (temp + ")");
     cState.setVariable("temp", temp);
   }
 }

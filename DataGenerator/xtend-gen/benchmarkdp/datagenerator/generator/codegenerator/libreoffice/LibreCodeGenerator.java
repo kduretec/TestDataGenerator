@@ -76,6 +76,8 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     this.compiler.compile("Document", d);
     String _helper = this.helper();
     libreCode.addHelperFunction(_helper);
+    String _helper2 = this.helper2();
+    libreCode.addHelperFunction(_helper2);
     tC.setGeneratedCode(libreCode);
   }
   
@@ -153,6 +155,49 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     _builder.append("Loop While oTextCursor.gotoNextParagraph(False)  ");
     _builder.newLine();
     _builder.append("End Sub");
+    _builder.newLine();
+    _builder.newLine();
+    String fun = _builder.toString();
+    return fun;
+  }
+  
+  public String helper2() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("Function getParagraphStyleName(colorCode) as String");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("Dim stName As String");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("stName = \"PAR_BACK_\" &amp; colorCode ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("oStyleFamilies = ThisComponent.getStyleFamilies()");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("oParagraphStyles = oStyleFamilies.getByName(\"ParagraphStyles\")");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("If (NOT oParagraphStyles.HasByName(stName))  Then");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("oStyle = ThisComponent.createInstance(\"com.sun.star.style.ParagraphStyle\")");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("oStyle.ParaBackColor = \tcolorCode");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("oParagraphStyles.insertByName(stName, oStyle)");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("End If ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("getParagraphStyleName = stName");
+    _builder.newLine();
+    _builder.append("End Function ");
+    _builder.newLine();
+    _builder.append("\t\t");
     _builder.newLine();
     String fun = _builder.toString();
     return fun;

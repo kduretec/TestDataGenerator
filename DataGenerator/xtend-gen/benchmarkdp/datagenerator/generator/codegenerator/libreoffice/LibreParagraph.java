@@ -2,6 +2,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.libreoffice;
 
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
+import benchmarkdp.datagenerator.model.PSMLibre.Color;
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
 import benchmarkdp.datagenerator.model.PSMLibre.Text;
 import org.eclipse.emf.common.util.EList;
@@ -33,6 +34,24 @@ public class LibreParagraph extends AbstractElementCompiler {
       String _plus = (temp + _builder);
       temp = _plus;
     }
+    if ((!(inTable).booleanValue())) {
+      String tempBack = temp;
+      temp = "";
+      cState.setVariable("temp", temp);
+      Color _backgroundColor = par.getBackgroundColor();
+      this.compiler.compile("Color", _backgroundColor);
+      Object _variable_3 = cState.getVariable("temp");
+      String col = ((String) _variable_3);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("oCur = ThisComponent.CurrentController.getViewCursor()");
+      _builder_1.newLine();
+      _builder_1.append("oCur.ParaStyleName  = getParagraphStyleName(");
+      _builder_1.append(col, "");
+      _builder_1.append(")");
+      _builder_1.newLineIfNotEmpty();
+      String _plus_1 = (tempBack + _builder_1);
+      temp = _plus_1;
+    }
     cState.setVariable("temp", temp);
     if ((!(inTable).booleanValue())) {
       parag = (parag + 1);
@@ -44,8 +63,8 @@ public class LibreParagraph extends AbstractElementCompiler {
     for (final Text txt : _text) {
       {
         if (((inTable).booleanValue() && (counter > 0))) {
-          Object _variable_3 = cState.getVariable("temp");
-          temp = ((String) _variable_3);
+          Object _variable_4 = cState.getVariable("temp");
+          temp = ((String) _variable_4);
           temp = (temp + " + ");
           cState.setVariable("temp", temp);
         }
@@ -58,18 +77,18 @@ public class LibreParagraph extends AbstractElementCompiler {
       }
     }
     if ((!(inTable).booleanValue())) {
-      Object _variable_3 = cState.getVariable("temp");
-      temp = ((String) _variable_3);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("getLines(");
-      _builder_1.append(parag, "");
-      _builder_1.append(", \"");
+      Object _variable_4 = cState.getVariable("temp");
+      temp = ((String) _variable_4);
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append("getLines(");
+      _builder_2.append(parag, "");
+      _builder_2.append(", \"");
       String _iD = par.getID();
-      _builder_1.append(_iD, "");
-      _builder_1.append("\", file)");
-      _builder_1.newLineIfNotEmpty();
-      String _plus_1 = (temp + _builder_1);
-      temp = _plus_1;
+      _builder_2.append(_iD, "");
+      _builder_2.append("\", file)");
+      _builder_2.newLineIfNotEmpty();
+      String _plus_2 = (temp + _builder_2);
+      temp = _plus_2;
       cState.setVariable("temp", temp);
     }
   }

@@ -54,10 +54,12 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		compiler.compile("Document", d);
 
 		libreCode.addHelperFunction(helper())
+		libreCode.addHelperFunction(helper2())
 		tC.generatedCode = libreCode
 
 	}
 
+	// This is a helper function used to get the content of each line in a paragraph
 	def helper() {
 		var fun = '''
 			Sub getLines(numPar, parID, file) 
@@ -85,6 +87,27 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 			        End If
 			    Loop While oTextCursor.gotoNextParagraph(False)  
 			End Sub
+			
+		'''
+		return fun
+	}
+	
+	// This is a helper function used to return paragraph style for a paragraph  
+	def helper2() {
+		var fun = '''
+			Function getParagraphStyleName(colorCode) as String
+				Dim stName As String
+				stName = "PAR_BACK_" &amp; colorCode 
+				oStyleFamilies = ThisComponent.getStyleFamilies()
+				oParagraphStyles = oStyleFamilies.getByName("ParagraphStyles")
+				If (NOT oParagraphStyles.HasByName(stName))  Then
+					oStyle = ThisComponent.createInstance("com.sun.star.style.ParagraphStyle")
+					oStyle.ParaBackColor = 	colorCode
+					oParagraphStyles.insertByName(stName, oStyle)
+				End If 
+				getParagraphStyleName = stName
+			End Function 
+		
 		'''
 		return fun
 	}

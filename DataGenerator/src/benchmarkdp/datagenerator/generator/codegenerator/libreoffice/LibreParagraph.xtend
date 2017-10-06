@@ -29,6 +29,17 @@ class LibreParagraph extends AbstractElementCompiler {
 					oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)
 				'''
 		}
+		if (!inTable) {
+			var tempBack = temp
+			temp = ""
+			cState.setVariable("temp", temp)
+			compiler.compile("Color", par.backgroundColor)
+			var col = cState.getVariable("temp") as String
+			temp = tempBack + ''' 
+			oCur = ThisComponent.CurrentController.getViewCursor()
+			oCur.ParaStyleName  = getParagraphStyleName(«col»)
+			'''			
+		}
 		cState.setVariable("temp", temp)
 		if (!inTable) {
 			parag = parag + 1			
