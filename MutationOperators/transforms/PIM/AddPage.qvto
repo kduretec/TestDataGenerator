@@ -18,12 +18,13 @@ mapping inout Document::AddPage() {
 	} else {
 		var rn := getRandomReal();
 		switch {
-			case (rn < 0.13) pc := 1; 
-			case (rn >= 0.13 and rn < 0.5) pc := getRandomBetween(2,5);
-			case (rn >= 0.5 and rn < 0.81) pc := getRandomBetween(6,20);
-			case (rn >= 0.81 and rn < 0.93) pc := getRandomBetween(21,50);
-			case (rn >= 0.93 and rn < 0.97) pc := getRandomBetween(51,100);
-			case (rn >= 0.97 and rn < 1) pc := getRandomBetween(101, 1000);
+			case (rn < 0.131) pc := 1; 
+			case (rn >= 0.131 and rn < 0.497) pc := getRandomBetween(2,5);
+			case (rn >= 0.497 and rn < 0.806) pc := getRandomBetween(6,20);
+			case (rn >= 0.806 and rn < 0.927) pc := getRandomBetween(21,50);
+			case (rn >= 0.927 and rn < 0.971) pc := getRandomBetween(51,100);
+			case (rn >= 0.971 and rn < 0.999) pc := getRandomBetween(101,1000);
+			case (rn >= 0.999 and rn < 1) pc := getRandomBetween(1001,2500);
 			else null; 
 		};
 	}; 
