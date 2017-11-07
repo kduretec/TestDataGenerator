@@ -13,10 +13,12 @@ main() {
 	} else {
 		var rn := getRandomReal();
 		switch {
-			case (rn < 0.02) wc := getRandomBetween(1,100); 
-			case (rn >= 0.02 and rn < 0.42) wc := getRandomBetween(101,1000);
-			case (rn >= 0.42 and rn < 0.87) wc := getRandomBetween(1001,5000);
-			case (rn >= 0.87 and rn < 1) wc := getRandomBetween(5001,10000);
+			case (rn < 0.018) wc := getRandomBetween(1,100); 
+			case (rn >= 0.018 and rn < 0.367) wc := getRandomBetween(101,1000);
+			case (rn >= 0.367 and rn < 0.765) wc := getRandomBetween(1001,5000);
+			case (rn >= 0.765 and rn < 0.882) wc := getRandomBetween(5001,10000);
+			case (rn >= 0.882 and rn < 0.971) wc := getRandomBetween(10001,30000);
+			case (rn >= 0.971 and rn < 1) wc := getRandomBetween(30001,399385);
 			else null; 
 		};	
 	};

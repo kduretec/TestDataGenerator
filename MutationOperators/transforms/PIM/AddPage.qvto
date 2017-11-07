@@ -23,8 +23,7 @@ mapping inout Document::AddPage() {
 			case (rn >= 0.497 and rn < 0.806) pc := getRandomBetween(6,20);
 			case (rn >= 0.806 and rn < 0.927) pc := getRandomBetween(21,50);
 			case (rn >= 0.927 and rn < 0.971) pc := getRandomBetween(51,100);
-			case (rn >= 0.971 and rn < 0.999) pc := getRandomBetween(101,1000);
-			case (rn >= 0.999 and rn < 1) pc := getRandomBetween(1001,2500);
+			case (rn >= 0.971 and rn < 1) pc := getRandomBetween(101,5377);
 			else null; 
 		};
 	}; 
@@ -35,3 +34,6 @@ mapping inout Document::AddPage() {
 		pc := pc - 1;	
 	};
 }
+
+
+

@@ -14,11 +14,12 @@ main() {
 	} else {
 		var rn := getRandomReal();
 		switch {
-			case (rn < 0.018) pc := getRandomBetween(1,5); 
-			case (rn >= 0.018 and rn < 0.15) pc := getRandomBetween(6,20);
-			case (rn >= 0.15 and rn < 0.54) pc := getRandomBetween(21,100);
-			case (rn >= 0.54 and rn < 0.95) pc := getRandomBetween(101,1000);
-			case (rn >= 0.95 and rn < 1) pc := getRandomBetween(1001,2000);
+			case (rn < 0.017) pc := getRandomBetween(1,5); 
+			case (rn >= 0.017 and rn < 0.143) pc := getRandomBetween(6,20);
+			case (rn >= 0.143 and rn < 0.521) pc := getRandomBetween(21,100);
+			case (rn >= 0.521 and rn < 0.917) pc := getRandomBetween(101,1000);
+			case (rn >= 0.917 and rn < 0.991) pc := getRandomBetween(1001,5000);
+			case (rn >= 0.991 and rn < 1) pc := getRandomBetween(5001,114334);
 			else null; 
 		};
 	};
