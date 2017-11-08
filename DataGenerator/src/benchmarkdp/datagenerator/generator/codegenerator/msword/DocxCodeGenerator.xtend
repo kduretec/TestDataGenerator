@@ -41,7 +41,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		compilerState.setVariable("parag", new Integer(0))
 		compilerState.setVariable("inTable", new Boolean(false))
 		compilerState.setVariable("inlineShape", new Integer(0))
-		var sCode = new MSWordGeneratedCode("vbs", d.documentPlatform)
+		var sCode = new MSWordGeneratedCode("vbs", d.operatingSystem, d.software)
 		compilerState.setVariable("temp", new String(""));
 		
 		compiler.compile("Document", d);

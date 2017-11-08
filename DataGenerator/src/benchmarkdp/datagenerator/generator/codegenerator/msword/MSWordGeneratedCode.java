@@ -13,11 +13,13 @@ public class MSWordGeneratedCode implements IGeneratedCode {
 
 	String fileExtension;
 
-	String platform;
+	String operatingSystem;
+	String software;
 
-	public MSWordGeneratedCode(String fE, String plat) {
+	public MSWordGeneratedCode(String fE, String os, String soft) {
 		fileExtension = fE;
-		platform = plat;
+		operatingSystem = os;
+		software = soft;
 	}
 
 	public void setGeneratedCode(String code) {
@@ -28,7 +30,7 @@ public class MSWordGeneratedCode implements IGeneratedCode {
 	public void saveToFile(String filePath, String testCaseName) {
 		if (generatedCode != null) {
 			try {
-				String platPath = filePath + "/" + platform;
+				String platPath = filePath + "/" + getPlatform();
 				File f = new File(platPath);
 				if (!f.exists()) {
 					f.mkdir();
@@ -49,8 +51,7 @@ public class MSWordGeneratedCode implements IGeneratedCode {
 
 	@Override
 	public String getPlatform() {
-		// TODO Auto-generated method stub
-		return null;
+		return operatingSystem + "-" + software;
 	}
 
 }

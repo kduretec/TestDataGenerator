@@ -31,58 +31,17 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getName <em>Name</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentBackground <em>Document Background</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentFormat <em>Document Format</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentFormatCode <em>Document Format Code</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getPages <em>Pages</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getDocumentPlatform <em>Document Platform</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getSoftware <em>Software</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.impl.DocumentImpl#getOperatingSystem <em>Operating System</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class DocumentImpl extends MinimalEObjectImpl.Container implements Document {
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getAuthor() <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAuthor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String AUTHOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAuthor()
-	 * @generated
-	 * @ordered
-	 */
-	protected String author = AUTHOR_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getDocumentBackground() <em>Document Background</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -154,24 +113,44 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	protected EList<Page> pages;
 
 	/**
-	 * The default value of the '{@link #getDocumentPlatform() <em>Document Platform</em>}' attribute.
+	 * The default value of the '{@link #getSoftware() <em>Software</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDocumentPlatform()
+	 * @see #getSoftware()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DOCUMENT_PLATFORM_EDEFAULT = null;
+	protected static final String SOFTWARE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDocumentPlatform() <em>Document Platform</em>}' attribute.
+	 * The cached value of the '{@link #getSoftware() <em>Software</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDocumentPlatform()
+	 * @see #getSoftware()
 	 * @generated
 	 * @ordered
 	 */
-	protected String documentPlatform = DOCUMENT_PLATFORM_EDEFAULT;
+	protected String software = SOFTWARE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getOperatingSystem() <em>Operating System</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperatingSystem()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OPERATING_SYSTEM_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getOperatingSystem() <em>Operating System</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperatingSystem()
+	 * @generated
+	 * @ordered
+	 */
+	protected String operatingSystem = OPERATING_SYSTEM_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,48 +169,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	@Override
 	protected EClass eStaticClass() {
 		return PSMDocxPackage.Literals.DOCUMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getAuthor() {
-		return author;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAuthor(String newAuthor) {
-		String oldAuthor = author;
-		author = newAuthor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__AUTHOR, oldAuthor, author));
 	}
 
 	/**
@@ -314,8 +251,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDocumentPlatform() {
-		return documentPlatform;
+	public String getSoftware() {
+		return software;
 	}
 
 	/**
@@ -323,11 +260,32 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDocumentPlatform(String newDocumentPlatform) {
-		String oldDocumentPlatform = documentPlatform;
-		documentPlatform = newDocumentPlatform;
+	public void setSoftware(String newSoftware) {
+		String oldSoftware = software;
+		software = newSoftware;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM, oldDocumentPlatform, documentPlatform));
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__SOFTWARE, oldSoftware, software));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getOperatingSystem() {
+		return operatingSystem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOperatingSystem(String newOperatingSystem) {
+		String oldOperatingSystem = operatingSystem;
+		operatingSystem = newOperatingSystem;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMDocxPackage.DOCUMENT__OPERATING_SYSTEM, oldOperatingSystem, operatingSystem));
 	}
 
 	/**
@@ -352,10 +310,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case PSMDocxPackage.DOCUMENT__NAME:
-				return getName();
-			case PSMDocxPackage.DOCUMENT__AUTHOR:
-				return getAuthor();
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				return getDocumentBackground();
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
@@ -364,8 +318,10 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getDocumentFormatCode();
 			case PSMDocxPackage.DOCUMENT__PAGES:
 				return getPages();
-			case PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM:
-				return getDocumentPlatform();
+			case PSMDocxPackage.DOCUMENT__SOFTWARE:
+				return getSoftware();
+			case PSMDocxPackage.DOCUMENT__OPERATING_SYSTEM:
+				return getOperatingSystem();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -379,12 +335,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case PSMDocxPackage.DOCUMENT__NAME:
-				setName((String)newValue);
-				return;
-			case PSMDocxPackage.DOCUMENT__AUTHOR:
-				setAuthor((String)newValue);
-				return;
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				setDocumentBackground((Color)newValue);
 				return;
@@ -398,8 +348,11 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				getPages().clear();
 				getPages().addAll((Collection<? extends Page>)newValue);
 				return;
-			case PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM:
-				setDocumentPlatform((String)newValue);
+			case PSMDocxPackage.DOCUMENT__SOFTWARE:
+				setSoftware((String)newValue);
+				return;
+			case PSMDocxPackage.DOCUMENT__OPERATING_SYSTEM:
+				setOperatingSystem((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -413,12 +366,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case PSMDocxPackage.DOCUMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case PSMDocxPackage.DOCUMENT__AUTHOR:
-				setAuthor(AUTHOR_EDEFAULT);
-				return;
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				setDocumentBackground(DOCUMENT_BACKGROUND_EDEFAULT);
 				return;
@@ -431,8 +378,11 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMDocxPackage.DOCUMENT__PAGES:
 				getPages().clear();
 				return;
-			case PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM:
-				setDocumentPlatform(DOCUMENT_PLATFORM_EDEFAULT);
+			case PSMDocxPackage.DOCUMENT__SOFTWARE:
+				setSoftware(SOFTWARE_EDEFAULT);
+				return;
+			case PSMDocxPackage.DOCUMENT__OPERATING_SYSTEM:
+				setOperatingSystem(OPERATING_SYSTEM_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -446,10 +396,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case PSMDocxPackage.DOCUMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PSMDocxPackage.DOCUMENT__AUTHOR:
-				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				return documentBackground != DOCUMENT_BACKGROUND_EDEFAULT;
 			case PSMDocxPackage.DOCUMENT__DOCUMENT_FORMAT:
@@ -458,8 +404,10 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return DOCUMENT_FORMAT_CODE_EDEFAULT == null ? documentFormatCode != null : !DOCUMENT_FORMAT_CODE_EDEFAULT.equals(documentFormatCode);
 			case PSMDocxPackage.DOCUMENT__PAGES:
 				return pages != null && !pages.isEmpty();
-			case PSMDocxPackage.DOCUMENT__DOCUMENT_PLATFORM:
-				return DOCUMENT_PLATFORM_EDEFAULT == null ? documentPlatform != null : !DOCUMENT_PLATFORM_EDEFAULT.equals(documentPlatform);
+			case PSMDocxPackage.DOCUMENT__SOFTWARE:
+				return SOFTWARE_EDEFAULT == null ? software != null : !SOFTWARE_EDEFAULT.equals(software);
+			case PSMDocxPackage.DOCUMENT__OPERATING_SYSTEM:
+				return OPERATING_SYSTEM_EDEFAULT == null ? operatingSystem != null : !OPERATING_SYSTEM_EDEFAULT.equals(operatingSystem);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -474,18 +422,16 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", author: ");
-		result.append(author);
-		result.append(", documentBackground: ");
+		result.append(" (documentBackground: ");
 		result.append(documentBackground);
 		result.append(", documentFormat: ");
 		result.append(documentFormat);
 		result.append(", documentFormatCode: ");
 		result.append(documentFormatCode);
-		result.append(", documentPlatform: ");
-		result.append(documentPlatform);
+		result.append(", software: ");
+		result.append(software);
+		result.append(", operatingSystem: ");
+		result.append(operatingSystem);
 		result.append(')');
 		return result.toString();
 	}

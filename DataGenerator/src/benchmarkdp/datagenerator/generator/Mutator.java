@@ -289,16 +289,18 @@ public class Mutator {
 		// PSMLibrePackage.Literals.DOCUMENT, "platform",
 		// "self.documentPlatform"));
 
-		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "tablecount",
-				"self.pages.elements->selectByType(Table)->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "paragraphcount",
+		// OCL queries 
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_pages", "self.pages->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_paragraphs",
 				"self.pages.elements->selectByType(Paragraph)->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "imagecount",
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_tables",
+				"self.pages.elements->selectByType(Table)->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_images",
 				"self.pages.elements->selectByType(Image)->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "pagecount", "self.pages->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "freewordcount",
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_words",
 				"self.pages.elements->selectByType(Paragraph).words->size()"));
 
+		
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "textboxcount",
 				"self.pages.elements->selectByKind(TextBox)->asSequence()->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "controlboxcount",

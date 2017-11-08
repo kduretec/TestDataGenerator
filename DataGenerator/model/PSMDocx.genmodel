@@ -26,13 +26,12 @@
       <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//Alignment/RIGHT"/>
     </genEnums>
     <genClasses ecoreClass="PSMDocx.ecore#//Document">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/author"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentBackground"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentFormat"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentFormatCode"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Document/pages"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentPlatform"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/software"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/operatingSystem"/>
     </genClasses>
     <genClasses ecoreClass="PSMDocx.ecore#//Page">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Page/elements"/>

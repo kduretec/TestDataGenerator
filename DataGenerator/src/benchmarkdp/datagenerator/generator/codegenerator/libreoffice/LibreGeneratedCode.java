@@ -15,7 +15,8 @@ public class LibreGeneratedCode implements IGeneratedCode {
 	List<String> codeElements;
 	List<String> helperFunctions;
 
-	String platform;
+	String operatingSystem;
+	String software;
 	CodeGeneratorObserverInterface cObserver;
 
 	public LibreGeneratedCode(CodeGeneratorObserverInterface cI) {
@@ -28,13 +29,17 @@ public class LibreGeneratedCode implements IGeneratedCode {
 		codeElements.add(element);
 	}
 
-	public void setPlatform(String plat) {
-		platform = plat;
+	public void setOperatingSystem(String os) {
+		operatingSystem = os;
+	}
+	
+	public void setSoftware(String soft) {
+		software = soft;
 	}
 
 	@Override
 	public String getPlatform() {
-		return platform;
+		return operatingSystem + "-" + software;
 	}
 
 	public void addHelperFunction(String function) {
@@ -44,7 +49,7 @@ public class LibreGeneratedCode implements IGeneratedCode {
 	@Override
 	public void saveToFile(String filePath, String testCaseName) {
 		
-		String platPath = filePath  + platform + "/";
+		String platPath = filePath  + getPlatform() + "/";
 		File f = new File(platPath);
 		if (!f.exists()) {
 			f.mkdir();

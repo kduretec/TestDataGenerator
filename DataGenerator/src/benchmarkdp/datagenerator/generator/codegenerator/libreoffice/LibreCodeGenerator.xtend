@@ -45,7 +45,8 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		var d = tC.getTestModel().getModelObjects.get(0) as Document
 
 		var libreCode = new LibreGeneratedCode(cGOb);
-		libreCode.platform = d.documentPlatform
+		libreCode.software = d.software
+		libreCode.operatingSystem = d.operatingSystem
 		compilerState.setVariable("libreCode", libreCode)
 		compilerState.setVariable("documentName", tC.testCaseName)
 		compilerState.setVariable("numCodeLines", new Integer(0))

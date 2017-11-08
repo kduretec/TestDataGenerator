@@ -12,8 +12,6 @@ main() {
 }
 
 mapping PIM::Document::DocumentToDocument():PSM::Document {
-	name := self.name;
-	author := self.author;
 	documentBackground := mapColor(self.documentBackground);
 	self.pages->forEach(p) {
 		pages += p->map PageToPage();

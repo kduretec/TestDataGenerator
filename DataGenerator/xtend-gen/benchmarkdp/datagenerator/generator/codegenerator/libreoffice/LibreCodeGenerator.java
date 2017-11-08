@@ -64,8 +64,10 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     EObject _get = _modelObjects.get(0);
     Document d = ((Document) _get);
     LibreGeneratedCode libreCode = new LibreGeneratedCode(this.cGOb);
-    String _documentPlatform = d.getDocumentPlatform();
-    libreCode.platform = _documentPlatform;
+    String _software = d.getSoftware();
+    libreCode.software = _software;
+    String _operatingSystem = d.getOperatingSystem();
+    libreCode.operatingSystem = _operatingSystem;
     this.compilerState.setVariable("libreCode", libreCode);
     String _testCaseName = tC.getTestCaseName();
     this.compilerState.setVariable("documentName", _testCaseName);

@@ -68,31 +68,13 @@ public interface PSMDocxPackage extends EPackage {
 	int DOCUMENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Author</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__AUTHOR = 1;
-
-	/**
 	 * The feature id for the '<em><b>Document Background</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__DOCUMENT_BACKGROUND = 2;
+	int DOCUMENT__DOCUMENT_BACKGROUND = 0;
 
 	/**
 	 * The feature id for the '<em><b>Document Format</b></em>' attribute.
@@ -101,7 +83,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__DOCUMENT_FORMAT = 3;
+	int DOCUMENT__DOCUMENT_FORMAT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Document Format Code</b></em>' attribute.
@@ -110,7 +92,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__DOCUMENT_FORMAT_CODE = 4;
+	int DOCUMENT__DOCUMENT_FORMAT_CODE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Pages</b></em>' containment reference list.
@@ -119,16 +101,25 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__PAGES = 5;
+	int DOCUMENT__PAGES = 3;
 
 	/**
-	 * The feature id for the '<em><b>Document Platform</b></em>' attribute.
+	 * The feature id for the '<em><b>Software</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__DOCUMENT_PLATFORM = 6;
+	int DOCUMENT__SOFTWARE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Operating System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__OPERATING_SYSTEM = 5;
 
 	/**
 	 * The number of structural features of the '<em>Document</em>' class.
@@ -137,7 +128,7 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = 7;
+	int DOCUMENT_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -1376,28 +1367,6 @@ public interface PSMDocxPackage extends EPackage {
 	EClass getDocument();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Document#getName()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getAuthor <em>Author</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Author</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Document#getAuthor()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_Author();
-
-	/**
 	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentBackground <em>Document Background</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1442,15 +1411,26 @@ public interface PSMDocxPackage extends EPackage {
 	EReference getDocument_Pages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentPlatform <em>Document Platform</em>}'.
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getSoftware <em>Software</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Document Platform</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMDocx.Document#getDocumentPlatform()
+	 * @return the meta object for the attribute '<em>Software</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Document#getSoftware()
 	 * @see #getDocument()
 	 * @generated
 	 */
-	EAttribute getDocument_DocumentPlatform();
+	EAttribute getDocument_Software();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getOperatingSystem <em>Operating System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operating System</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.Document#getOperatingSystem()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_OperatingSystem();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.Page <em>Page</em>}'.
@@ -1907,22 +1887,6 @@ public interface PSMDocxPackage extends EPackage {
 		EClass DOCUMENT = eINSTANCE.getDocument();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__NAME = eINSTANCE.getDocument_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__AUTHOR = eINSTANCE.getDocument_Author();
-
-		/**
 		 * The meta object literal for the '<em><b>Document Background</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1955,12 +1919,20 @@ public interface PSMDocxPackage extends EPackage {
 		EReference DOCUMENT__PAGES = eINSTANCE.getDocument_Pages();
 
 		/**
-		 * The meta object literal for the '<em><b>Document Platform</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Software</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute DOCUMENT__DOCUMENT_PLATFORM = eINSTANCE.getDocument_DocumentPlatform();
+		EAttribute DOCUMENT__SOFTWARE = eINSTANCE.getDocument_Software();
+
+		/**
+		 * The meta object literal for the '<em><b>Operating System</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__OPERATING_SYSTEM = eINSTANCE.getDocument_OperatingSystem();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.PageImpl <em>Page</em>}' class.

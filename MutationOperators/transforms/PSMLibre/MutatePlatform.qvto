@@ -13,5 +13,6 @@ main() {
 mapping inout Document::ChangePlatform() {
 	self.documentFormat := "odt";
 	self.documentFilter := "writer8";
-	self.documentPlatform := "Ubuntu14-LibreOffice";
+	self.software := "LibreOffice4.4";
+	self.operatingSystem := "Ubuntu14";
 }

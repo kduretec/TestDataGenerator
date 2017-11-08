@@ -78,8 +78,9 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     this.compilerState.setVariable("inTable", _boolean);
     Integer _integer_1 = new Integer(0);
     this.compilerState.setVariable("inlineShape", _integer_1);
-    String _documentPlatform = d.getDocumentPlatform();
-    MSWordGeneratedCode sCode = new MSWordGeneratedCode("vbs", _documentPlatform);
+    String _operatingSystem = d.getOperatingSystem();
+    String _software = d.getSoftware();
+    MSWordGeneratedCode sCode = new MSWordGeneratedCode("vbs", _operatingSystem, _software);
     String _string = new String("");
     this.compilerState.setVariable("temp", _string);
     this.compiler.compile("Document", d);

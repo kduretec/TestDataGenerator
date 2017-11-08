@@ -77,31 +77,13 @@ public interface PSMLibrePackage extends EPackage {
 	int DOCUMENT__PAGES = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__NAME = 1;
-
-	/**
-	 * The feature id for the '<em><b>Author</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__AUTHOR = 2;
-
-	/**
 	 * The feature id for the '<em><b>Document Background</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__DOCUMENT_BACKGROUND = 3;
+	int DOCUMENT__DOCUMENT_BACKGROUND = 1;
 
 	/**
 	 * The feature id for the '<em><b>Document Format</b></em>' attribute.
@@ -110,16 +92,7 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__DOCUMENT_FORMAT = 4;
-
-	/**
-	 * The feature id for the '<em><b>Document Platform</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__DOCUMENT_PLATFORM = 5;
+	int DOCUMENT__DOCUMENT_FORMAT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Document Filter</b></em>' attribute.
@@ -128,7 +101,25 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT__DOCUMENT_FILTER = 6;
+	int DOCUMENT__DOCUMENT_FILTER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Software</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__SOFTWARE = 4;
+
+	/**
+	 * The feature id for the '<em><b>Operating System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__OPERATING_SYSTEM = 5;
 
 	/**
 	 * The number of structural features of the '<em>Document</em>' class.
@@ -137,7 +128,7 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = 7;
+	int DOCUMENT_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -995,28 +986,6 @@ public interface PSMLibrePackage extends EPackage {
 	EReference getDocument_Pages();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getName()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_Name();
-
-	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getAuthor <em>Author</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Author</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getAuthor()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_Author();
-
-	/**
 	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentBackground <em>Document Background</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1039,17 +1008,6 @@ public interface PSMLibrePackage extends EPackage {
 	EAttribute getDocument_DocumentFormat();
 
 	/**
-	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentPlatform <em>Document Platform</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Document Platform</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentPlatform()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_DocumentPlatform();
-
-	/**
 	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFilter <em>Document Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1059,6 +1017,28 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getDocument_DocumentFilter();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getSoftware <em>Software</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Software</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getSoftware()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_Software();
+
+	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getOperatingSystem <em>Operating System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operating System</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#getOperatingSystem()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_OperatingSystem();
 
 	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.Page <em>Page</em>}'.
@@ -1462,22 +1442,6 @@ public interface PSMLibrePackage extends EPackage {
 		EReference DOCUMENT__PAGES = eINSTANCE.getDocument_Pages();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__NAME = eINSTANCE.getDocument_Name();
-
-		/**
-		 * The meta object literal for the '<em><b>Author</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__AUTHOR = eINSTANCE.getDocument_Author();
-
-		/**
 		 * The meta object literal for the '<em><b>Document Background</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1494,20 +1458,28 @@ public interface PSMLibrePackage extends EPackage {
 		EAttribute DOCUMENT__DOCUMENT_FORMAT = eINSTANCE.getDocument_DocumentFormat();
 
 		/**
-		 * The meta object literal for the '<em><b>Document Platform</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__DOCUMENT_PLATFORM = eINSTANCE.getDocument_DocumentPlatform();
-
-		/**
 		 * The meta object literal for the '<em><b>Document Filter</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EAttribute DOCUMENT__DOCUMENT_FILTER = eINSTANCE.getDocument_DocumentFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Software</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__SOFTWARE = eINSTANCE.getDocument_Software();
+
+		/**
+		 * The meta object literal for the '<em><b>Operating System</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__OPERATING_SYSTEM = eINSTANCE.getDocument_OperatingSystem();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.PageImpl <em>Page</em>}' class.

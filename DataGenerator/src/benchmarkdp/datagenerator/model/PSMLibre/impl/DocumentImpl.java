@@ -32,12 +32,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getPages <em>Pages</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getName <em>Name</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentBackground <em>Document Background</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentFormat <em>Document Format</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentPlatform <em>Document Platform</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentFilter <em>Document Filter</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getSoftware <em>Software</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getOperatingSystem <em>Operating System</em>}</li>
  * </ul>
  *
  * @generated
@@ -52,46 +51,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @ordered
 	 */
 	protected EList<Page> pages;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getAuthor() <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAuthor()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String AUTHOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getAuthor() <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAuthor()
-	 * @generated
-	 * @ordered
-	 */
-	protected String author = AUTHOR_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getDocumentBackground() <em>Document Background</em>}' attribute.
@@ -134,26 +93,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	protected String documentFormat = DOCUMENT_FORMAT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDocumentPlatform() <em>Document Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDocumentPlatform()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String DOCUMENT_PLATFORM_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getDocumentPlatform() <em>Document Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDocumentPlatform()
-	 * @generated
-	 * @ordered
-	 */
-	protected String documentPlatform = DOCUMENT_PLATFORM_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getDocumentFilter() <em>Document Filter</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -172,6 +111,46 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @ordered
 	 */
 	protected String documentFilter = DOCUMENT_FILTER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSoftware() <em>Software</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSoftware()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SOFTWARE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSoftware() <em>Software</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSoftware()
+	 * @generated
+	 * @ordered
+	 */
+	protected String software = SOFTWARE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getOperatingSystem() <em>Operating System</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperatingSystem()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OPERATING_SYSTEM_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getOperatingSystem() <em>Operating System</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperatingSystem()
+	 * @generated
+	 * @ordered
+	 */
+	protected String operatingSystem = OPERATING_SYSTEM_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -202,48 +181,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			pages = new EObjectContainmentEList<Page>(Page.class, this, PSMLibrePackage.DOCUMENT__PAGES);
 		}
 		return pages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getAuthor() {
-		return author;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAuthor(String newAuthor) {
-		String oldAuthor = author;
-		author = newAuthor;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__AUTHOR, oldAuthor, author));
 	}
 
 	/**
@@ -293,27 +230,6 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDocumentPlatform() {
-		return documentPlatform;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDocumentPlatform(String newDocumentPlatform) {
-		String oldDocumentPlatform = documentPlatform;
-		documentPlatform = newDocumentPlatform;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM, oldDocumentPlatform, documentPlatform));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getDocumentFilter() {
 		return documentFilter;
 	}
@@ -328,6 +244,48 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		documentFilter = newDocumentFilter;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER, oldDocumentFilter, documentFilter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSoftware() {
+		return software;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSoftware(String newSoftware) {
+		String oldSoftware = software;
+		software = newSoftware;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__SOFTWARE, oldSoftware, software));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getOperatingSystem() {
+		return operatingSystem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOperatingSystem(String newOperatingSystem) {
+		String oldOperatingSystem = operatingSystem;
+		operatingSystem = newOperatingSystem;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM, oldOperatingSystem, operatingSystem));
 	}
 
 	/**
@@ -354,18 +312,16 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		switch (featureID) {
 			case PSMLibrePackage.DOCUMENT__PAGES:
 				return getPages();
-			case PSMLibrePackage.DOCUMENT__NAME:
-				return getName();
-			case PSMLibrePackage.DOCUMENT__AUTHOR:
-				return getAuthor();
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				return getDocumentBackground();
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FORMAT:
 				return getDocumentFormat();
-			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
-				return getDocumentPlatform();
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER:
 				return getDocumentFilter();
+			case PSMLibrePackage.DOCUMENT__SOFTWARE:
+				return getSoftware();
+			case PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM:
+				return getOperatingSystem();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -383,23 +339,20 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				getPages().clear();
 				getPages().addAll((Collection<? extends Page>)newValue);
 				return;
-			case PSMLibrePackage.DOCUMENT__NAME:
-				setName((String)newValue);
-				return;
-			case PSMLibrePackage.DOCUMENT__AUTHOR:
-				setAuthor((String)newValue);
-				return;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				setDocumentBackground((Color)newValue);
 				return;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FORMAT:
 				setDocumentFormat((String)newValue);
 				return;
-			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
-				setDocumentPlatform((String)newValue);
-				return;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER:
 				setDocumentFilter((String)newValue);
+				return;
+			case PSMLibrePackage.DOCUMENT__SOFTWARE:
+				setSoftware((String)newValue);
+				return;
+			case PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM:
+				setOperatingSystem((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -416,23 +369,20 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMLibrePackage.DOCUMENT__PAGES:
 				getPages().clear();
 				return;
-			case PSMLibrePackage.DOCUMENT__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case PSMLibrePackage.DOCUMENT__AUTHOR:
-				setAuthor(AUTHOR_EDEFAULT);
-				return;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				setDocumentBackground(DOCUMENT_BACKGROUND_EDEFAULT);
 				return;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FORMAT:
 				setDocumentFormat(DOCUMENT_FORMAT_EDEFAULT);
 				return;
-			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
-				setDocumentPlatform(DOCUMENT_PLATFORM_EDEFAULT);
-				return;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER:
 				setDocumentFilter(DOCUMENT_FILTER_EDEFAULT);
+				return;
+			case PSMLibrePackage.DOCUMENT__SOFTWARE:
+				setSoftware(SOFTWARE_EDEFAULT);
+				return;
+			case PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM:
+				setOperatingSystem(OPERATING_SYSTEM_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -448,18 +398,16 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		switch (featureID) {
 			case PSMLibrePackage.DOCUMENT__PAGES:
 				return pages != null && !pages.isEmpty();
-			case PSMLibrePackage.DOCUMENT__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case PSMLibrePackage.DOCUMENT__AUTHOR:
-				return AUTHOR_EDEFAULT == null ? author != null : !AUTHOR_EDEFAULT.equals(author);
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				return documentBackground != DOCUMENT_BACKGROUND_EDEFAULT;
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FORMAT:
 				return DOCUMENT_FORMAT_EDEFAULT == null ? documentFormat != null : !DOCUMENT_FORMAT_EDEFAULT.equals(documentFormat);
-			case PSMLibrePackage.DOCUMENT__DOCUMENT_PLATFORM:
-				return DOCUMENT_PLATFORM_EDEFAULT == null ? documentPlatform != null : !DOCUMENT_PLATFORM_EDEFAULT.equals(documentPlatform);
 			case PSMLibrePackage.DOCUMENT__DOCUMENT_FILTER:
 				return DOCUMENT_FILTER_EDEFAULT == null ? documentFilter != null : !DOCUMENT_FILTER_EDEFAULT.equals(documentFilter);
+			case PSMLibrePackage.DOCUMENT__SOFTWARE:
+				return SOFTWARE_EDEFAULT == null ? software != null : !SOFTWARE_EDEFAULT.equals(software);
+			case PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM:
+				return OPERATING_SYSTEM_EDEFAULT == null ? operatingSystem != null : !OPERATING_SYSTEM_EDEFAULT.equals(operatingSystem);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -474,18 +422,16 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(", author: ");
-		result.append(author);
-		result.append(", documentBackground: ");
+		result.append(" (documentBackground: ");
 		result.append(documentBackground);
 		result.append(", documentFormat: ");
 		result.append(documentFormat);
-		result.append(", documentPlatform: ");
-		result.append(documentPlatform);
 		result.append(", documentFilter: ");
 		result.append(documentFilter);
+		result.append(", software: ");
+		result.append(software);
+		result.append(", operatingSystem: ");
+		result.append(operatingSystem);
 		result.append(')');
 		return result.toString();
 	}

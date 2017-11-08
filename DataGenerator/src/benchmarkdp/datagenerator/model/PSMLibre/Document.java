@@ -16,12 +16,11 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getPages <em>Pages</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getName <em>Name</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentBackground <em>Document Background</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFormat <em>Document Format</em>}</li>
- *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentPlatform <em>Document Platform</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentFilter <em>Document Filter</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getSoftware <em>Software</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getOperatingSystem <em>Operating System</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument()
@@ -44,58 +43,6 @@ public interface Document extends EObject {
 	 * @generated
 	 */
 	EList<Page> getPages();
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_Name()
-	 * @model
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Author</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Author</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Author</em>' attribute.
-	 * @see #setAuthor(String)
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_Author()
-	 * @model
-	 * @generated
-	 */
-	String getAuthor();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getAuthor <em>Author</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Author</em>' attribute.
-	 * @see #getAuthor()
-	 * @generated
-	 */
-	void setAuthor(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Document Background</b></em>' attribute.
@@ -154,32 +101,6 @@ public interface Document extends EObject {
 	void setDocumentFormat(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Document Platform</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Document Platform</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Document Platform</em>' attribute.
-	 * @see #setDocumentPlatform(String)
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_DocumentPlatform()
-	 * @model
-	 * @generated
-	 */
-	String getDocumentPlatform();
-
-	/**
-	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getDocumentPlatform <em>Document Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Document Platform</em>' attribute.
-	 * @see #getDocumentPlatform()
-	 * @generated
-	 */
-	void setDocumentPlatform(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Document Filter</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -204,5 +125,57 @@ public interface Document extends EObject {
 	 * @generated
 	 */
 	void setDocumentFilter(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Software</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Software</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Software</em>' attribute.
+	 * @see #setSoftware(String)
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_Software()
+	 * @model
+	 * @generated
+	 */
+	String getSoftware();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getSoftware <em>Software</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Software</em>' attribute.
+	 * @see #getSoftware()
+	 * @generated
+	 */
+	void setSoftware(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Operating System</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Operating System</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Operating System</em>' attribute.
+	 * @see #setOperatingSystem(String)
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage#getDocument_OperatingSystem()
+	 * @model
+	 * @generated
+	 */
+	String getOperatingSystem();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#getOperatingSystem <em>Operating System</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Operating System</em>' attribute.
+	 * @see #getOperatingSystem()
+	 * @generated
+	 */
+	void setOperatingSystem(String value);
 
 } // Document
