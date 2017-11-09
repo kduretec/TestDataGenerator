@@ -47,7 +47,7 @@ mapping PIM::Page::PageToPage():PSM::Page {
 	if (tableImpl = null) {
 		var rnd := getRandomReal(); 
 		switch {
-			case(rnd < 0.80) tableImpl := "allNormalTable";
+			case(rnd < 0.80) tableImpl := "allSimpleTable";
 			case(rnd >= 0.8 and rnd < 0.95) tableImpl := "allEmbededTable";
 			else tableImpl := "mixture";
 		}
@@ -57,7 +57,7 @@ mapping PIM::Page::PageToPage():PSM::Page {
 	var percET := 0.0; 
 	
 	switch {
-		case (tableImpl = "allNormalTable") {percNT := 1.0; percET:=0.0;};
+		case (tableImpl = "allSimpleTable") {percNT := 1.0; percET:=0.0;};
 		case (tableImpl = "allEmbededTable") {percNT := 0.0; percET:=1.0;};
 		else {percNT := 0.8; percET:=0.2;};
 	};

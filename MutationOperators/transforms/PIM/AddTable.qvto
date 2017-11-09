@@ -4,13 +4,13 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 
 transformation AddTable(inout model:PIM);
-configuration property numTable : String;
+configuration property numTables : String;
 
 main() {
 	var pages:= model.objectsOfType(Page);
 	var tc := 0; 
-	if (numTable <> null) {
-		tc := stringToInt(numTable)
+	if (numTables <> null) {
+		tc := stringToInt(numTables)
 	} else {
 		var rn := getRandomReal();
 		switch {

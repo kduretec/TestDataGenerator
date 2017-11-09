@@ -33,7 +33,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 10; // number of test cases to generate
+	int n = 1; // number of test cases to generate
 
 	private List<MutationOperatorInterface> mutationsPIM;
 	private List<MutationOperatorInterface> mutationsPIM2PSM;
@@ -132,8 +132,9 @@ public class Mutator {
 		for (int i = 0; i < testCases.size(); i++) {
 			TestCase tC = testCases.get(i);
 			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-				MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-				//MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
+				// MutationOperatorInterface mo =
+				// mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+				MutationOperatorInterface mo = mutationsPIM2PSM.get(0);
 				if (tC.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 						&& mo.getDestinationModel() != ModelType.PIM) {
 					mo.mutateTestCase(tC);
@@ -175,11 +176,11 @@ public class Mutator {
 			System.out.println("Saving testcase:" + tc.getTestCaseName());
 			tc.saveTestCaseComponents();
 		}
-		
+
 		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
-		 cob.afterGeneration();
+			cob.afterGeneration();
 		}
-		
+
 		System.out.println("Test Suite generation done");
 
 	}
@@ -289,8 +290,9 @@ public class Mutator {
 		// PSMLibrePackage.Literals.DOCUMENT, "platform",
 		// "self.documentPlatform"));
 
-		// OCL queries 
-		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_pages", "self.pages->size()"));
+		// OCL queries
+		evaluators.add(
+				new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_pages", "self.pages->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_paragraphs",
 				"self.pages.elements->selectByType(Paragraph)->size()"));
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_tables",
@@ -300,18 +302,77 @@ public class Mutator {
 		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "number_of_words",
 				"self.pages.elements->selectByType(Paragraph).words->size()"));
 
-		
-		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "textboxcount",
-				"self.pages.elements->selectByKind(TextBox)->asSequence()->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "controlboxcount",
-				"self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "emeddedexcelcount",
-				"self.pages.elements->selectByKind(EmbeddedExcel)->asSequence()->size()"));
-		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "simpleparagraphcount",
-				"self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "file_format",
+				"self.documentFormat"));
+		evaluators
+				.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "software", "self.software"));
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "operating_system",
+				"self.operatingSystem"));
+		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "file_format",
+				"self.documentFormat"));
+		evaluators.add(
+				new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "software", "self.software"));
+		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "operating_system",
+				"self.operatingSystem"));
 
-		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "simpleparagraphcount",
-				"self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "document_background",
+				"self.documentBackground"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "element_background",
+				"self.pages.elements->first().backgroundColor"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "font_color",
+				"self.pages.elements->selectByKind(TextContainer)->first().fontColor"));
+		evaluators.add(new OCLMetadata(ModelType.PIM, PIMPackage.Literals.DOCUMENT, "element_alignment",
+				"self.pages.elements->first().alignment"));
+
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "font_family",
+				"self.pages.elements->selectByKind(TextContainer)->first().fontFamily"));
+		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "font_family",
+				"self.pages.elements->selectByKind(TextContainer)->first().fontFamily"));
+
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "paragraph_implementation",
+				"if self.pages.elements->selectByKind(TextBox)->size()=0 and "
+						+ "self.pages.elements->selectByKind(ControlBox)->size()=0 then 'allSimpleParagraph' "
+						+ "else if self.pages.elements->selectByKind(Paragraph)->size()=0 and "
+						+ "self.pages.elements->selectByKind(ControlBox)->size()=0 then  'allTextBox' "
+						+ "else if self.pages.elements->selectByKind(Paragraph)->size()=0 and "
+						+ "self.pages.elements->selectByKind(TextBox)->size()=0 then 'allContentControlBox' else "
+						+ "'mixture' endif endif endif"));
+
+		evaluators
+				.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "paragraph_implementation",
+						"if self.pages.elements->selectByKind(TextBox)->size() = 0 " + " then 'allSimpleParagraph' "
+								+ "else if self.pages.elements->selectByKind(Paragraph)->size() = 0 "
+								+ " then 'allTextBox' " + " else 'mixture' " + "endif endif "));
+
+		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "table_implementation",
+				"if self.pages.elements->selectByKind(WordTable)->size() = 0 and "
+						+ "self.pages.elements->selectByKind(EmbeddedExcel)->size() = 0 then 'noTable' "
+						+ "else if self.pages.elements->selectByKind(EmbeddedExcel)->size() = 0 then 'allSimpleTable' "
+						+ "else if self.pages.elements->selectByKind(WordTable)->size() = 0 then 'allEmbeddedTable' "
+						+ "else 'mixture' " + " endif endif endif "));
+		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "table_implementation",
+				"if self.pages.elements->selectByKind(Table)->size() = 0 " + " then 'noTable' "
+						+ "else 'allSimpleTable' endif "));
+
+		// evaluators.add(new OCLMetadata(ModelType.PSMLibre,
+		// PSMLibrePackage.Literals.DOCUMENT, "num_textbox",
+		// "self.pages.elements->selectByKind(TextBox)->size()"));
+		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
+		// PSMDocxPackage.Literals.DOCUMENT, "textboxcount",
+		// "self.pages.elements->selectByKind(TextBox)->asSequence()->size()"));
+		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
+		// PSMDocxPackage.Literals.DOCUMENT, "controlboxcount",
+		// "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
+		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
+		// PSMDocxPackage.Literals.DOCUMENT, "emeddedexcelcount",
+		// "self.pages.elements->selectByKind(EmbeddedExcel)->asSequence()->size()"));
+		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
+		// PSMDocxPackage.Literals.DOCUMENT, "simpleparagraphcount",
+		// "self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
+		//
+		// evaluators.add(new OCLMetadata(ModelType.PSMLibre,
+		// PSMLibrePackage.Literals.DOCUMENT, "simpleparagraphcount",
+		// "self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
 
 		evaluators.add(new OCLLibreText());
 		evaluators.add(new OCLMSWordText());
