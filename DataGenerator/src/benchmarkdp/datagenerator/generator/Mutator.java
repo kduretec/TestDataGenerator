@@ -269,26 +269,15 @@ public class Mutator {
 	private void initializeMutationsPSM() {
 		mutationsPSM.add(new MutationOperator("MutatePlatformDocx", ModelType.PSMDocx, ModelType.PSMDocx,
 				Utils.psmDocxTransformation + "MutatePlatform.qvto"));
-		mutationsPSM.add(new MutationOperator("MutatePlatformLibre", ModelType.PSMLibre, ModelType.PSMLibre,
-				Utils.psmLibreTransformation + "MutatePlatform.qvto"));
+		mutationsPSM.add(new MutationOperator("MutateFontFamilyDocx", ModelType.PSMDocx, ModelType.PSMDocx,
+				Utils.psmDocxTransformation + "MutatefontFamily.qvto"));
+		mutationsPSM.add(new MutationOperator("MutateFontFamilyLibre", ModelType.PSMLibre, ModelType.PSMLibre,
+				Utils.psmLibreTransformation + "MutateFontFamily.qvto"));
 	}
 
 	private void initializeEvaluators() {
 
 		evaluators = new ArrayList<OCLEvaluatorInterface>();
-
-		// evaluators.add(
-		// new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT,
-		// "format", "self.documentFormat"));
-		// evaluators.add(new OCLMetadata(ModelType.PSMLibre,
-		// PSMLibrePackage.Literals.DOCUMENT, "format",
-		// "self.documentFormat"));
-		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
-		// PSMDocxPackage.Literals.DOCUMENT, "platform",
-		// "self.documentPlatform"));
-		// evaluators.add(new OCLMetadata(ModelType.PSMLibre,
-		// PSMLibrePackage.Literals.DOCUMENT, "platform",
-		// "self.documentPlatform"));
 
 		// OCL queries
 		evaluators.add(
@@ -353,26 +342,6 @@ public class Mutator {
 		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "table_implementation",
 				"if self.pages.elements->selectByKind(Table)->size() = 0 " + " then 'noTable' "
 						+ "else 'allSimpleTable' endif "));
-
-		// evaluators.add(new OCLMetadata(ModelType.PSMLibre,
-		// PSMLibrePackage.Literals.DOCUMENT, "num_textbox",
-		// "self.pages.elements->selectByKind(TextBox)->size()"));
-		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
-		// PSMDocxPackage.Literals.DOCUMENT, "textboxcount",
-		// "self.pages.elements->selectByKind(TextBox)->asSequence()->size()"));
-		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
-		// PSMDocxPackage.Literals.DOCUMENT, "controlboxcount",
-		// "self.pages.elements->selectByKind(ControlBox)->asSequence()->size()"));
-		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
-		// PSMDocxPackage.Literals.DOCUMENT, "emeddedexcelcount",
-		// "self.pages.elements->selectByKind(EmbeddedExcel)->asSequence()->size()"));
-		// evaluators.add(new OCLMetadata(ModelType.PSMDocx,
-		// PSMDocxPackage.Literals.DOCUMENT, "simpleparagraphcount",
-		// "self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
-		//
-		// evaluators.add(new OCLMetadata(ModelType.PSMLibre,
-		// PSMLibrePackage.Literals.DOCUMENT, "simpleparagraphcount",
-		// "self.pages.elements->selectByKind(Paragraph)->asSequence()->size()"));
 
 		evaluators.add(new OCLLibreText());
 		evaluators.add(new OCLMSWordText());

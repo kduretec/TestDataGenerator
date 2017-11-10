@@ -1,0 +1,18 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PSM uses PSMLibre('http://benchmarkdp.datagenerator.model.PSMLibre');
+
+
+transformation MutateFontFamily(inout model:PSM);
+
+main() {
+	var doc := model.objectsOfType(Document);
+	var elements := doc.pages.elements;
+	elements->forEach(el | el.oclIsKindOf(TextContainer)) {
+		el.oclAsType(TextContainer)->map ChangeFontFamily(FontFamily::ARIAL);
+	}
+}
+
+mapping inout TextContainer::ChangeFontFamily(in ff:PSM::FontFamily) {
+	self.fontFamily := ff;
+}
