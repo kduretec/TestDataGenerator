@@ -7,12 +7,40 @@ transformation MutatePlatform(inout model:PSM);
 
 main() {
 	var doc := model.objectsOfType(Document);
-	doc->map ChangePlatform();
+	var i:Integer := getRandomBetween(1,6);
+	switch {
+		case (i=1) doc->map ChangePlatformUbu14Libre4Odt();
+		case (i=2) doc->map ChangePlatformUbu14Libre4Pdf();
+		case (i=3) doc->map ChangePlatformUbu16Libre5Odt();
+		case (i=4) doc->map ChangePlatformUbu16Libre5Pdf();
+		else null; 
+	};
 }
 
-mapping inout Document::ChangePlatform() {
+mapping inout Document::ChangePlatformUbu14Libre4Odt() {
 	self.documentFormat := "odt";
 	self.documentFilter := "writer8";
-	self.software := "LibreOffice4.4";
+	self.software := "LibreOffice4";
 	self.operatingSystem := "Ubuntu14";
+}
+
+mapping inout Document::ChangePlatformUbu14Libre4Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFilter := "writer_pdf_Export";
+	self.software := "LibreOffice4";
+	self.operatingSystem := "Ubuntu14";
+}
+
+mapping inout Document::ChangePlatformUbu16Libre5Odt() {
+	self.documentFormat := "odt";
+	self.documentFilter := "writer8";
+	self.software := "LibreOffice5";
+	self.operatingSystem := "Ubuntu16";
+}
+
+mapping inout Document::ChangePlatformUbu16Libre5Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFilter := "writer_pdf_Export";
+	self.software := "LibreOffice5";
+	self.operatingSystem := "Ubuntu16";
 }

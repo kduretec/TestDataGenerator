@@ -61,8 +61,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FontFamily">
-    <eLiterals name="ARIAL"/>
-    <eLiterals name="COURIER" value="1"/>
+    <eLiterals name="LIBERATIONMONO" value="1"/>
     <eLiterals name="LIBERATIONSERIF" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Color">

@@ -65,9 +65,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FontFamily">
-    <eLiterals name="CALIBRI"/>
-    <eLiterals name="CENTURY" value="1"/>
-    <eLiterals name="COURIERNEW" value="2"/>
     <eLiterals name="TIMESNEWROMAN" value="3"/>
     <eLiterals name="ARIAL" value="4"/>
   </eClassifiers>

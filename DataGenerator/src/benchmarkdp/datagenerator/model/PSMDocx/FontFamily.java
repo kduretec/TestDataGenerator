@@ -19,36 +19,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum FontFamily implements Enumerator {
 	/**
-	 * The '<em><b>CALIBRI</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CALIBRI_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CALIBRI(0, "CALIBRI", "CALIBRI"),
-
-	/**
-	 * The '<em><b>CENTURY</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CENTURY_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CENTURY(1, "CENTURY", "CENTURY"),
-
-	/**
-	 * The '<em><b>COURIERNEW</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COURIERNEW_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COURIERNEW(2, "COURIERNEW", "COURIERNEW"),
-
-	/**
 	 * The '<em><b>TIMESNEWROMAN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,51 +37,6 @@ public enum FontFamily implements Enumerator {
 	 * @ordered
 	 */
 	ARIAL(4, "ARIAL", "ARIAL");
-
-	/**
-	 * The '<em><b>CALIBRI</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CALIBRI</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CALIBRI
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CALIBRI_VALUE = 0;
-
-	/**
-	 * The '<em><b>CENTURY</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CENTURY</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #CENTURY
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CENTURY_VALUE = 1;
-
-	/**
-	 * The '<em><b>COURIERNEW</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COURIERNEW</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COURIERNEW
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COURIERNEW_VALUE = 2;
 
 	/**
 	 * The '<em><b>TIMESNEWROMAN</b></em>' literal value.
@@ -151,9 +76,6 @@ public enum FontFamily implements Enumerator {
 	 */
 	private static final FontFamily[] VALUES_ARRAY =
 		new FontFamily[] {
-			CALIBRI,
-			CENTURY,
-			COURIERNEW,
 			TIMESNEWROMAN,
 			ARIAL,
 		};
@@ -212,9 +134,6 @@ public enum FontFamily implements Enumerator {
 	 */
 	public static FontFamily get(int value) {
 		switch (value) {
-			case CALIBRI_VALUE: return CALIBRI;
-			case CENTURY_VALUE: return CENTURY;
-			case COURIERNEW_VALUE: return COURIERNEW;
 			case TIMESNEWROMAN_VALUE: return TIMESNEWROMAN;
 			case ARIAL_VALUE: return ARIAL;
 		}

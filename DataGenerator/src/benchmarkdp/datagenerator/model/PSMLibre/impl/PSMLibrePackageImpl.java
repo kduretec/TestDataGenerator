@@ -742,8 +742,7 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 
 		// Initialize enums and add enum literals
 		initEEnum(fontFamilyEEnum, FontFamily.class, "FontFamily");
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.ARIAL);
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.COURIER);
+		addEEnumLiteral(fontFamilyEEnum, FontFamily.LIBERATIONMONO);
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.LIBERATIONSERIF);
 
 		initEEnum(colorEEnum, Color.class, "Color");

@@ -19,26 +19,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum FontFamily implements Enumerator {
 	/**
-	 * The '<em><b>ARIAL</b></em>' literal object.
+	 * The '<em><b>LIBERATIONMONO</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #ARIAL_VALUE
+	 * @see #LIBERATIONMONO_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ARIAL(0, "ARIAL", "ARIAL"),
-
-	/**
-	 * The '<em><b>COURIER</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #COURIER_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	COURIER(1, "COURIER", "COURIER"),
-
-	/**
+	LIBERATIONMONO(1, "LIBERATIONMONO", "LIBERATIONMONO"), /**
 	 * The '<em><b>LIBERATIONSERIF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -49,34 +37,19 @@ public enum FontFamily implements Enumerator {
 	LIBERATIONSERIF(2, "LIBERATIONSERIF", "LIBERATIONSERIF");
 
 	/**
-	 * The '<em><b>ARIAL</b></em>' literal value.
+	 * The '<em><b>LIBERATIONMONO</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>ARIAL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>LIBERATIONMONO</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #ARIAL
+	 * @see #LIBERATIONMONO
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ARIAL_VALUE = 0;
-
-	/**
-	 * The '<em><b>COURIER</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>COURIER</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #COURIER
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int COURIER_VALUE = 1;
+	public static final int LIBERATIONMONO_VALUE = 1;
 
 	/**
 	 * The '<em><b>LIBERATIONSERIF</b></em>' literal value.
@@ -101,8 +74,7 @@ public enum FontFamily implements Enumerator {
 	 */
 	private static final FontFamily[] VALUES_ARRAY =
 		new FontFamily[] {
-			ARIAL,
-			COURIER,
+			LIBERATIONMONO,
 			LIBERATIONSERIF,
 		};
 
@@ -160,8 +132,7 @@ public enum FontFamily implements Enumerator {
 	 */
 	public static FontFamily get(int value) {
 		switch (value) {
-			case ARIAL_VALUE: return ARIAL;
-			case COURIER_VALUE: return COURIER;
+			case LIBERATIONMONO_VALUE: return LIBERATIONMONO;
 			case LIBERATIONSERIF_VALUE: return LIBERATIONSERIF;
 		}
 		return null;

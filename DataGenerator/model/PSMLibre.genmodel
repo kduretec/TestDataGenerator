@@ -8,8 +8,7 @@
   <genPackages prefix="PSMLibre" basePackage="benchmarkdp.datagenerator.model" disposableProviderFactory="true"
       ecorePackage="PSMLibre.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="PSMLibre.ecore#//FontFamily">
-      <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//FontFamily/ARIAL"/>
-      <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//FontFamily/COURIER"/>
+      <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//FontFamily/LIBERATIONMONO"/>
       <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//FontFamily/LIBERATIONSERIF"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="PSMLibre.ecore#//Color">

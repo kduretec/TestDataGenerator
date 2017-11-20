@@ -6,14 +6,56 @@ transformation MutatePlatform(inout model:PSM);
 
 main() {
 	var doc := model.objectsOfType(Document);
-	doc->map ChangePlatform();
+	var i:Integer := getRandomBetween(1,6);
+	switch {
+		case (i=1) doc->map ChangePlatformWin7Office2007Docx();
+		case (i=2) doc->map ChangePlatformWin7Office2007Pdf();
+		case (i=3) doc->map ChangePlatformWin7Office2010Docx();
+		case (i=4) doc->map ChangePlatformWin7Office2010Pdf();
+		case (i=5) doc->map ChangePlatformWin8_1Office2013Docx();
+		case (i=6) doc->map ChangePlatformWin8_1Office2013Pdf();
+		else null; 
+	};
 }
 
-mapping inout Document::ChangePlatform() {
+mapping inout Document::ChangePlatformWin7Office2007Docx() {
 	self.documentFormat := "docx";
 	self.documentFormatCode := "16";
-	//self.documentFormat := "rtf";
-	//self.documentFormatCode := "6";
 	self.software := "MSWord2007";
 	self.operatingSystem := "Windows7";
+}
+
+mapping inout Document::ChangePlatformWin7Office2007Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFormatCode := "17";
+	self.software := "MSWord2007";
+	self.operatingSystem := "Windows7";
+}
+
+mapping inout Document::ChangePlatformWin7Office2010Docx() {
+	self.documentFormat := "docx";
+	self.documentFormatCode := "16";
+	self.software := "MSWord2010";
+	self.operatingSystem := "Windows7";
+}
+
+mapping inout Document::ChangePlatformWin7Office2010Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFormatCode := "17";
+	self.software := "MSWord2010";
+	self.operatingSystem := "Windows7";
+}
+
+mapping inout Document::ChangePlatformWin8_1Office2013Docx() {
+	self.documentFormat := "docx";
+	self.documentFormatCode := "16";
+	self.software := "MSWord2013";
+	self.operatingSystem := "Windows8_1";
+}
+
+mapping inout Document::ChangePlatformWin8_1Office2013Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFormatCode := "17";
+	self.software := "MSWord2013";
+	self.operatingSystem := "Windows8_1";
 }

@@ -8,9 +8,6 @@
   <genPackages prefix="PSMDocx" basePackage="benchmarkdp.datagenerator.model" disposableProviderFactory="true"
       ecorePackage="PSMDocx.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="PSMDocx.ecore#//FontFamily">
-      <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//FontFamily/CALIBRI"/>
-      <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//FontFamily/CENTURY"/>
-      <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//FontFamily/COURIERNEW"/>
       <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//FontFamily/TIMESNEWROMAN"/>
       <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//FontFamily/ARIAL"/>
     </genEnums>

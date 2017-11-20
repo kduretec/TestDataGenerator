@@ -863,9 +863,6 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 
 		// Initialize enums and add enum literals
 		initEEnum(fontFamilyEEnum, FontFamily.class, "FontFamily");
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.CALIBRI);
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.CENTURY);
-		addEEnumLiteral(fontFamilyEEnum, FontFamily.COURIERNEW);
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.TIMESNEWROMAN);
 		addEEnumLiteral(fontFamilyEEnum, FontFamily.ARIAL);
 

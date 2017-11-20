@@ -36,7 +36,7 @@ public abstract class TextContainerImpl extends ElementImpl implements TextConta
 	 * @generated
 	 * @ordered
 	 */
-	protected static final FontFamily FONT_FAMILY_EDEFAULT = FontFamily.ARIAL;
+	protected static final FontFamily FONT_FAMILY_EDEFAULT = FontFamily.LIBERATIONMONO;
 
 	/**
 	 * The cached value of the '{@link #getFontFamily() <em>Font Family</em>}' attribute.
