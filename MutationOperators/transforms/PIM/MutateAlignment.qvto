@@ -1,0 +1,36 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
+
+transformation MutateAlignment(inout model:PIM);
+
+configuration property elementAlignment:String;
+
+main() {
+	var doc := model.objectsOfType(Document);
+	var alignment:Alignment; 
+	
+	if (elementAlignment=null) {
+		var i:= getRandomBetween(1,3);
+		switch {
+			case(i=1) alignment:=Alignment::LEFT;
+			case(i=2) alignment:=Alignment::CENTER;
+			case(i=3) alignment:=Alignment::RIGHT;
+			else null;
+		};
+	} else {
+		switch {
+			case (elementAlignment="left") alignment:=Alignment::LEFT;
+			case (elementAlignment="center") alignment:=Alignment::CENTER;
+			case (elementAlignment="right") alignment:=Alignment::RIGHT; 
+		}
+	};
+	
+	doc.pages.elements->forEach(el) {
+		el->map ElementAlignment(alignment)
+	}
+}
+
+mapping inout Element::ElementAlignment(in alg:PIM::Alignment) {
+	self.alignment := alg;
+}
