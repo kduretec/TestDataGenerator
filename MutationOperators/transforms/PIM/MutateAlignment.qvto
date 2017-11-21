@@ -23,6 +23,7 @@ main() {
 			case (elementAlignment="left") alignment:=Alignment::LEFT;
 			case (elementAlignment="center") alignment:=Alignment::CENTER;
 			case (elementAlignment="right") alignment:=Alignment::RIGHT; 
+			else null;
 		}
 	};
 	

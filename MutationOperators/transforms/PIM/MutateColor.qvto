@@ -12,23 +12,67 @@ main() {
 
 	var doc := model.objectsOfType(Document);
 	
-	doc->map ChangeColors();
+	if (documentBackgroundColor=null) {
+		var rnd := getRandomReal();
+		switch {
+			case (rnd < 0.9) documentBackgroundColor := "white";
+			case (rnd >= 0.9 and rnd <0.93) documentBackgroundColor := "black";
+			case (rnd >= 0.93 and rnd <0.96) documentBackgroundColor := "blue";
+			case (rnd >= 0.96 and rnd < 1) documentBackgroundColor := "red";
+			else null;
+		};
+	};
+	
+	if (elementBackgroundColor=null) {
+		var rnd := getRandomReal();
+		switch {
+			case (rnd < 0.9) elementBackgroundColor := "white";
+			case (rnd >= 0.9 and rnd <0.93) elementBackgroundColor := "black";
+			case (rnd >= 0.93 and rnd <0.96) elementBackgroundColor := "blue";
+			case (rnd >= 0.96 and rnd < 1) elementBackgroundColor := "red";
+			else null;
+		};
+	}; 
+	
+	if (fontColor=null) {
+		var rnd := getRandomReal();
+		switch {
+			case (rnd < 0.9) fontColor := "black";
+			case (rnd >= 0.9 and rnd <0.93) fontColor := "white";
+			case (rnd >= 0.93 and rnd <0.96) fontColor := "blue";
+			case (rnd >= 0.96 and rnd < 1) fontColor := "red";
+			else null;
+		};
+	}; 
+	
+	doc->map ChangeColors(documentBackgroundColor, elementBackgroundColor, fontColor);
 }
 
-mapping inout Document::ChangeColors() {
-	self.documentBackground := Color::BLUE;
+mapping inout Document::ChangeColors(in backColor:String, in elColor:String, in fntColor:String) {
+	self.documentBackground := stringToColor(backColor);
 	self.pages.elements->forEach(el) {
-		el->map ElementBackground();
+		el->map ElementBackground(elColor);
 		if (el.oclIsKindOf(PIM::TextContainer)) {
-			el.oclAsType(PIM::TextContainer)->map TextFont();
+			el.oclAsType(PIM::TextContainer)->map TextFont(fntColor);
 		}
 	};
 }
 
-mapping inout Element::ElementBackground() {
-	self.backgroundColor := Color::WHITE;
+mapping inout Element::ElementBackground(in elColor:String) {
+	self.backgroundColor := stringToColor(elColor);
 }
 
-mapping inout TextContainer::TextFont() {
-	self.fontColor := Color::BLACK;
+mapping inout TextContainer::TextFont(in fntColor:String) {
+	self.fontColor := stringToColor(fntColor);
+}
+
+
+helper stringToColor(in col:String):PIM::Color {
+	switch {
+		case (col="white") return Color::WHITE;
+		case (col="black") return Color::BLACK;
+		case (col="blue") return Color::BLUE;
+		case (col="red") return Color::RED;
+		else return Color::WHITE;
+	}
 }
