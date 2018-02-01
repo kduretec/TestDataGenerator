@@ -10,6 +10,7 @@ import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordColor;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordControlBox;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordDocument;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordEmbeddedExcel;
+import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordFontFamily;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordGeneratedCode;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordHyperLink;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordImage;
@@ -57,6 +58,8 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     this.compiler.addCompiler("Color", _mSWordColor);
     MSWordEmbeddedExcel _mSWordEmbeddedExcel = new MSWordEmbeddedExcel();
     this.compiler.addCompiler("EmbeddedExcel", _mSWordEmbeddedExcel);
+    MSWordFontFamily _mSWordFontFamily = new MSWordFontFamily();
+    this.compiler.addCompiler("FontFamily", _mSWordFontFamily);
   }
   
   @Override

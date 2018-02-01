@@ -28,6 +28,7 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		compiler.addCompiler("HyperLink", new MSWordHyperLink())
 		compiler.addCompiler("Color", new MSWordColor())
 		compiler.addCompiler("EmbeddedExcel", new MSWordEmbeddedExcel())
+		compiler.addCompiler("FontFamily", new MSWordFontFamily())
 	}
 
 	override getModelType() {

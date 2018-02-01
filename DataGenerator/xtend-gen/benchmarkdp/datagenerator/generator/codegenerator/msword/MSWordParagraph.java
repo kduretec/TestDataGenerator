@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.msword;
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
 import benchmarkdp.datagenerator.model.PSMDocx.Color;
+import benchmarkdp.datagenerator.model.PSMDocx.FontFamily;
 import benchmarkdp.datagenerator.model.PSMDocx.HyperLink;
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph;
 import benchmarkdp.datagenerator.model.PSMDocx.SimpleText;
@@ -51,9 +52,18 @@ public class MSWordParagraph extends AbstractElementCompiler {
       cState.setVariable("temp", temp);
       Color _fontColor = par.getFontColor();
       this.compiler.compile("Color", _fontColor);
+      Object _variable_4 = cState.getVariable("temp");
+      temp = ((String) _variable_4);
+      StringConcatenation _builder_3 = new StringConcatenation();
+      _builder_3.append("oSelection.Font.Name = ");
+      String _plus_3 = (temp + _builder_3);
+      temp = _plus_3;
+      cState.setVariable("temp", temp);
+      FontFamily _fontFamily = par.getFontFamily();
+      this.compiler.compile("FontFamily", _fontFamily);
     }
-    Object _variable_4 = cState.getVariable("temp");
-    temp = ((String) _variable_4);
+    Object _variable_5 = cState.getVariable("temp");
+    temp = ((String) _variable_5);
     Integer _integer = new Integer(parag);
     cState.setVariable("parag", _integer);
     EList<Text> _text = par.getText();
@@ -70,23 +80,23 @@ public class MSWordParagraph extends AbstractElementCompiler {
         }
       }
     }
-    Object _variable_5 = cState.getVariable("temp");
-    temp = ((String) _variable_5);
+    Object _variable_6 = cState.getVariable("temp");
+    temp = ((String) _variable_6);
     if ((!(inTable).booleanValue())) {
-      StringConcatenation _builder_3 = new StringConcatenation();
-      _builder_3.append("Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), \"");
+      StringConcatenation _builder_4 = new StringConcatenation();
+      _builder_4.append("Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), \"");
       String _iD = par.getID();
-      _builder_3.append(_iD, "");
-      _builder_3.append("\", objWord, objFile)");
-      _builder_3.newLineIfNotEmpty();
-      String _plus_3 = (temp + _builder_3);
-      temp = _plus_3;
+      _builder_4.append(_iD, "");
+      _builder_4.append("\", objWord, objFile)");
+      _builder_4.newLineIfNotEmpty();
+      String _plus_4 = (temp + _builder_4);
+      temp = _plus_4;
     }
-    StringConcatenation _builder_4 = new StringConcatenation();
-    _builder_4.append("i = i + 1");
-    _builder_4.newLine();
-    String _plus_4 = (temp + _builder_4);
-    temp = _plus_4;
+    StringConcatenation _builder_5 = new StringConcatenation();
+    _builder_5.append("i = i + 1");
+    _builder_5.newLine();
+    String _plus_5 = (temp + _builder_5);
+    temp = _plus_5;
     cState.setVariable("temp", temp);
   }
 }
