@@ -33,7 +33,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
 public class Mutator {
 
-	int n = 1; // number of test cases to generate
+	int n = 5; // number of test cases to generate
 
 	private List<MutationOperatorInterface> mutationsPIM;
 	private List<MutationOperatorInterface> mutationsPIM2PSM;
@@ -124,6 +124,7 @@ public class Mutator {
 					}
 				}
 			}
+			System.out.println("Processed " + (i+1) + "/" + testCases.size() + " PIM");
 		}
 
 		// PIM2PSM transformation
@@ -358,5 +359,4 @@ public class Mutator {
 		codeGeneratorObserver.add(libreObserver);
 	}
 
-	
 }
