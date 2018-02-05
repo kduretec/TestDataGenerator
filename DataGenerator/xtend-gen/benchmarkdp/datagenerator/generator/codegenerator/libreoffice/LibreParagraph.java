@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.libreoffice;
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
 import benchmarkdp.datagenerator.model.PSMLibre.Color;
+import benchmarkdp.datagenerator.model.PSMLibre.FontFamily;
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
 import benchmarkdp.datagenerator.model.PSMLibre.Text;
 import org.eclipse.emf.common.util.EList;
@@ -42,11 +43,19 @@ public class LibreParagraph extends AbstractElementCompiler {
       this.compiler.compile("Color", _backgroundColor);
       Object _variable_3 = cState.getVariable("temp");
       String col = ((String) _variable_3);
+      temp = "";
+      cState.setVariable("temp", temp);
+      FontFamily _fontFamily = par.getFontFamily();
+      this.compiler.compile("FontFamily", _fontFamily);
+      Object _variable_4 = cState.getVariable("temp");
+      String font = ((String) _variable_4);
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("oCur = ThisComponent.CurrentController.getViewCursor()");
       _builder_1.newLine();
       _builder_1.append("oCur.ParaStyleName  = getParagraphStyleName(");
       _builder_1.append(col, "");
+      _builder_1.append(",");
+      _builder_1.append(font, "");
       _builder_1.append(")");
       _builder_1.newLineIfNotEmpty();
       String _plus_1 = (tempBack + _builder_1);
@@ -63,8 +72,8 @@ public class LibreParagraph extends AbstractElementCompiler {
     for (final Text txt : _text) {
       {
         if (((inTable).booleanValue() && (counter > 0))) {
-          Object _variable_4 = cState.getVariable("temp");
-          temp = ((String) _variable_4);
+          Object _variable_5 = cState.getVariable("temp");
+          temp = ((String) _variable_5);
           temp = (temp + " + ");
           cState.setVariable("temp", temp);
         }
@@ -77,8 +86,8 @@ public class LibreParagraph extends AbstractElementCompiler {
       }
     }
     if ((!(inTable).booleanValue())) {
-      Object _variable_4 = cState.getVariable("temp");
-      temp = ((String) _variable_4);
+      Object _variable_5 = cState.getVariable("temp");
+      temp = ((String) _variable_5);
       StringConcatenation _builder_2 = new StringConcatenation();
       _builder_2.append("getLines(");
       _builder_2.append(parag, "");

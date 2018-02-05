@@ -35,9 +35,13 @@ class LibreParagraph extends AbstractElementCompiler {
 			cState.setVariable("temp", temp)
 			compiler.compile("Color", par.backgroundColor)
 			var col = cState.getVariable("temp") as String
+			temp = ""
+			cState.setVariable("temp", temp)
+			compiler.compile("FontFamily", par.fontFamily)
+			var font = cState.getVariable("temp") as String
 			temp = tempBack + ''' 
 			oCur = ThisComponent.CurrentController.getViewCursor()
-			oCur.ParaStyleName  = getParagraphStyleName(«col»)
+			oCur.ParaStyleName  = getParagraphStyleName(«col»,«font»)
 			'''			
 		}
 		cState.setVariable("temp", temp)

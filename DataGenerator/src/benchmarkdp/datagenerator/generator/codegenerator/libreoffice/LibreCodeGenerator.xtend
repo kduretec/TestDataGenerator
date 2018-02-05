@@ -33,6 +33,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		compiler.addCompiler("Image", new LibreImage())
 		compiler.addCompiler("SimpleText", new LibreSimpleText())
 		compiler.addCompiler("Color", new LibreColor())
+		compiler.addCompiler("FontFamily", new LibreFontFamily())
 		
 	}
 
@@ -96,14 +97,15 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 	// This is a helper function used to return paragraph style for a paragraph  
 	def helper2() {
 		var fun = '''
-			Function getParagraphStyleName(colorCode) as String
+			Function getParagraphStyleName(colorCode, fontName) as String
 				Dim stName As String
-				stName = "PAR_BACK_" &amp; colorCode 
+				stName = "PAR_BACK_" &amp; colorCode &amp; "_" &amp; fontName  
 				oStyleFamilies = ThisComponent.getStyleFamilies()
 				oParagraphStyles = oStyleFamilies.getByName("ParagraphStyles")
 				If (NOT oParagraphStyles.HasByName(stName))  Then
 					oStyle = ThisComponent.createInstance("com.sun.star.style.ParagraphStyle")
 					oStyle.ParaBackColor = 	colorCode
+					oStyle.CharFontName = fontName
 					oParagraphStyles.insertByName(stName, oStyle)
 				End If 
 				getParagraphStyleName = stName

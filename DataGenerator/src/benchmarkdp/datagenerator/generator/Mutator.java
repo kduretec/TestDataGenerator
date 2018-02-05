@@ -135,7 +135,7 @@ public class Mutator {
 			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
 				// MutationOperatorInterface mo =
 				// mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-				MutationOperatorInterface mo = mutationsPIM2PSM.get(0);
+				MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
 				if (tC.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 						&& mo.getDestinationModel() != ModelType.PIM) {
 					mo.mutateTestCase(tC);
@@ -274,6 +274,8 @@ public class Mutator {
 				Utils.psmDocxTransformation + "MutatefontFamily.qvto"));
 		mutationsPSM.add(new MutationOperator("MutateFontFamilyLibre", ModelType.PSMLibre, ModelType.PSMLibre,
 				Utils.psmLibreTransformation + "MutateFontFamily.qvto"));
+		mutationsPSM.add(new MutationOperator("MutatePlatformLibre", ModelType.PSMLibre, ModelType.PSMLibre,
+				Utils.psmLibreTransformation + "MutatePlatform.qvto"));
 	}
 
 	private void initializeEvaluators() {

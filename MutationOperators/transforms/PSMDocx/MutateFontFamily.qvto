@@ -10,7 +10,7 @@ configuration property fontFamily : String;
 main() {
 	var doc := model.objectsOfType(Document);
 	var elements := doc.pages.elements;
-	var font:FontFamily ; 
+	var font:FontFamily; 
 	
 	if (fontFamily <> null) {
 		switch {

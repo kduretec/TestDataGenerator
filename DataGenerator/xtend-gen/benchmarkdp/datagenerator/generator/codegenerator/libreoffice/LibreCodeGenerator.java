@@ -9,6 +9,7 @@ import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
 import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreColor;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreDocument;
+import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreFontFamily;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratedCode;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreImage;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibrePage;
@@ -50,6 +51,8 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     this.compiler.addCompiler("SimpleText", _libreSimpleText);
     LibreColor _libreColor = new LibreColor();
     this.compiler.addCompiler("Color", _libreColor);
+    LibreFontFamily _libreFontFamily = new LibreFontFamily();
+    this.compiler.addCompiler("FontFamily", _libreFontFamily);
   }
   
   @Override
@@ -165,13 +168,13 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   
   public String helper2() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Function getParagraphStyleName(colorCode) as String");
+    _builder.append("Function getParagraphStyleName(colorCode, fontName) as String");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("Dim stName As String");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("stName = \"PAR_BACK_\" &amp; colorCode ");
+    _builder.append("stName = \"PAR_BACK_\" &amp; colorCode &amp; \"_\" &amp; fontName  ");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("oStyleFamilies = ThisComponent.getStyleFamilies()");
@@ -187,6 +190,9 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("oStyle.ParaBackColor = \tcolorCode");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("oStyle.CharFontName = fontName");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("oParagraphStyles.insertByName(stName, oStyle)");
