@@ -13,14 +13,8 @@ public class MSWordSimpleText extends AbstractElementCompiler {
     SimpleText t = ((SimpleText) object);
     Object _variable = cState.getVariable("temp");
     String temp = ((String) _variable);
-    temp = (temp + "\'oSelection.Font.Color = ");
-    cState.setVariable("temp", temp);
     Object _variable_1 = cState.getVariable("temp");
     temp = ((String) _variable_1);
-    temp = (temp + "\n\'oSelection.Shading.BackgroundPatternColor = ");
-    cState.setVariable("temp", temp);
-    Object _variable_2 = cState.getVariable("temp");
-    temp = ((String) _variable_2);
     temp = (temp + "\n");
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("oSelection.Font.Size = ");

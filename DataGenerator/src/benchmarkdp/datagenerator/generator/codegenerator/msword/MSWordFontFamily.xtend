@@ -14,10 +14,10 @@ class MSWordFontFamily extends AbstractElementCompiler implements IEnumCompiler 
 		var f = en as FontFamily
 		var temp = cState.getVariable("temp") as String
 		if (f == FontFamily::TIMESNEWROMAN) {
-			temp = temp + "Times New Roman"
+			temp = temp + "\"Times New Roman\""
 		}
 		if (f == FontFamily::ARIAL) {
-			temp = temp + "Arial"
+			temp = temp + "\"Arial\""
 		}
 		
 		cState.setVariable("temp", temp)

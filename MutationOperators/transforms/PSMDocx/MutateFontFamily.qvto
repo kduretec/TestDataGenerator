@@ -4,17 +4,27 @@ modeltype PSM uses PSMDocx('http://benchmarkdp.datagenerator.model.PSMDocx');
 
 
 transformation MutateFontFamily(inout model:PSM);
+configuration property fontFamily : String;
+
 
 main() {
 	var doc := model.objectsOfType(Document);
 	var elements := doc.pages.elements;
-	
 	var font:FontFamily ; 
-	var rnd := getRandomBetween(1,2);
-	switch {
-		case (rnd=1) font:=FontFamily::TIMESNEWROMAN;
-		case (rnd=2) font:=FontFamily::ARIAL;
-		else null;
+	
+	if (fontFamily <> null) {
+		switch {
+			case (fontFamily="TimesNewRoman") font:=FontFamily::TIMESNEWROMAN;
+			case (fontFamily="Arial") font:=FontFamily::ARIAL;
+			else null;
+		};
+	} else {
+		var rnd := getRandomBetween(1,2);
+		switch {
+			case (rnd=1) font:=FontFamily::TIMESNEWROMAN;
+			case (rnd=2) font:=FontFamily::ARIAL;
+			else null;
+		};		
 	};
 	elements->forEach(el | el.oclIsKindOf(TextContainer)) {
 		el.oclAsType(TextContainer)->map ChangeFontFamily(font);

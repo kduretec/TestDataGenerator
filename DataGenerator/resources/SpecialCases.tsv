@@ -1,4 +1,5 @@
-sample_1850	numPage:3	numWords:39343	numParag:3007	numTables:21	paragraphImpl:mixture
+testCase	numPage:1	numWords:1000	numParag:3	fontFamily:TimesNewRoman	numTables:1
+sample_1850	numPage:3	numWords:39343	numParag:3007	numTables:21
 sample_3324	numPage:5	numWords:1628	numParag:8	numTables:3
 sample_6412	numPage:26	numWords:17518	numParag:513	numTables:45
 sample_7069	numPage:1	numWords:987	numParag:135	numTables:0

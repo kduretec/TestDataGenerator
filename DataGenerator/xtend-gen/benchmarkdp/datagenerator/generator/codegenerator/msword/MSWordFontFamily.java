@@ -17,11 +17,11 @@ public class MSWordFontFamily extends AbstractElementCompiler implements IEnumCo
     String temp = ((String) _variable);
     boolean _equals = Objects.equal(f, FontFamily.TIMESNEWROMAN);
     if (_equals) {
-      temp = (temp + "Times New Roman");
+      temp = (temp + "\"Times New Roman\"");
     }
     boolean _equals_1 = Objects.equal(f, FontFamily.ARIAL);
     if (_equals_1) {
-      temp = (temp + "Arial");
+      temp = (temp + "\"Arial\"");
     }
     cState.setVariable("temp", temp);
   }

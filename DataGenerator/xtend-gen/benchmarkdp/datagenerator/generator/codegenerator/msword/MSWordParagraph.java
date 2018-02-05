@@ -52,16 +52,16 @@ public class MSWordParagraph extends AbstractElementCompiler {
       cState.setVariable("temp", temp);
       Color _fontColor = par.getFontColor();
       this.compiler.compile("Color", _fontColor);
-      Object _variable_4 = cState.getVariable("temp");
-      temp = ((String) _variable_4);
-      StringConcatenation _builder_3 = new StringConcatenation();
-      _builder_3.append("oSelection.Font.Name = ");
-      String _plus_3 = (temp + _builder_3);
-      temp = _plus_3;
-      cState.setVariable("temp", temp);
-      FontFamily _fontFamily = par.getFontFamily();
-      this.compiler.compile("FontFamily", _fontFamily);
     }
+    Object _variable_4 = cState.getVariable("temp");
+    temp = ((String) _variable_4);
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("oSelection.Font.Name = ");
+    String _plus_3 = (temp + _builder_3);
+    temp = _plus_3;
+    cState.setVariable("temp", temp);
+    FontFamily _fontFamily = par.getFontFamily();
+    this.compiler.compile("FontFamily", _fontFamily);
     Object _variable_5 = cState.getVariable("temp");
     temp = ((String) _variable_5);
     Integer _integer = new Integer(parag);
