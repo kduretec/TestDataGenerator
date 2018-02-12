@@ -843,97 +843,6 @@ public interface PSMLibrePackage extends EPackage {
 	int IMAGE_OPERATION_COUNT = ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.TextBoxImpl <em>Text Box</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.TextBoxImpl
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getTextBox()
-	 * @generated
-	 */
-	int TEXT_BOX = 11;
-
-	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__ID = PARAGRAPH_IMPL__ID;
-
-	/**
-	 * The feature id for the '<em><b>Parent ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__PARENT_ID = PARAGRAPH_IMPL__PARENT_ID;
-
-	/**
-	 * The feature id for the '<em><b>Background Color</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__BACKGROUND_COLOR = PARAGRAPH_IMPL__BACKGROUND_COLOR;
-
-	/**
-	 * The feature id for the '<em><b>Alignment</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__ALIGNMENT = PARAGRAPH_IMPL__ALIGNMENT;
-
-	/**
-	 * The feature id for the '<em><b>Font Family</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__FONT_FAMILY = PARAGRAPH_IMPL__FONT_FAMILY;
-
-	/**
-	 * The feature id for the '<em><b>Font Color</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__FONT_COLOR = PARAGRAPH_IMPL__FONT_COLOR;
-
-	/**
-	 * The feature id for the '<em><b>Text</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX__TEXT = PARAGRAPH_IMPL__TEXT;
-
-	/**
-	 * The number of structural features of the '<em>Text Box</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX_FEATURE_COUNT = PARAGRAPH_IMPL_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Text Box</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BOX_OPERATION_COUNT = PARAGRAPH_IMPL_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMLibre.FontFamily <em>Font Family</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -941,7 +850,7 @@ public interface PSMLibrePackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getFontFamily()
 	 * @generated
 	 */
-	int FONT_FAMILY = 12;
+	int FONT_FAMILY = 11;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMLibre.Color <em>Color</em>}' enum.
@@ -951,7 +860,7 @@ public interface PSMLibrePackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getColor()
 	 * @generated
 	 */
-	int COLOR = 13;
+	int COLOR = 12;
 
 	/**
 	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMLibre.Alignment <em>Alignment</em>}' enum.
@@ -961,7 +870,7 @@ public interface PSMLibrePackage extends EPackage {
 	 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getAlignment()
 	 * @generated
 	 */
-	int ALIGNMENT = 14;
+	int ALIGNMENT = 13;
 
 
 	/**
@@ -1361,16 +1270,6 @@ public interface PSMLibrePackage extends EPackage {
 	EAttribute getTextContainer_FontColor();
 
 	/**
-	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.TextBox <em>Text Box</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Text Box</em>'.
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.TextBox
-	 * @generated
-	 */
-	EClass getTextBox();
-
-	/**
 	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMLibre.FontFamily <em>Font Family</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1740,16 +1639,6 @@ public interface PSMLibrePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TEXT_CONTAINER__FONT_COLOR = eINSTANCE.getTextContainer_FontColor();
-
-		/**
-		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.TextBoxImpl <em>Text Box</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.TextBoxImpl
-		 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getTextBox()
-		 * @generated
-		 */
-		EClass TEXT_BOX = eINSTANCE.getTextBox();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.FontFamily <em>Font Family</em>}' enum.

@@ -70,6 +70,5 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//TextContainer/fontFamily"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//TextContainer/fontColor"/>
     </genClasses>
-    <genClasses ecoreClass="PSMLibre.ecore#//TextBox"/>
   </genPackages>
 </genmodel:GenModel>

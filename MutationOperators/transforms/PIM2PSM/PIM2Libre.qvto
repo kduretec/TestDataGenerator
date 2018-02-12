@@ -23,8 +23,8 @@ mapping PIM::Page::PageToPage():PSM::Page {
 	if (paragraphImpl = null) {
 		var rnd := getRandomReal(); 
 		switch {
-			case(rnd < 0.80) paragraphImpl := "allSimpleParagraph";
-			case(rnd >= 0.8 and rnd < 0.9) paragraphImpl := "allTextBox";
+			case(rnd <= 1.00) paragraphImpl := "allSimpleParagraph";
+			//case(rnd >= 0.8 and rnd < 0.9) paragraphImpl := "allTextBox";
 			else paragraphImpl := "mixture";
 		}
 	};
@@ -46,7 +46,7 @@ mapping PIM::Page::PageToPage():PSM::Page {
 			if (temp < percSP) {
 				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToParagraph();
 			} else if (temp < percSP + percTB) {
-				elements += e.oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
+				//elements += e.oclAsType(PIM::Paragraph)->map ParagraphToTextBox();
 			};
 		};
 		if (e.oclIsTypeOf(PIM::Table)) {
@@ -93,7 +93,7 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph
 		 text += sT;		 
 		}
 }
-
+/*
 mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox 
 	inherits PIM::TextContainer::TextContainerToTextContainer {
 		var i:Integer := 1;
@@ -115,7 +115,7 @@ mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox
 		 text += sT;		 
 		}
 }
-
+*/
 mapping PIM::Table::TableToTable():PSM::Table {
 	ID := generateUID();
 	parentID := self.ID; 

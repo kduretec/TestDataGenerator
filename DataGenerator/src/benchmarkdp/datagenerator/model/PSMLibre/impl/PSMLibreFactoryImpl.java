@@ -15,8 +15,6 @@ import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
 import benchmarkdp.datagenerator.model.PSMLibre.Row;
 import benchmarkdp.datagenerator.model.PSMLibre.Table;
 import benchmarkdp.datagenerator.model.PSMLibre.Text;
-import benchmarkdp.datagenerator.model.PSMLibre.TextBox;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -78,7 +76,6 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 			case PSMLibrePackage.ROW: return createRow();
 			case PSMLibrePackage.CELL: return createCell();
 			case PSMLibrePackage.IMAGE: return createImage();
-			case PSMLibrePackage.TEXT_BOX: return createTextBox();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -200,16 +197,6 @@ public class PSMLibreFactoryImpl extends EFactoryImpl implements PSMLibreFactory
 	public Image createImage() {
 		ImageImpl image = new ImageImpl();
 		return image;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TextBox createTextBox() {
-		TextBoxImpl textBox = new TextBoxImpl();
-		return textBox;
 	}
 
 	/**

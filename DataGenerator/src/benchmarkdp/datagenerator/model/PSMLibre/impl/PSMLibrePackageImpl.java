@@ -17,7 +17,6 @@ import benchmarkdp.datagenerator.model.PSMLibre.ParagraphImpl;
 import benchmarkdp.datagenerator.model.PSMLibre.Row;
 import benchmarkdp.datagenerator.model.PSMLibre.Table;
 import benchmarkdp.datagenerator.model.PSMLibre.Text;
-import benchmarkdp.datagenerator.model.PSMLibre.TextBox;
 import benchmarkdp.datagenerator.model.PSMLibre.TextContainer;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -111,13 +110,6 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * @generated
 	 */
 	private EClass textContainerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass textBoxEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -539,15 +531,6 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTextBox() {
-		return textBoxEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EEnum getFontFamily() {
 		return fontFamilyEEnum;
 	}
@@ -646,8 +629,6 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		createEAttribute(textContainerEClass, TEXT_CONTAINER__FONT_FAMILY);
 		createEAttribute(textContainerEClass, TEXT_CONTAINER__FONT_COLOR);
 
-		textBoxEClass = createEClass(TEXT_BOX);
-
 		// Create enums
 		fontFamilyEEnum = createEEnum(FONT_FAMILY);
 		colorEEnum = createEEnum(COLOR);
@@ -687,7 +668,6 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		tableEClass.getESuperTypes().add(this.getTextContainer());
 		imageEClass.getESuperTypes().add(this.getElement());
 		textContainerEClass.getESuperTypes().add(this.getElement());
-		textBoxEClass.getESuperTypes().add(this.getParagraphImpl());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -737,8 +717,6 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		initEClass(textContainerEClass, TextContainer.class, "TextContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTextContainer_FontFamily(), this.getFontFamily(), "fontFamily", null, 0, 1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTextContainer_FontColor(), this.getColor(), "fontColor", null, 0, 1, TextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(textBoxEClass, TextBox.class, "TextBox", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(fontFamilyEEnum, FontFamily.class, "FontFamily");

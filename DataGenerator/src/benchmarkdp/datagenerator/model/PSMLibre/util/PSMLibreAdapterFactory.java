@@ -112,10 +112,6 @@ public class PSMLibreAdapterFactory extends AdapterFactoryImpl {
 				return createTextContainerAdapter();
 			}
 			@Override
-			public Adapter caseTextBox(TextBox object) {
-				return createTextBoxAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -286,20 +282,6 @@ public class PSMLibreAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTextContainerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link benchmarkdp.datagenerator.model.PSMLibre.TextBox <em>Text Box</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see benchmarkdp.datagenerator.model.PSMLibre.TextBox
-	 * @generated
-	 */
-	public Adapter createTextBoxAdapter() {
 		return null;
 	}
 

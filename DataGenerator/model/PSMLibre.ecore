@@ -79,5 +79,4 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontFamily" eType="#//FontFamily"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fontColor" eType="#//Color"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TextBox" eSuperTypes="#//ParagraphImpl"/>
 </ecore:EPackage>

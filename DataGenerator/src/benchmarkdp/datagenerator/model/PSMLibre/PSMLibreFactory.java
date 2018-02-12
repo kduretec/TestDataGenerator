@@ -94,15 +94,6 @@ public interface PSMLibreFactory extends EFactory {
 	Image createImage();
 
 	/**
-	 * Returns a new object of class '<em>Text Box</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Text Box</em>'.
-	 * @generated
-	 */
-	TextBox createTextBox();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
