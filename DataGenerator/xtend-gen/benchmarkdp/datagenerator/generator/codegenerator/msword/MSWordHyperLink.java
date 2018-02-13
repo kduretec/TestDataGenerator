@@ -13,6 +13,7 @@ public class MSWordHyperLink extends AbstractElementCompiler {
     HyperLink h = ((HyperLink) object);
     Object _variable = cState.getVariable("temp");
     String temp = ((String) _variable);
+    temp = (temp + "\n");
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Set oRange = oSelection.Range");
     _builder.newLine();

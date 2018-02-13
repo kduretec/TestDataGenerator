@@ -86,10 +86,11 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     MSWordGeneratedCode sCode = new MSWordGeneratedCode("vbs", _operatingSystem, _software);
     String _string = new String("");
     this.compilerState.setVariable("temp", _string);
+    this.compilerState.setVariable("msWordCode", sCode);
     this.compiler.compile("Document", d);
     Object _variable = this.compilerState.getVariable("temp");
     String s = ((String) _variable);
-    sCode.generatedCode = s;
+    sCode.addGeneratedCode(s);
     tC.setGeneratedCode(sCode);
   }
 }

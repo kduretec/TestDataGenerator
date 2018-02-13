@@ -7,8 +7,8 @@ transformation MutatePlatform(inout model:PSM);
 
 main() {
 	var doc := model.objectsOfType(Document);
-	var i:Integer := getRandomBetween(1,6);
-	doc->map ChangePlatformUbu14Libre4Odt();
+	var i:Integer := getRandomBetween(1,4);
+	doc->map ChangePlatformUbu16Libre5Odt();
 	/*switch {
 		case (i=1) doc->map ChangePlatformUbu14Libre4Odt();
 		case (i=2) doc->map ChangePlatformUbu14Libre4Pdf();

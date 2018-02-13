@@ -16,7 +16,7 @@ class MSWordDocument extends AbstractElementCompiler {
 		temp = temp + '''
 			Const END_OF_STORY = 6 
 			Set objWord = CreateObject("Word.Application") 
-			objWord.Visible = True 
+			objWord.Visible = False 
 			grFile = "«Utils::windowsGeneratedTextPath»«cState.getVariable("documentName")».txt" 				
 			grFileMetadata = "«Utils::windowsGeneratedMetadataPath»«cState.getVariable("documentName")».txt"
 			Set objFSO = CreateObject("Scripting.FileSystemObject")
@@ -77,7 +77,11 @@ class MSWordDocument extends AbstractElementCompiler {
 	
 	def compileDocumentElements(Document d, CompilerState cState) {
 		var check = false
+		var size = d.pages.size
+		var i = 0
 		for (Page p : d.pages) {
+			i = i + 1
+			println ("Compiling page " + i +"/" + size) 
 			if (check) {
 				var temp = cState.getVariable("temp") as String 
 				temp = temp + "oSelection.InsertBreak(7)\n"

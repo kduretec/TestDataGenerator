@@ -9,6 +9,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.Page;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class MSWordDocument extends AbstractElementCompiler {
@@ -22,7 +23,7 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("Set objWord = CreateObject(\"Word.Application\") ");
     _builder.newLine();
-    _builder.append("objWord.Visible = True ");
+    _builder.append("objWord.Visible = False ");
     _builder.newLine();
     _builder.append("grFile = \"");
     _builder.append(Utils.windowsGeneratedTextPath, "");
@@ -163,8 +164,13 @@ public class MSWordDocument extends AbstractElementCompiler {
   public void compileDocumentElements(final Document d, final CompilerState cState) {
     boolean check = false;
     EList<Page> _pages = d.getPages();
-    for (final Page p : _pages) {
+    int size = _pages.size();
+    int i = 0;
+    EList<Page> _pages_1 = d.getPages();
+    for (final Page p : _pages_1) {
       {
+        i = (i + 1);
+        InputOutput.<String>println(((("Compiling page " + Integer.valueOf(i)) + "/") + Integer.valueOf(size)));
         if (check) {
           Object _variable = cState.getVariable("temp");
           String temp = ((String) _variable);

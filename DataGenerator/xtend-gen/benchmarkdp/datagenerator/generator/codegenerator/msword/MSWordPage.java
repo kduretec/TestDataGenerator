@@ -2,6 +2,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.msword;
 
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
+import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordGeneratedCode;
 import benchmarkdp.datagenerator.model.PSMDocx.ControlBox;
 import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel;
@@ -55,6 +56,16 @@ public class MSWordPage extends AbstractElementCompiler {
           this.compiler.compile("Image", e);
         }
       }
+    }
+    Object _variable = cState.getVariable("temp");
+    String temp = ((String) _variable);
+    int _length = temp.length();
+    boolean _greaterThan = (_length > 40000);
+    if (_greaterThan) {
+      Object _variable_1 = cState.getVariable("msWordCode");
+      MSWordGeneratedCode mC = ((MSWordGeneratedCode) _variable_1);
+      mC.addGeneratedCode(temp);
+      cState.setVariable("temp", "");
     }
   }
 }

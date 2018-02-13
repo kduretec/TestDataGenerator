@@ -124,7 +124,7 @@ public class Mutator {
 					}
 				}
 			}
-			System.out.println("Processed " + (i+1) + "/" + testCases.size() + " PIM");
+			System.out.println("Processed " + (i + 1) + "/" + testCases.size() + " PIM");
 		}
 
 		// PIM2PSM transformation
@@ -133,8 +133,7 @@ public class Mutator {
 		for (int i = 0; i < testCases.size(); i++) {
 			TestCase tC = testCases.get(i);
 			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-				// MutationOperatorInterface mo =
-				// mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+				//MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
 				MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
 				if (tC.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 						&& mo.getDestinationModel() != ModelType.PIM) {
@@ -330,11 +329,9 @@ public class Mutator {
 						+ "self.pages.elements->selectByKind(TextBox)->size()=0 then 'allContentControlBox' else "
 						+ "'mixture' endif endif endif"));
 
-		evaluators
-				.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT, "paragraph_implementation",
-						"if self.pages.elements->selectByKind(TextBox)->size() = 0 " + " then 'allSimpleParagraph' "
-								+ "else if self.pages.elements->selectByKind(Paragraph)->size() = 0 "
-								+ " then 'allTextBox' " + " else 'mixture' " + "endif endif "));
+		evaluators.add(new OCLMetadata(ModelType.PSMLibre, PSMLibrePackage.Literals.DOCUMENT,
+				"paragraph_implementation", "if self.pages.elements->selectByKind(Paragraph)->size() > 0 "
+						+ " then 'allSimpleParagraph' else 'allSimpleParagraph' endif"));
 
 		evaluators.add(new OCLMetadata(ModelType.PSMDocx, PSMDocxPackage.Literals.DOCUMENT, "table_implementation",
 				"if self.pages.elements->selectByKind(WordTable)->size() = 0 and "

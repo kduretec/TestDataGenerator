@@ -88,76 +88,52 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   
   public String helper() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Sub getLines(numPar, parID, file) ");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("oTextCursor = ThisComponent.Text.createTextCursor()");
+    _builder.append("Sub getLines(numPar, parID, file, textCursor) ");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("oTextCursor.gotoStart(False)");
+    _builder.append("oTextCursor = textCursor");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("oViewCursor = ThisComponent.CurrentController.getViewCursor()");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("num = 0");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("Do ");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("num = num + 1");
-    _builder.newLine();
-    _builder.append("        ");
     _builder.append("line = 0");
     _builder.newLine();
-    _builder.append("        ");
+    _builder.append("    ");
     _builder.append("oTextCursor.gotoStartOfParagraph(False)");
     _builder.newLine();
-    _builder.append("        ");
-    _builder.append("oViewCursor.gotoRange(oTextCursor, False)");
+    _builder.append("    ");
+    _builder.append("oViewCursor.gotoRange(oTextCursor, False)\t");
     _builder.newLine();
     _builder.append("        ");
-    _builder.append("If numPar = num Then\t");
-    _builder.newLine();
-    _builder.append("        \t");
     _builder.append("Do While True ");
     _builder.newLine();
-    _builder.append("        \t   \t");
+    _builder.append("        \t");
     _builder.append("oViewCursor.gotoEndOfLine(False)");
     _builder.newLine();
-    _builder.append("        \t   \t");
+    _builder.append("        \t");
     _builder.append("oTextCursor.gotoRange(oViewCursor, True)");
     _builder.newLine();
-    _builder.append("        \t   \t");
+    _builder.append("\t\t       \t\t\t");
     _builder.append("line = line + 1");
     _builder.newLine();
-    _builder.append("        \t   \t");
+    _builder.append("\t\t        \t   \t");
     _builder.append("s = parID &amp; \":\" &amp; line &amp; \":\" &amp; oTextCursor.String");
     _builder.newLine();
-    _builder.append("        \t   \t");
+    _builder.append("\t\t        \t   \t");
     _builder.append("Print #file, s");
     _builder.newLine();
-    _builder.append("        \t   \t");
+    _builder.append("\t\t        \t   \t");
     _builder.append("REM MsgBox \"numparh=\" + num + \" numline=\" + line + \" text=\" + oTextCursor.String, 0, \"Lines\"");
     _builder.newLine();
-    _builder.append("        \t   \t");
+    _builder.append("\t\t        \t   \t");
     _builder.append("oTextCursor.collapseToEnd()");
     _builder.newLine();
-    _builder.append("        \t   \t");
+    _builder.append("\t\t        \t   \t");
     _builder.append("If oTextCursor.isEndOfParagraph() Then Exit Do ");
     _builder.newLine();
-    _builder.append("        \t");
-    _builder.append("Loop");
-    _builder.newLine();
-    _builder.append("        \t");
-    _builder.append("Exit Do ");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("End If");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("Loop While oTextCursor.gotoNextParagraph(False)  ");
+    _builder.append("\t\t        \t");
+    _builder.append("Loop  ");
     _builder.newLine();
     _builder.append("End Sub");
     _builder.newLine();
@@ -166,6 +142,40 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
     return fun;
   }
   
+  /**
+   * // This is a helper function used to get the content of each line in a paragraph
+   * def helper() {
+   * var fun = '''
+   * Sub getLines(numPar, parID, file)
+   * oTextCursor = ThisComponent.Text.createTextCursor()
+   * oTextCursor.gotoStart(False)
+   * oViewCursor = ThisComponent.CurrentController.getViewCursor()
+   * num = numPar
+   * Do
+   * num = num + 1
+   * line = 0
+   * oTextCursor.gotoStartOfParagraph(False)
+   * oViewCursor.gotoRange(oTextCursor, False)
+   * If numPar = num Then
+   * Do While True
+   * oViewCursor.gotoEndOfLine(False)
+   * oTextCursor.gotoRange(oViewCursor, True)
+   * line = line + 1
+   * s = parID &amp; ":" &amp; line &amp; ":" &amp; oTextCursor.String
+   * Print #file, s
+   * MsgBox "numparh=" + num + " numline=" + line + " text=" + oTextCursor.String, 0, "Lines"
+   * oTextCursor.collapseToEnd()
+   * If oTextCursor.isEndOfParagraph() Then Exit Do
+   * Loop
+   * Exit Do
+   * End If
+   * Loop While oTextCursor.gotoNextParagraph(False)
+   * End Sub
+   * 
+   * '''
+   * return fun
+   * }
+   */
   public String helper2() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Function getParagraphStyleName(colorCode, fontName) as String");

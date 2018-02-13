@@ -28,13 +28,6 @@ public class LibreParagraph extends AbstractElementCompiler {
     int parag = numPar.intValue();
     Object _variable_2 = cState.getVariable("temp");
     String temp = ((String) _variable_2);
-    if (((parag > 1) && (!(inTable).booleanValue()))) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)");
-      _builder.newLine();
-      String _plus = (temp + _builder);
-      temp = _plus;
-    }
     if ((!(inTable).booleanValue())) {
       String tempBack = temp;
       temp = "";
@@ -49,17 +42,17 @@ public class LibreParagraph extends AbstractElementCompiler {
       this.compiler.compile("FontFamily", _fontFamily);
       Object _variable_4 = cState.getVariable("temp");
       String font = ((String) _variable_4);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("oCur = ThisComponent.CurrentController.getViewCursor()");
-      _builder_1.newLine();
-      _builder_1.append("oCur.ParaStyleName  = getParagraphStyleName(");
-      _builder_1.append(col, "");
-      _builder_1.append(",");
-      _builder_1.append(font, "");
-      _builder_1.append(")");
-      _builder_1.newLineIfNotEmpty();
-      String _plus_1 = (tempBack + _builder_1);
-      temp = _plus_1;
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("oCur = ThisComponent.CurrentController.getViewCursor()");
+      _builder.newLine();
+      _builder.append("oCur.ParaStyleName  = getParagraphStyleName(");
+      _builder.append(col, "");
+      _builder.append(",");
+      _builder.append(font, "");
+      _builder.append(")");
+      _builder.newLineIfNotEmpty();
+      String _plus = (tempBack + _builder);
+      temp = _plus;
     }
     cState.setVariable("temp", temp);
     if ((!(inTable).booleanValue())) {
@@ -88,16 +81,18 @@ public class LibreParagraph extends AbstractElementCompiler {
     if ((!(inTable).booleanValue())) {
       Object _variable_5 = cState.getVariable("temp");
       temp = ((String) _variable_5);
-      StringConcatenation _builder_2 = new StringConcatenation();
-      _builder_2.append("getLines(");
-      _builder_2.append(parag, "");
-      _builder_2.append(", \"");
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("getLines(");
+      _builder_1.append(parag, "");
+      _builder_1.append(", \"");
       String _iD = par.getID();
-      _builder_2.append(_iD, "");
-      _builder_2.append("\", file)");
-      _builder_2.newLineIfNotEmpty();
-      String _plus_2 = (temp + _builder_2);
-      temp = _plus_2;
+      _builder_1.append(_iD, "");
+      _builder_1.append("\", file, oText.createTextCursorByRange(oText.getEnd()))");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)");
+      _builder_1.newLine();
+      String _plus_1 = (temp + _builder_1);
+      temp = _plus_1;
       cState.setVariable("temp", temp);
     }
   }

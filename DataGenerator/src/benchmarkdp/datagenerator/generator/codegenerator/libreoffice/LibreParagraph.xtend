@@ -24,11 +24,11 @@ class LibreParagraph extends AbstractElementCompiler {
 		var parag = numPar.intValue 	
 		var temp = cState.getVariable("temp") as String
 		
-		if (parag > 1 && !inTable) {
+		/*if (parag > 1 && !inTable) {
 			temp = temp + '''
 					oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)
 				'''
-		}
+		}*/
 		if (!inTable) {
 			var tempBack = temp
 			temp = ""
@@ -64,7 +64,8 @@ class LibreParagraph extends AbstractElementCompiler {
 		if (!inTable) {
 			temp = cState.getVariable("temp") as String
 			temp = temp + '''
-				getLines(«parag», "«par.ID»", file)
+				getLines(«parag», "«par.ID»", file, oText.createTextCursorByRange(oText.getEnd()))
+				oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)
 			'''	
 			cState.setVariable("temp", temp)		
 		}

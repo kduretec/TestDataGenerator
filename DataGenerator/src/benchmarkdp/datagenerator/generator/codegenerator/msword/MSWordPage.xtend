@@ -16,7 +16,11 @@ class MSWordPage extends AbstractElementCompiler{
 	
 	override compile(EObject object, CompilerState cState) {
 		var p = object as Page
+		//var i = 0; 
+		//var size = p.elements.size
 		for (Element e : p.elements) {
+			//i = i + 1;
+			//println("Compiling object " + i + "/" + size)
 			switch e {
 				Paragraph: compiler.compile("Paragraph",e)
 				ControlBox : compiler.compile("ControlBox",e)
@@ -26,5 +30,12 @@ class MSWordPage extends AbstractElementCompiler{
 				Image: compiler.compile("Image", e)
 			}
 		}
+		
+		var temp = cState.getVariable("temp") as String
+			if (temp.length > 40000) {
+				var mC = cState.getVariable("msWordCode") as MSWordGeneratedCode
+				mC.addGeneratedCode(temp);
+				cState.setVariable("temp", "")
+			}
 	}
 }

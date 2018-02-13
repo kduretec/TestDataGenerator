@@ -20,12 +20,17 @@ public class MSWordGeneratedCode implements IGeneratedCode {
 		fileExtension = fE;
 		operatingSystem = os;
 		software = soft;
+		generatedCode="";
 	}
 
 	public void setGeneratedCode(String code) {
 		generatedCode = code;
 	}
 
+	public void addGeneratedCode(String code) {
+		generatedCode += code;
+	}
+	
 	@Override
 	public void saveToFile(String filePath, String testCaseName) {
 		if (generatedCode != null) {

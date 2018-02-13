@@ -64,11 +64,37 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 	// This is a helper function used to get the content of each line in a paragraph
 	def helper() {
 		var fun = '''
+			Sub getLines(numPar, parID, file, textCursor) 
+			    oTextCursor = textCursor
+			    oViewCursor = ThisComponent.CurrentController.getViewCursor()
+			    line = 0
+			    oTextCursor.gotoStartOfParagraph(False)
+			    oViewCursor.gotoRange(oTextCursor, False)	
+			        Do While True 
+			        	oViewCursor.gotoEndOfLine(False)
+			        	oTextCursor.gotoRange(oViewCursor, True)
+		       			line = line + 1
+		        	   	s = parID &amp; ":" &amp; line &amp; ":" &amp; oTextCursor.String
+		        	   	Print #file, s
+		        	   	REM MsgBox "numparh=" + num + " numline=" + line + " text=" + oTextCursor.String, 0, "Lines"
+		        	   	oTextCursor.collapseToEnd()
+		        	   	If oTextCursor.isEndOfParagraph() Then Exit Do 
+		        	Loop  
+			End Sub
+			
+		'''
+		return fun
+	}
+	
+	/* *
+	// This is a helper function used to get the content of each line in a paragraph
+	def helper() {
+		var fun = '''
 			Sub getLines(numPar, parID, file) 
 				oTextCursor = ThisComponent.Text.createTextCursor()
 			    oTextCursor.gotoStart(False)
 			    oViewCursor = ThisComponent.CurrentController.getViewCursor()
-			    num = 0
+			    num = numPar
 			    Do 
 			        num = num + 1
 			        line = 0
@@ -81,7 +107,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 			        	   	line = line + 1
 			        	   	s = parID &amp; ":" &amp; line &amp; ":" &amp; oTextCursor.String
 			        	   	Print #file, s
-			        	   	REM MsgBox "numparh=" + num + " numline=" + line + " text=" + oTextCursor.String, 0, "Lines"
+			        	   	MsgBox "numparh=" + num + " numline=" + line + " text=" + oTextCursor.String, 0, "Lines"
 			        	   	oTextCursor.collapseToEnd()
 			        	   	If oTextCursor.isEndOfParagraph() Then Exit Do 
 			        	Loop
@@ -93,6 +119,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		'''
 		return fun
 	}
+	*/
 	
 	// This is a helper function used to return paragraph style for a paragraph  
 	def helper2() {

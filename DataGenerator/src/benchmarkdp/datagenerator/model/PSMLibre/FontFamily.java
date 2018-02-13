@@ -26,7 +26,9 @@ public enum FontFamily implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LIBERATIONMONO(1, "LIBERATIONMONO", "LIBERATIONMONO"), /**
+	LIBERATIONMONO(1, "LIBERATIONMONO", "LIBERATIONMONO"),
+
+	/**
 	 * The '<em><b>LIBERATIONSERIF</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
