@@ -29,7 +29,8 @@ class MSWordParagraph extends AbstractElementCompiler{
 		parag = parag + 1
 		if (!inTable) { 
 			temp = temp + ''' 
-			oDoc.Paragraphs(oDoc.Paragraphs.Count).Range.Select
+			REM oDoc.Paragraphs(oDoc.Paragraphs.Count).Range.Select
+			oDoc.Paragraphs.Last.Range.Select
 			oSelection.ParagraphFormat.Shading.BackgroundPatternColor = '''
 			cState.setVariable("temp", temp)
 			compiler.compile("Color", par.backgroundColor)
@@ -61,7 +62,8 @@ class MSWordParagraph extends AbstractElementCompiler{
 		temp = cState.getVariable("temp") as String
 		if (!inTable) { 
 			temp = temp + ''' 
-				Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), "«par.ID»", objWord, objFile)
+				REM Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), "«par.ID»", objWord, objFile)
+				Call selLines(oSelection.Paragraphs.Last, "«par.ID»", objWord, objFile)
 			'''			
 		}
 		

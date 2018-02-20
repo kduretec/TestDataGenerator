@@ -9,7 +9,6 @@ import benchmarkdp.datagenerator.model.PSMDocx.Page;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class MSWordDocument extends AbstractElementCompiler {
@@ -170,7 +169,6 @@ public class MSWordDocument extends AbstractElementCompiler {
     for (final Page p : _pages_1) {
       {
         i = (i + 1);
-        InputOutput.<String>println(((("Compiling page " + Integer.valueOf(i)) + "/") + Integer.valueOf(size)));
         if (check) {
           Object _variable = cState.getVariable("temp");
           String temp = ((String) _variable);

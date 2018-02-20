@@ -81,7 +81,7 @@ class MSWordDocument extends AbstractElementCompiler {
 		var i = 0
 		for (Page p : d.pages) {
 			i = i + 1
-			println ("Compiling page " + i +"/" + size) 
+			//println ("Compiling page " + i +"/" + size) 
 			if (check) {
 				var temp = cState.getVariable("temp") as String 
 				temp = temp + "oSelection.InsertBreak(7)\n"

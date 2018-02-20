@@ -35,7 +35,9 @@ public class MSWordParagraph extends AbstractElementCompiler {
     parag = (parag + 1);
     if ((!(inTable).booleanValue())) {
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("oDoc.Paragraphs(oDoc.Paragraphs.Count).Range.Select");
+      _builder_1.append("REM oDoc.Paragraphs(oDoc.Paragraphs.Count).Range.Select");
+      _builder_1.newLine();
+      _builder_1.append("oDoc.Paragraphs.Last.Range.Select");
       _builder_1.newLine();
       _builder_1.append("oSelection.ParagraphFormat.Shading.BackgroundPatternColor = ");
       String _plus_1 = (temp + _builder_1);
@@ -84,9 +86,14 @@ public class MSWordParagraph extends AbstractElementCompiler {
     temp = ((String) _variable_6);
     if ((!(inTable).booleanValue())) {
       StringConcatenation _builder_4 = new StringConcatenation();
-      _builder_4.append("Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), \"");
+      _builder_4.append("REM Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), \"");
       String _iD = par.getID();
       _builder_4.append(_iD, "");
+      _builder_4.append("\", objWord, objFile)");
+      _builder_4.newLineIfNotEmpty();
+      _builder_4.append("Call selLines(oSelection.Paragraphs.Last, \"");
+      String _iD_1 = par.getID();
+      _builder_4.append(_iD_1, "");
       _builder_4.append("\", objWord, objFile)");
       _builder_4.newLineIfNotEmpty();
       String _plus_4 = (temp + _builder_4);
