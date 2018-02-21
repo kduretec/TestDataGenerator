@@ -1,5 +1,9 @@
 package benchmarkdp.datagenerator.generator;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.UUID;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
@@ -20,6 +24,8 @@ public class TestCase {
 
 	private IGeneratedCode generatedCode;
 
+	private boolean status = false; 
+	
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
 		testCaseName = ID.replace("-", "");
@@ -53,6 +59,10 @@ public class TestCase {
 		return testFeature;
 	}
 
+	public void setStatus(boolean st) {
+		status = st;
+	}
+	
 	public void setTestFeature(TestFeature testFeature) {
 		if (testFeature.getName() != null) {
 			this.testCaseName = testFeature.getName();
@@ -98,6 +108,18 @@ public class TestCase {
 		if (generatedCode != null) {
 			generatedCode.saveToFile(Utils.macroPath, testCaseName);
 		}
+		
+	File f = new File(Utils.basePath + "testcases.tsv");
+	
+	try {
+		BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
+		bw.write(testCaseName + "\t" + status + "\n");
+		bw.close();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
 	}
 
 }
