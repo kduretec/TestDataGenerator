@@ -61,6 +61,7 @@ public class DataCollector {
 
 			Document metadata = getMetadata(f);
 
+			// collect metadata information
 			for (CollectorOperatorInterface coi : operators) {
 				Map<String, String> mValues = coi.collect(f);
 				String sourceName = coi.getName();
@@ -97,20 +98,23 @@ public class DataCollector {
 
 		XPathFactory xPathfactory = XPathFactory.newInstance();
 		XPath xpath = xPathfactory.newXPath();
-
+		int numEl = lines.entrySet().size();
+		int curEl = 0;
 		for (Map.Entry<String, List<String>> entry : lines.entrySet()) {
 			try {
+				curEl++;
+				System.out.println("Adding element " + curEl + "/" + numEl);
 				String id = entry.getKey();
 				List<String> l = entry.getValue();
 				XPathExpression expr = xpath.compile("//element[ID='" + id + "']/lines");
 				NodeList nl = (NodeList) expr.evaluate(x, XPathConstants.NODESET);
-				Node el = nl.item(0);
-				for (int i = 0; i < l.size(); i++) {
-					Element tmp = x.createElement("line");
-					tmp.setAttribute("num", Integer.toString(i + 1));
-					tmp.appendChild(x.createTextNode(l.get(i)));
-					el.appendChild(tmp);
-				}
+//				Node el = nl.item(0);
+//				for (int i = 0; i < l.size(); i++) {
+//					Element tmp = x.createElement("line");
+//					tmp.setAttribute("num", Integer.toString(i + 1));
+//					tmp.appendChild(x.createTextNode(l.get(i)));
+//					el.appendChild(tmp);
+//				}
 			} catch (XPathExpressionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
