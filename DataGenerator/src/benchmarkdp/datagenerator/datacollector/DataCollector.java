@@ -1,8 +1,13 @@
 package benchmarkdp.datagenerator.datacollector;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,18 +33,25 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.generator.Text;
 import benchmarkdp.datagenerator.generator.utils.Utils;
 
 public class DataCollector {
 
 	private List<CollectorOperatorInterface> operators;
+	private Map<String, TestCase> testCases; 
+	
 	LineCollector lineCollector;
+	ModelTextCollector modelTextCollector;
 
 	public DataCollector() {
 		operators = new ArrayList<CollectorOperatorInterface>();
 		operators.add(new FitsCollector());
 		operators.add(new GeneratedMetadataCollector());
+		operators.add(new ModelMetadataCollector());
 		lineCollector = new LineCollector();
+		modelTextCollector = new ModelTextCollector();
 	}
 
 	public static void main(String[] args) {
@@ -49,34 +61,51 @@ public class DataCollector {
 
 	public void execute() {
 
+		testCases = loadTestCases();
+		
 		File docs = new File(Utils.docsPath);
 
-		String[] files = docs.list();
-
+		String[] files = docs.list(textFilter);
+		int count = 0;
 		for (String f : files) {
-			if (f.compareTo(".DS_Store") == 0) {
-				continue;
-			}
 			f = f.substring(0, f.lastIndexOf("."));
-
-			Document metadata = getMetadata(f);
-
-			// collect metadata information
-			for (CollectorOperatorInterface coi : operators) {
-				Map<String, String> mValues = coi.collect(f);
-				String sourceName = coi.getName();
-				metadata = addValues(metadata, mValues, sourceName);
+			count++;
+			System.out.println("Processing " + f + " / TestCase " + count + "/" + files.length);
+			if (testCases.containsKey(f)) {
+				TestCase tCase = testCases.get(f);
+				//tCase.loadMetadata(f);
+				
+				// collect metadata information from other sources
+				for (CollectorOperatorInterface coi : operators) {
+					Map<String, Object> mValues = coi.collect(f);
+					tCase.getMetadata().add(mValues);
+				}
+				
+				List<Text> ts = modelTextCollector.collectTextELementsList(f);
+				tCase.getTextElements().addText(ts);
+				Map<String, Text> mt = lineCollector.collectTextElemenentsMap(f);
+				tCase.getTextElements().addText(mt);
+				
+				tCase.setStatus(true);
 			}
+			
+			//Document metadata = getMetadata(f);
 
-			storeMetadata(metadata, f);
+			
 
-			// collect integrity information
-			Document text = getText(f);
-			Map<String, List<String>> lValues = lineCollector.collect(f);
-			text = addLines(text, lValues);
+//	//		storeMetadata(metadata, f);
+//
+//			// collect integrity information
+//			Document text = getText(f);
+//			Map<String, List<String>> lValues = lineCollector.collect(f);
+//			text = addLines(text, lValues);
+//
+//			storeText(text, f);
 
-			storeText(text, f);
-
+		}
+		
+		for (Map.Entry<String, TestCase> tc : testCases.entrySet()) {
+			tc.getValue().saveTestCaseComponents(Utils.metadataPath, Utils.textPath, false);
 		}
 
 	}
@@ -225,4 +254,43 @@ public class DataCollector {
 			e.printStackTrace();
 		}
 	}
+	
+	private Map<String, TestCase> loadTestCases() {
+		Map<String, TestCase> tc = new HashMap<String, TestCase>();
+		File f = new File(Utils.basePath + "testcases.tsv"); 
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			
+			while (true) {
+				String line = br.readLine();
+				if (line == null)
+					break;
+				if (line.length() == 0)
+					continue;
+				String[] entr = line.split("\t");
+				if (entr.length < 2) 
+					continue;
+				
+				tc.put(entr[0], new TestCase(entr[0]));
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		f.delete();
+		return tc;
+	}
+	
+	FilenameFilter textFilter = new FilenameFilter() {
+		public boolean accept(File dir, String name) {
+			if (name.startsWith(".")) 
+				return false;
+			return true;
+		}
+	};
+	
 }

@@ -134,7 +134,7 @@ public class Mutator {
 			TestCase tC = testCases.get(i);
 			for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
 				//MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-				MutationOperatorInterface mo = mutationsPIM2PSM.get(0);
+				MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
 				if (tC.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 						&& mo.getDestinationModel() != ModelType.PIM) {
 					mo.mutateTestCase(tC);
@@ -174,7 +174,7 @@ public class Mutator {
 		System.out.println("Number of test cases: " + testCases.size());
 		for (TestCase tc : testCases) {
 			System.out.println("Saving testcase:" + tc.getTestCaseName());
-			tc.saveTestCaseComponents();
+			tc.saveTestCaseComponents(Utils.modelMetadataPath, Utils.modelTextPath, true);
 		}
 
 		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {

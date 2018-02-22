@@ -27,7 +27,7 @@ public class OCLMetadata extends AbstractOCLEvaluator{
 				Object doc =  objects.get(0);
 				Object value = evaluateObject(doc);
 				//System.out.println("Adding metadata : " + name + " ; " + value.toString());
-				tC.getMetadata().add(name, value);				
+				tC.getMetadata().add(name+":DataGenerator", value);				
 			}
 			tm = tm.getParent();
 		}

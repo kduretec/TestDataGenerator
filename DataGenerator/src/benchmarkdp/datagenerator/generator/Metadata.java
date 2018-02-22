@@ -30,6 +30,10 @@ public class Metadata {
 		values.put(name, value);
 	}
 	
+	public void add(Map<String, Object> v) {
+		values.putAll(v);
+	}
+	
 	public Map<String, Object> getValues() {
 		return values;
 	}
@@ -59,8 +63,9 @@ public class Metadata {
 			rootElement.appendChild(entries);
 			for (Map.Entry<String, Object> entr : values.entrySet()) {
 				Element entry = doc.createElement("entry");
-				entry.setAttribute("name", entr.getKey());
-				entry.setAttribute("source", "DataGenerator");
+				String str[] = entr.getKey().split(":");
+				entry.setAttribute("name", str[0]);
+				entry.setAttribute("source", str[1]);
 				entry.appendChild(doc.createTextNode(entr.getValue().toString()));
 				entries.appendChild(entry);
 			}

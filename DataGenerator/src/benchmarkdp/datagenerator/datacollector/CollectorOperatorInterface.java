@@ -7,5 +7,5 @@ public interface CollectorOperatorInterface {
 
 	String getName();
 	
-	Map<String, String> collect(String name);
+	Map<String, Object> collect(String name);
 }

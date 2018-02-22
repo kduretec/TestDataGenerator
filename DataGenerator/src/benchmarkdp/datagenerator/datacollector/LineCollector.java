@@ -10,17 +10,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import benchmarkdp.datagenerator.generator.Text;
 import benchmarkdp.datagenerator.generator.utils.Utils;
 
-public class LineCollector {
+public class LineCollector implements TextCollectorInterface {
 
-	public Map<String, List<String>> collect(String name) {
+	@Override
+	public List<Text> collectTextELementsList(String name) {
+		throw new UnsupportedOperationException();
+	}
 
+	@Override
+	public Map<String, Text> collectTextElemenentsMap(String name) {
 		String filePath = Utils.generatedTextPath + name + ".txt";
 
 		File f = new File(filePath);
 
-		Map<String, List<String>> values = new HashMap<String, List<String>>();
+		Map<String, Text> values = new HashMap<String, Text>();
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
@@ -32,12 +38,12 @@ public class LineCollector {
 				if (line.length() == 0)
 					continue;
 				String[] entr = line.split(":");
-				if (entr.length < 3) 
+				if (entr.length < 3)
 					continue;
 				if (!values.containsKey(entr[0])) {
-					values.put(entr[0], new ArrayList<String>());
+					values.put(entr[0], new Text());
 				}
-				values.get(entr[0]).add(entr[2]);
+				values.get(entr[0]).getLines().add(entr[2]);
 			}
 
 		} catch (FileNotFoundException e) {

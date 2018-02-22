@@ -19,13 +19,13 @@ public class GeneratedMetadataCollector implements CollectorOperatorInterface {
 	}
 
 	@Override
-	public Map<String, String> collect(String name) {
+	public Map<String, Object> collect(String name) {
 
 		String filePath = Utils.generatedMetadataPath + name + ".txt";
 
 		File f = new File(filePath);
 
-		Map<String, String> values = new HashMap<String, String>();
+		Map<String, Object> values = new HashMap<String, Object>();
 
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
@@ -35,7 +35,7 @@ public class GeneratedMetadataCollector implements CollectorOperatorInterface {
 				if (line == null)
 					break;
 				String[] entr = line.split(" ");
-				values.put(entr[0], entr[1]);
+				values.put(entr[0]+":GeneratedGenerator", entr[1]);
 			}
 
 		} catch (FileNotFoundException e) {

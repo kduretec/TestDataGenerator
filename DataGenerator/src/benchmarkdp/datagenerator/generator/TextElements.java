@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.generator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -32,6 +33,19 @@ public class TextElements {
 
 	public List<Text> getTextElements() {
 		return elements;
+	}
+
+	public void addText(List<Text> txt) {
+		elements = txt;
+	}
+	
+	public void addText(Map<String, Text> textEl) {
+		for (Text t : elements) {
+			if (textEl.containsKey(t.getID())) {
+				List<String> l = textEl.get(t.getID()).getLines();
+				t.setLines(l);
+			}
+		}
 	}
 
 	public void addText(TextElements tE) {

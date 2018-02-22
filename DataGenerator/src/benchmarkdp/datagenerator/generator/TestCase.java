@@ -34,6 +34,11 @@ public class TestCase {
 		testModel = new TestModel();
 	}
 
+	public TestCase(String tName) {
+		this();
+		testCaseName = tName;
+	}
+	
 	public TestCase(TestModel tm) {
 		this();
 		testModel = tm;
@@ -94,20 +99,25 @@ public class TestCase {
 		generatedCode = gC;
 	}
 
-	public void saveTestCaseComponents() {
+	public void saveTestCaseComponents(String metadataPath, String textPath, boolean flag) {
 
-		if (testModel != null) {
-			testModel.saveModelToFile(Utils.modelsPath, testCaseName);
+		if (flag) {
+			if (testModel != null) {
+				testModel.saveModelToFile(Utils.modelsPath, testCaseName);
+			}
+			
+			if (generatedCode != null) {
+				generatedCode.saveToFile(Utils.macroPath, testCaseName);
+			}
 		}
+		
 		if (metadata != null) {
-			metadata.saveToXML(Utils.modelMetadataPath, testCaseName);
+			metadata.saveToXML(metadataPath, testCaseName);
 		}
 		if (textElements != null) {
-			textElements.saveToXML(Utils.modelTextPath, testCaseName);
+			textElements.saveToXML(textPath, testCaseName);
 		}
-		if (generatedCode != null) {
-			generatedCode.saveToFile(Utils.macroPath, testCaseName);
-		}
+		
 		
 	File f = new File(Utils.basePath + "testcases.tsv");
 	

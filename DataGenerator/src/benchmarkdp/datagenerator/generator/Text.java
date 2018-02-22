@@ -51,4 +51,8 @@ public class Text {
 	public List<String> getLines() {
 		return lines;
 	}
+	
+	public void setLines(List<String> ls) {
+		lines = ls;
+	}
 }
