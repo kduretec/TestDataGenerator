@@ -25,11 +25,16 @@ mapping PIM::Page::PageToPage():PSM::Page {
 	
 	if (paragraphImpl = null) {
 		var rnd := getRandomReal(); 
-		switch {
-			case(rnd < 0.80) paragraphImpl := "allSimpleParagraph";
-			case(rnd >= 0.8 and rnd < 0.9) paragraphImpl := "allTextBox";
-			case(rnd >= 0.9 and rnd < 0.95) paragraphImpl := "allContentControlBox";
-			else paragraphImpl := "mixture";
+		var numW := source.rootObjects()[Document].pages.elements->selectByType(Paragraph).words->size();
+		if (numW > 10000) {
+			paragraphImpl := "allSimpleParagraph";
+		} else {
+			switch {
+				case(rnd < 0.80) paragraphImpl := "allSimpleParagraph";
+				case(rnd >= 0.8 and rnd < 0.9) paragraphImpl := "allTextBox";
+				case(rnd >= 0.9 and rnd < 0.95) paragraphImpl := "allContentControlBox";
+				else paragraphImpl := "mixture";
+			}
 		}
 	};
 	
