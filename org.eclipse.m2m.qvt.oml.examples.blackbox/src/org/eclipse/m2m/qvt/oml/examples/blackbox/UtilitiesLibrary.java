@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -32,8 +33,9 @@ import org.eclipse.ocl.util.CollectionUtil;
 @Module(packageURIs={"http://www.eclipse.org/emf/2002/Ecore"})
 public class UtilitiesLibrary {
 	
-	private static Random r = new Random();
+	//private static Random r = new Random();
 	
+	private static SecureRandom r = new SecureRandom();
 	
 	private static List<String> words = null;
 	
