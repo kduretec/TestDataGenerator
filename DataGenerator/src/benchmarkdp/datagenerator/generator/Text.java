@@ -10,6 +10,8 @@ public class Text {
 	
 	private String rawText; 
 	
+	private String elementType;
+	
 	private List<String> lines; 
 	
 	public Text() {
@@ -54,5 +56,13 @@ public class Text {
 	
 	public void setLines(List<String> ls) {
 		lines = ls;
+	}
+	
+	public String getElementType() {
+		return elementType;
+	}
+	
+	public void setElementType(String eT) {
+		elementType = eT;
 	}
 }

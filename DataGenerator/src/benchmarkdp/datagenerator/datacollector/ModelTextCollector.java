@@ -39,13 +39,16 @@ public class ModelTextCollector implements TextCollectorInterface {
 			for (int i = 0; i < nList.getLength(); i++) {
 				Element e = (Element) nList.item(i);
 				Node nid = e.getElementsByTagName("ID").item(0);
+				Node neType = e.getElementsByTagName("ElementType").item(0);
 				Node ntext = e.getElementsByTagName("text").item(0);
 				Node nlines = e.getElementsByTagName("lines").item(0);
 				String id = nid.getTextContent();
+				String eType = neType.getTextContent();
 				String rwtxt = ntext.getTextContent();
 				List<String> lines = getLines(nlines);
 				Text tElement = new Text();
 				tElement.setID(id);
+				tElement.setElementType(eType);
 				tElement.setRawText(rwtxt);
 				tElement.setLines(lines);
 				values.add(tElement);

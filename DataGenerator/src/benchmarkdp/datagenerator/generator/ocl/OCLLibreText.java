@@ -9,11 +9,13 @@ import benchmarkdp.datagenerator.generator.ModelType;
 import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.TestModel;
 import benchmarkdp.datagenerator.generator.Text;
-import benchmarkdp.datagenerator.model.PSMLibre.ParagraphImpl;
 import benchmarkdp.datagenerator.model.PSMLibre.Element;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
+import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
+import benchmarkdp.datagenerator.model.PSMLibre.ParagraphImpl;
 import benchmarkdp.datagenerator.model.PSMLibre.Row;
 import benchmarkdp.datagenerator.model.PSMLibre.Table;
+import benchmarkdp.datagenerator.model.PSMLibre.TextContainer;
 
 public class OCLLibreText extends AbstractOCLEvaluator {
 
@@ -36,39 +38,48 @@ public class OCLLibreText extends AbstractOCLEvaluator {
 
 			for (Object el : elList) {
 				Element docEl = (Element) el;
-				Text txt = new Text();
-				txt.setID(docEl.getID());
+				if (docEl instanceof TextContainer) {
 
-				if (docEl instanceof ParagraphImpl) {
-					initialize(PSMLibrePackage.Literals.PARAGRAPH_IMPL, "self.text.value->asSequence()");
-					Object words = evaluateObject(docEl);
-					List<String> wList = (List<String>) words;
-					StringBuilder sb = new StringBuilder();
-					for (String w : wList) {
-						sb.append(w + " ");
-					}
-					String rT = sb.toString().trim();
-					txt.setRawText(rT);
-				} else if (docEl instanceof Table) {
-					Table tbl = (Table) docEl;
-					EList<Row> rows = tbl.getRow();
-					initialize(PSMLibrePackage.Literals.ROW,
-							"self.cell.elements->selectByKind(ParagraphImpl)->asSequence()->collectNested(text.value->asSequence())");
-					for (Row r : rows) {
-						Object rValue = evaluateObject(r);
-						List<Object> lS = (List<Object>) rValue;
+					Text txt = new Text();
+					txt.setID(docEl.getID());
+
+					if (docEl instanceof ParagraphImpl) {
+						initialize(PSMLibrePackage.Literals.PARAGRAPH_IMPL, "self.text.value->asSequence()");
+						Object words = evaluateObject(docEl);
+						List<String> wList = (List<String>) words;
 						StringBuilder sb = new StringBuilder();
-						for (Object l : lS) {
-							List<String> words = (List<String>) l;
-							for (String w : words) {
-								sb.append(w + " ");
-							}
+						for (String w : wList) {
+							sb.append(w + " ");
 						}
-						String lT = sb.toString().trim();
-						txt.addLine(lT);
+						String rT = sb.toString().trim();
+						txt.setRawText(rT);
+						if (docEl instanceof Paragraph) {
+							txt.setElementType("Paragraph");
+						}
+					} else if (docEl instanceof Table) {
+						Table tbl = (Table) docEl;
+						EList<Row> rows = tbl.getRow();
+						initialize(PSMLibrePackage.Literals.ROW,
+								"self.cell.elements->selectByKind(ParagraphImpl)->asSequence()->collectNested(text.value->asSequence())");
+						for (Row r : rows) {
+							Object rValue = evaluateObject(r);
+							List<Object> lS = (List<Object>) rValue;
+							StringBuilder sb = new StringBuilder();
+							for (Object l : lS) {
+								List<String> words = (List<String>) l;
+								for (String w : words) {
+									sb.append(w + " ");
+								}
+							}
+							String lT = sb.toString().trim();
+							txt.addLine(lT);
+						}
+						if (docEl instanceof Table) {
+							txt.setElementType("LibreTable");
+						}
 					}
+					tC.getTextElements().addText(txt);
 				}
-				tC.getTextElements().addText(txt);
 			}
 		}
 

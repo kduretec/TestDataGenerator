@@ -73,9 +73,12 @@ public class TextElements {
 				Element tmpE = doc.createElement("element");
 				Element id = doc.createElement("ID");
 				id.appendChild(doc.createTextNode(t.getID()));
+				Element eType = doc.createElement("ElementType");
+				eType.appendChild(doc.createTextNode(t.getElementType()));
 				Element txt = doc.createElement("text");
 				txt.appendChild(doc.createTextNode(t.getRawText()));
 				tmpE.appendChild(id);
+				tmpE.appendChild(eType);
 				tmpE.appendChild(txt);
 				Element lines = doc.createElement("lines");
 				for (int i = 0; i < t.getLines().size(); i++) {
