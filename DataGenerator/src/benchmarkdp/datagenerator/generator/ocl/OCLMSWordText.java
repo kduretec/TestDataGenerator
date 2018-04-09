@@ -13,7 +13,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
 import benchmarkdp.datagenerator.model.PSMDocx.TableImpl;
-import benchmarkdp.datagenerator.model.PSMDocx.impl.ParagraphImpl;
+import benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl;
 
 public class OCLMSWordText extends AbstractOCLEvaluator {
 

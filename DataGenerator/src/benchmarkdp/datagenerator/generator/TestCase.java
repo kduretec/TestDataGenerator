@@ -131,5 +131,19 @@ public class TestCase {
 	}
 		
 	}
+	
+	public void loadModels(String modelPath) {
+		String pimPath = modelPath + "PIM/";
+		String pimModelPath = pimPath + testCaseName + ".xmi";
+		TestModel pimModel = new TestModel(pimModelPath, ModelType.PIM);
+		
+		String psmPath = modelPath + "PSM/";
+		String psmModelPath = psmPath + testCaseName + ".xmi";
+		TestModel psmModel = new TestModel(psmModelPath, null);
+		
+		psmModel.setParent(pimModel);
+		
+		testModel = psmModel;
+	}
 
 }

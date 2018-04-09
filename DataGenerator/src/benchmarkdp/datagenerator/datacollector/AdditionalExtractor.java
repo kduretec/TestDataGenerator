@@ -1,31 +1,41 @@
 package benchmarkdp.datagenerator.datacollector;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.ocl.OCL;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.Query;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.helper.OCLHelper;
 
 import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.generator.ocl.OCLEvaluatorInterface;
+import benchmarkdp.datagenerator.generator.ocl.OCLLibreText;
+import benchmarkdp.datagenerator.generator.ocl.OCLMSWordText;
+import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
-import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
+import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 
+/**
+ * This class is used in case ground truth needs to be extracted again from the models. 
+ * It allows us to not reexecute the whole generation process. 
+ * @author kresimir
+ *
+ */
 public class AdditionalExtractor {
 
-	private String oclQuery = "self.pages.elements->selectByKind(TextBox)->asSequence()->size()";
+	private List<OCLEvaluatorInterface> evaluators;
+	
+	public AdditionalExtractor() {
+		initializeEvaluators();
+	}
 	
 	public static void main(String[] args) {
 		
@@ -36,75 +46,81 @@ public class AdditionalExtractor {
 	
 	private void execute() {
 		
-		
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		PIMPackage mwp = PIMPackage.eINSTANCE;
 		PSMDocxPackage pwd = PSMDocxPackage.eINSTANCE;
+		PSMLibrePackage pld = PSMLibrePackage.eINSTANCE;
 		Map<String, Object> m = reg.getExtensionToFactoryMap();
 		m.put("xmi", new XMIResourceFactoryImpl());
-		
-		File psmModels = new File("/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Models/PSM/");
 
-		File[] files = psmModels.listFiles();
-		boolean header = true;
-		for (File model : files) {
-			System.out.println("Loading model " + model.getName());
-			if (model.getName().contains("PSMDocx")) {
-				extract(model, 1);
-			} else {
-				extract(model, 2);
+		System.out.println("Modelling environment initialized");
+		
+		List<TestCase> testCases = loadTestCases();
+		System.out.println("Found " + testCases.size() + " test cases");
+	
+		for (TestCase tc : testCases) {
+			tc.loadModels(Utils.modelsPath);
+		}
+		System.out.println("Test case models loaded");
+		
+		for (TestCase tc : testCases) {
+			for (OCLEvaluatorInterface oE : evaluators) {
+				oE.evaluateTestModel(tc);
 			}
 		}
+		System.out.println("Evaluation done");
 		
+		for (TestCase tc : testCases) {
+			System.out.println("Saving testcase:" + tc.getTestCaseName());
+			tc.saveTestCaseComponents(Utils.modelMetadataPath, Utils.modelTextPath, true);
+		}
+		
+		System.out.println("Done");
 	}
 	
+
 	
-	private void extract(File model, int meta) {
+
 	
-//		OCL ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
-//		OCLHelper helper = ocl.createOCLHelper();
-//
-//		if (meta==1) {
-//			helper.setContext(PSMDocxPackage.Literals.DOCUMENT);		
-//		} else {
-//			helper.setContext(PSMDocPackage.Literals.DOCUMENT);
-//		}
-//
-//		OCLExpression<EClassifier> query = null;
-//		
-//		try {
-//			query = helper.createQuery(oclQuery);
-//		} catch (ParserException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		Query eval = ocl.createQuery(query);
-//		
-//		TestCase tmp = new TestCase();
-//		tmp.initialize(model.getAbsolutePath());
-//		
-//		EList<EObject> objects = tmp.getModelObjects();
-//		Object doc = objects.get(0);
-//		
-//		Object value = eval.evaluate(doc);
-//		
-//		save(model.getName(), value);
-	}
-	
-	private void save(String name, Object value) {
-		String pathGT = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/GroundTruth/";
-		String fName = name.substring(0, name.indexOf("."));
-		fName = fName + "-groundtruthAll.txt";
-		File tF = new File(fName); 
-		
+	private List<TestCase> loadTestCases() {
+		List<TestCase> tc = new ArrayList<TestCase>();
+		File f = new File(Utils.basePath + "testcases.tsv"); 
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter(pathGT + tF, true));
-			System.out.println("Saving to " + fName + " textboxcount=" + value);
-			bw.write("textboxcount = " + value + "\n");
-			bw.close();
+			BufferedReader br = new BufferedReader(new FileReader(f));
+			
+			while (true) {
+				String line = br.readLine();
+				if (line == null)
+					break;
+				if (line.length() == 0)
+					continue;
+				String[] entr = line.split("\t");
+				if (entr.length < 2) 
+					continue;
+				TestCase tmp = new TestCase(entr[0]);
+				if (entr[1].compareTo("false")==0) {
+					tmp.setStatus(false);
+				} else {
+					tmp.setStatus(true);
+				}
+				tc.add(tmp);
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return tc;
+	}
+	
+	private void initializeEvaluators() {
+		evaluators = new ArrayList<OCLEvaluatorInterface>();
+		
+		evaluators.add(new OCLLibreText());
+		evaluators.add(new OCLMSWordText());
+		
 	}
 }

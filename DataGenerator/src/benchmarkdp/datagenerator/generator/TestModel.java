@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 
+import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
+
 public class TestModel {
 
 	private ModelType modelType;
@@ -31,7 +33,7 @@ public class TestModel {
 
 	public TestModel(String modelFile, ModelType type) {
 		initialize(modelFile);
-		modelType = type;
+		//modelType = type;
 	}
 
 	public ModelType getModelType() {
@@ -98,6 +100,19 @@ public class TestModel {
 		Resource documentResource = resourceSet.getResource(documentURI, true);
 		modelObjects = documentResource.getContents();
 		modelExtent = new BasicModelExtent(modelObjects);
+		
+		Object el = modelObjects.get(0);
+		if (el instanceof benchmarkdp.datagenerator.model.PIM.Document) {
+			modelType = ModelType.PIM;
+			//System.out.println("Recognized PIM");
+		} else if (el instanceof benchmarkdp.datagenerator.model.PSMDocx.Document) {
+			modelType = ModelType.PSMDocx;
+			//System.out.println("Recognized PSMDocx");
+		} else if (el instanceof benchmarkdp.datagenerator.model.PSMLibre.Document) {
+			modelType = ModelType.PSMLibre;
+			//System.out.println("Recognized PSMLibre");
+		}
+		
 	}
 
 }
