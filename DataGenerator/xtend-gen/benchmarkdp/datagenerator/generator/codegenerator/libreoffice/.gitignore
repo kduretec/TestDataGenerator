@@ -8,3 +8,12 @@
 /.LibrePage.java._trace
 /.LibreColor.java._trace
 /.LibreFontFamily.java._trace
+/LibreCodeGenerator.java
+/LibreColor.java
+/LibreDocument.java
+/LibreFontFamily.java
+/LibreImage.java
+/LibrePage.java
+/LibreParagraph.java
+/LibreSimpleText.java
+/LibreTable.java

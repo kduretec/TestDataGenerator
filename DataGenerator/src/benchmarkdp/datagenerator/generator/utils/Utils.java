@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Utils {
 
-	public static String experimentName = "Experiment_100";
+	public static String experimentName = "ExperimentNewTest";
 	public static String basePath = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/INFSOF/experiments/Generated/"
 			+ experimentName + "/";
 

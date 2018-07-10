@@ -53,7 +53,7 @@ public class Mutator {
 
 		Utils.initializeFolderStructure();
 		System.out.println("Folder structure initialized");
-
+		
 		TransformationExecutor.BlackboxRegistry.INSTANCE.registerModule(UtilitiesLibrary.class,
 				"m2m.qvt.oml.ExampleJavaLib", "m2m.qvt.oml");
 
@@ -182,7 +182,6 @@ public class Mutator {
 		}
 
 		System.out.println("Test Suite generation done");
-
 	}
 
 	private List<TestFeature> readFeatureDistributions() {
