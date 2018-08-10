@@ -11,3 +11,16 @@
 /.MSWordSimpleText.java._trace
 /.MSWordTable.java._trace
 /.MSWordTextBox.java._trace
+/DocxCodeGenerator.java
+/MSWordColor.java
+/MSWordControlBox.java
+/MSWordDocument.java
+/MSWordEmbeddedExcel.java
+/MSWordFontFamily.java
+/MSWordHyperLink.java
+/MSWordImage.java
+/MSWordPage.java
+/MSWordParagraph.java
+/MSWordSimpleText.java
+/MSWordTable.java
+/MSWordTextBox.java

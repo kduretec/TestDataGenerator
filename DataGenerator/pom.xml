@@ -139,6 +139,23 @@
 				<scope>system</scope> -->
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.8.0-beta2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.8.0-beta2</version>
+		</dependency>
 
 	</dependencies>
 
@@ -146,6 +163,11 @@
 
 		<sourceDirectory>src</sourceDirectory>
 
+		<resources>
+			<resource>
+				<directory>resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 
 			<plugin>
@@ -166,7 +188,7 @@
 				</configuration>
 			</plugin>
 
-			
+
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId> 
 				<configuration> <descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> 
 				</descriptorRefs> <archive> <manifest> <addClasspath>true</addClasspath> 

@@ -3,3 +3,5 @@ bin/*
 *.DS_Store
 *.xtendbin
 */bin/*
+*.classpath
+*.project
