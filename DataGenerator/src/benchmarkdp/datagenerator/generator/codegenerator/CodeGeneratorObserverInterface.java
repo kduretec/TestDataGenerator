@@ -1,6 +1,6 @@
 package benchmarkdp.datagenerator.generator.codegenerator;
 
-import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.testcase.TestCase;
 
 public interface CodeGeneratorObserverInterface {
 

@@ -4,8 +4,8 @@ import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.generator.codegenerator.IEnumCompiler
 import benchmarkdp.datagenerator.model.PSMLibre.Color
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.common.util.Enumerator
+import org.eclipse.emf.ecore.EObject
 
 class LibreColor extends AbstractElementCompiler implements IEnumCompiler {
 	

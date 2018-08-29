@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.generator;
+package benchmarkdp.datagenerator.testcase;
 
 import java.io.IOException;
 import java.util.HashMap;

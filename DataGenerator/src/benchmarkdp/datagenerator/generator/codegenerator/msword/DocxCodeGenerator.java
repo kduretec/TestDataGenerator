@@ -1,8 +1,5 @@
 package benchmarkdp.datagenerator.generator.codegenerator.msword;
 
-import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestCase;
-import benchmarkdp.datagenerator.generator.TestModel;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
 import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler;
@@ -20,6 +17,9 @@ import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordSimpleText
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordTable;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordTextBox;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
+import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.testcase.TestModel;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 

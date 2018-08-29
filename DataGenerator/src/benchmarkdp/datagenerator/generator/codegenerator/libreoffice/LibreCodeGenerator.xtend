@@ -1,18 +1,13 @@
 package benchmarkdp.datagenerator.generator.codegenerator.libreoffice
 
-import benchmarkdp.datagenerator.generator.ModelType
-import benchmarkdp.datagenerator.generator.TestCase
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler
 import benchmarkdp.datagenerator.model.PSMLibre.Document
-import benchmarkdp.datagenerator.model.PSMLibre.Element
-import benchmarkdp.datagenerator.model.PSMLibre.Image
-import benchmarkdp.datagenerator.model.PSMLibre.Page
-import benchmarkdp.datagenerator.model.PSMLibre.Paragraph
-import benchmarkdp.datagenerator.model.PSMLibre.Table
-
+import benchmarkdp.datagenerator.testcase.ModelType
+import benchmarkdp.datagenerator.testcase.TestCase
+ 
 class LibreCodeGenerator implements CodeGeneratorInterface {
 
 	ModelType modelType = ModelType::PSMLibre;

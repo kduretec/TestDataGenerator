@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 
+import benchmarkdp.datagenerator.testcase.ModelType;
+
 
 
 public class DocumentHolder {

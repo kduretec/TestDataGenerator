@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 
-import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestCase;
+import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.testcase.TestCase;
 
 public interface MutationOperatorInterface {
 

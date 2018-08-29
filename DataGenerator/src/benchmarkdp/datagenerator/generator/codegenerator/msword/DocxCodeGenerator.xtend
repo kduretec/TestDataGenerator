@@ -1,11 +1,11 @@
 package benchmarkdp.datagenerator.generator.codegenerator.msword
 
-import benchmarkdp.datagenerator.generator.ModelType
-import benchmarkdp.datagenerator.generator.TestCase
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler
 import benchmarkdp.datagenerator.model.PSMDocx.Document
+import benchmarkdp.datagenerator.testcase.ModelType
+import benchmarkdp.datagenerator.testcase.TestCase
 
 class DocxCodeGenerator implements CodeGeneratorInterface {
 

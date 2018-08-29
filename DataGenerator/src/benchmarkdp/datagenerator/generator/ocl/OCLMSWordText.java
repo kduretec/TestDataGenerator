@@ -5,10 +5,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestCase;
-import benchmarkdp.datagenerator.generator.TestModel;
-import benchmarkdp.datagenerator.generator.Text;
 import benchmarkdp.datagenerator.model.PSMDocx.ControlBox;
 import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.EmbeddedExcel;
@@ -19,6 +15,10 @@ import benchmarkdp.datagenerator.model.PSMDocx.TableImpl;
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
 import benchmarkdp.datagenerator.model.PSMDocx.TextContainer;
 import benchmarkdp.datagenerator.model.PSMDocx.WordTable;
+import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.testcase.TestModel;
+import benchmarkdp.datagenerator.testcase.Text;
 import benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl;
 
 public class OCLMSWordText extends AbstractOCLEvaluator {

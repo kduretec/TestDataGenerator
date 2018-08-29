@@ -3,7 +3,7 @@ package benchmarkdp.datagenerator.datacollector;
 import java.util.List;
 import java.util.Map;
 
-import benchmarkdp.datagenerator.generator.Text;
+import benchmarkdp.datagenerator.testcase.Text;
 
 public interface TextCollectorInterface {
 

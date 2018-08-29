@@ -17,9 +17,9 @@ import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.Log;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
-import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestCase;
-import benchmarkdp.datagenerator.generator.TestModel;
+import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.testcase.TestModel;
 
 @Deprecated
 //Not needed anymore as MutatorOperator is enough for the new design

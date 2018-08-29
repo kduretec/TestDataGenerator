@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import benchmarkdp.datagenerator.generator.TestFeature;
 import benchmarkdp.datagenerator.generator.utils.Utils;
+import benchmarkdp.datagenerator.testcase.TestFeature;
 
 public class GeneratedMetadataCollector implements CollectorOperatorInterface {
 

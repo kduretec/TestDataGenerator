@@ -14,7 +14,6 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.ocl.OCLEvaluatorInterface;
 import benchmarkdp.datagenerator.generator.ocl.OCLLibreText;
 import benchmarkdp.datagenerator.generator.ocl.OCLMSWordText;
@@ -22,6 +21,7 @@ import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
+import benchmarkdp.datagenerator.testcase.TestCase;
 
 /**
  * This class is used in case ground truth needs to be extracted again from the models. 

@@ -5,9 +5,9 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestCase;
-import benchmarkdp.datagenerator.generator.Text;
+import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.testcase.Text;
 
 public class OCLText extends AbstractOCLEvaluator {
 

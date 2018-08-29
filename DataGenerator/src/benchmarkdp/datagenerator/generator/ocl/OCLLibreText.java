@@ -5,10 +5,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestCase;
-import benchmarkdp.datagenerator.generator.TestModel;
-import benchmarkdp.datagenerator.generator.Text;
 import benchmarkdp.datagenerator.model.PSMLibre.Element;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
@@ -16,6 +12,10 @@ import benchmarkdp.datagenerator.model.PSMLibre.ParagraphImpl;
 import benchmarkdp.datagenerator.model.PSMLibre.Row;
 import benchmarkdp.datagenerator.model.PSMLibre.Table;
 import benchmarkdp.datagenerator.model.PSMLibre.TextContainer;
+import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.testcase.TestModel;
+import benchmarkdp.datagenerator.testcase.Text;
 
 public class OCLLibreText extends AbstractOCLEvaluator {
 

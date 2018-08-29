@@ -173,6 +173,9 @@
 			<resource>
 				<directory>resources</directory>
 			</resource>
+			<resource>
+				<directory>PIMs</directory>
+			</resource>
 		</resources>
 		<plugins>
 

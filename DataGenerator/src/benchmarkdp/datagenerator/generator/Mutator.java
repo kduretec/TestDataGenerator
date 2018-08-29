@@ -30,6 +30,10 @@ import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
+import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.testcase.TestFeature;
+import benchmarkdp.datagenerator.testcase.TestModel;
 
 public class Mutator {
 

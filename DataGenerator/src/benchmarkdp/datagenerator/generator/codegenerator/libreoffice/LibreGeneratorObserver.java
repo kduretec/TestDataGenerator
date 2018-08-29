@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
+import benchmarkdp.datagenerator.testcase.TestCase;
 
 public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 

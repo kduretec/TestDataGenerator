@@ -1,10 +1,13 @@
-package benchmarkdp.datagenerator.generator;
+package benchmarkdp.datagenerator.testcase;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.UUID;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
 
@@ -22,9 +25,11 @@ public class TestCase {
 
 	private TextElements textElements;
 
-	private IGeneratedCode generatedCode;
+	private IGeneratedCode generatedCode;	
 
 	private boolean status = false; 
+	
+	private String testCaseState; 
 	
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
@@ -56,6 +61,11 @@ public class TestCase {
 		return ID;
 	}
 
+	@XmlElement(name="name")
+	public void setTestCaseName(String testCaseName) {
+		this.testCaseName = testCaseName;
+	}
+
 	public String getTestCaseName() {
 		return testCaseName;
 	}
@@ -68,6 +78,7 @@ public class TestCase {
 		status = st;
 	}
 	
+	//@XmlElement(name="")
 	public void setTestFeature(TestFeature testFeature) {
 		if (testFeature.getName() != null) {
 			this.testCaseName = testFeature.getName();
@@ -79,6 +90,7 @@ public class TestCase {
 		return testModel;
 	}
 
+	@XmlTransient // causes an exception if not set  
 	public void setTestModel(TestModel tM) {
 		testModel = tM;
 	}
@@ -87,6 +99,7 @@ public class TestCase {
 		return metadata;
 	}
 
+	@XmlTransient
 	public void setMetadata(Metadata m) {
 		metadata.add(m);
 	}
@@ -97,6 +110,16 @@ public class TestCase {
 
 	public void setGeneratedCode(IGeneratedCode gC) {
 		generatedCode = gC;
+	}
+
+	
+	public String getTestCaseState() {
+		return testCaseState;
+	}
+
+	@XmlElement(name="testCaseState")
+	public void setTestCaseState(String testCaseState) {
+		this.testCaseState = testCaseState;
 	}
 
 	public void saveTestCaseComponents(String metadataPath, String textPath, boolean flag) {

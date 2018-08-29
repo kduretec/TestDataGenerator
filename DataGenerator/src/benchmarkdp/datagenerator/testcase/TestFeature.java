@@ -1,7 +1,10 @@
-package benchmarkdp.datagenerator.generator;
+package benchmarkdp.datagenerator.testcase;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 public class TestFeature {
 
@@ -21,7 +24,8 @@ public class TestFeature {
 		return features.get(feature);
 	}
 	
-	public Map<String, String> getAllFeatures() {
+	@XmlElement(name="feature")
+	public Map<String, String> getFeatures() {
 		return features;
 	}
 	
@@ -33,6 +37,7 @@ public class TestFeature {
 		return name;
 	}
 
+	@XmlTransient
 	public void setName(String name) {
 		this.name = name;
 	}

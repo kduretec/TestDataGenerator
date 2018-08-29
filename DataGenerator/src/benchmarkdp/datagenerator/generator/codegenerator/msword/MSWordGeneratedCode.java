@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import benchmarkdp.datagenerator.generator.IGeneratedCode;
+import benchmarkdp.datagenerator.testcase.IGeneratedCode;
 
 public class MSWordGeneratedCode implements IGeneratedCode {
 

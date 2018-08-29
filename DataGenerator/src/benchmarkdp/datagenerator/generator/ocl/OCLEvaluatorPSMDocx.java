@@ -10,10 +10,10 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
-import benchmarkdp.datagenerator.generator.ModelType;
-import benchmarkdp.datagenerator.generator.TestCase;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
+import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.testcase.TestCase;
 
 
 

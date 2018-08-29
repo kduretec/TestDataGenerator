@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import benchmarkdp.datagenerator.generator.Text;
 import benchmarkdp.datagenerator.generator.utils.Utils;
+import benchmarkdp.datagenerator.testcase.Text;
 
 public class LineCollector implements TextCollectorInterface {
 
