@@ -4,9 +4,12 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.m2m.qvt.oml.TransformationExecutor;
+import org.eclipse.m2m.qvt.oml.examples.blackbox.UtilitiesLibrary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import benchmarkdp.datagenerator.generator.MutationStep;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
@@ -25,6 +28,9 @@ public class Main {
 
 		log.info("Starting the app");
 
+		TransformationExecutor.BlackboxRegistry.INSTANCE.registerModule(UtilitiesLibrary.class,
+				"m2m.qvt.oml.ExampleJavaLib", "m2m.qvt.oml");
+		
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		PIMPackage mwp = PIMPackage.eINSTANCE;
 		PSMDocxPackage pwd = PSMDocxPackage.eINSTANCE;
@@ -57,6 +63,7 @@ public class Main {
 				step = new InitializeTestCasesStep();
 				break;
 			default:
+				step = new MutationStep();
 				break;
 			}
 			if (tCC == null) {
@@ -68,7 +75,6 @@ public class Main {
 				log.info("State = " + pr.getExperimentState());
 				ph.saveProperties(pr);
 				if (tCC.numberTestCases() > 0) {
-					log.info("Not null tcc");
 					tch.save(pr, tCC);
 				}
 				step = step.nextStep();

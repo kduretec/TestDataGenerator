@@ -8,11 +8,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import benchmarkdp.datagenerator.app.Main;
+import benchmarkdp.datagenerator.generator.MutationStep;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class InitializeTestCasesStep implements IWorkflowStep {
 
+	private static Logger log = LoggerFactory.getLogger(InitializeTestCasesStep.class);
+	
 	@Override
 	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
 
@@ -22,14 +29,16 @@ public class InitializeTestCasesStep implements IWorkflowStep {
 		List<TestFeature> testFeatures = readSpecialCases();
 		
 		for (int i = 0; i < numTC; i++) {
-			//TestCase tCase = new TestCase();
-			TestCase tCase = new TestCase(new TestModel("PIMs/Document.xmi", ModelType.PIM));
+			TestCase tCase = new TestCase();
+			//TestCase tCase = new TestCase(new TestModel("PIMs/Document.xmi", ModelType.PIM));
+			tCase.setInitModelPath("PIMs/Document.xmi");
 			if (i < testFeatures.size()) {
 				TestFeature tf = testFeatures.get(i);
 				tCase.setTestFeature(tf);
 			} else {
 				tCase.setTestFeature(new TestFeature());
 			}
+			tCase.load();
 			tCase.setTestCaseState("INITIALIZED");
 			tCC.addTestCase(tCase);
 		}
@@ -38,8 +47,7 @@ public class InitializeTestCasesStep implements IWorkflowStep {
 
 	@Override
 	public IWorkflowStep nextStep() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MutationStep();
 	}
 	
 	private List<TestFeature> readSpecialCases() {
@@ -66,7 +74,7 @@ public class InitializeTestCasesStep implements IWorkflowStep {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Loaded " + tFeatures.size() + " special cases");
+		log.info("Loaded " + tFeatures.size() + " special cases");
 		return tFeatures;
 	}
 

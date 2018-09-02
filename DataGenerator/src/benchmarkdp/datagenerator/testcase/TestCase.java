@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
+import benchmarkdp.datagenerator.properties.ExperimentProperties;
 
 public class TestCase {
 
@@ -31,12 +32,19 @@ public class TestCase {
 	
 	private String testCaseState; 
 	
+	private String initModelPath; 
+	
+	private String pimModelPath;
+	
+	private String psmModelPath;
+	
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
 		testCaseName = ID.replace("-", "");
 		metadata = new Metadata();
 		textElements = new TextElements();
 		testModel = new TestModel();
+		testCaseState = "NULL";
 	}
 
 	public TestCase(String tName) {
@@ -121,7 +129,59 @@ public class TestCase {
 	public void setTestCaseState(String testCaseState) {
 		this.testCaseState = testCaseState;
 	}
+	
+	public String getInitModelPath() {
+		return initModelPath;
+	}
 
+	@XmlElement(name="initModelPath")
+	public void setInitModelPath(String initModelPath) {
+		this.initModelPath = initModelPath;
+	}
+
+	public String getPimModelPath() {
+		return pimModelPath;
+	}
+
+	@XmlElement(name="pimModelPath")
+	public void setPimModelPath(String pimModelPath) {
+		this.pimModelPath = pimModelPath;
+	}
+
+	public String getPsmModelPath() {
+		return psmModelPath;
+	}
+
+	@XmlElement(name="psmModelPath")
+	public void setPsmModelPath(String psmModelPath) {
+		this.psmModelPath = psmModelPath;
+	}
+
+	public void saveTestCaseComponents(ExperimentProperties ep) {
+	
+		String basePath = ep.getFullFolderPath();
+		String modelPath = basePath + "/" +  ep.getModelsFolder() + "/";
+		if (testModel != null) {
+			testModel.saveModelToFile(modelPath, testCaseName);
+		}
+		
+		String codePath = basePath + "/" +  ep.getMacroFolder() + "/";
+		if (generatedCode != null) {
+			generatedCode.saveToFile(codePath, testCaseName);
+		}
+		
+		String metadataPath = basePath + "/" +  ep.getModelMetadataFolder() + "/";
+		if (metadata != null) {
+			metadata.saveToXML(metadataPath, testCaseName);
+		}
+		
+		String textPath = basePath + "/" +  ep.getModelTextFolder() + "/";
+		if (textElements != null) {
+			textElements.saveToXML(textPath, testCaseName);
+		}
+	}
+	
+	
 	public void saveTestCaseComponents(String metadataPath, String textPath, boolean flag) {
 
 		if (flag) {
@@ -155,18 +215,23 @@ public class TestCase {
 		
 	}
 	
-	public void loadModels(String modelPath) {
-		String pimPath = modelPath + "PIM/";
-		String pimModelPath = pimPath + testCaseName + ".xmi";
-		TestModel pimModel = new TestModel(pimModelPath, ModelType.PIM);
-		
-		String psmPath = modelPath + "PSM/";
-		String psmModelPath = psmPath + testCaseName + ".xmi";
-		TestModel psmModel = new TestModel(psmModelPath, null);
-		
-		psmModel.setParent(pimModel);
-		
-		testModel = psmModel;
+	public void load() {
+		if (true){
+		//if (testCaseState=="NULL") {
+			testModel = new TestModel(initModelPath, ModelType.PIM);
+		} else {
+			//String pimPath = modelPath + "PIM/";
+			//String pimModelPath = pimPath + testCaseName + ".xmi";
+			TestModel pimModel = new TestModel(pimModelPath, ModelType.PIM);
+			
+			//String psmPath = modelPath + "PSM/";
+			//String psmModelPath = psmPath + testCaseName + ".xmi";
+			TestModel psmModel = new TestModel(psmModelPath, null);
+			
+			psmModel.setParent(pimModel);
+			
+			testModel = psmModel;
+		}
 	}
 
 }

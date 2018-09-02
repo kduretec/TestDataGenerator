@@ -21,6 +21,10 @@ public class TestCaseHandler {
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
 			tCC = (TestCaseContainer) jaxbUnmarshaller.unmarshal(f);
+			
+			for (TestCase tc : tCC.getTestCases()) {
+				tc.load();
+			}
 
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block

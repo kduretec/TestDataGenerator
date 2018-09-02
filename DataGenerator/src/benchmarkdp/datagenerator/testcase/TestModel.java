@@ -1,5 +1,6 @@
 package benchmarkdp.datagenerator.testcase;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,8 +15,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.m2m.qvt.oml.BasicModelExtent;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
-
-import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 
 public class TestModel {
 
@@ -76,6 +75,10 @@ public class TestModel {
 		} else {
 			path = filePath + "PSM/";
 		}
+		File fol = new File(path); 
+		if (!fol.exists()){
+			fol.mkdir();
+		}
 		Map<String, Object> opts = new HashMap<String, Object>();
 		opts.put(XMIResource.OPTION_SCHEMA_LOCATION, true);
 		ResourceSet resourceSetOut = new ResourceSetImpl();
@@ -112,7 +115,6 @@ public class TestModel {
 			modelType = ModelType.PSMLibre;
 			//System.out.println("Recognized PSMLibre");
 		}
-		
 	}
 
 }

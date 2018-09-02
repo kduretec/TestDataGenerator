@@ -59,7 +59,7 @@ public class AdditionalExtractor {
 		System.out.println("Found " + testCases.size() + " test cases");
 	
 		for (TestCase tc : testCases) {
-			tc.loadModels(Utils.modelsPath);
+			//tc.loadModels(Utils.modelsPath);
 		}
 		System.out.println("Test case models loaded");
 		
