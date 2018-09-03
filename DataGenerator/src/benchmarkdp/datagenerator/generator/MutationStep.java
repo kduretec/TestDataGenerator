@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import benchmarkdp.datagenerator.documentgenerator.GenerateDocumentsStep;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.testcase.InitializeTestCasesStep;
 import benchmarkdp.datagenerator.testcase.TestCase;
@@ -43,8 +44,7 @@ public class MutationStep implements IWorkflowStep {
 
 	@Override
 	public IWorkflowStep nextStep() {
-		// TODO Auto-generated method stub
-		return null;
+		return new GenerateDocumentsStep();
 	}
 
 }

@@ -26,18 +26,20 @@ public class TestCase {
 
 	private TextElements textElements;
 
-	private IGeneratedCode generatedCode;	
+	private IGeneratedCode generatedCode;
 
-	private boolean status = false; 
-	
-	private String testCaseState; 
-	
-	private String initModelPath; 
-	
+	private boolean status = false;
+
+	private String testCaseState;
+
+	private String initModelPath;
+
 	private String pimModelPath;
-	
+
 	private String psmModelPath;
 	
+	private String platform; 
+
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
 		testCaseName = ID.replace("-", "");
@@ -51,7 +53,7 @@ public class TestCase {
 		this();
 		testCaseName = tName;
 	}
-	
+
 	public TestCase(TestModel tm) {
 		this();
 		testModel = tm;
@@ -69,7 +71,7 @@ public class TestCase {
 		return ID;
 	}
 
-	@XmlElement(name="name")
+	@XmlElement(name = "name")
 	public void setTestCaseName(String testCaseName) {
 		this.testCaseName = testCaseName;
 	}
@@ -85,8 +87,8 @@ public class TestCase {
 	public void setStatus(boolean st) {
 		status = st;
 	}
-	
-	//@XmlElement(name="")
+
+	// @XmlElement(name="")
 	public void setTestFeature(TestFeature testFeature) {
 		if (testFeature.getName() != null) {
 			this.testCaseName = testFeature.getName();
@@ -98,7 +100,7 @@ public class TestCase {
 		return testModel;
 	}
 
-	@XmlTransient // causes an exception if not set  
+	@XmlTransient // causes an exception if not set
 	public void setTestModel(TestModel tM) {
 		testModel = tM;
 	}
@@ -118,23 +120,23 @@ public class TestCase {
 
 	public void setGeneratedCode(IGeneratedCode gC) {
 		generatedCode = gC;
+		platform = generatedCode.getPlatform();
 	}
 
-	
 	public String getTestCaseState() {
 		return testCaseState;
 	}
 
-	@XmlElement(name="testCaseState")
+	@XmlElement(name = "testCaseState")
 	public void setTestCaseState(String testCaseState) {
 		this.testCaseState = testCaseState;
 	}
-	
+
 	public String getInitModelPath() {
 		return initModelPath;
 	}
 
-	@XmlElement(name="initModelPath")
+	@XmlElement(name = "initModelPath")
 	public void setInitModelPath(String initModelPath) {
 		this.initModelPath = initModelPath;
 	}
@@ -143,7 +145,7 @@ public class TestCase {
 		return pimModelPath;
 	}
 
-	@XmlElement(name="pimModelPath")
+	@XmlElement(name = "pimModelPath")
 	public void setPimModelPath(String pimModelPath) {
 		this.pimModelPath = pimModelPath;
 	}
@@ -152,84 +154,91 @@ public class TestCase {
 		return psmModelPath;
 	}
 
-	@XmlElement(name="psmModelPath")
+	@XmlElement(name = "psmModelPath")
 	public void setPsmModelPath(String psmModelPath) {
 		this.psmModelPath = psmModelPath;
 	}
 
-	public void saveTestCaseComponents(ExperimentProperties ep) {
 	
+	
+	public String getPlatform() {
+		return platform;
+	}
+
+	@XmlElement(name = "platform")
+	public void setPlatform(String platform) {
+		this.platform = platform;
+	}
+
+	public void saveTestCaseComponents(ExperimentProperties ep) {
+
 		String basePath = ep.getFullFolderPath();
-		String modelPath = basePath + "/" +  ep.getModelsFolder() + "/";
+		String modelPath = basePath + "/" + ep.getModelsFolder() + "/";
 		if (testModel != null) {
 			testModel.saveModelToFile(modelPath, testCaseName);
 		}
-		
-		String codePath = basePath + "/" +  ep.getMacroFolder() + "/";
+
+		String codePath = basePath + "/" + ep.getMacroFolder() + "/";
 		if (generatedCode != null) {
 			generatedCode.saveToFile(codePath, testCaseName);
 		}
-		
-		String metadataPath = basePath + "/" +  ep.getModelMetadataFolder() + "/";
+
+		String metadataPath = basePath + "/" + ep.getModelMetadataFolder() + "/";
 		if (metadata != null) {
 			metadata.saveToXML(metadataPath, testCaseName);
 		}
-		
-		String textPath = basePath + "/" +  ep.getModelTextFolder() + "/";
+
+		String textPath = basePath + "/" + ep.getModelTextFolder() + "/";
 		if (textElements != null) {
 			textElements.saveToXML(textPath, testCaseName);
 		}
 	}
-	
-	
+
 	public void saveTestCaseComponents(String metadataPath, String textPath, boolean flag) {
 
 		if (flag) {
 			if (testModel != null) {
 				testModel.saveModelToFile(Utils.modelsPath, testCaseName);
 			}
-			
+
 			if (generatedCode != null) {
 				generatedCode.saveToFile(Utils.macroPath, testCaseName);
 			}
 		}
-		
+
 		if (metadata != null) {
 			metadata.saveToXML(metadataPath, testCaseName);
 		}
 		if (textElements != null) {
 			textElements.saveToXML(textPath, testCaseName);
 		}
-		
-		
-	File f = new File(Utils.basePath + "testcases.tsv");
-	
-	try {
-		BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
-		bw.write(testCaseName + "\t" + status + "\n");
-		bw.close();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+
+		File f = new File(Utils.basePath + "testcases.tsv");
+
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f, true));
+			bw.write(testCaseName + "\t" + status + "\n");
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
-		
-	}
-	
-	public void load() {
-		if (true){
-		//if (testCaseState=="NULL") {
+
+	public void load(ExperimentProperties ep) {
+		// if (true){
+		if (testCaseState == "INITIALIZED") {
 			testModel = new TestModel(initModelPath, ModelType.PIM);
 		} else {
-			//String pimPath = modelPath + "PIM/";
-			//String pimModelPath = pimPath + testCaseName + ".xmi";
-			TestModel pimModel = new TestModel(pimModelPath, ModelType.PIM);
-			
-			//String psmPath = modelPath + "PSM/";
-			//String psmModelPath = psmPath + testCaseName + ".xmi";
-			TestModel psmModel = new TestModel(psmModelPath, null);
-			
+			String pimPath = ep.getFullFolderPath() + "/" + pimModelPath;
+			TestModel pimModel = new TestModel(pimPath, ModelType.PIM);
+
+			String psmPath = ep.getFullFolderPath() + "/" + psmModelPath;
+			TestModel psmModel = new TestModel(psmPath, null);
+
 			psmModel.setParent(pimModel);
-			
+
 			testModel = psmModel;
 		}
 	}

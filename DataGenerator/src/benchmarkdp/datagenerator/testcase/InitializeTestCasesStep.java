@@ -38,8 +38,8 @@ public class InitializeTestCasesStep implements IWorkflowStep {
 			} else {
 				tCase.setTestFeature(new TestFeature());
 			}
-			tCase.load();
 			tCase.setTestCaseState("INITIALIZED");
+			tCase.load(ep);
 			tCC.addTestCase(tCase);
 		}
 		ep.setExperimentState("TEST_CASES_INITIALIZED");

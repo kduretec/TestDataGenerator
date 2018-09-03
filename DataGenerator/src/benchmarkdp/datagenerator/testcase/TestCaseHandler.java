@@ -23,7 +23,7 @@ public class TestCaseHandler {
 			tCC = (TestCaseContainer) jaxbUnmarshaller.unmarshal(f);
 			
 			for (TestCase tc : tCC.getTestCases()) {
-				tc.load();
+				tc.load(ep);
 			}
 
 		} catch (JAXBException e) {

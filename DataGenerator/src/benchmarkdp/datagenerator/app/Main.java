@@ -1,6 +1,7 @@
 package benchmarkdp.datagenerator.app;
 
 import java.util.Map;
+import java.util.zip.ZipEntry;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -9,6 +10,7 @@ import org.eclipse.m2m.qvt.oml.examples.blackbox.UtilitiesLibrary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import benchmarkdp.datagenerator.documentgenerator.GenerateDocumentsStep;
 import benchmarkdp.datagenerator.generator.MutationStep;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
@@ -62,8 +64,11 @@ public class Main {
 			case "FOLDER_STRUCTURE_INITIALIZED":
 				step = new InitializeTestCasesStep();
 				break;
-			default:
+			case "TEST_CASES_INITIALIZED":
 				step = new MutationStep();
+				break;
+			default:
+				step = new GenerateDocumentsStep();
 				break;
 			}
 			if (tCC == null) {
@@ -80,7 +85,7 @@ public class Main {
 				step = step.nextStep();
 			}
 		}
-
+		
 	}
 
 }

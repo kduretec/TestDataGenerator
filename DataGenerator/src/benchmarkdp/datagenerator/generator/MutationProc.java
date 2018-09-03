@@ -1,5 +1,6 @@
 package benchmarkdp.datagenerator.generator;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,8 +105,23 @@ public class MutationProc implements Runnable {
 			cob.afterGeneration();
 		}
 
+		verifyTestCase();
 		log.info("TestCase " + tc.getTestCaseName() + " mutated");
 
+	}
+
+	private void verifyTestCase() {
+		String pim = ep.getModelsFolder() + "/PIM/" + tc.getTestCaseName() + ".xmi";
+		File f = new File(ep.getFullFolderPath() + "/" + pim);
+		if (f.exists()) {
+			tc.setPimModelPath(pim);
+		}
+		String psm = ep.getModelsFolder() + "/PSM/" + tc.getTestCaseName() + ".xmi";
+		f = new File(ep.getFullFolderPath() + "/" + psm);
+		if (f.exists()) {
+			tc.setPsmModelPath(psm);
+		}
+		tc.setTestCaseState("MUTATED");
 	}
 
 	private void initializeMutationsPIM() {
