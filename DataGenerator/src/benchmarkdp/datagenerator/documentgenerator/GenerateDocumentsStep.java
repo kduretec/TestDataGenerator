@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +23,7 @@ import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class GenerateDocumentsStep implements IWorkflowStep {
 
-	private static String COM_FOLDER_TO = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/INFSOF/ComunicationFolder/ToVM";
+	private static String COM_FOLDER_TO = "/Users/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/INFSOF/experiments/ComunicationFolder/ToVM";
 
 	private static Logger log = LoggerFactory.getLogger(MutationStep.class);
 
@@ -64,14 +65,33 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 
 	private void createTmpFolder(String path, String name, List<TestCase> tC, ExperimentProperties ep) {
 		String pathFolder = path + name;
+		String platform = tC.get(0).getPlatform();
 		File destDir = new File(pathFolder);
 		if (!destDir.exists()) {
 			destDir.mkdir();
 		}
-		String pathExp = ep.getFullFolderPath() + "/" + ep.getExperimentName();
+		String foldExperiment = pathFolder + "/" + ep.getExperimentName();
+		File fileExperiment = new File(foldExperiment);
+		if (!fileExperiment.exists()) {
+			fileExperiment.mkdir();
+		}
+		
+		String testCasesPath =  ep.getFullFolderPath() + "/testCases.xml";
+		File testCasesFile = new File(testCasesPath);
+		String propertiesPath =  ep.getFullFolderPath() + "/properties.xml"; 
+		File propertiesFile = new File(propertiesPath);
+		String pathExp = ep.getFullFolderPath() + "/" + ep.getExperimentName() + "/Macro/" + platform;
 		File srcDir = new File(pathExp);
+		
+		String destFolderMacro = foldExperiment + "/Macro/" + platform;
+		File destDirMacro = new File(destFolderMacro);
+		/*if (!destDirMacro.exists()) {
+			destDirMacro.mkdirs();
+		}*/
 		try {
-			FileUtils.copyDirectory(srcDir, destDir);
+			FileUtils.copyFileToDirectory(testCasesFile, destDir);
+			FileUtils.copyFileToDirectory(propertiesFile, destDir);
+			FileUtils.copyDirectory(srcDir, destDirMacro);
 			addTestCaseToGenerate(pathFolder, tC);
 			ZipUtil.zipFolder(pathFolder, COM_FOLDER_TO, name);
 			FileUtils.deleteDirectory(new File(path));

@@ -17,8 +17,8 @@ class MSWordDocument extends AbstractElementCompiler {
 			Const END_OF_STORY = 6 
 			Set objWord = CreateObject("Word.Application") 
 			objWord.Visible = False 
-			grFile = "«Utils::windowsGeneratedTextPath»«cState.getVariable("documentName")».txt" 				
-			grFileMetadata = "«Utils::windowsGeneratedMetadataPath»«cState.getVariable("documentName")».txt"
+			grFile = WScript.Arguments.Item(1) + "«cState.getVariable("documentName")».txt" 				
+			grFileMetadata = WScript.Arguments.Item(2) + "«cState.getVariable("documentName")».txt"
 			Set objFSO = CreateObject("Scripting.FileSystemObject")
 			Set objFile = objFSO.CreateTextFile(grFile, True)
 			Set objFileMetadata = objFSO.CreateTextFile(grFileMetadata, True)
@@ -44,7 +44,7 @@ class MSWordDocument extends AbstractElementCompiler {
 		
 		temp = cState.getVariable("temp") as String 
 		temp = temp + '''
-			oDoc.SaveAs "«Utils::windowsDocPath»«cState.getVariable("documentName")».«d.documentFormat»", «d.documentFormatCode»
+			oDoc.SaveAs WScript.Arguments.Item(0) + "«cState.getVariable("documentName")».«d.documentFormat»", «d.documentFormatCode»
 					
 			objFileMetadata.Write "pagecount " & oDoc.ComputeStatistics(2) & vbCrLf
 			objFileMetadata.Write "wordcount " & oDoc.ComputeStatistics(0) & vbCrLf

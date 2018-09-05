@@ -38,6 +38,8 @@ public class TestCase {
 
 	private String psmModelPath;
 	
+	private String generatedDocument; 
+	
 	private String platform; 
 
 	public TestCase() {
@@ -158,9 +160,15 @@ public class TestCase {
 	public void setPsmModelPath(String psmModelPath) {
 		this.psmModelPath = psmModelPath;
 	}
+	
+	public String getGeneratedDocument() {
+		return generatedDocument;
+	}
+	@XmlElement(name = "generatedDocument")
+	public void setGeneratedDocument(String generatedDocument) {
+		this.generatedDocument = generatedDocument;
+	}
 
-	
-	
 	public String getPlatform() {
 		return platform;
 	}

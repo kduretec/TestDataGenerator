@@ -11,7 +11,7 @@ import benchmarkdp.datagenerator.properties.ExperimentProperties;
 
 public class TestCaseHandler {
 
-	public TestCaseContainer load(ExperimentProperties ep) {
+	public TestCaseContainer load(ExperimentProperties ep, boolean loadModels) {
 		String path = ep.getFullFolderPath() + "/testCases.xml";
 		File f = new File(path);
 		JAXBContext jaxbContext;
@@ -21,21 +21,23 @@ public class TestCaseHandler {
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
 			tCC = (TestCaseContainer) jaxbUnmarshaller.unmarshal(f);
-			
-			for (TestCase tc : tCC.getTestCases()) {
-				tc.load(ep);
+
+			if (loadModels) {
+				for (TestCase tc : tCC.getTestCases()) {
+					tc.load(ep);
+				}
 			}
 
 		} catch (JAXBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		return tCC;
 	}
-	
+
 	public void save(ExperimentProperties ep, TestCaseContainer tCC) {
-		String path = ep.getFullFolderPath() + "/testCases.xml";
+		String path = ep.getFullFolderPath() + File.separator + "testCases.xml";
 		File f = new File(path);
 		JAXBContext jaxbContext;
 		try {

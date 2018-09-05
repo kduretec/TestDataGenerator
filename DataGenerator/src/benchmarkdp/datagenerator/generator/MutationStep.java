@@ -39,7 +39,7 @@ public class MutationStep implements IWorkflowStep {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		ep.setExperimentState("TESTCASES_MUTATED");
 	}
 
 	@Override

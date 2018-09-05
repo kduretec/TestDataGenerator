@@ -2,7 +2,6 @@ package benchmarkdp.datagenerator.generator.codegenerator.msword;
 
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
-import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PSMDocx.Color;
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.Page;
@@ -24,14 +23,12 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("objWord.Visible = False ");
     _builder.newLine();
-    _builder.append("grFile = \"");
-    _builder.append(Utils.windowsGeneratedTextPath, "");
+    _builder.append("grFile = WScript.Arguments.Item(1) + \"");
     Object _variable_1 = cState.getVariable("documentName");
     _builder.append(_variable_1, "");
     _builder.append(".txt\" \t\t\t\t");
     _builder.newLineIfNotEmpty();
-    _builder.append("grFileMetadata = \"");
-    _builder.append(Utils.windowsGeneratedMetadataPath, "");
+    _builder.append("grFileMetadata = WScript.Arguments.Item(2) + \"");
     Object _variable_2 = cState.getVariable("documentName");
     _builder.append(_variable_2, "");
     _builder.append(".txt\"");
@@ -79,8 +76,7 @@ public class MSWordDocument extends AbstractElementCompiler {
     Object _variable_4 = cState.getVariable("temp");
     temp = ((String) _variable_4);
     StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append("oDoc.SaveAs \"");
-    _builder_2.append(Utils.windowsDocPath, "");
+    _builder_2.append("oDoc.SaveAs WScript.Arguments.Item(0) + \"");
     Object _variable_5 = cState.getVariable("documentName");
     _builder_2.append(_variable_5, "");
     _builder_2.append(".");
