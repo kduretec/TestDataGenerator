@@ -43,16 +43,37 @@ public class WindowsVMProc implements Runnable {
 			//log.info("Executing = " + command);
 			Process p = Runtime.getRuntime().exec(command);
 			p.waitFor();
-			tc.setTestCaseState("DOCUMENT_GENERATED"); 
+			
+			
+			
 			File f = new File(documentFolder);
 			String[] docs = f.list(new FFilter(tc.getTestCaseName()));
-			tc.setGeneratedDocument(ep.getDocumentFolder() + "/" + docs[0]);
+			if (docs.length > 0) {			
+				tc.setGeneratedDocument(ep.getDocumentFolder() + "/" + docs[0]);
+				String metadataPath = metadataFolder + tc.getTestCaseName() + ".txt";
+				File metadataFile = new File(metadataPath);
+				if (metadataFile.exists()) {
+					tc.setGeneratedMetadata(ep.getGeneratedMetadataFolder() + "/" + metadataFile.getName());
+				}
+				String textPath = textFolder + tc.getTestCaseName() + ".txt";
+				File textFile = new File(textPath);
+				if (textFile.exists()) {
+					tc.setGeneratedText(ep.getGeneratedTextFolder() + "/" + textFile.getName());
+				}
+				tc.setTestCaseState("DOCUMENT_GENERATED"); 
+			} else {
+				tc.setTestCaseState("GENERATION_ERROR");
+				log.error("ERROR during generating " + tc.getTestCaseName());
+			}
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tc.setTestCaseState("GENERATION_ERROR");
+			//e.printStackTrace();
+			log.error("ERROR during generating " + tc.getTestCaseName());
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tc.setTestCaseState("GENERATION_ERROR");
+			//e.printStackTrace();
+			log.error("ERROR during generating " + tc.getTestCaseName());
 		}
 	}
 
@@ -63,7 +84,7 @@ public class WindowsVMProc implements Runnable {
 			fname = n;
 		}
 		public boolean accept(File dir, String name) {
-			log.info("Checking " + name + " with " + fname);
+			//log.info("Checking " + name + " with " + fname);
 			return name.startsWith(fname);
 		}
 	}

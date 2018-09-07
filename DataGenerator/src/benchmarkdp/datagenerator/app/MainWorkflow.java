@@ -15,7 +15,7 @@ import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 public class MainWorkflow {
 
 	private static Logger log = LoggerFactory.getLogger(MainWorkflow.class);
-	
+
 	public void execute(String propertiesFile) {
 
 		PropertiesHandler ph = new PropertiesHandler();
@@ -45,6 +45,12 @@ public class MainWorkflow {
 			case "TEST_CASES_INITIALIZED":
 				step = new MutationStep();
 				break;
+			case "TEST_CASES_MUTATED":
+				step = new GenerateDocumentsStep();
+				break;
+			case "TEST_CASES_DISTRIBUTED":
+				step = new GenerateDocumentsStep();
+				break;
 			default:
 				step = new GenerateDocumentsStep();
 				break;
@@ -63,7 +69,6 @@ public class MainWorkflow {
 				step = step.nextStep();
 			}
 		}
-
 
 	}
 }

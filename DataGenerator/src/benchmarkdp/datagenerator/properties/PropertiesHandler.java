@@ -82,7 +82,7 @@ public class PropertiesHandler {
 	private String calculateAbsoluteFolder(String file) {
 		File f = new File(file);
 		String s = f.getAbsolutePath();
-		s = s.substring(0, s.lastIndexOf(File.separator));
+		s = s.substring(0, s.lastIndexOf(File.separator)) + File.separator;
 		return s;
 	}
 }

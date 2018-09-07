@@ -40,6 +40,10 @@ public class TestCase {
 	
 	private String generatedDocument; 
 	
+	private String generatedMetadata; 
+	
+	private String generatedText; 
+	
 	private String platform; 
 
 	public TestCase() {
@@ -164,9 +168,28 @@ public class TestCase {
 	public String getGeneratedDocument() {
 		return generatedDocument;
 	}
+	
 	@XmlElement(name = "generatedDocument")
 	public void setGeneratedDocument(String generatedDocument) {
 		this.generatedDocument = generatedDocument;
+	}
+	
+	public String getGeneratedMetadata() {
+		return generatedMetadata;
+	}
+
+	@XmlElement(name = "generatedMetadata")
+	public void setGeneratedMetadata(String generatedMetadata) {
+		this.generatedMetadata = generatedMetadata;
+	}
+
+	public String getGeneratedText() {
+		return generatedText;
+	}
+
+	@XmlElement(name = "generatedText")
+	public void setGeneratedText(String generatedText) {
+		this.generatedText = generatedText;
 	}
 
 	public String getPlatform() {

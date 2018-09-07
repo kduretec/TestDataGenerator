@@ -47,7 +47,7 @@ public class WindowsVM {
 		log.info("Document generation done");
 		finalize(platform, experiment, ep);
 		} else {
-			log.info("Quitting");
+			log.info("Quitting, nothing to do");
 		}
 	}
 
@@ -119,9 +119,9 @@ public class WindowsVM {
 	private void finalize(String platform, String experiment, ExperimentProperties ep) {
 		try {
 			ZipUtil.zipFolder(ep.getFullFolderPath(), dropbPathOut, experiment + "-" + platform);
-			//FileUtils.deleteDirectory(new File(ep.getFullFolderPath()));
+			FileUtils.deleteDirectory(new File(ep.getFullFolderPath()));
 			File f = new File(dropbPathIn + experiment + "-" + platform + ".zip");
-			//f.delete();
+			f.delete();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
