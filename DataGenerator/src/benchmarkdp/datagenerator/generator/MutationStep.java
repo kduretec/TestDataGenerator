@@ -25,11 +25,13 @@ public class MutationStep implements IWorkflowStep {
 
 		List<TestCase> testCases = tCC.getTestCases();
 		log.info("Mutation found " + testCases.size() + " testcases to mutate");
-		
+
 		ExecutorService exec = Executors.newFixedThreadPool(NUMBER_OF_PROC);
-		
+
 		for (TestCase tc : testCases) {
-			exec.execute(new MutationProc(ep, tc));
+			if (tc.getTestCaseState().compareTo("INITIALIZED") == 0) {
+				exec.execute(new MutationProc(ep, tc));
+			}
 		}
 
 		exec.shutdown();
