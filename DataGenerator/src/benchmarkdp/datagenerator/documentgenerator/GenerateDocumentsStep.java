@@ -49,7 +49,7 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 		} else if (ep.getExperimentState().compareTo("TEST_CASES_DISTRIBUTED") == 0) {
 			collectTestCases(ep, tCC);
 		} else if (ep.getExperimentState().compareTo("TEST_CASES_COLLECTED") == 0) {
-			distributeTestCases(ep, tCC);
+			//distributeTestCases(ep, tCC);
 		}
 
 	}
@@ -70,7 +70,7 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 			f.mkdir();
 		}
 		for (TestCase tc : testCases) {
-			if (tc.getTestCaseState().compareTo("TEST_CASES_MUTATED") == 0
+			if (tc.getTestCaseState().compareTo("MUTATED") == 0
 					|| tc.getTestCaseState().compareTo("GENERATION_ERROR") == 0) {
 				String k = experimentName + "-" + tc.getPlatform();
 				if (!ditTC.containsKey(k)) {
@@ -83,7 +83,11 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 		for (Map.Entry<String, List<TestCase>> entr : ditTC.entrySet()) {
 			createTmpFolder(pathTmp, entr.getKey(), entr.getValue(), ep);
 		}
-		ep.setExperimentState("TEST_CASES_DISTRIBUTED");
+		if (ditTC.size() == 0) {
+			ep.setExperimentState("TEST_CASES_COLLECTED");
+		} else {
+			ep.setExperimentState("TEST_CASES_DISTRIBUTED");
+		}
 	}
 
 	private void createTmpFolder(String path, String name, List<TestCase> tC, ExperimentProperties ep) {
@@ -148,6 +152,7 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 		for (File f : zipFiles) {
 			processReturnZip(f, ep, tCC);
 		}
+		ep.setExperimentState("TEST_CASES_MUTATED");
 	}
 
 	private void processReturnZip(File f, ExperimentProperties ep, TestCaseContainer tCC) {

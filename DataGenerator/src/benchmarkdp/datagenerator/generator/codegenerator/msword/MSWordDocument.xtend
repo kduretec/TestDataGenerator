@@ -16,7 +16,7 @@ class MSWordDocument extends AbstractElementCompiler {
 		temp = temp + '''
 			Const END_OF_STORY = 6 
 			Set objWord = CreateObject("Word.Application") 
-			objWord.Visible = False 
+			objWord.Visible = WScript.Arguments.Item(3) 
 			grFile = WScript.Arguments.Item(1) + "«cState.getVariable("documentName")».txt" 				
 			grFileMetadata = WScript.Arguments.Item(2) + "«cState.getVariable("documentName")».txt"
 			Set objFSO = CreateObject("Scripting.FileSystemObject")

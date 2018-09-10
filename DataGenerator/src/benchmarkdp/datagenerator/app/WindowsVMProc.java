@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.app;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,14 +14,20 @@ import benchmarkdp.datagenerator.testcase.TestCase;
 public class WindowsVMProc implements Runnable {
 
 	private static Logger log = LoggerFactory.getLogger(WindowsVMProc.class);
+	
 	private TestCase tc;
 	private ExperimentProperties ep;
 
-	public WindowsVMProc(ExperimentProperties e, TestCase t) {
+	private long timeout; 
+	private boolean visible; 
+	
+	public WindowsVMProc(ExperimentProperties e, TestCase t, long tout, boolean vis) {
 		tc = t;
 		ep = e;
+		timeout = tout;
+		visible = vis; 
 	}
-
+	
 	@Override
 	public void run() {
 		log.info("Generating " + tc.getTestCaseName());
@@ -39,32 +46,37 @@ public class WindowsVMProc implements Runnable {
 		// log.info("Script path = " + scriptFilePath);
 		try {
 			String command = "wscript \"" + scriptFilePath + "\" \"" + documentFolder + "\" \"" + textFolder + "\" \""
-					+ metadataFolder + "\"";
-			//log.info("Executing = " + command);
+					+ metadataFolder + "\" " + visible;
+			log.info("Executing = " + command);
 			Process p = Runtime.getRuntime().exec(command);
-			p.waitFor();
+			//p.waitFor();
 			
-			
-			
-			File f = new File(documentFolder);
-			String[] docs = f.list(new FFilter(tc.getTestCaseName()));
-			if (docs.length > 0) {			
-				tc.setGeneratedDocument(ep.getDocumentFolder() + "/" + docs[0]);
-				String metadataPath = metadataFolder + tc.getTestCaseName() + ".txt";
-				File metadataFile = new File(metadataPath);
-				if (metadataFile.exists()) {
-					tc.setGeneratedMetadata(ep.getGeneratedMetadataFolder() + "/" + metadataFile.getName());
-				}
-				String textPath = textFolder + tc.getTestCaseName() + ".txt";
-				File textFile = new File(textPath);
-				if (textFile.exists()) {
-					tc.setGeneratedText(ep.getGeneratedTextFolder() + "/" + textFile.getName());
-				}
-				tc.setTestCaseState("DOCUMENT_GENERATED"); 
+			if (p.waitFor(timeout, TimeUnit.MINUTES) ) {
+				File f = new File(documentFolder);
+				String[] docs = f.list(new FFilter(tc.getTestCaseName()));
+				if (docs.length > 0) {			
+					tc.setGeneratedDocument(ep.getDocumentFolder() + "/" + docs[0]);
+					String metadataPath = metadataFolder + tc.getTestCaseName() + ".txt";
+					File metadataFile = new File(metadataPath);
+					if (metadataFile.exists()) {
+						tc.setGeneratedMetadata(ep.getGeneratedMetadataFolder() + "/" + metadataFile.getName());
+					}
+					String textPath = textFolder + tc.getTestCaseName() + ".txt";
+					File textFile = new File(textPath);
+					if (textFile.exists()) {
+						tc.setGeneratedText(ep.getGeneratedTextFolder() + "/" + textFile.getName());
+					}
+					tc.setTestCaseState("DOCUMENT_GENERATED"); 
+				} else {
+					tc.setTestCaseState("GENERATION_ERROR");
+					log.error("ERROR during generating " + tc.getTestCaseName());
+				}				
 			} else {
+				p.destroyForcibly();
 				tc.setTestCaseState("GENERATION_ERROR");
-				log.error("ERROR during generating " + tc.getTestCaseName());
+				log.error("TIMEOUT during generating " + tc.getTestCaseName());
 			}
+			
 			
 		} catch (IOException e) {
 			tc.setTestCaseState("GENERATION_ERROR");

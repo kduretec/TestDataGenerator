@@ -21,7 +21,7 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("Set objWord = CreateObject(\"Word.Application\") ");
     _builder.newLine();
-    _builder.append("objWord.Visible = False ");
+    _builder.append("objWord.Visible = WScript.Arguments.Item(3) ");
     _builder.newLine();
     _builder.append("grFile = WScript.Arguments.Item(1) + \"");
     Object _variable_1 = cState.getVariable("documentName");

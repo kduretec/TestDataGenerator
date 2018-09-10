@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.app;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import benchmarkdp.datagenerator.datacollector.FitsStep;
 import benchmarkdp.datagenerator.documentgenerator.GenerateDocumentsStep;
 import benchmarkdp.datagenerator.generator.MutationStep;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
@@ -51,8 +52,11 @@ public class MainWorkflow {
 			case "TEST_CASES_DISTRIBUTED":
 				step = new GenerateDocumentsStep();
 				break;
+			case "TEST_CASES_COLLECTED":
+				step = new FitsStep();
+				break;
 			default:
-				step = new GenerateDocumentsStep();
+				step = new FitsStep();
 				break;
 			}
 			if (tCC == null) {

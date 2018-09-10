@@ -27,8 +27,6 @@ public class WindowsVM {
 
 	private static Logger log = LoggerFactory.getLogger(WindowsVM.class);
 
-	private static int NUMBER_OF_PROC = 4;
-
 	private static String dropbPathIn = "c:\\Users\\"
 			+ "Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\publications\\"
 			+ "INFSOF\\experiments\\ComunicationFolder\\ToVM\\";
@@ -37,6 +35,18 @@ public class WindowsVM {
 			+ "INFSOF\\experiments\\ComunicationFolder\\FromVM\\";
 
 	private static String tmpFolder = "c:\\Users\\Kresimir Duretec\\Desktop\\tmp\\";
+
+	private int numbProc;
+	
+	private long timeout;
+	
+	private boolean visible; 	
+	
+	public WindowsVM(int numbProc, long timeout, boolean visible) {
+		this.numbProc = numbProc;
+		this.timeout = timeout;
+		this.visible = visible;
+	}
 
 	public void execute(String platform, String experiment) {
 
@@ -98,11 +108,12 @@ public class WindowsVM {
 		Set<String> toGenerate = loadCasesToGenerate(ep);
 		log.info("Detected " + toGenerate.size() + " testcases to generate");
 
-		ExecutorService exec = Executors.newFixedThreadPool(NUMBER_OF_PROC);
+		ExecutorService exec = Executors.newFixedThreadPool(numbProc);
 
 		for (TestCase tc : tCC.getTestCases()) {
 			if (toGenerate.contains(tc.getTestCaseName())) {
-				exec.execute(new WindowsVMProc(ep, tc));
+				
+				exec.execute(new WindowsVMProc(ep, tc, timeout, visible));
 			}
 
 		}
@@ -121,7 +132,7 @@ public class WindowsVM {
 			ZipUtil.zipFolder(ep.getFullFolderPath(), dropbPathOut, experiment + "-" + platform);
 			FileUtils.deleteDirectory(new File(ep.getFullFolderPath()));
 			File f = new File(dropbPathIn + experiment + "-" + platform + ".zip");
-			f.delete();
+			//f.delete();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -44,6 +44,8 @@ public class TestCase {
 	
 	private String generatedText; 
 	
+	private String fitsFile; 
+	
 	private String platform; 
 
 	public TestCase() {
@@ -190,6 +192,15 @@ public class TestCase {
 	@XmlElement(name = "generatedText")
 	public void setGeneratedText(String generatedText) {
 		this.generatedText = generatedText;
+	}
+
+	public String getFitsFile() {
+		return fitsFile;
+	}
+
+	@XmlElement(name = "fitsFile")
+	public void setFitsFile(String fitsFile) {
+		this.fitsFile = fitsFile;
 	}
 
 	public String getPlatform() {

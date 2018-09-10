@@ -47,6 +47,17 @@ public class Main {
 			String vmName = cmd.getOptionValue("vm");
 			String eName = cmd.getOptionValue("e");
 			VMWorkflow vmWork = new VMWorkflow();
+			if (cmd.hasOption("p")) {
+				int p = Integer.parseInt(cmd.getOptionValue("p"));
+				vmWork.setNumbProc(p);
+			}
+			if (cmd.hasOption("t")) {
+				long t = Long.parseLong(cmd.getOptionValue("p"));
+				vmWork.setTimeout(t);
+			}
+			if (cmd.hasOption("v")) {
+				vmWork.setVisible(true);
+			}
 			vmWork.execute(vmName, eName);
 		} else if (cmd.hasOption("w")) {
 			log.info("Main workflow setting detected");
@@ -74,9 +85,15 @@ public class Main {
 		Option workflow = Option.builder("w").hasArg(true).desc("point to the expeirment properties file").build();
 		Option vm = Option.builder("vm").hasArg(true).desc("name of the vm").build();
 		Option experimentName = Option.builder("e").hasArg(true).desc("experiment name").build();
+		Option procNumber = Option.builder("p").hasArg(true).desc("number of processes").build();
+		Option time = Option.builder("t").hasArg(true).desc("timeout - time to wait for").build();
+		Option vis = Option.builder("v").hasArg(false).desc("is visble during generation").build();
 		options.addOption(workflow);
 		options.addOption(vm);
 		options.addOption(experimentName);
+		options.addOption(procNumber);
+		options.addOption(time);
+		options.addOption(vis);
 
 	}
 
