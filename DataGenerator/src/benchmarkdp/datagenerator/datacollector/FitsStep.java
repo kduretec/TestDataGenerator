@@ -39,7 +39,6 @@ public class FitsStep implements IWorkflowStep {
 
 	@Override
 	public IWorkflowStep nextStep() {
-		// TODO Auto-generated method stub
-		return null;
+		return new FinalizeStep();
 	}
 }

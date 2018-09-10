@@ -23,7 +23,7 @@ public class FitsProc implements Runnable {
 
 	@Override
 	public void run() {
-		log.info("Runnig FITS on " + tc.getTestCaseName());
+		log.info("Running FITS on " + tc.getTestCaseName());
 		String fits = "bash /Users/kresimir/Programs/fits-1.0.1/fits.sh";
 		String inputFile = ep.getFullFolderPath() + tc.getGeneratedDocument();
 		String relFits = ep.getFitsFolder() + File.separator + tc.getTestCaseName() + ".fits.xml";

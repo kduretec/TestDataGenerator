@@ -52,7 +52,7 @@ public class Main {
 				vmWork.setNumbProc(p);
 			}
 			if (cmd.hasOption("t")) {
-				long t = Long.parseLong(cmd.getOptionValue("p"));
+				long t = Long.parseLong(cmd.getOptionValue("t"));
 				vmWork.setTimeout(t);
 			}
 			if (cmd.hasOption("v")) {

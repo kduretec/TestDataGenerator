@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
+import benchmarkdp.datagenerator.properties.ExperimentProperties;
+import benchmarkdp.datagenerator.testcase.TestCase;
 import benchmarkdp.datagenerator.testcase.TestFeature;
 
 public class GeneratedMetadataCollector implements CollectorOperatorInterface {
@@ -23,7 +25,25 @@ public class GeneratedMetadataCollector implements CollectorOperatorInterface {
 
 		String filePath = Utils.generatedMetadataPath + name + ".txt";
 
-		File f = new File(filePath);
+		Map<String, Object> values = calculateMap(filePath);
+
+		return values;
+
+	}
+
+	@Override
+	public Map<String, Object> collect(ExperimentProperties ep, TestCase tc) {
+
+		String filePath = ep.getFullFolderPath() + tc.getGeneratedMetadata();
+
+		Map<String, Object> values = calculateMap(filePath);
+
+		return values;
+	}
+
+	private Map<String, Object> calculateMap(String path) {
+
+		File f = new File(path);
 
 		Map<String, Object> values = new HashMap<String, Object>();
 
@@ -47,7 +67,5 @@ public class GeneratedMetadataCollector implements CollectorOperatorInterface {
 		}
 
 		return values;
-
 	}
-
 }

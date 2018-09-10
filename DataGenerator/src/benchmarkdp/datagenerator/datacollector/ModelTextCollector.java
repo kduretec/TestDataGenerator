@@ -17,6 +17,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
+import benchmarkdp.datagenerator.properties.ExperimentProperties;
+import benchmarkdp.datagenerator.testcase.TestCase;
 import benchmarkdp.datagenerator.testcase.Text;
 
 public class ModelTextCollector implements TextCollectorInterface {
@@ -26,7 +28,34 @@ public class ModelTextCollector implements TextCollectorInterface {
 
 		String filePath = Utils.modelTextPath + name + ".xml";
 
-		File f = new File(filePath);
+		List<Text> values = calculateList(filePath);
+
+		return values;
+	}
+
+	@Override
+	public Map<String, Text> collectTextElemenentsMap(String name) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<Text> collectTextELementsList(ExperimentProperties ep, TestCase tc) {
+		
+		String filePath = ep.getFullFolderPath() + tc.getModelText();
+	
+		List<Text> values = calculateList(filePath);
+
+		return values;
+	}
+
+	@Override
+	public Map<String, Text> collectTextElemenentsMap(ExperimentProperties ep, TestCase tc) {
+		throw new UnsupportedOperationException();
+	}
+
+	private List<Text> calculateList(String path) {
+
+		File f = new File(path);
 		List<Text> values = new ArrayList<Text>();
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder;
@@ -64,11 +93,6 @@ public class ModelTextCollector implements TextCollectorInterface {
 			e.printStackTrace();
 		}
 		return values;
-	}
-
-	@Override
-	public Map<String, Text> collectTextElemenentsMap(String name) {
-		throw new UnsupportedOperationException();
 	}
 
 	private List<String> getLines(Node n) {

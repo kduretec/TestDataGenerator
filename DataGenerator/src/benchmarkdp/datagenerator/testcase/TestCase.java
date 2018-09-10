@@ -37,16 +37,22 @@ public class TestCase {
 	private String pimModelPath;
 
 	private String psmModelPath;
-	
-	private String generatedDocument; 
-	
-	private String generatedMetadata; 
-	
-	private String generatedText; 
-	
-	private String fitsFile; 
-	
-	private String platform; 
+
+	private String generatedDocument;
+
+	private String modelMetadata;
+
+	private String modelText;
+
+	private String generatedMetadata;
+
+	private String generatedText;
+
+	private String fitsFile;
+
+	private String metadataFile;
+
+	private String platform;
 
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
@@ -166,16 +172,16 @@ public class TestCase {
 	public void setPsmModelPath(String psmModelPath) {
 		this.psmModelPath = psmModelPath;
 	}
-	
+
 	public String getGeneratedDocument() {
 		return generatedDocument;
 	}
-	
+
 	@XmlElement(name = "generatedDocument")
 	public void setGeneratedDocument(String generatedDocument) {
 		this.generatedDocument = generatedDocument;
 	}
-	
+
 	public String getGeneratedMetadata() {
 		return generatedMetadata;
 	}
@@ -203,6 +209,33 @@ public class TestCase {
 		this.fitsFile = fitsFile;
 	}
 
+	public String getModelMetadata() {
+		return modelMetadata;
+	}
+
+	@XmlElement(name = "modelMetadata")
+	public void setModelMetadata(String modelMetadata) {
+		this.modelMetadata = modelMetadata;
+	}
+
+	public String getModelText() {
+		return modelText;
+	}
+
+	@XmlElement(name = "modelText")
+	public void setModelText(String modelText) {
+		this.modelText = modelText;
+	}
+
+	public String getMetadataFile() {
+		return metadataFile;
+	}
+
+	@XmlElement(name = "metadataFile")
+	public void setMetadataFile(String metadataFile) {
+		this.metadataFile = metadataFile;
+	}
+
 	public String getPlatform() {
 		return platform;
 	}
@@ -226,11 +259,15 @@ public class TestCase {
 		}
 
 		String metadataPath = basePath + "/" + ep.getModelMetadataFolder() + "/";
+		String textPath = basePath + "/" + ep.getModelTextFolder() + "/";
+		if (ep.getExperimentState().compareTo("FINALIZED") == 0) {
+			metadataPath = basePath + "/" + ep.getMetadataFolder() + "/";
+			textPath = basePath + "/" + ep.getTextFolder() + "/";
+		}
 		if (metadata != null) {
 			metadata.saveToXML(metadataPath, testCaseName);
 		}
 
-		String textPath = basePath + "/" + ep.getModelTextFolder() + "/";
 		if (textElements != null) {
 			textElements.saveToXML(textPath, testCaseName);
 		}

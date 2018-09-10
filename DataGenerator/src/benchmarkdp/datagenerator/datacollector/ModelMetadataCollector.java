@@ -15,6 +15,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
+import benchmarkdp.datagenerator.properties.ExperimentProperties;
+import benchmarkdp.datagenerator.testcase.TestCase;
 
 public class ModelMetadataCollector implements CollectorOperatorInterface {
 
@@ -28,7 +30,24 @@ public class ModelMetadataCollector implements CollectorOperatorInterface {
 
 		String filePath = Utils.modelMetadataPath + name + ".xml";
 
-		File f = new File(filePath);
+		Map<String, Object> values = calculateMap(filePath);
+
+		return values;
+	}
+
+	@Override
+	public Map<String, Object> collect(ExperimentProperties ep, TestCase tc) {
+
+		String filePath = ep.getFullFolderPath() + tc.getModelMetadata();
+
+		Map<String, Object> values = calculateMap(filePath);
+
+		return values;
+	}
+
+	private Map<String, Object> calculateMap(String path) {
+
+		File f = new File(path);
 		Map<String, Object> values = new HashMap<String, Object>();
 
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -47,9 +66,7 @@ public class ModelMetadataCollector implements CollectorOperatorInterface {
 				values.put(metName + ":" + metSource, metVal);
 			}
 
-		} catch (
-
-		ParserConfigurationException e) {
+		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
@@ -62,5 +79,4 @@ public class ModelMetadataCollector implements CollectorOperatorInterface {
 
 		return values;
 	}
-
 }

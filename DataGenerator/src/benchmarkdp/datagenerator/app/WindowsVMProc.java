@@ -14,20 +14,20 @@ import benchmarkdp.datagenerator.testcase.TestCase;
 public class WindowsVMProc implements Runnable {
 
 	private static Logger log = LoggerFactory.getLogger(WindowsVMProc.class);
-	
+
 	private TestCase tc;
 	private ExperimentProperties ep;
 
-	private long timeout; 
-	private boolean visible; 
-	
+	private long timeout;
+	private boolean visible;
+
 	public WindowsVMProc(ExperimentProperties e, TestCase t, long tout, boolean vis) {
 		tc = t;
 		ep = e;
 		timeout = tout;
-		visible = vis; 
+		visible = vis;
 	}
-	
+
 	@Override
 	public void run() {
 		log.info("Generating " + tc.getTestCaseName());
@@ -47,14 +47,14 @@ public class WindowsVMProc implements Runnable {
 		try {
 			String command = "wscript \"" + scriptFilePath + "\" \"" + documentFolder + "\" \"" + textFolder + "\" \""
 					+ metadataFolder + "\" " + visible;
-			log.info("Executing = " + command);
+			// log.info("Executing = " + command);
 			Process p = Runtime.getRuntime().exec(command);
-			//p.waitFor();
-			
-			if (p.waitFor(timeout, TimeUnit.MINUTES) ) {
+			// p.waitFor();
+			log.info("TIMEOUT in minutes is " + timeout);
+			if (p.waitFor(timeout, TimeUnit.MINUTES)) {
 				File f = new File(documentFolder);
 				String[] docs = f.list(new FFilter(tc.getTestCaseName()));
-				if (docs.length > 0) {			
+				if (docs.length > 0) {
 					tc.setGeneratedDocument(ep.getDocumentFolder() + "/" + docs[0]);
 					String metadataPath = metadataFolder + tc.getTestCaseName() + ".txt";
 					File metadataFile = new File(metadataPath);
@@ -66,37 +66,37 @@ public class WindowsVMProc implements Runnable {
 					if (textFile.exists()) {
 						tc.setGeneratedText(ep.getGeneratedTextFolder() + "/" + textFile.getName());
 					}
-					tc.setTestCaseState("DOCUMENT_GENERATED"); 
+					tc.setTestCaseState("DOCUMENT_GENERATED");
 				} else {
 					tc.setTestCaseState("GENERATION_ERROR");
 					log.error("ERROR during generating " + tc.getTestCaseName());
-				}				
+				}
 			} else {
-				p.destroyForcibly();
+				//p.destroyForcibly();
 				tc.setTestCaseState("GENERATION_ERROR");
 				log.error("TIMEOUT during generating " + tc.getTestCaseName());
 			}
-			
-			
+
 		} catch (IOException e) {
 			tc.setTestCaseState("GENERATION_ERROR");
-			//e.printStackTrace();
+			// e.printStackTrace();
 			log.error("ERROR during generating " + tc.getTestCaseName());
 		} catch (InterruptedException e) {
 			tc.setTestCaseState("GENERATION_ERROR");
-			//e.printStackTrace();
+			// e.printStackTrace();
 			log.error("ERROR during generating " + tc.getTestCaseName());
 		}
 	}
 
-	
-	private class FFilter implements FilenameFilter{
+	private class FFilter implements FilenameFilter {
 		private String fname;
+
 		public FFilter(String n) {
 			fname = n;
 		}
+
 		public boolean accept(File dir, String name) {
-			//log.info("Checking " + name + " with " + fname);
+			// log.info("Checking " + name + " with " + fname);
 			return name.startsWith(fname);
 		}
 	}

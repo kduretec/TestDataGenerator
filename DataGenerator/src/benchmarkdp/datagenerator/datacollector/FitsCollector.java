@@ -15,6 +15,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
+import benchmarkdp.datagenerator.properties.ExperimentProperties;
+import benchmarkdp.datagenerator.testcase.TestCase;
 
 public class FitsCollector implements CollectorOperatorInterface {
 
@@ -31,7 +33,22 @@ public class FitsCollector implements CollectorOperatorInterface {
 
 		String fitsFilePath = Utils.fitsPath + test + ".fits.xml";
 
-		File fits = new File(fitsFilePath);
+		Map<String, Object> values = calculateMap(fitsFilePath);
+		return values;
+	}
+
+	@Override
+	public Map<String, Object> collect(ExperimentProperties ep, TestCase tc) {
+		
+		String fitsFilePath = ep.getFullFolderPath() + tc.getFitsFile();
+
+		Map<String, Object> values = calculateMap(fitsFilePath);
+		return values;
+	}
+
+	
+	private Map<String, Object> calculateMap(String path) {
+		File fits = new File(path);
 		Map<String, Object> values = new HashMap<String, Object>();
 
 		if (fits.exists()) {
@@ -63,5 +80,4 @@ public class FitsCollector implements CollectorOperatorInterface {
 		}
 		return values;
 	}
-
 }

@@ -121,6 +121,19 @@ public class MutationProc implements Runnable {
 		if (f.exists()) {
 			tc.setPsmModelPath(psm);
 		}
+		String modelMet = ep.getModelMetadataFolder() + File.separator + tc.getTestCaseName() + ".xml";
+		log.info(modelMet);
+		f = new File(ep.getFullFolderPath() + File.separator + modelMet);
+		if (f.exists()) {
+			tc.setModelMetadata(modelMet);
+		}
+		String modelTxt = ep.getModelTextFolder() + File.separator + tc.getTestCaseName() + ".xml";
+		log.info(modelTxt);
+		f = new File(ep.getFullFolderPath() + File.separator + modelTxt);
+		log.info("FILE = " + f.getAbsolutePath());
+		if (f.exists()) {
+			tc.setModelText(modelTxt);
+		}
 		tc.setTestCaseState("MUTATED");
 	}
 

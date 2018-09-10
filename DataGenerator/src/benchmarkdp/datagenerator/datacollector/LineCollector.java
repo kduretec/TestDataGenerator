@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
+import benchmarkdp.datagenerator.properties.ExperimentProperties;
+import benchmarkdp.datagenerator.testcase.TestCase;
 import benchmarkdp.datagenerator.testcase.Text;
 
 public class LineCollector implements TextCollectorInterface {
@@ -24,7 +26,29 @@ public class LineCollector implements TextCollectorInterface {
 	public Map<String, Text> collectTextElemenentsMap(String name) {
 		String filePath = Utils.generatedTextPath + name + ".txt";
 
-		File f = new File(filePath);
+		Map<String, Text> values = calculateMap(filePath);
+
+		return values;
+	}
+
+	@Override
+	public List<Text> collectTextELementsList(ExperimentProperties ep, TestCase tc) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public Map<String, Text> collectTextElemenentsMap(ExperimentProperties ep, TestCase tc) {
+		String filePath = ep.getFullFolderPath() + tc.getGeneratedText();
+
+		Map<String, Text> values = calculateMap(filePath);
+
+		return values;
+
+	}
+
+	private Map<String, Text> calculateMap(String path) {
+
+		File f = new File(path);
 
 		Map<String, Text> values = new HashMap<String, Text>();
 
