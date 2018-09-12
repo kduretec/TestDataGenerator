@@ -31,8 +31,7 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   
   private CompilerState compilerState;
   
-  public LibreCodeGenerator(final CodeGeneratorObserverInterface cO) {
-    this.cGOb = cO;
+  public LibreCodeGenerator() {
     CompilerState _compilerState = new CompilerState();
     this.compilerState = _compilerState;
     ModelElementsCompiler _modelElementsCompiler = new ModelElementsCompiler(this.compilerState);
@@ -58,6 +57,11 @@ public class LibreCodeGenerator implements CodeGeneratorInterface {
   @Override
   public ModelType getModelType() {
     return this.modelType;
+  }
+  
+  @Override
+  public void addCodeGeneratorObserver(final CodeGeneratorObserverInterface cgo) {
+    this.cGOb = cgo;
   }
   
   @Override

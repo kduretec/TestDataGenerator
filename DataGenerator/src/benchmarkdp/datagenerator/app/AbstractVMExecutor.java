@@ -15,7 +15,6 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import benchmarkdp.datagenerator.generator.MutationProc;
 import benchmarkdp.datagenerator.generator.utils.ZipUtil;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.properties.PropertiesHandler;
@@ -23,33 +22,29 @@ import benchmarkdp.datagenerator.testcase.TestCase;
 import benchmarkdp.datagenerator.testcase.TestCaseContainer;
 import benchmarkdp.datagenerator.testcase.TestCaseHandler;
 
-public class WindowsVM {
-
-	private static Logger log = LoggerFactory.getLogger(WindowsVM.class);
-
-	private static String dropbPathIn = "c:\\Users\\"
-			+ "Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\publications\\"
-			+ "INFSOF\\experiments\\ComunicationFolder\\ToVM\\";
-	private static String dropbPathOut = "c:\\Users\\"
-			+ "Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\publications\\"
-			+ "INFSOF\\experiments\\ComunicationFolder\\FromVM\\";
-
-	private static String tmpFolder = "c:\\Users\\Kresimir Duretec\\Desktop\\tmp\\";
-
-	private int numbProc;
+public abstract class AbstractVMExecutor implements IVMExecutor{
 	
-	private long timeout;
+	protected static Logger log;
+
+	protected String dropbPathIn;
+	protected String dropbPathOut;
+
+	protected String tmpFolder;
+
+	protected int numbProc;
 	
-	private boolean visible; 	
+	protected long timeout;
 	
-	public WindowsVM(int numbProc, long timeout, boolean visible) {
+	protected boolean visible;
+
+	public AbstractVMExecutor(int numbProc, long timeout, boolean visible) {
 		this.numbProc = numbProc;
 		this.timeout = timeout;
 		this.visible = visible;
 	}
-
+	
 	public void execute(String platform, String experiment) {
-
+		
 		ExperimentProperties ep = prepareExperiment(platform, experiment);
 		if (ep != null) {
 		log.info("Experiment name " + ep.getExperimentName() + " is prepared");
@@ -60,7 +55,7 @@ public class WindowsVM {
 			log.info("Quitting, nothing to do");
 		}
 	}
-
+	
 	private ExperimentProperties prepareExperiment(String platform, String experiment) {
 		ExperimentProperties eProperties = null;
 		String rootFolder = tmpFolder;
@@ -76,20 +71,20 @@ public class WindowsVM {
 				ZipUtil.unzipFile(zipFile, tmpFolder);
 
 				rootFolder = rootFolder + experiment + "-" + platform;
-				String ePropFile = rootFolder + "\\properties.xml";
+				String ePropFile = rootFolder + File.separator + "properties.xml";
 				PropertiesHandler ph = new PropertiesHandler();
 				eProperties = ph.loadProperties(ePropFile);
 
-				String documentsFolder = rootFolder + "\\" + eProperties.getDocumentFolder();
+				String documentsFolder = rootFolder + File.separator + eProperties.getDocumentFolder();
 				File fDocs = new File(documentsFolder);
 				fDocs.mkdirs();
-				String metaFolder = rootFolder + "\\" + eProperties.getGeneratedMetadataFolder();
+				String metaFolder = rootFolder + File.separator + eProperties.getGeneratedMetadataFolder();
 				File fMeta = new File(metaFolder);
 				fMeta.mkdirs();
-				String textFolder = rootFolder + "\\" + eProperties.getGeneratedTextFolder();
+				String textFolder = rootFolder + File.separator + eProperties.getGeneratedTextFolder();
 				File fText = new File(textFolder);
 				fText.mkdirs();
-
+				initializeExecution(eProperties, platform, experiment);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -113,7 +108,7 @@ public class WindowsVM {
 		for (TestCase tc : tCC.getTestCases()) {
 			if (toGenerate.contains(tc.getTestCaseName())) {
 				
-				exec.execute(new WindowsVMProc(ep, tc, timeout, visible));
+				exec.execute(getRunnable(ep, tc, timeout, visible));
 			}
 
 		}
@@ -130,7 +125,7 @@ public class WindowsVM {
 	private void finalize(String platform, String experiment, ExperimentProperties ep) {
 		try {
 			ZipUtil.zipFolder(ep.getFullFolderPath(), dropbPathOut, experiment + "-" + platform);
-			FileUtils.deleteDirectory(new File(ep.getFullFolderPath()));
+			//FileUtils.deleteDirectory(new File(ep.getFullFolderPath()));
 			File f = new File(dropbPathIn + experiment + "-" + platform + ".zip");
 			//f.delete();
 		} catch (IOException e) {
@@ -141,7 +136,7 @@ public class WindowsVM {
 
 	private Set<String> loadCasesToGenerate(ExperimentProperties ep) {
 		Set<String> toGen = new HashSet<String>();
-		String toGenPath = ep.getFullFolderPath() + "\\toGenerate.tsv";
+		String toGenPath = ep.getFullFolderPath() + File.separator + "toGenerate.tsv";
 		File f = new File(toGenPath);
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(f));
@@ -164,4 +159,9 @@ public class WindowsVM {
 		}
 		return toGen;
 	}
+	
+	protected abstract void initializeExecution(ExperimentProperties ep, String platform, String experiment); 
+	
+	protected abstract Runnable getRunnable(ExperimentProperties ep, TestCase tc, long timeout, boolean visible); 
+
 }

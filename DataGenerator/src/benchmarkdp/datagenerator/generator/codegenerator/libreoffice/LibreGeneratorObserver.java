@@ -21,7 +21,7 @@ public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 	}
 
 	@Override
-	public void notify(TestCase tC) {
+	public synchronized void notify(TestCase tC) {
 		// String platform = tC getPlatform();
 		// if (!names.containsKey(platform)) {
 		// names.put(platform, new ArrayList<String>());
@@ -31,8 +31,10 @@ public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 	}
 
 	@Override
-	public void notify(String path, String scriptName) {
+	public synchronized void notify(String path, String scriptName) {
+		//System.out.println("PATH = " + path + " SCRIPTNAME= " + scriptName) ;
 		if (!names.containsKey(path)) {
+			//System.out.println("PATH-CONTAINS = " + path);
 			names.put(path, new ArrayList<String>());
 		}
 		names.get(path).add(scriptName);
@@ -44,8 +46,8 @@ public class LibreGeneratorObserver implements CodeGeneratorObserverInterface {
 			String path = mE.getKey();
 			try {
 				String file = path + "script.xlb";
-				saveScriptXLC(path, "script.xlb");
-				System.out.println(path);
+				//saveScriptXLC(path, "script.xlb");
+				//System.out.println(path);
 				File f = new File(file);
 				BufferedWriter bw = new BufferedWriter(new FileWriter(f));
 				bw.write(getFileContent(mE.getValue()) + "\n");

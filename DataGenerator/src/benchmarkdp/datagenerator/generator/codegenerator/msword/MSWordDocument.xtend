@@ -43,6 +43,7 @@ class MSWordDocument extends AbstractElementCompiler {
 		compileDocumentElements(d, cState)
 		
 		temp = cState.getVariable("temp") as String 
+		
 		temp = temp + '''
 			oDoc.SaveAs WScript.Arguments.Item(0) + "«cState.getVariable("documentName")».«d.documentFormat»", «d.documentFormatCode»
 					

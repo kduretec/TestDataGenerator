@@ -52,10 +52,10 @@ public class GeneratedMetadataCollector implements CollectorOperatorInterface {
 
 			while (true) {
 				String line = br.readLine();
-				if (line == null)
+				if (line == null || line.length()==0)
 					break;
 				String[] entr = line.split(" ");
-				values.put(entr[0]+":GeneratedGenerator", entr[1]);
+				values.put(entr[0] + ":GeneratedGenerator", entr[1]);
 			}
 
 		} catch (FileNotFoundException e) {

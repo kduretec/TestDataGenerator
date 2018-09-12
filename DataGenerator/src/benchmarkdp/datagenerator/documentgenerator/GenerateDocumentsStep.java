@@ -49,7 +49,7 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 		} else if (ep.getExperimentState().compareTo("TEST_CASES_DISTRIBUTED") == 0) {
 			collectTestCases(ep, tCC);
 		} else if (ep.getExperimentState().compareTo("TEST_CASES_COLLECTED") == 0) {
-			//distributeTestCases(ep, tCC);
+			// distributeTestCases(ep, tCC);
 		}
 
 	}
@@ -80,13 +80,14 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 			}
 		}
 
-		for (Map.Entry<String, List<TestCase>> entr : ditTC.entrySet()) {
-			createTmpFolder(pathTmp, entr.getKey(), entr.getValue(), ep);
-		}
-		if (ditTC.size() == 0) {
-			ep.setExperimentState("TEST_CASES_COLLECTED");
-		} else {
+		if (ditTC.size() > 0) {
+			for (Map.Entry<String, List<TestCase>> entr : ditTC.entrySet()) {
+				createTmpFolder(pathTmp, entr.getKey(), entr.getValue(), ep);
+			}
 			ep.setExperimentState("TEST_CASES_DISTRIBUTED");
+
+		} else {
+			ep.setExperimentState("TEST_CASES_COLLECTED");
 		}
 	}
 

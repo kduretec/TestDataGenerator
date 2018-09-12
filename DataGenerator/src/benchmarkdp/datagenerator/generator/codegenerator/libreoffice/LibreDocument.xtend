@@ -19,16 +19,16 @@ class LibreDocument extends AbstractElementCompiler {
 		var colorStr = cState.getVariable("temp") as String
 		var mainPart = '''
 			REM ***** BASIC *****
-			Sub Main 
+			Sub Main(docFolder, metadataFolder, textFolder) 
 			Dim Dummy()
 			Dim Url As String
 			Dim oDoc As Object
-				
+			
 			Url = "private:factory/swriter"
 			file = FreeFile()
-			Open "file://«Utils::linuxGeneratedTextPath»«cS.getVariable("documentName")».txt" For Output As #file
+			Open "file://" &amp; textFolder &amp; "«cS.getVariable("documentName")».txt" For Output As #file
 			fileMetadata = FreeFile()
-			Open "file://«Utils::linuxGeneratedMetadataPath»«cS.getVariable("documentName")».txt" For Output As #fileMetadata  
+			Open "file://" &amp; metadataFolder &amp; "«cS.getVariable("documentName")».txt" For Output As #fileMetadata  
 			oDoc = StarDesktop.loadComponentFromURL(Url, "_blank", 0, Array())
 			oStyleFamilies = ThisComponent.getStyleFamilies()
 			oPageStyle = oStyleFamilies.getByName("PageStyles")
@@ -41,7 +41,7 @@ class LibreDocument extends AbstractElementCompiler {
 		lC.addCodeElement(mainPart)
 
 		var endPart = '''
-				Url2 = "file://«Utils::linuxDocsPath»«cState.getVariable("documentName")».«d.documentFormat»"
+				Url2 = "file://" &amp; docFolder &amp; "«cState.getVariable("documentName")».«d.documentFormat»"
 				pageCount = oDoc.getCurrentController().getPropertyValue("PageCount")
 				REM paragraphCount = oDoc.getDocumentProperties().DocumentStatistics(4).Value
 				REM wordCount = oDoc.getDocumentProperties().DocumentStatistics(5).Value

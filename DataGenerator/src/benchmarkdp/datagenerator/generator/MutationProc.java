@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.generator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreCodeGenerator;
-import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratorObserver;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.DocxCodeGenerator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperatorInterface;
@@ -43,9 +43,10 @@ public class MutationProc implements Runnable {
 
 	private List<CodeGeneratorObserverInterface> codeGeneratorObserver;
 
-	public MutationProc(ExperimentProperties e, TestCase t) {
+	public MutationProc(ExperimentProperties e, TestCase t, List<CodeGeneratorObserverInterface> cgo) {
 		ep = e;
 		tc = t;
+		codeGeneratorObserver = cgo;
 
 		mutationsPIM = new ArrayList<MutationOperatorInterface>();
 		mutationsPIM2PSM = new ArrayList<MutationOperatorInterface>();
@@ -71,11 +72,10 @@ public class MutationProc implements Runnable {
 				}
 			}
 		}
-
+		Random rnd = new Random();
 		for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-			// MutationOperatorInterface mo =
-			// mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-			MutationOperatorInterface mo = mutationsPIM2PSM.get(0);
+			MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+			// MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
 			if (tc.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 					&& mo.getDestinationModel() != ModelType.PIM) {
 				mo.mutateTestCase(tc);
@@ -101,10 +101,6 @@ public class MutationProc implements Runnable {
 
 		tc.saveTestCaseComponents(ep);
 
-		for (CodeGeneratorObserverInterface cob : codeGeneratorObserver) {
-			cob.afterGeneration();
-		}
-
 		verifyTestCase();
 		log.info("TestCase " + tc.getTestCaseName() + " mutated");
 
@@ -122,15 +118,15 @@ public class MutationProc implements Runnable {
 			tc.setPsmModelPath(psm);
 		}
 		String modelMet = ep.getModelMetadataFolder() + File.separator + tc.getTestCaseName() + ".xml";
-		log.info(modelMet);
+		// log.info(modelMet);
 		f = new File(ep.getFullFolderPath() + File.separator + modelMet);
 		if (f.exists()) {
 			tc.setModelMetadata(modelMet);
 		}
 		String modelTxt = ep.getModelTextFolder() + File.separator + tc.getTestCaseName() + ".xml";
-		log.info(modelTxt);
+		// log.info(modelTxt);
 		f = new File(ep.getFullFolderPath() + File.separator + modelTxt);
-		log.info("FILE = " + f.getAbsolutePath());
+		// log.info("FILE = " + f.getAbsolutePath());
 		if (f.exists()) {
 			tc.setModelText(modelTxt);
 		}
@@ -243,12 +239,14 @@ public class MutationProc implements Runnable {
 
 	private void initializeCodeGenerator() {
 		codeGenerator = new ArrayList<CodeGeneratorInterface>();
-		codeGeneratorObserver = new ArrayList<CodeGeneratorObserverInterface>();
+
 		// codeGenerator.add(new DocCodeGenerator());
 		codeGenerator.add(new DocxCodeGenerator());
-		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
-		codeGenerator.add(new LibreCodeGenerator(libreObserver));
-		codeGeneratorObserver.add(libreObserver);
+
+		LibreCodeGenerator libCodGen = new LibreCodeGenerator();
+		libCodGen.addCodeGeneratorObserver(codeGeneratorObserver.get(0));
+		codeGenerator.add(libCodGen);
+		// codeGeneratorObserver.add(libreObserver);
 	}
 
 }

@@ -52,6 +52,8 @@ public class TestCase {
 
 	private String metadataFile;
 
+	private String textFile; 
+	
 	private String platform;
 
 	public TestCase() {
@@ -234,6 +236,14 @@ public class TestCase {
 	@XmlElement(name = "metadataFile")
 	public void setMetadataFile(String metadataFile) {
 		this.metadataFile = metadataFile;
+	}
+
+	public String getTextFile() {
+		return textFile;
+	}
+	@XmlElement(name = "textFile")
+	public void setTextFile(String textFile) {
+		this.textFile = textFile;
 	}
 
 	public String getPlatform() {

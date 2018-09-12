@@ -9,4 +9,5 @@ public interface CodeGeneratorInterface {
 	
 	public void generateCode(TestCase tm);
 	
+	public void addCodeGeneratorObserver(CodeGeneratorObserverInterface cgo);
 }

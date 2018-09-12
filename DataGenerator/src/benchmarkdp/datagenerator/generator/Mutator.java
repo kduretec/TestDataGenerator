@@ -357,7 +357,7 @@ public class Mutator {
 		// codeGenerator.add(new DocCodeGenerator());
 		codeGenerator.add(new DocxCodeGenerator());
 		CodeGeneratorObserverInterface libreObserver = new LibreGeneratorObserver();
-		codeGenerator.add(new LibreCodeGenerator(libreObserver));
+		//codeGenerator.add(new LibreCodeGenerator(libreObserver));
 		codeGeneratorObserver.add(libreObserver);
 	}
 

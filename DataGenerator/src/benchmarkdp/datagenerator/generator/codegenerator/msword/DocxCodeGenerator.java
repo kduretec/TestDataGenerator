@@ -1,6 +1,7 @@
 package benchmarkdp.datagenerator.generator.codegenerator.msword;
 
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
+import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
 import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.MSWordColor;
@@ -92,5 +93,9 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     String s = ((String) _variable);
     sCode.addGeneratedCode(s);
     tC.setGeneratedCode(sCode);
+  }
+  
+  @Override
+  public void addCodeGeneratorObserver(final CodeGeneratorObserverInterface cgo) {
   }
 }

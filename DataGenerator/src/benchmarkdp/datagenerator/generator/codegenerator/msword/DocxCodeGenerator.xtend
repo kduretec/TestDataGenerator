@@ -6,6 +6,7 @@ import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler
 import benchmarkdp.datagenerator.model.PSMDocx.Document
 import benchmarkdp.datagenerator.testcase.ModelType
 import benchmarkdp.datagenerator.testcase.TestCase
+import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface
 
 class DocxCodeGenerator implements CodeGeneratorInterface {
 
@@ -51,6 +52,9 @@ class DocxCodeGenerator implements CodeGeneratorInterface {
 		//sCode.generatedCode = s
 		sCode.addGeneratedCode(s)
 		tC.generatedCode = sCode;
+	}
+	
+	override addCodeGeneratorObserver(CodeGeneratorObserverInterface cgo) {
 	}
 
 	

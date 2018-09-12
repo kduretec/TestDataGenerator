@@ -16,8 +16,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 	ModelElementsCompiler compiler;
 	CompilerState compilerState;
 
-	new(CodeGeneratorObserverInterface cO) {
-		cGOb = cO;
+	new() {
 		compilerState = new CompilerState();
 		compiler = new ModelElementsCompiler(compilerState);
 		
@@ -36,6 +35,10 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		return modelType;
 	}
 
+	override addCodeGeneratorObserver(CodeGeneratorObserverInterface cgo) {
+		cGOb = cgo;
+	}
+	
 	override generateCode(TestCase tC) {
 
 		var d = tC.getTestModel().getModelObjects.get(0) as Document
@@ -136,5 +139,6 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		'''
 		return fun
 	}
+	
 }
 	
