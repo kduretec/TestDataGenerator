@@ -41,7 +41,7 @@ public class Main {
 		log.info("Starting the app");
 
 		CommandLine cmd = parseArgs(args);
-
+		
 		if (cmd.hasOption("vm")) {
 			log.info("VM workflow setting detected");
 			String vmName = cmd.getOptionValue("vm");
@@ -65,7 +65,6 @@ public class Main {
 			MainWorkflow mWork = new MainWorkflow();
 			mWork.execute(pFile);
 		}
-
 	}
 
 	private void initializeModellingEnvironment() {

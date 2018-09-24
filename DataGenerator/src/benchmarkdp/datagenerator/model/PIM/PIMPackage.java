@@ -104,13 +104,22 @@ public interface PIMPackage extends EPackage {
 	int DOCUMENT__DOCUMENT_BACKGROUND = 3;
 
 	/**
+	 * The feature id for the '<em><b>Calc Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__CALC_LAYOUT = 4;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = 4;
+	int DOCUMENT_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -710,6 +719,17 @@ public interface PIMPackage extends EPackage {
 	EAttribute getDocument_DocumentBackground();
 
 	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PIM.Document#isCalcLayout <em>Calc Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Calc Layout</em>'.
+	 * @see benchmarkdp.datagenerator.model.PIM.Document#isCalcLayout()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_CalcLayout();
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PIM.Element <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1048,6 +1068,14 @@ public interface PIMPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOCUMENT__DOCUMENT_BACKGROUND = eINSTANCE.getDocument_DocumentBackground();
+
+		/**
+		 * The meta object literal for the '<em><b>Calc Layout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__CALC_LAYOUT = eINSTANCE.getDocument_CalcLayout();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PIM.impl.ElementImpl <em>Element</em>}' class.

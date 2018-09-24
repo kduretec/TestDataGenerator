@@ -32,6 +32,8 @@ public class LinuxVMProc implements Runnable {
 	public void run() {
 		log.info("Generating " + tc.getTestCaseName());
 
+		long startTime = System.nanoTime();
+		
 		String documentFolder = ep.getFullFolderPath() + ep.getDocumentFolder() + File.separator;
 		// documentFolder = documentFolder.replace("/", "\\");
 		String metadataFolder = ep.getFullFolderPath() + ep.getGeneratedMetadataFolder() + File.separator;
@@ -71,6 +73,9 @@ public class LinuxVMProc implements Runnable {
 					if (textFile.exists()) {
 						tc.setGeneratedText(ep.getGeneratedTextFolder() + "/" + textFile.getName());
 					}
+					long endTime = System.nanoTime();
+					double elapsedTime = ((double) endTime - startTime) / 1000000000;
+					tc.setTimeToGen(elapsedTime);
 					tc.setTestCaseState("DOCUMENT_GENERATED");
 				} else {
 					tc.setTestCaseState("GENERATION_ERROR");

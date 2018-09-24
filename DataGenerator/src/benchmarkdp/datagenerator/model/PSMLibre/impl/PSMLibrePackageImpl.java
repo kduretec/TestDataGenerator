@@ -261,6 +261,15 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDocument_CalcLayout() {
+		return (EAttribute)documentEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getPage() {
 		return pageEClass;
 	}
@@ -588,6 +597,7 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		createEAttribute(documentEClass, DOCUMENT__DOCUMENT_FILTER);
 		createEAttribute(documentEClass, DOCUMENT__SOFTWARE);
 		createEAttribute(documentEClass, DOCUMENT__OPERATING_SYSTEM);
+		createEAttribute(documentEClass, DOCUMENT__CALC_LAYOUT);
 
 		pageEClass = createEClass(PAGE);
 		createEReference(pageEClass, PAGE__ELEMENTS);
@@ -677,6 +687,7 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		initEAttribute(getDocument_DocumentFilter(), ecorePackage.getEString(), "documentFilter", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_Software(), ecorePackage.getEString(), "software", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocument_OperatingSystem(), ecorePackage.getEString(), "operatingSystem", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDocument_CalcLayout(), ecorePackage.getEBoolean(), "calcLayout", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(pageEClass, Page.class, "Page", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPage_Elements(), this.getElement(), null, "elements", null, 0, -1, Page.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

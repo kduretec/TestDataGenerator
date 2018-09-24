@@ -12,7 +12,7 @@ class MSWordDocument extends AbstractElementCompiler {
 	override compile(EObject object, CompilerState cState) {
 		var d = object as Document
 		var temp = cState.getVariable("temp") as String
-		
+		cState.setVariable("calcLayout", d.calcLayout);
 		temp = temp + '''
 			Const END_OF_STORY = 6 
 			Set objWord = CreateObject("Word.Application") 

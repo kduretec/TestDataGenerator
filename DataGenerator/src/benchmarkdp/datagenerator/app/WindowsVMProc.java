@@ -50,7 +50,7 @@ public class WindowsVMProc implements Runnable {
 			// log.info("Executing = " + command);
 			Process p = Runtime.getRuntime().exec(command);
 			// p.waitFor();
-			log.info("TIMEOUT in minutes is " + timeout);
+			//log.info("TIMEOUT in minutes is " + timeout);
 			if (p.waitFor(timeout, TimeUnit.MINUTES)) {
 				File f = new File(documentFolder);
 				String[] docs = f.list(new FFilter(tc.getTestCaseName()));

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getPages <em>Pages</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getSoftware <em>Software</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#getOperatingSystem <em>Operating System</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.Document#isCalcLayout <em>Calc Layout</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument()
@@ -177,5 +178,31 @@ public interface Document extends EObject {
 	 * @generated
 	 */
 	void setOperatingSystem(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Calc Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Calc Layout</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Calc Layout</em>' attribute.
+	 * @see #setCalcLayout(boolean)
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getDocument_CalcLayout()
+	 * @model
+	 * @generated
+	 */
+	boolean isCalcLayout();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.Document#isCalcLayout <em>Calc Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Calc Layout</em>' attribute.
+	 * @see #isCalcLayout()
+	 * @generated
+	 */
+	void setCalcLayout(boolean value);
 
 } // Document

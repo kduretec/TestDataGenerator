@@ -29,6 +29,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/documentFilter"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/software"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/operatingSystem"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/calcLayout"/>
     </genClasses>
     <genClasses ecoreClass="PSMLibre.ecore#//Page">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Page/elements"/>

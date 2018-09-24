@@ -88,6 +88,8 @@ public class DocxCodeGenerator implements CodeGeneratorInterface {
     String _string = new String("");
     this.compilerState.setVariable("temp", _string);
     this.compilerState.setVariable("msWordCode", sCode);
+    Boolean _boolean_1 = new Boolean(false);
+    this.compilerState.setVariable("calcLayout", _boolean_1);
     this.compiler.compile("Document", d);
     Object _variable = this.compilerState.getVariable("temp");
     String s = ((String) _variable);

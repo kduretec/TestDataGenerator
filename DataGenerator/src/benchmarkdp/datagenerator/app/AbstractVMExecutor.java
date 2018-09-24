@@ -102,9 +102,9 @@ public abstract class AbstractVMExecutor implements IVMExecutor{
 		log.info("Loaded testcases");
 		Set<String> toGenerate = loadCasesToGenerate(ep);
 		log.info("Detected " + toGenerate.size() + " testcases to generate");
-
+		long startTime = System.nanoTime();
 		ExecutorService exec = Executors.newFixedThreadPool(numbProc);
-
+		
 		for (TestCase tc : tCC.getTestCases()) {
 			if (toGenerate.contains(tc.getTestCaseName())) {
 				
@@ -115,6 +115,9 @@ public abstract class AbstractVMExecutor implements IVMExecutor{
 		exec.shutdown();
 		try {
 			exec.awaitTermination(1, TimeUnit.DAYS);
+			long endTime = System.nanoTime();
+			double elapsedTime = ((double) endTime - startTime) / 1000000000;
+			log.info("Generation done in " + elapsedTime + " seconds");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,9 +128,9 @@ public abstract class AbstractVMExecutor implements IVMExecutor{
 	private void finalize(String platform, String experiment, ExperimentProperties ep) {
 		try {
 			ZipUtil.zipFolder(ep.getFullFolderPath(), dropbPathOut, experiment + "-" + platform);
-			//FileUtils.deleteDirectory(new File(ep.getFullFolderPath()));
+			FileUtils.deleteDirectory(new File(ep.getFullFolderPath()));
 			File f = new File(dropbPathIn + experiment + "-" + platform + ".zip");
-			//f.delete();
+			f.delete();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

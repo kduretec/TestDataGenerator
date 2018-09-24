@@ -84,20 +84,24 @@ public class MSWordParagraph extends AbstractElementCompiler {
     }
     Object _variable_6 = cState.getVariable("temp");
     temp = ((String) _variable_6);
+    Object _variable_7 = cState.getVariable("calcLayout");
+    Boolean cl = ((Boolean) _variable_7);
     if ((!(inTable).booleanValue())) {
-      StringConcatenation _builder_4 = new StringConcatenation();
-      _builder_4.append("REM Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), \"");
-      String _iD = par.getID();
-      _builder_4.append(_iD, "");
-      _builder_4.append("\", objWord, objFile)");
-      _builder_4.newLineIfNotEmpty();
-      _builder_4.append("Call selLines(oSelection.Paragraphs.Last, \"");
-      String _iD_1 = par.getID();
-      _builder_4.append(_iD_1, "");
-      _builder_4.append("\", objWord, objFile)");
-      _builder_4.newLineIfNotEmpty();
-      String _plus_4 = (temp + _builder_4);
-      temp = _plus_4;
+      if ((cl).booleanValue()) {
+        StringConcatenation _builder_4 = new StringConcatenation();
+        _builder_4.append("REM Call selLines(oDoc.Paragraphs(oDoc.Paragraphs.Count), \"");
+        String _iD = par.getID();
+        _builder_4.append(_iD, "");
+        _builder_4.append("\", objWord, objFile)");
+        _builder_4.newLineIfNotEmpty();
+        _builder_4.append("Call selLines(oSelection.Paragraphs.Last, \"");
+        String _iD_1 = par.getID();
+        _builder_4.append(_iD_1, "");
+        _builder_4.append("\", objWord, objFile)");
+        _builder_4.newLineIfNotEmpty();
+        String _plus_4 = (temp + _builder_4);
+        temp = _plus_4;
+      }
     }
     StringConcatenation _builder_5 = new StringConcatenation();
     _builder_5.append("i = i + 1");

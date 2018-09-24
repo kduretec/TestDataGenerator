@@ -24,7 +24,7 @@ public class MainWorkflow {
 			ExperimentProperties pr = ph.loadProperties(propertiesFile);
 			log.info("Experiment name " + pr.getExperimentName());
 			log.info("Folder " + pr.getFullFolderPath());
-
+			log.info("Experiment state " + pr.getExperimentState());
 			IWorkflowStep step = null;
 			String state = pr.getExperimentState();
 			TestCaseContainer tCC = null;
@@ -55,14 +55,17 @@ public class MainWorkflow {
 			case "TEST_CASES_COLLECTED":
 				step = new FitsStep();
 				break;
+			case "TEST_CASES_FINALIZED":
+				step = new ToolEvaluatorStep();
+				break;
 			default:
-				step = new FitsStep();
+				step = null;
 				break;
 			}
 			if (tCC == null) {
 				tCC = new TestCaseContainer();
 			}
-
+			
 			while (step != null) {
 				step.executeStep(pr, tCC);
 				log.info("State = " + pr.getExperimentState());
@@ -72,6 +75,8 @@ public class MainWorkflow {
 				}
 				step = step.nextStep();
 			}
+			
+			log.info("Done");
 		}
 
 	}

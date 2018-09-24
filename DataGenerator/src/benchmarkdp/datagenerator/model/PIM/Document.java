@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Document#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Document#getPages <em>Pages</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Document#getDocumentBackground <em>Document Background</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.Document#isCalcLayout <em>Calc Layout</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getDocument()
@@ -123,5 +124,31 @@ public interface Document extends EObject {
 	 * @generated
 	 */
 	void setDocumentBackground(Color value);
+
+	/**
+	 * Returns the value of the '<em><b>Calc Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Calc Layout</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Calc Layout</em>' attribute.
+	 * @see #setCalcLayout(boolean)
+	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getDocument_CalcLayout()
+	 * @model
+	 * @generated
+	 */
+	boolean isCalcLayout();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Document#isCalcLayout <em>Calc Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Calc Layout</em>' attribute.
+	 * @see #isCalcLayout()
+	 * @generated
+	 */
+	void setCalcLayout(boolean value);
 
 } // Document

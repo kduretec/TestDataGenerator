@@ -15,6 +15,7 @@ class LibreDocument extends AbstractElementCompiler {
 		cS = cState;
 		cS.setVariable("temp", "")
 		cS.setVariable("inTable", new Boolean(false))
+		cS.setVariable("calcLayout", new Boolean(d.calcLayout));
 		compiler.compile("Color", d.documentBackground);
 		var colorStr = cState.getVariable("temp") as String
 		var mainPart = '''

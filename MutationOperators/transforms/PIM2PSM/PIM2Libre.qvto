@@ -13,6 +13,7 @@ main() {
 
 mapping PIM::Document::DocumentToDocument():PSM::Document {
 	documentBackground := mapColor(self.documentBackground);
+	calcLayout := self.calcLayout;
 	self.pages->forEach(p) {
 		pages += p->map PageToPage();
 	}

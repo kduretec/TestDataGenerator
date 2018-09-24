@@ -23,6 +23,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/author"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//Document/pages"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/documentBackground"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/calcLayout"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Element">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Element/ID"/>

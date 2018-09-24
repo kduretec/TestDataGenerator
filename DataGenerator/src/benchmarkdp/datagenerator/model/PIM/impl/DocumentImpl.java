@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getAuthor <em>Author</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getPages <em>Pages</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#getDocumentBackground <em>Document Background</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.DocumentImpl#isCalcLayout <em>Calc Layout</em>}</li>
  * </ul>
  *
  * @generated
@@ -109,6 +110,26 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @ordered
 	 */
 	protected Color documentBackground = DOCUMENT_BACKGROUND_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCalcLayout() <em>Calc Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCalcLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CALC_LAYOUT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCalcLayout() <em>Calc Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCalcLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean calcLayout = CALC_LAYOUT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -209,6 +230,27 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCalcLayout() {
+		return calcLayout;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCalcLayout(boolean newCalcLayout) {
+		boolean oldCalcLayout = calcLayout;
+		calcLayout = newCalcLayout;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.DOCUMENT__CALC_LAYOUT, oldCalcLayout, calcLayout));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -234,6 +276,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getPages();
 			case PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				return getDocumentBackground();
+			case PIMPackage.DOCUMENT__CALC_LAYOUT:
+				return isCalcLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -260,6 +304,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				setDocumentBackground((Color)newValue);
 				return;
+			case PIMPackage.DOCUMENT__CALC_LAYOUT:
+				setCalcLayout((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -284,6 +331,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				setDocumentBackground(DOCUMENT_BACKGROUND_EDEFAULT);
 				return;
+			case PIMPackage.DOCUMENT__CALC_LAYOUT:
+				setCalcLayout(CALC_LAYOUT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -304,6 +354,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return pages != null && !pages.isEmpty();
 			case PIMPackage.DOCUMENT__DOCUMENT_BACKGROUND:
 				return documentBackground != DOCUMENT_BACKGROUND_EDEFAULT;
+			case PIMPackage.DOCUMENT__CALC_LAYOUT:
+				return calcLayout != CALC_LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -324,6 +376,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		result.append(author);
 		result.append(", documentBackground: ");
 		result.append(documentBackground);
+		result.append(", calcLayout: ");
+		result.append(calcLayout);
 		result.append(')');
 		return result.toString();
 	}

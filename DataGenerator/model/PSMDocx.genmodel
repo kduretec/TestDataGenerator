@@ -29,6 +29,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Document/pages"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/software"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/operatingSystem"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/calcLayout"/>
     </genClasses>
     <genClasses ecoreClass="PSMDocx.ecore#//Page">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Page/elements"/>

@@ -48,7 +48,7 @@ public class FinalizeStep implements IWorkflowStep {
 			Map<String, Text> mt = lineCollector.collectTextElemenentsMap(ep, tc);
 			tc.getTextElements().addText(mt);
 
-			ep.setExperimentState("FINALIZED");
+			ep.setExperimentState("TEST_CASES_FINALIZED");
 			tc.saveTestCaseComponents(ep);
 
 			verifyTestCase(ep, tc);

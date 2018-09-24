@@ -122,13 +122,22 @@ public interface PSMLibrePackage extends EPackage {
 	int DOCUMENT__OPERATING_SYSTEM = 5;
 
 	/**
+	 * The feature id for the '<em><b>Calc Layout</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__CALC_LAYOUT = 6;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = 6;
+	int DOCUMENT_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Document</em>' class.
@@ -950,6 +959,17 @@ public interface PSMLibrePackage extends EPackage {
 	EAttribute getDocument_OperatingSystem();
 
 	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Document#isCalcLayout <em>Calc Layout</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Calc Layout</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Document#isCalcLayout()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_CalcLayout();
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.Page <em>Page</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1379,6 +1399,14 @@ public interface PSMLibrePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOCUMENT__OPERATING_SYSTEM = eINSTANCE.getDocument_OperatingSystem();
+
+		/**
+		 * The meta object literal for the '<em><b>Calc Layout</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__CALC_LAYOUT = eINSTANCE.getDocument_CalcLayout();
 
 		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.PageImpl <em>Page</em>}' class.

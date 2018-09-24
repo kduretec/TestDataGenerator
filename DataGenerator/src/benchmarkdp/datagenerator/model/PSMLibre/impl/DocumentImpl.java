@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getDocumentFilter <em>Document Filter</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getSoftware <em>Software</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#getOperatingSystem <em>Operating System</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMLibre.impl.DocumentImpl#isCalcLayout <em>Calc Layout</em>}</li>
  * </ul>
  *
  * @generated
@@ -151,6 +152,26 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * @ordered
 	 */
 	protected String operatingSystem = OPERATING_SYSTEM_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCalcLayout() <em>Calc Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCalcLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CALC_LAYOUT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCalcLayout() <em>Calc Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCalcLayout()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean calcLayout = CALC_LAYOUT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -293,6 +314,27 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCalcLayout() {
+		return calcLayout;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCalcLayout(boolean newCalcLayout) {
+		boolean oldCalcLayout = calcLayout;
+		calcLayout = newCalcLayout;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PSMLibrePackage.DOCUMENT__CALC_LAYOUT, oldCalcLayout, calcLayout));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -322,6 +364,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return getSoftware();
 			case PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM:
 				return getOperatingSystem();
+			case PSMLibrePackage.DOCUMENT__CALC_LAYOUT:
+				return isCalcLayout();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -354,6 +398,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM:
 				setOperatingSystem((String)newValue);
 				return;
+			case PSMLibrePackage.DOCUMENT__CALC_LAYOUT:
+				setCalcLayout((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -384,6 +431,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 			case PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM:
 				setOperatingSystem(OPERATING_SYSTEM_EDEFAULT);
 				return;
+			case PSMLibrePackage.DOCUMENT__CALC_LAYOUT:
+				setCalcLayout(CALC_LAYOUT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -408,6 +458,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 				return SOFTWARE_EDEFAULT == null ? software != null : !SOFTWARE_EDEFAULT.equals(software);
 			case PSMLibrePackage.DOCUMENT__OPERATING_SYSTEM:
 				return OPERATING_SYSTEM_EDEFAULT == null ? operatingSystem != null : !OPERATING_SYSTEM_EDEFAULT.equals(operatingSystem);
+			case PSMLibrePackage.DOCUMENT__CALC_LAYOUT:
+				return calcLayout != CALC_LAYOUT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -432,6 +484,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
 		result.append(software);
 		result.append(", operatingSystem: ");
 		result.append(operatingSystem);
+		result.append(", calcLayout: ");
+		result.append(calcLayout);
 		result.append(')');
 		return result.toString();
 	}

@@ -6,7 +6,8 @@ transformation AddWord(inout model:PIM);
 configuration property numWords:String;
 
 main() {
-	var paragraphs := model.rootObjects()[Document].pages.elements->selectByType(Paragraph);
+	var d := model.rootObjects()[Document];
+	var paragraphs := d.pages.elements->selectByType(Paragraph);
 	var wc := 0;
 	if (numWords<>null) {
 		wc := stringToInt(numWords);
@@ -22,7 +23,8 @@ main() {
 			else null; 
 		};	
 	};
-	
+	d->map AddCalcLayout(wc);
+		
 	if (paragraphs->size() > 0) {
 		
 		// put at least one word to each paragraph
@@ -43,6 +45,13 @@ main() {
 		};	
 	}
 	
+}
+mapping inout PIM::Document::AddCalcLayout(inout wc:Integer) {
+	if (wc > 20000) {
+		calcLayout := false;
+	} else {
+		calcLayout := true;
+	}
 }
 
 mapping inout PIM::Paragraph::AddWord(inout i:Integer) {

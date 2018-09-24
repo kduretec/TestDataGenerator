@@ -16,6 +16,8 @@ public class MSWordDocument extends AbstractElementCompiler {
     Document d = ((Document) object);
     Object _variable = cState.getVariable("temp");
     String temp = ((String) _variable);
+    boolean _isCalcLayout = d.isCalcLayout();
+    cState.setVariable("calcLayout", Boolean.valueOf(_isCalcLayout));
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("Const END_OF_STORY = 6 ");
     _builder.newLine();

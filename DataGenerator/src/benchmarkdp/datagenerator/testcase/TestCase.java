@@ -55,6 +55,8 @@ public class TestCase {
 	private String textFile; 
 	
 	private String platform;
+	
+	private double timeToGen; 
 
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
@@ -253,6 +255,16 @@ public class TestCase {
 	@XmlElement(name = "platform")
 	public void setPlatform(String platform) {
 		this.platform = platform;
+	}
+
+	
+	public double getTimeToGen() {
+		return timeToGen;
+	}
+
+	@XmlElement(name = "secToGenerate")
+	public void setTimeToGen(double timeToGen) {
+		this.timeToGen = timeToGen;
 	}
 
 	public void saveTestCaseComponents(ExperimentProperties ep) {

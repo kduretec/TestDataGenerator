@@ -78,22 +78,26 @@ public class LibreParagraph extends AbstractElementCompiler {
         counter = (counter + 1);
       }
     }
+    Object _variable_5 = cState.getVariable("calcLayout");
+    Boolean cl = ((Boolean) _variable_5);
     if ((!(inTable).booleanValue())) {
-      Object _variable_5 = cState.getVariable("temp");
-      temp = ((String) _variable_5);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("getLines(");
-      _builder_1.append(parag, "");
-      _builder_1.append(", \"");
-      String _iD = par.getID();
-      _builder_1.append(_iD, "");
-      _builder_1.append("\", file, oText.createTextCursorByRange(oText.getEnd()))");
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append("oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)");
-      _builder_1.newLine();
-      String _plus_1 = (temp + _builder_1);
-      temp = _plus_1;
-      cState.setVariable("temp", temp);
+      if ((cl).booleanValue()) {
+        Object _variable_6 = cState.getVariable("temp");
+        temp = ((String) _variable_6);
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("getLines(");
+        _builder_1.append(parag, "");
+        _builder_1.append(", \"");
+        String _iD = par.getID();
+        _builder_1.append(_iD, "");
+        _builder_1.append("\", file, oText.createTextCursorByRange(oText.getEnd()))");
+        _builder_1.newLineIfNotEmpty();
+        _builder_1.append("oText.insertControlCharacter(oText.getEnd(), com.sun.star.text.ControlCharacter.PARAGRAPH_BREAK, False)");
+        _builder_1.newLine();
+        String _plus_1 = (temp + _builder_1);
+        temp = _plus_1;
+        cState.setVariable("temp", temp);
+      }
     }
   }
 }
