@@ -47,6 +47,8 @@ public class ToolEvaluatorStep implements IWorkflowStep {
 			if (!f.exists()) {
 				f.mkdirs();
 			}
+			String zipFolder = pathTmp;
+			pathTmp = pathTmp + "/" + experimentName;
 			File sDocs = new File(ep.getFullFolderPath() + ep.getDocumentFolder());
 			File dDocs = new File(pathTmp + "/Documents");
 			FileUtils.copyDirectory(sDocs, dDocs);
@@ -62,8 +64,8 @@ public class ToolEvaluatorStep implements IWorkflowStep {
 			File tcFile = new File (ep.getFullFolderPath() + "testCases.xml");
 			FileUtils.copyFileToDirectory(tcFile, f);
 			
-			ZipUtil.zipFolder(pathTmp, COM_FOLDER_TO, ep.getExperimentName());
-			FileUtils.deleteDirectory(new File(ep.getFullFolderPath() + "/tmp"));
+			ZipUtil.zipFolder(zipFolder, COM_FOLDER_TO, ep.getExperimentName());
+			//FileUtils.deleteDirectory(new File(ep.getFullFolderPath() + "/tmp"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
