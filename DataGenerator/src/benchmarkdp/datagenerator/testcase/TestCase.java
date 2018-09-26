@@ -52,11 +52,11 @@ public class TestCase {
 
 	private String metadataFile;
 
-	private String textFile; 
-	
+	private String textFile;
+
 	private String platform;
-	
-	private double timeToGen; 
+
+	private double timeToGen;
 
 	public TestCase() {
 		ID = UUID.randomUUID().toString();
@@ -243,6 +243,7 @@ public class TestCase {
 	public String getTextFile() {
 		return textFile;
 	}
+
 	@XmlElement(name = "textFile")
 	public void setTextFile(String textFile) {
 		this.textFile = textFile;
@@ -257,7 +258,6 @@ public class TestCase {
 		this.platform = platform;
 	}
 
-	
 	public double getTimeToGen() {
 		return timeToGen;
 	}
@@ -282,7 +282,8 @@ public class TestCase {
 
 		String metadataPath = basePath + "/" + ep.getModelMetadataFolder() + "/";
 		String textPath = basePath + "/" + ep.getModelTextFolder() + "/";
-		if (ep.getExperimentState().compareTo("FINALIZED") == 0) {
+		if (testCaseState.compareTo("FITS_DONE") == 0) {
+			// if (ep.getExperimentState().compareTo("FINALIZED") == 0) {
 			metadataPath = basePath + "/" + ep.getMetadataFolder() + "/";
 			textPath = basePath + "/" + ep.getTextFolder() + "/";
 		}

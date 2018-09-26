@@ -36,6 +36,7 @@ public class FinalizeStep implements IWorkflowStep {
 	@Override
 	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
 
+		boolean isOk = true;
 		for (TestCase tc : tCC.getTestCases()) {
 			log.info("Finalizing testcase : " + tc.getTestCaseName());
 			for (CollectorOperatorInterface coi : operators) {
@@ -48,12 +49,13 @@ public class FinalizeStep implements IWorkflowStep {
 			Map<String, Text> mt = lineCollector.collectTextElemenentsMap(ep, tc);
 			tc.getTextElements().addText(mt);
 
-			ep.setExperimentState("TEST_CASES_FINALIZED");
 			tc.saveTestCaseComponents(ep);
 
-			verifyTestCase(ep, tc);
+			isOk = isOk & verifyTestCase(ep, tc);
 		}
-
+		if (isOk) {
+			ep.setExperimentState("TEST_CASES_FINALIZED");
+		}
 	}
 
 	@Override
@@ -62,7 +64,7 @@ public class FinalizeStep implements IWorkflowStep {
 		return null;
 	}
 
-	private void verifyTestCase(ExperimentProperties ep, TestCase tc) {
+	private boolean verifyTestCase(ExperimentProperties ep, TestCase tc) {
 		int cnt = 0;
 		String relativeMetaFile = ep.getMetadataFolder() + File.separator + tc.getTestCaseName() + ".xml";
 		String metadataFile = ep.getFullFolderPath() + relativeMetaFile;
@@ -78,9 +80,12 @@ public class FinalizeStep implements IWorkflowStep {
 			tc.setTextFile(relativeTextFile);
 			cnt++;
 		}
-		
-		if (cnt==2) {
+
+		if (cnt == 2) {
 			tc.setTestCaseState("FINALIZED");
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

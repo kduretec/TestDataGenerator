@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.app;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import benchmarkdp.datagenerator.datacollector.FinalizeStep;
 import benchmarkdp.datagenerator.datacollector.FitsStep;
 import benchmarkdp.datagenerator.documentgenerator.GenerateDocumentsStep;
 import benchmarkdp.datagenerator.generator.MutationStep;
@@ -54,6 +55,9 @@ public class MainWorkflow {
 				break;
 			case "TEST_CASES_COLLECTED":
 				step = new FitsStep();
+				break;
+			case "TEST_CASES_FITSDONE":
+				step = new FinalizeStep();
 				break;
 			case "TEST_CASES_FINALIZED":
 				step = new ToolEvaluatorStep();

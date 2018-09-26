@@ -1,5 +1,7 @@
 package benchmarkdp.datagenerator.properties;
 
+import benchmarkdp.datagenerator.app.state.ExperimentState;
+
 public class ExperimentProperties {
 
 	private String experimentName = null;

@@ -2,6 +2,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.libreoffice;
 
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
+import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratedCode;
 import benchmarkdp.datagenerator.model.PSMLibre.Color;
 import benchmarkdp.datagenerator.model.PSMLibre.FontFamily;
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
@@ -74,6 +75,16 @@ public class LibreParagraph extends AbstractElementCompiler {
         if (txt instanceof Text) {
           _matched=true;
           this.compiler.compile("SimpleText", txt);
+        }
+        Object _variable_6 = cState.getVariable("temp");
+        String tempF = ((String) _variable_6);
+        int _length = tempF.length();
+        boolean _greaterThan = (_length > 40000);
+        if (_greaterThan) {
+          Object _variable_7 = cState.getVariable("libreCode");
+          LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_7);
+          lC.addCodeElement(tempF);
+          cState.setVariable("temp", "");
         }
         counter = (counter + 1);
       }

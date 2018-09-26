@@ -36,6 +36,7 @@ public class FitsProc implements Runnable {
 			File f = new File(outputFile);
 			if (f.exists()) {
 				tc.setFitsFile(relFits);
+				tc.setTestCaseState("FITS_DONE");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

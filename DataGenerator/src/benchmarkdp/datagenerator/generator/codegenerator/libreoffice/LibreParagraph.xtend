@@ -58,6 +58,14 @@ class LibreParagraph extends AbstractElementCompiler {
 			switch txt {
 				Text: compiler.compile("SimpleText", txt)
 			}
+			// make sure that paragraph is not bigger than 64kB
+			var tempF = cState.getVariable("temp") as String
+			if (tempF.length > 40000) {
+				var lC = cState.getVariable("libreCode") as LibreGeneratedCode
+				lC.addCodeElement(tempF);
+				cState.setVariable("temp", "")
+			}
+
 			counter = counter + 1
 		}
 		var cl = cState.getVariable("calcLayout") as Boolean

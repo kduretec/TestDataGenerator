@@ -7,7 +7,7 @@ transformation MutatePlatform(inout model:PSM);
 
 main() {
 	var doc := model.objectsOfType(Document);
-	var i:Integer := getRandomBetween(1,4);
+	/*var i:Integer := getRandomBetween(1,4);
 	doc->map ChangePlatformUbu14Libre4Odt();
 	doc->map ChangePlatformUbu16Libre5Odt();
 	switch {
@@ -17,6 +17,16 @@ main() {
 		case (i=4) doc->map ChangePlatformUbu16Libre5Pdf();
 		else null; 
 	};
+	*/
+	var i:Integer := getRandomBetween(1,2);
+	doc->map ChangePlatformUbu14Libre4Odt();
+	//doc->map ChangePlatformUbu16Libre5Odt();
+	/*switch {
+		case (i=1) doc->map ChangePlatformUbu14Libre4Pdf();
+		case (i=2) doc->map ChangePlatformUbu16Libre5Pdf();
+		else null; 
+	};*/
+	
 }
 
 mapping inout Document::ChangePlatformUbu14Libre4Odt() {

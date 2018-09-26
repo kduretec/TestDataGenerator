@@ -74,8 +74,8 @@ public class MutationProc implements Runnable {
 		}
 		Random rnd = new Random();
 		for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-			MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-			//MutationOperatorInterface mo = mutationsPIM2PSM.get(0);
+			//MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+			MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
 			if (tc.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 					&& mo.getDestinationModel() != ModelType.PIM) {
 				mo.mutateTestCase(tc);

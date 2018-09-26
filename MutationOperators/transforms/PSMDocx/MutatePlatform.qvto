@@ -6,7 +6,7 @@ transformation MutatePlatform(inout model:PSM);
 
 main() {
 	var doc := model.objectsOfType(Document);
-	var i:Integer := getRandomBetween(1,6);
+	/*var i:Integer := getRandomBetween(1,6);
 	//doc->map ChangePlatformWin7Office2007Docx();
 	switch {
 		case (i=1) doc->map ChangePlatformWin7Office2007Docx();
@@ -16,7 +16,17 @@ main() {
 		case (i=5) doc->map ChangePlatformWin8_1Office2013Docx();
 		case (i=6) doc->map ChangePlatformWin8_1Office2013Pdf();
 		else null; 
+	};*/
+	
+	var i:Integer := getRandomBetween(1,3);
+	//doc->map ChangePlatformWin7Office2007Docx();
+	switch {
+		case (i=1) doc->map ChangePlatformWin7Office2007Pdf();
+		case (i=2) doc->map ChangePlatformWin7Office2010Pdf();
+		case (i=3) doc->map ChangePlatformWin8_1Office2013Pdf();
+		else null; 
 	};
+	
 }
 
 mapping inout Document::ChangePlatformWin7Office2007Docx() {

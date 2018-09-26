@@ -35,6 +35,7 @@ public class FitsStep implements IWorkflowStep {
 			e.printStackTrace();
 		}
 
+		ep.setExperimentState("TEST_CASES_FITSDONE");
 	}
 
 	@Override
