@@ -3,13 +3,13 @@ import m2m.qvt.oml.ExampleJavaLib;
 modeltype PSM uses PSMLibre('http://benchmarkdp.datagenerator.model.PSMLibre');
 
 
-transformation MutatePlatform(inout model:PSM);
+transformation MutatePlatformAll(inout model:PSM);
 
 main() {
 	var doc := model.objectsOfType(Document);
-	/*var i:Integer := getRandomBetween(1,4);
-	doc->map ChangePlatformUbu14Libre4Odt();
-	doc->map ChangePlatformUbu16Libre5Odt();
+	var i:Integer := getRandomBetween(1,4);
+	//doc->map ChangePlatformUbu14Libre4Odt();
+	//doc->map ChangePlatformUbu16Libre5Odt();
 	switch {
 		case (i=1) doc->map ChangePlatformUbu14Libre4Odt();
 		case (i=2) doc->map ChangePlatformUbu14Libre4Pdf();
@@ -17,15 +17,6 @@ main() {
 		case (i=4) doc->map ChangePlatformUbu16Libre5Pdf();
 		else null; 
 	};
-	*/
-	var i:Integer := getRandomBetween(1,2);
-	doc->map ChangePlatformUbu14Libre4Odt();
-	//doc->map ChangePlatformUbu16Libre5Odt();
-	/*switch {
-		case (i=1) doc->map ChangePlatformUbu14Libre4Pdf();
-		case (i=2) doc->map ChangePlatformUbu16Libre5Pdf();
-		else null; 
-	};*/
 	
 }
 

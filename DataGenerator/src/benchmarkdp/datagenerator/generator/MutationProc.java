@@ -74,8 +74,8 @@ public class MutationProc implements Runnable {
 		}
 		Random rnd = new Random();
 		for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-			//MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-			MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
+			MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+			//MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
 			if (tc.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
 					&& mo.getDestinationModel() != ModelType.PIM) {
 				mo.mutateTestCase(tc);
@@ -156,14 +156,22 @@ public class MutationProc implements Runnable {
 	}
 
 	private void initializeMutationsPSM() {
-		mutationsPSM.add(new MutationOperator("MutatePlatformDocx", ModelType.PSMDocx, ModelType.PSMDocx,
-				Utils.psmDocxTransformation + "MutatePlatform.qvto"));
+		if (ep.getMutationSettings().compareTo("ALL_FORMATS") == 0) {
+			mutationsPSM.add(new MutationOperator("MutatePlatformDocx", ModelType.PSMDocx, ModelType.PSMDocx,
+					Utils.psmDocxTransformation + "MutatePlatformAll.qvto"));
+			mutationsPSM.add(new MutationOperator("MutatePlatformLibre", ModelType.PSMLibre, ModelType.PSMLibre,
+					Utils.psmLibreTransformation + "MutatePlatformAll.qvto"));			
+		} else {
+			mutationsPSM.add(new MutationOperator("MutatePlatformDocx", ModelType.PSMDocx, ModelType.PSMDocx,
+					Utils.psmDocxTransformation + "MutatePlatformPdf.qvto"));
+			mutationsPSM.add(new MutationOperator("MutatePlatformLibre", ModelType.PSMLibre, ModelType.PSMLibre,
+					Utils.psmLibreTransformation + "MutatePlatformPdf.qvto"));
+		}
+
 		mutationsPSM.add(new MutationOperator("MutateFontFamilyDocx", ModelType.PSMDocx, ModelType.PSMDocx,
 				Utils.psmDocxTransformation + "MutatefontFamily.qvto"));
 		mutationsPSM.add(new MutationOperator("MutateFontFamilyLibre", ModelType.PSMLibre, ModelType.PSMLibre,
 				Utils.psmLibreTransformation + "MutateFontFamily.qvto"));
-		mutationsPSM.add(new MutationOperator("MutatePlatformLibre", ModelType.PSMLibre, ModelType.PSMLibre,
-				Utils.psmLibreTransformation + "MutatePlatform.qvto"));
 	}
 
 	private void initializeEvaluators() {

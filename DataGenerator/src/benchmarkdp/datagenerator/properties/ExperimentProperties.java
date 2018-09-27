@@ -1,7 +1,5 @@
 package benchmarkdp.datagenerator.properties;
 
-import benchmarkdp.datagenerator.app.state.ExperimentState;
-
 public class ExperimentProperties {
 
 	private String experimentName = null;
@@ -35,6 +33,8 @@ public class ExperimentProperties {
 	private String modelsFolder = null;
 	
 	private String macroFolder = null; 
+	
+	private String mutationSettings = null; 
 	
 	private int testCaseNumber; 
 	
@@ -172,6 +172,14 @@ public class ExperimentProperties {
 
 	public void setTestCaseNumber(int testCaseNumber) {
 		this.testCaseNumber = testCaseNumber;
+	}
+
+	public String getMutationSettings() {
+		return mutationSettings;
+	}
+
+	public void setMutationSettings(String mutationSettings) {
+		this.mutationSettings = mutationSettings;
 	}
 
 	

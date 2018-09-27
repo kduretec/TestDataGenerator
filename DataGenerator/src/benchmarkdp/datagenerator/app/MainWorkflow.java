@@ -62,6 +62,9 @@ public class MainWorkflow {
 			case "TEST_CASES_FINALIZED":
 				step = new ToolEvaluatorStep();
 				break;
+			case "TEST_CASES_SENT_TO_EVALUATION":
+				step = new ToolEvaluatorStep();
+				break;
 			default:
 				step = null;
 				break;

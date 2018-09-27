@@ -1,0 +1,34 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PSM uses PSMLibre('http://benchmarkdp.datagenerator.model.PSMLibre');
+
+
+transformation MutatePlatformPdf(inout model:PSM);
+
+main() {
+	var doc := model.objectsOfType(Document);
+	
+	var i:Integer := getRandomBetween(1,2);
+	//doc->map ChangePlatformUbu14Libre4Odt();
+	//doc->map ChangePlatformUbu16Libre5Odt();
+	switch {
+		case (i=1) doc->map ChangePlatformUbu14Libre4Pdf();
+		case (i=2) doc->map ChangePlatformUbu16Libre5Pdf();
+		else null; 
+	};
+	
+}
+
+mapping inout Document::ChangePlatformUbu14Libre4Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFilter := "writer_pdf_Export";
+	self.software := "LibreOffice4";
+	self.operatingSystem := "Ubuntu14";
+}
+
+mapping inout Document::ChangePlatformUbu16Libre5Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFilter := "writer_pdf_Export";
+	self.software := "LibreOffice5";
+	self.operatingSystem := "Ubuntu16";
+}
