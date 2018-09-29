@@ -76,15 +76,17 @@ public class LibreParagraph extends AbstractElementCompiler {
           _matched=true;
           this.compiler.compile("SimpleText", txt);
         }
-        Object _variable_6 = cState.getVariable("temp");
-        String tempF = ((String) _variable_6);
-        int _length = tempF.length();
-        boolean _greaterThan = (_length > 40000);
-        if (_greaterThan) {
-          Object _variable_7 = cState.getVariable("libreCode");
-          LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_7);
-          lC.addCodeElement(tempF);
-          cState.setVariable("temp", "");
+        if ((!(inTable).booleanValue())) {
+          Object _variable_6 = cState.getVariable("temp");
+          String tempF = ((String) _variable_6);
+          int _length = tempF.length();
+          boolean _greaterThan = (_length > 40000);
+          if (_greaterThan) {
+            Object _variable_7 = cState.getVariable("libreCode");
+            LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_7);
+            lC.addCodeElement(tempF);
+            cState.setVariable("temp", "");
+          }
         }
         counter = (counter + 1);
       }

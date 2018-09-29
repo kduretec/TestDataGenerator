@@ -55,14 +55,22 @@ public class MSWordControlBox extends AbstractElementCompiler {
     Object _variable_2 = cState.getVariable("temp");
     temp = ((String) _variable_2);
     temp = (temp + "\"\n");
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("Call selLines(oControl, \"");
-    String _iD = cb.getID();
-    _builder_1.append(_iD, "");
-    _builder_1.append("\", objWord, objFile)\t\t");
-    _builder_1.newLineIfNotEmpty();
-    String _plus_1 = (temp + _builder_1);
-    temp = _plus_1;
+    Object _variable_3 = cState.getVariable("calcLayout");
+    Boolean cl = ((Boolean) _variable_3);
+    Object _variable_4 = cState.getVariable("inTable");
+    Boolean inTable = ((Boolean) _variable_4);
+    if ((!(inTable).booleanValue())) {
+      if ((cl).booleanValue()) {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("Call selLines(oControl, \"");
+        String _iD = cb.getID();
+        _builder_1.append(_iD, "");
+        _builder_1.append("\", objWord, objFile)\t\t");
+        _builder_1.newLineIfNotEmpty();
+        String _plus_1 = (temp + _builder_1);
+        temp = _plus_1;
+      }
+    }
     temp = (temp + "oSelection.Start = oControl.Range.End + 1 \n oSelection.TypeParagraph() \n");
     cState.setVariable("temp", temp);
   }

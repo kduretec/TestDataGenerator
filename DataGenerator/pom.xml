@@ -4,7 +4,7 @@
 	<groupId>benchmarkdp.datagenerator</groupId>
 	<artifactId>DataGenerator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ToolEvaluator</name>
+	<name>DataGenerator</name>
 
 	<dependencies>
 		<!-- <dependency> <groupId>javax.inject</groupId> <artifactId>javax.inject</artifactId> 

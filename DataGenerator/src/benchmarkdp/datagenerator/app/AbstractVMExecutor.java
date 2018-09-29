@@ -129,12 +129,12 @@ public abstract class AbstractVMExecutor implements IVMExecutor{
 		try {
 			ZipUtil.zipFolder(ep.getFullFolderPath(), dropbPathOut, experiment + "-" + platform);
 			FileUtils.deleteDirectory(new File(ep.getFullFolderPath()));
-			File f = new File(dropbPathIn + experiment + "-" + platform + ".zip");
-			f.delete();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		File f = new File(dropbPathIn + experiment + "-" + platform + ".zip");
+		f.delete();
 	}
 
 	private Set<String> loadCasesToGenerate(ExperimentProperties ep) {

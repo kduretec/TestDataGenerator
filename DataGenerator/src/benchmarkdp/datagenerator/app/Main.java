@@ -64,6 +64,10 @@ public class Main {
 			String pFile = cmd.getOptionValue("w");
 			MainWorkflow mWork = new MainWorkflow();
 			mWork.execute(pFile);
+		} else if (cmd.hasOption("a")) {
+			VMDeamon deamon = new VMDeamon();
+			String vmName = cmd.getOptionValue("a");
+			deamon.execute(vmName);
 		}
 	}
 
@@ -87,12 +91,14 @@ public class Main {
 		Option procNumber = Option.builder("p").hasArg(true).desc("number of processes").build();
 		Option time = Option.builder("t").hasArg(true).desc("timeout - time to wait for").build();
 		Option vis = Option.builder("v").hasArg(false).desc("is visble during generation").build();
+		Option deamon = Option.builder("a").hasArg(true).desc("run deamon").build();
 		options.addOption(workflow);
 		options.addOption(vm);
 		options.addOption(experimentName);
 		options.addOption(procNumber);
 		options.addOption(time);
 		options.addOption(vis);
+		options.addOption(deamon);
 
 	}
 

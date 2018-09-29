@@ -8,6 +8,7 @@ configuration property numWords:String;
 main() {
 	var d := model.rootObjects()[Document];
 	var paragraphs := d.pages.elements->selectByType(Paragraph);
+	var pc := paragraphs->size();
 	var wc := 0;
 	if (numWords<>null) {
 		wc := stringToInt(numWords);
@@ -23,7 +24,7 @@ main() {
 			else null; 
 		};	
 	};
-	d->map AddCalcLayout(wc);
+	d->map AddCalcLayout(wc, pc);
 		
 	if (paragraphs->size() > 0) {
 		
@@ -46,8 +47,9 @@ main() {
 	}
 	
 }
-mapping inout PIM::Document::AddCalcLayout(inout wc:Integer) {
-	if (wc > 20000) {
+mapping inout PIM::Document::AddCalcLayout(inout wc:Integer, inout pc:Integer) {
+	var rat := wc / pc; 
+	if (wc > 20000 or rat < 20) {
 		calcLayout := false;
 	} else {
 		calcLayout := true;
