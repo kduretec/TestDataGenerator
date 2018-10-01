@@ -16,6 +16,8 @@ import org.eclipse.m2m.qvt.oml.examples.blackbox.UtilitiesLibrary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import benchmarkdp.datagenerator.app.deamon.MainDeamon;
+import benchmarkdp.datagenerator.app.deamon.VMDeamon;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
@@ -41,7 +43,7 @@ public class Main {
 		log.info("Starting the app");
 
 		CommandLine cmd = parseArgs(args);
-		
+
 		if (cmd.hasOption("vm")) {
 			log.info("VM workflow setting detected");
 			String vmName = cmd.getOptionValue("vm");
@@ -62,8 +64,13 @@ public class Main {
 		} else if (cmd.hasOption("w")) {
 			log.info("Main workflow setting detected");
 			String pFile = cmd.getOptionValue("w");
-			MainWorkflow mWork = new MainWorkflow();
-			mWork.execute(pFile);
+			if (cmd.hasOption("d")) {
+				MainDeamon deamon = new MainDeamon();
+				deamon.execute(pFile);
+			} else {
+				MainWorkflow mWork = new MainWorkflow();
+				mWork.execute(pFile);
+			}
 		} else if (cmd.hasOption("a")) {
 			VMDeamon deamon = new VMDeamon();
 			String vmName = cmd.getOptionValue("a");
@@ -92,6 +99,7 @@ public class Main {
 		Option time = Option.builder("t").hasArg(true).desc("timeout - time to wait for").build();
 		Option vis = Option.builder("v").hasArg(false).desc("is visble during generation").build();
 		Option deamon = Option.builder("a").hasArg(true).desc("run deamon").build();
+		Option mainDeamon = Option.builder("d").hasArg(false).desc("run main deamon").build();
 		options.addOption(workflow);
 		options.addOption(vm);
 		options.addOption(experimentName);
@@ -99,6 +107,7 @@ public class Main {
 		options.addOption(time);
 		options.addOption(vis);
 		options.addOption(deamon);
+		options.addOption(mainDeamon);
 
 	}
 

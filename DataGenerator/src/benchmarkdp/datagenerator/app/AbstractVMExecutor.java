@@ -134,7 +134,7 @@ public abstract class AbstractVMExecutor implements IVMExecutor{
 			e.printStackTrace();
 		}
 		File f = new File(dropbPathIn + experiment + "-" + platform + ".zip");
-		//f.delete();
+		f.delete();
 	}
 
 	private Set<String> loadCasesToGenerate(ExperimentProperties ep) {

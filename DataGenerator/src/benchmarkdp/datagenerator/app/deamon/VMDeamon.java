@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.app;
+package benchmarkdp.datagenerator.app.deamon;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,10 +18,12 @@ import java.nio.file.attribute.UserPrincipalLookupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import benchmarkdp.datagenerator.app.LinuxExecutor;
+
 public class VMDeamon {
 
 	private static Logger log = LoggerFactory.getLogger(VMDeamon.class);
-	
+
 	private String dropbPathIn = "/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/"
 			+ "INFSOF/experiments/ComunicationFolder/ToVM/machine/";
 	private String dropbPathOut = "/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/"
@@ -29,34 +31,40 @@ public class VMDeamon {
 
 	public void execute(String platform) {
 		log.info("VM Deamon is active");
+		waitForCommad("START", platform);
+		deleteCommand("START", platform);
 		sendReport("HELLO", platform);
 		waitForCommad("EXEC", platform);
 		String experiment = readExperiment(platform);
+		waitForExperimentData(experiment, platform);
+		deleteCommand("EXEC", platform);
 		sendReport("EXECUTING", platform);
 		LinuxExecutor work = new LinuxExecutor(1, 10, false);
 		work.execute(platform, experiment);
+		sendReport("DONE", platform);
+		waitForCommad("RECIEVED", platform);
+		deleteCommand("RECIEVED", platform);
+		log.info("Going to shutdown now");
 		try {
 			Thread.sleep(30000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		sendReport("DONE", platform);
-		waitForCommad("RECIEVED", platform);
 		try {
-			log.info("Going to shutdown now");
 			Process p = Runtime.getRuntime().exec("sudo shutdown -h now");
-			InputStream is = p.getInputStream(); 
+			InputStream is = p.getInputStream();
 			for (int i = 0; i < is.available(); i++) {
-	            System.out.println("" + is.read());
-	         }
+				System.out.println("" + is.read());
+			}
 			Thread.sleep(5000);
 			log.info("Bye");
 			p.wait();
 			System.exit(0);
-			//BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
-		    //bw.write("benchmarkdp\n"); 
-		    //bw.flush();
+			// BufferedWriter bw = new BufferedWriter(new
+			// OutputStreamWriter(p.getOutputStream()));
+			// bw.write("benchmarkdp\n");
+			// bw.flush();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -71,13 +79,13 @@ public class VMDeamon {
 		File diF = new File(dropbPathOut);
 		if (!diF.exists()) {
 			diF.mkdirs();
-			changeUser(dropbPathOut); 
+			changeUser(dropbPathOut);
 		}
 		File f = new File(reportPath);
 		try {
 
 			f.createNewFile();
-			changeUser(reportPath); 
+			changeUser(reportPath);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -100,6 +108,7 @@ public class VMDeamon {
 			diF.mkdirs();
 			changeUser(dropbPathIn);
 		}
+		log.info("Waiting for " + command + " from " + platform);
 		File f = new File(commandPath);
 		while (!f.exists()) {
 			try {
@@ -109,6 +118,13 @@ public class VMDeamon {
 				e.printStackTrace();
 			}
 		}
+		log.info("Recieved " + command + " from " + platform);
+	}
+
+	private void deleteCommand(String command, String platform) {
+		String pathFile = dropbPathIn + platform + "." + command;
+		File f = new File(pathFile);
+		f.delete();
 	}
 
 	String readExperiment(String platform) {
@@ -126,14 +142,27 @@ public class VMDeamon {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return line; 
+		return line;
 	}
-	
+
+	private void waitForExperimentData(String experiment, String platform) {
+		String pathZip = "/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/"
+				+ "INFSOF/experiments/ComunicationFolder/ToVM/";
+		String fileName = experiment + "-" + platform + ".zip";
+		pathZip = pathZip + fileName;
+		File f = new File(pathZip); 
+		log.info("Waiting for " + fileName);
+		while (!f.exists()) {
+			
+		}
+		log.info("File " + fileName + " detected");
+	}
+
 	private void changeUser(String p) {
-		Path path = Paths.get(p); 
+		Path path = Paths.get(p);
 		FileSystem fileSystem = path.getFileSystem();
-        UserPrincipalLookupService service = fileSystem.getUserPrincipalLookupService();
-        UserPrincipal userPrincipal;
+		UserPrincipalLookupService service = fileSystem.getUserPrincipalLookupService();
+		UserPrincipal userPrincipal;
 		try {
 			userPrincipal = service.lookupPrincipalByName("kresimir");
 			Files.setOwner(path, userPrincipal);
