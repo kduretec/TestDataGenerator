@@ -1,58 +1,66 @@
 package benchmarkdp.datagenerator.app.deamon;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.nio.file.FileSystem;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.attribute.UserPrincipal;
-import java.nio.file.attribute.UserPrincipalLookupService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import benchmarkdp.datagenerator.app.IVMExecutor;
 import benchmarkdp.datagenerator.app.LinuxExecutor;
+import benchmarkdp.datagenerator.app.WindowsExecutor;
 
 public class VMDeamon {
 
 	private static Logger log = LoggerFactory.getLogger(VMDeamon.class);
 
-	private String dropbPathIn = "/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/"
-			+ "INFSOF/experiments/ComunicationFolder/ToVM/machine/";
-	private String dropbPathOut = "/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/"
-			+ "INFSOF/experiments/ComunicationFolder/FromVM/machine/";
+	private String platform;
+	private IComDevice comDevice;
+	private IVMExecutor work;
 
-	public void execute(String platform) {
+
+	public VMDeamon(String vmName) {
+		platform = vmName;
+		comDevice = initializeComDevice();
+		work = initializeWork();
+	}
+
+	public void execute() {
 		log.info("VM Deamon is active");
-		waitForCommad("START", platform);
-		deleteCommand("START", platform);
-		sendReport("HELLO", platform);
-		waitForCommad("EXEC", platform);
-		String experiment = readExperiment(platform);
-		waitForExperimentData(experiment, platform);
-		deleteCommand("EXEC", platform);
-		sendReport("EXECUTING", platform);
-		LinuxExecutor work = new LinuxExecutor(1, 10, false);
-		work.execute(platform, experiment);
-		sendReport("DONE", platform);
-		waitForCommad("RECIEVED", platform);
-		deleteCommand("RECIEVED", platform);
+		comDevice.waitForCommand("START");
+		// waitForCommad("START", platform);
+		comDevice.deleteCommand("START");
+		// deleteCommand("START", platform);
+		comDevice.sendCommand("HELLO", null);
+		// sendReport("HELLO", platform);
+		// waitForCommad("EXEC", platform);
+		comDevice.waitForCommand("EXEC");
+		// String experiment = readExperiment(platform);
+		String experiment = comDevice.readCommand("EXEC");
+		// waitForExperimentData(experiment, platform);
+		comDevice.waitForFile(experiment + "-" + comDevice.getPlatform() + ".zip");
+		// deleteCommand("EXEC", platform);
+		comDevice.deleteCommand("EXEC");
+		// sendReport("EXECUTING", platform);
+		comDevice.sendCommand("EXECUTING", null);
+		// work = new LinuxExecutor(1, 10, false);
+		work.execute(comDevice.getPlatform(), experiment);
+		// sendReport("DONE", platform);
+		comDevice.sendCommand("DONE", null);
+		// waitForCommad("RECIEVED", platform);
+		comDevice.waitForCommand("RECIEVED");
+		// deleteCommand("RECIEVED", platform);
+		comDevice.deleteCommand("RECIEVED");
 		log.info("Going to shutdown now");
 		try {
-			Thread.sleep(30000);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			Process p = Runtime.getRuntime().exec("sudo shutdown -h now");
+			String command = getShutdown();
+			Process p = Runtime.getRuntime().exec(command);
 			InputStream is = p.getInputStream();
 			for (int i = 0; i < is.available(); i++) {
 				System.out.println("" + is.read());
@@ -74,102 +82,61 @@ public class VMDeamon {
 		}
 	}
 
-	private void sendReport(String report, String platform) {
-		String reportPath = dropbPathOut + platform + "." + report;
-		File diF = new File(dropbPathOut);
-		if (!diF.exists()) {
-			diF.mkdirs();
-			changeUser(dropbPathOut);
+	private IComDevice initializeComDevice() {
+		switch (platform) {
+		case "Ubuntu14-LibreOffice4":
+			return new LinuxComDevice(platform);
+		case "Ubuntu16-LibreOffice5":
+			return new LinuxComDevice(platform);
+		case "Windows7-MSWord2007":
+			return new WindowsComDevice(platform);
+		case "Windows7-MSWord2010":
+			return new WindowsComDevice(platform);
+		case "Windows8_1-MSWord2013":
+			return new WindowsComDevice(platform);
 		}
-		File f = new File(reportPath);
-		try {
-
-			f.createNewFile();
-			changeUser(reportPath);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		return null;
+	}
+	
+	private IVMExecutor initializeWork() {
+		switch (platform) {
+		case "Ubuntu14-LibreOffice4":
+			return new LinuxExecutor(1, 10, false);
+		case "Ubuntu16-LibreOffice5":
+			return new LinuxExecutor(1, 10, false);
+		case "Windows7-MSWord2007":
+			return new WindowsExecutor(2, 10, false);
+		case "Windows7-MSWord2010":
+			return new WindowsExecutor(2, 10, false);
+		case "Windows8_1-MSWord2013":
+			return new WindowsExecutor(2, 10, false);
 		}
-		// try {
-		// BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-		// bw.write(report + "\n");
-		// bw.close();
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
+		return null;
 	}
 
-	private void waitForCommad(String command, String platform) {
-		String commandPath = dropbPathIn + platform + "." + command;
-		File diF = new File(dropbPathIn);
-		if (!diF.exists()) {
-			diF.mkdirs();
-			changeUser(dropbPathIn);
+	private String getShutdown() {
+		switch (platform) {
+		case "Ubuntu14-LibreOffice4":
+			return "sudo shutdown -h now";
+		case "Ubuntu16-LibreOffice5":
+			return "sudo shutdown -h now";
+		case "Windows7-MSWord2007":
+			return "shutdown -s";
+		case "Windows7-MSWord2010":
+			return "shutdown -s";
+		case "Windows8_1-MSWord2013":
+			return "shutdown -s";
 		}
-		log.info("Waiting for " + command + " from " + platform);
-		File f = new File(commandPath);
-		while (!f.exists()) {
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		log.info("Recieved " + command + " from " + platform);
+		return null;
 	}
-
-	private void deleteCommand(String command, String platform) {
-		String pathFile = dropbPathIn + platform + "." + command;
-		File f = new File(pathFile);
-		f.delete();
-	}
-
-	String readExperiment(String platform) {
-		String pathFile = dropbPathIn + platform + "." + "EXEC";
-		File f = new File(pathFile);
-		String line = "";
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(f));
-			line = br.readLine();
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return line;
-	}
-
-	private void waitForExperimentData(String experiment, String platform) {
-		String pathZip = "/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/"
-				+ "INFSOF/experiments/ComunicationFolder/ToVM/";
-		String fileName = experiment + "-" + platform + ".zip";
-		pathZip = pathZip + fileName;
-		File f = new File(pathZip); 
-		log.info("Waiting for " + fileName);
-		while (!f.exists()) {
-			
-		}
-		log.info("File " + fileName + " detected");
-	}
-
-	private void changeUser(String p) {
-		Path path = Paths.get(p);
-		FileSystem fileSystem = path.getFileSystem();
-		UserPrincipalLookupService service = fileSystem.getUserPrincipalLookupService();
-		UserPrincipal userPrincipal;
-		try {
-			userPrincipal = service.lookupPrincipalByName("kresimir");
-			Files.setOwner(path, userPrincipal);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
+	/*
+	 * private void changeUser(String p) { Path path = Paths.get(p); FileSystem
+	 * fileSystem = path.getFileSystem(); UserPrincipalLookupService service =
+	 * fileSystem.getUserPrincipalLookupService(); UserPrincipal userPrincipal;
+	 * try { userPrincipal = service.lookupPrincipalByName("kresimir");
+	 * Files.setOwner(path, userPrincipal); } catch (IOException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); }
+	 * 
+	 * }
+	 */
 }

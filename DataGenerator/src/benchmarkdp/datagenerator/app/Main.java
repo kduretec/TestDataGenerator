@@ -72,9 +72,9 @@ public class Main {
 				mWork.execute(pFile);
 			}
 		} else if (cmd.hasOption("a")) {
-			VMDeamon deamon = new VMDeamon();
 			String vmName = cmd.getOptionValue("a");
-			deamon.execute(vmName);
+			VMDeamon deamon = new VMDeamon(vmName);
+			deamon.execute();
 		}
 	}
 
