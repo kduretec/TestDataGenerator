@@ -62,6 +62,8 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder_1.newLineIfNotEmpty();
     _builder_1.append("Set oSelection = objWord.Selection ");
     _builder_1.newLine();
+    _builder_1.append("Set oRange = oDoc.Paragraphs.Last.Range");
+    _builder_1.newLine();
     _builder_1.newLine();
     _builder_1.append("i = 1 ");
     _builder_1.newLine();

@@ -32,6 +32,7 @@ class MSWordDocument extends AbstractElementCompiler {
 			 
 			oDoc.PageSetup.TextColumns.SetCount(«1») 
 			Set oSelection = objWord.Selection 
+			Set oRange = oDoc.Paragraphs.Last.Range
 			
 			i = 1 
 			tableIndex = 1

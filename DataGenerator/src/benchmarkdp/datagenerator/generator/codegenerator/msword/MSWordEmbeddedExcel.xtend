@@ -37,7 +37,9 @@ class MSWordEmbeddedExcel extends AbstractElementCompiler {
 			oSheet.Range(oSheet.Cells(«t.numRows + 1»,1), oSheet.Cells(oSheet.Rows.Count,oSheet.Columns.Count)).EntireRow.Hidden = True
 			oSheet.Range(oSheet.Cells(1,«t.numCol + 1»), oSheet.Cells(oSheet.Rows.Count,oSheet.Columns.Count)).EntireColumn.Hidden = True
 			
-			oSelection.EndKey END_OF_STORY
+			REM oSelection.EndKey END_OF_STORY
+			Set oExcel = oDoc.InlineShapes(«tN»)
+			oSelection.Start = oExcel.Range.End + 1
 			oSelection.TypeParagraph()
 			i= i + 1
 		'''

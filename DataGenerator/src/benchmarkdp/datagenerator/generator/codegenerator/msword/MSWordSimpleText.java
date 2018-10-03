@@ -25,6 +25,11 @@ public class MSWordSimpleText extends AbstractElementCompiler {
     _builder.append(_value, "");
     _builder.append(" \")");
     _builder.newLineIfNotEmpty();
+    _builder.append("REM oRange.Text = oRange.Text + \" ");
+    String _value_1 = t.getValue();
+    _builder.append(_value_1, "");
+    _builder.append(" \"");
+    _builder.newLineIfNotEmpty();
     String _plus = (temp + _builder);
     temp = _plus;
     cState.setVariable("temp", temp);

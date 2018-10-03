@@ -39,6 +39,8 @@ public class MSWordParagraph extends AbstractElementCompiler {
       _builder_1.newLine();
       _builder_1.append("oDoc.Paragraphs.Last.Range.Select");
       _builder_1.newLine();
+      _builder_1.append("Set oRange = oDoc.Paragraphs.Last.Range");
+      _builder_1.newLine();
       _builder_1.append("oSelection.ParagraphFormat.Shading.BackgroundPatternColor = ");
       String _plus_1 = (temp + _builder_1);
       temp = _plus_1;

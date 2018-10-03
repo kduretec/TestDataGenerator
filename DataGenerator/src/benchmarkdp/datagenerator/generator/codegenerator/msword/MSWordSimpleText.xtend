@@ -24,6 +24,7 @@ class MSWordSimpleText extends AbstractElementCompiler{
 		temp = temp + '''
 			oSelection.Font.Size = «12»
 			oSelection.TypeText(" «t.value» ")
+			REM oRange.Text = oRange.Text + " «t.value» "
 		'''
 	
 		cState.setVariable("temp", temp)

@@ -30,6 +30,7 @@ class MSWordParagraph extends AbstractElementCompiler {
 			temp = temp + ''' 
 			REM oDoc.Paragraphs(oDoc.Paragraphs.Count).Range.Select
 			oDoc.Paragraphs.Last.Range.Select
+			Set oRange = oDoc.Paragraphs.Last.Range
 			oSelection.ParagraphFormat.Shading.BackgroundPatternColor = '''
 			cState.setVariable("temp", temp)
 			compiler.compile("Color", par.backgroundColor)

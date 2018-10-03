@@ -65,7 +65,13 @@ public class MSWordEmbeddedExcel extends AbstractElementCompiler {
     _builder_1.append("), oSheet.Cells(oSheet.Rows.Count,oSheet.Columns.Count)).EntireColumn.Hidden = True");
     _builder_1.newLineIfNotEmpty();
     _builder_1.newLine();
-    _builder_1.append("oSelection.EndKey END_OF_STORY");
+    _builder_1.append("REM oSelection.EndKey END_OF_STORY");
+    _builder_1.newLine();
+    _builder_1.append("Set oExcel = oDoc.InlineShapes(");
+    _builder_1.append(tN, "");
+    _builder_1.append(")");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("oSelection.Start = oExcel.Range.End + 1");
     _builder_1.newLine();
     _builder_1.append("oSelection.TypeParagraph()");
     _builder_1.newLine();
