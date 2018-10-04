@@ -139,7 +139,7 @@ public class MutationProc implements Runnable {
 		mutationsPIM.add(new MutationOperator("AddParagraph", ModelType.PIM, ModelType.PIM,
 				Utils.pimTransformation + "AddParagraph.qvto"));
 		mutationsPIM.add(new MutationOperator("AddTable", ModelType.PIM, ModelType.PIM,
-				Utils.pimTransformation + "AddTable.qvto"));
+				Utils.pimTransformation + "AddBigTable.qvto"));
 		mutationsPIM.add(new MutationOperator("AddImage", ModelType.PIM, ModelType.PIM,
 				Utils.pimTransformation + "AddImage.qvto"));
 		mutationsPIM.add(new MutationOperator("AddWord", ModelType.PIM, ModelType.PIM,

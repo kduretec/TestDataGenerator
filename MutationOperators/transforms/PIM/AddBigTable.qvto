@@ -1,0 +1,91 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
+	
+
+transformation AddBigTable(inout model:PIM);
+configuration property numTables : String;
+
+main() {
+	var pages:= model.objectsOfType(Page);
+	var tc := 0; 
+	if (numTables <> null) {
+		tc := stringToInt(numTables)
+	} else {
+		var rn := getRandomReal();
+		switch {
+			case (rn < 0.58) tc := 0; 
+			case (rn >= 0.58 and rn < 0.732) tc := 1;
+			case (rn >= 0.732 and rn < 0.866) tc := getRandomBetween(2,5);
+			case (rn >= 0.866 and rn < 0.962) tc := getRandomBetween(6,20);
+			case (rn >= 0.962 and rn < 0.989) tc := getRandomBetween(21,50);
+			case (rn >= 0.989 and rn < 1) tc := getRandomBetween(51,1084);
+			else null; 
+		};
+	};
+	
+	while (tc > 0) {
+		var pos := getRandom(pages->size());
+		var page := pages->asSequence()->at(pos);
+		page->map AddTable(tc);
+		tc := tc - 1;		
+	}	
+}
+
+
+mapping inout PIM::Page::AddTable(inout i:Integer) {
+
+	var nR:Integer := 5000;
+	var nC:Integer := 6;
+	
+	var r:Integer := 1;
+	
+	var tab := object Table {
+		ID := generateUID();
+		numRows := nR;
+		numCol := nC;
+		while (r <= nR) {
+			var c:Integer := 1;
+			var tmpRow := object Row {
+				while (c <= nC) {
+					var tmpCell := object Cell {
+				 		var parag := object Paragraph {};
+				 		if (r=1) {
+				 			map AddWord(parag);
+				 		} else {
+				 			map AddNumber(parag);
+				 		};
+				 		element += parag;
+					};
+					c := c + 1;
+					cell += tmpCell;
+				};
+			};
+			row += tmpRow;
+			r := r + 1;
+		};
+	}; 
+ 
+	var ranPos : Integer;
+	var elSize := self.elements->size();
+	if (elSize > 0) {
+		ranPos := getRandomBetween(1,elSize)
+	} else {
+		ranPos := 1;
+	};
+	self.elements := self.elements->insertAt(ranPos, tab);
+}
+
+mapping AddWord(inout par:PIM::Paragraph) {
+	var w := object Word {
+		value := getRandomWord();
+	};
+	par.words += w;
+}
+
+mapping AddNumber(inout par:PIM::Paragraph) {
+	var w := object Word {
+		value := getRandom(100).toString();
+	};
+	par.words += w;
+}
