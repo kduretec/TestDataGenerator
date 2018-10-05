@@ -59,12 +59,12 @@ public class MSWordTable extends AbstractElementCompiler {
   }
   
   public void compileTableElements(final WordTable t, final CompilerState cState) {
-    for (int i = 1; (i <= t.getNumRows()); i++) {
-      for (int j = 1; (j <= t.getNumCol()); j++) {
+    for (int j = 1; (j <= t.getNumCol()); j++) {
+      for (int i = 1; (i <= t.getNumRows()); i++) {
         {
           Object _variable = cState.getVariable("temp");
           String temp = ((String) _variable);
-          temp = (((((temp + "objTable.Cell(") + Integer.valueOf(i)) + ",") + Integer.valueOf(j)) + ").Select\n");
+          temp = (((((temp + "Set oRange = objTable.Cell(") + Integer.valueOf(i)) + ",") + Integer.valueOf(j)) + ").Range\n");
           cState.setVariable("temp", temp);
           EList<Row> _row = t.getRow();
           Row _get = _row.get((i - 1));

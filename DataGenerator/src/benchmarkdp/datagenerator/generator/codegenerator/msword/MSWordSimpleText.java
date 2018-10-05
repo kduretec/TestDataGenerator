@@ -17,15 +17,15 @@ public class MSWordSimpleText extends AbstractElementCompiler {
     temp = ((String) _variable_1);
     temp = (temp + "\n");
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("oSelection.Font.Size = ");
+    _builder.append("REM oSelection.Font.Size = ");
     _builder.append(12, "");
     _builder.newLineIfNotEmpty();
-    _builder.append("oSelection.TypeText(\" ");
+    _builder.append("REM oSelection.TypeText(\" ");
     String _value = t.getValue();
     _builder.append(_value, "");
     _builder.append(" \")");
     _builder.newLineIfNotEmpty();
-    _builder.append("REM oRange.Text = oRange.Text + \" ");
+    _builder.append("oRange.Text =  \" ");
     String _value_1 = t.getValue();
     _builder.append(_value_1, "");
     _builder.append(" \"");

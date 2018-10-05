@@ -7,15 +7,15 @@ import benchmarkdp.datagenerator.model.PSMDocx.Paragraph
 import benchmarkdp.datagenerator.model.PSMDocx.WordTable
 import org.eclipse.emf.ecore.EObject
 
-class MSWordTable extends AbstractElementCompiler{
-	
+class MSWordTable extends AbstractElementCompiler {
+
 	override compile(EObject object, CompilerState cState) {
-		
+
 		var t = object as WordTable
-		
+
 		var numR = t.numRows
 		var numC = t.numCol
-		var temp = cState.getVariable("temp") as String 
+		var temp = cState.getVariable("temp") as String
 		cState.setVariable("inTable", new Boolean(true))
 		temp = temp + '''
 			oSelection.TypeParagraph()
@@ -26,7 +26,7 @@ class MSWordTable extends AbstractElementCompiler{
 		'''
 		cState.setVariable("temp", temp)
 		compileTableElements(t, cState)
-		temp = cState.getVariable("temp") as String	
+		temp = cState.getVariable("temp") as String
 		temp = temp + '''
 			tableIndex = tableIndex + 1
 			oSelection.EndKey END_OF_STORY
@@ -36,21 +36,22 @@ class MSWordTable extends AbstractElementCompiler{
 		cState.setVariable("temp", temp)
 		cState.setVariable("inTable", new Boolean(false))
 	}
-	
+
 	def compileTableElements(WordTable t, CompilerState cState) {
-		
-		for (var i = 1; i <= t.numRows; i++) {
-			for (var j = 1; j <= t.numCol; j++) {
+
+		for (var j = 1; j <= t.numCol; j++) {
+			for (var i = 1; i <= t.numRows; i++) {
 				var temp = cState.getVariable("temp") as String
-				temp = temp + "objTable.Cell(" + i +"," + j +").Select\n"
+				// temp = temp + "objTable.Cell(" + i +"," + j +").Select\n"
+				temp = temp + "Set oRange = objTable.Cell(" + i + "," + j + ").Range\n"
 				cState.setVariable("temp", temp)
-				for (Element e: t.row.get(i-1).cell.get(j-1).elements) {
+				for (Element e : t.row.get(i - 1).cell.get(j - 1).elements) {
 					switch e {
-							Paragraph : compiler.compile("Paragraph", e)
+						Paragraph: compiler.compile("Paragraph", e)
 					}
 				}
 			}
 		}
 	}
-	
+
 }

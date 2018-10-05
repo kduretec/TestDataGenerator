@@ -13,7 +13,7 @@ class MSWordHyperLink extends AbstractElementCompiler {
 		var temp = cState.getVariable("temp") as String 
 		temp = temp + "\n";
 		temp = temp + '''
-			Set oRange = oSelection.Range
+			REM Set oRange = oSelection.Range
 			oDoc.Hyperlinks.Add oRange, "«h.url»", , , " «h.value»"
 		'''
 		cState.setVariable("temp", temp)

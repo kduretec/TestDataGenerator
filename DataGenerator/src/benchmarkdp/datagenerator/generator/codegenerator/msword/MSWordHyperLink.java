@@ -15,7 +15,7 @@ public class MSWordHyperLink extends AbstractElementCompiler {
     String temp = ((String) _variable);
     temp = (temp + "\n");
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("Set oRange = oSelection.Range");
+    _builder.append("REM Set oRange = oSelection.Range");
     _builder.newLine();
     _builder.append("oDoc.Hyperlinks.Add oRange, \"");
     String _url = h.getUrl();

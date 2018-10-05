@@ -22,9 +22,9 @@ class MSWordSimpleText extends AbstractElementCompiler{
 		temp = cState.getVariable("temp") as String
 		temp = temp + "\n";
 		temp = temp + '''
-			oSelection.Font.Size = «12»
-			oSelection.TypeText(" «t.value» ")
-			REM oRange.Text = oRange.Text + " «t.value» "
+			REM oSelection.Font.Size = «12»
+			REM oSelection.TypeText(" «t.value» ")
+			oRange.Text =  " «t.value» "
 		'''
 	
 		cState.setVariable("temp", temp)
