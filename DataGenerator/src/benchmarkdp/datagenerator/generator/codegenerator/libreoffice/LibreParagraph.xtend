@@ -58,7 +58,7 @@ class LibreParagraph extends AbstractElementCompiler {
 			switch txt {
 				Text: compiler.compile("SimpleText", txt)
 			}
-			// make sure that paragraph is not bigger than 64kB
+			// make sure that big paragraphs do not cause files > 64kB
 			if (!inTable) {
 				var tempF = cState.getVariable("temp") as String
 				if (tempF.length > 40000) {

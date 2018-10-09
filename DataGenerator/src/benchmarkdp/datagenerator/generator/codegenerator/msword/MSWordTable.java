@@ -49,7 +49,7 @@ public class MSWordTable extends AbstractElementCompiler {
     _builder_1.newLine();
     _builder_1.append("oSelection.TypeParagraph()");
     _builder_1.newLine();
-    _builder_1.append("i= i + 1");
+    _builder_1.append("REM i= i + 1");
     _builder_1.newLine();
     String _plus_1 = (temp + _builder_1);
     temp = _plus_1;

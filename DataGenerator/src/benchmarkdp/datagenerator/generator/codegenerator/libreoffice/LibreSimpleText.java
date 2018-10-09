@@ -26,9 +26,8 @@ public class LibreSimpleText extends AbstractElementCompiler {
       temp = _plus;
     } else {
       String _value_1 = t.getValue();
-      String _plus_1 = ((temp + "\"") + _value_1);
-      String _plus_2 = (_plus_1 + "\"");
-      temp = _plus_2;
+      String _plus_1 = (temp + _value_1);
+      temp = _plus_1;
     }
     cState.setVariable("temp", temp);
   }

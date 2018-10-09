@@ -65,8 +65,10 @@ class MSWordEmbeddedExcel extends AbstractElementCompiler {
 	}
 	
 	def compileParagraph(Paragraph p) {
-		var temp =''''''
-		temp = temp + p.text.get(0).value	
+		var temp = ''''''
+		if (p.text.size > 0) {
+			temp = temp + p.text.get(0).value			
+		}
 		return temp
 	}
 	

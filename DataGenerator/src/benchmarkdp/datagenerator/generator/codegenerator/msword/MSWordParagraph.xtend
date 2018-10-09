@@ -39,15 +39,15 @@ class MSWordParagraph extends AbstractElementCompiler {
 			oSelection.Font.Color = '''
 			cState.setVariable("temp", temp)
 			compiler.compile("Color", par.fontColor)
+			temp = cState.getVariable("temp") as String
+			temp = temp + '''
+			oSelection.Font.Name = '''
+			cState.setVariable("temp", temp)
+			compiler.compile("FontFamily", par.fontFamily)
+			temp = cState.getVariable("temp") as String
 
 		}
 
-		temp = cState.getVariable("temp") as String
-		temp = temp + '''
-		oSelection.Font.Name = '''
-		cState.setVariable("temp", temp)
-		compiler.compile("FontFamily", par.fontFamily)
-		temp = cState.getVariable("temp") as String
 
 		cState.setVariable("parag", new Integer(parag))
 
@@ -68,10 +68,10 @@ class MSWordParagraph extends AbstractElementCompiler {
 				'''
 			}
 		}
-
+		/*
 		temp = temp + '''
 			i = i + 1
-		'''
+		'''*/
 		cState.setVariable("temp", temp)
 	}
 

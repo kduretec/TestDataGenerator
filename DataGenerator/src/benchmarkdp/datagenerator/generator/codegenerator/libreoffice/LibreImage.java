@@ -18,8 +18,14 @@ public class LibreImage extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("Set oGraph = oDoc.createInstance(\"com.sun.star.text.GraphicObject\")");
     _builder.newLine();
-    _builder.append("oGraph.GraphicURL = ConvertToURL(\"/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/benchmarking/publications/JSS/Generated/Macro/Images/Desert.jpg\")");
     _builder.newLine();
+    _builder.append("\'oGraph.GraphicURL = ConvertToURL(\"/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/INFSOF/experiments/Generated/Helpers/Images/Desert.jpg\")");
+    _builder.newLine();
+    _builder.append("oGraph.GraphicURL = LoadGraphicIntoDocument(oDoc, \"file:///home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/INFSOF/experiments/Generated/Helpers/Images/Desert.jpg\",\"");
+    String _iD = img.getID();
+    _builder.append(_iD, "");
+    _builder.append("\")");
+    _builder.newLineIfNotEmpty();
     _builder.append("oGraph.AnchorType = com.sun.star.text.TextContentAnchorType.AS_CHARACTER");
     _builder.newLine();
     _builder.append("oGraph.Width = TwipsPerPixelX() * ");

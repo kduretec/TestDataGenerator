@@ -2,6 +2,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.libreoffice;
 
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler;
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState;
+import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratedCode;
 import benchmarkdp.datagenerator.model.PSMLibre.Cell;
 import benchmarkdp.datagenerator.model.PSMLibre.Element;
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
@@ -63,7 +64,7 @@ public class LibreTable extends AbstractElementCompiler {
           Object _variable = cState.getVariable("temp");
           String temp = ((String) _variable);
           temp = (((((temp + "Set oCell = oTable.getCellByPosition(") + Integer.valueOf((j - 1))) + ",") + Integer.valueOf((i - 1))) + ")\n");
-          temp = (temp + "oCell.setString( ");
+          temp = (temp + "oCell.setString( \"");
           cState.setVariable("temp", temp);
           EList<Row> _row_1 = t.getRow();
           Row _get_2 = _row_1.get((i - 1));
@@ -79,8 +80,18 @@ public class LibreTable extends AbstractElementCompiler {
           }
           Object _variable_1 = cState.getVariable("temp");
           temp = ((String) _variable_1);
-          temp = (temp + " ) \n");
+          temp = (temp + "\") \n");
           cState.setVariable("temp", temp);
+          Object _variable_2 = cState.getVariable("temp");
+          String tempF = ((String) _variable_2);
+          int _length = tempF.length();
+          boolean _greaterThan_1 = (_length > 40000);
+          if (_greaterThan_1) {
+            Object _variable_3 = cState.getVariable("libreCode");
+            LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_3);
+            lC.addCodeElement(tempF);
+            cState.setVariable("temp", "");
+          }
         }
       }
     }

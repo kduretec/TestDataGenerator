@@ -117,10 +117,15 @@ public class MSWordEmbeddedExcel extends AbstractElementCompiler {
     StringConcatenation _builder = new StringConcatenation();
     String temp = _builder.toString();
     EList<Text> _text = p.getText();
-    Text _get = _text.get(0);
-    String _value = _get.getValue();
-    String _plus = (temp + _value);
-    temp = _plus;
+    int _size = _text.size();
+    boolean _greaterThan = (_size > 0);
+    if (_greaterThan) {
+      EList<Text> _text_1 = p.getText();
+      Text _get = _text_1.get(0);
+      String _value = _get.getValue();
+      String _plus = (temp + _value);
+      temp = _plus;
+    }
     return temp;
   }
 }

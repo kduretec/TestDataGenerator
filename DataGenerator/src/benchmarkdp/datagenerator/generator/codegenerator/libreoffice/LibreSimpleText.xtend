@@ -16,7 +16,7 @@ class LibreSimpleText extends AbstractElementCompiler {
 				oText.insertString(oText.getEnd(), " «t.value»", False)
 			'''			
 		} else {
-			temp = temp +"\"" +  t.value + "\""
+			temp = temp +   t.value 
 		}
 		cState.setVariable("temp", temp) 
 	}

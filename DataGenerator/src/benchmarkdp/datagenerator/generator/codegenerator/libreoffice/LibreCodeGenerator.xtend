@@ -55,6 +55,7 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 
 		libreCode.addHelperFunction(helper())
 		libreCode.addHelperFunction(helper2())
+		libreCode.addHelperFunction(helper3())
 		tC.generatedCode = libreCode
 
 	}
@@ -140,5 +141,46 @@ class LibreCodeGenerator implements CodeGeneratorInterface {
 		return fun
 	}
 	
+	def helper3() {
+		var fun = ''' 
+			Function LoadGraphicIntoDocument(oDoc As Object, cUrl, cInternalName) As String
+				Dim oBitmaps
+				Dim cNewUrl As String
+				' Get the BitmapTable from this drawing document.
+				' It is a service that maintains a list of bitmaps that are internal
+				' to the document.
+				oBitmaps = oDoc.createInstance( "com.sun.star.drawing.BitmapTable" )
+				' Add an external graphic to the BitmapTable of this document.
+				oBitmaps.insertByName( cInternalName, cUrl )
+				' Now ask for it back.
+				' What we get back is an different Url that points to a graphic
+				' which is inside this document, and remains with the document.
+				cNewUrl = oBitmaps.getByName( cInternalName )
+				LoadGraphicIntoDocument = cNewUrl
+			End Function
+		'''	
+		return fun
+	}
+	
+	def helper4() {
+		var fun = '''
+				Sub InsertGraphicObject(oDoc, sURL)
+					Dim oCursor
+					Dim oGraph
+					Dim oText
+					oText = oDoc.getText()
+					oCursor = oText.createTextCursor()
+					oCursor.goToStart(FALSE)
+					oGraph = oDoc.createInstance("com.sun.star.text.GraphicObject")
+					oGraph.GraphicURL = sURL
+					oGraph.AnchorType = com.sun.star.text.TextContentAnchorType.AS_CHARACTER
+					oGraph.Width = 6000
+					oGraph.Height = 8000
+					'now insert the image into the text document
+					oText.insertTextContent(oCursor, oGraph, False )
+				End Sub
+		'''
+		return fun
+	}
 }
 	

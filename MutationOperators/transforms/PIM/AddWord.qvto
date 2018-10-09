@@ -4,6 +4,7 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 	
 transformation AddWord(inout model:PIM);
 configuration property numWords:String;
+configuration property numWordTable:String;
 
 main() {
 	var d := model.rootObjects()[Document];
@@ -11,7 +12,7 @@ main() {
 	var pc := paragraphs->size();
 	var wc := 0;
 	if (numWords<>null) {
-		wc := stringToInt(numWords);
+		wc := stringToInt(numWords) - stringToInt(numWordTable);
 	} else {
 		var rn := getRandomReal();
 		switch {

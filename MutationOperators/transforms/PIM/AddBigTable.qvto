@@ -5,10 +5,13 @@ modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
 
 transformation AddBigTable(inout model:PIM);
 configuration property numTables : String;
+configuration property numWordTable:String;
+configuration property numParagTable:String;
 
 main() {
 	var pages:= model.objectsOfType(Page);
-	var tc := 0; 
+	var tc := 0;
+	var twc := 0; 
 	if (numTables <> null) {
 		tc := stringToInt(numTables)
 	} else {
@@ -24,22 +27,47 @@ main() {
 		};
 	};
 	
+	if (numWordTable <> null) {
+		twc := stringToInt(numWordTable)
+	} else {
+		twc := 100
+	};
+	
 	while (tc > 0) {
 		var pos := getRandom(pages->size());
 		var page := pages->asSequence()->at(pos);
-		page->map AddTable(tc);
+		var count := twc;
+		if (tc > 1) {
+			if (twc >= tc) {
+				count := getRandomBetween(1, twc.div(tc))
+			} else {
+				count := twc; 
+			}
+		}; 
+		twc := twc - count;
+		
+		page->map AddTable(tc, count);
 		tc := tc - 1;		
 	}	
 }
 
 
-mapping inout PIM::Page::AddTable(inout i:Integer) {
+mapping inout PIM::Page::AddTable(inout i:Integer, inout count:Integer) {
 
-	var nR:Integer := 5000;
-	var nC:Integer := 6;
-	
+	var nC:Integer := 0;
+	if (count <=20) {
+		 nC := getRandomBetween(1, 4); 
+	} else {
+		nC := getRandomBetween(4, 8);
+	};
+
+	var nR:Integer := count.div(nC);
+	if (count.mod(nC) > 0) {
+		nR := nR + 1;
+	};
+	//log("Number of rows = ", nR);
 	var r:Integer := 1;
-	
+	var wcount:Integer := count;
 	var tab := object Table {
 		ID := generateUID();
 		numRows := nR;
@@ -50,10 +78,13 @@ mapping inout PIM::Page::AddTable(inout i:Integer) {
 				while (c <= nC) {
 					var tmpCell := object Cell {
 				 		var parag := object Paragraph {};
-				 		if (r=1) {
-				 			map AddWord(parag);
-				 		} else {
-				 			map AddNumber(parag);
+				 		if (wcount > 0) {
+					 		if (r=1) {
+					 			map AddWord(parag);
+					 		} else {
+					 			map AddNumber(parag);
+					 		};
+					 		wcount := wcount - 1;				 			
 				 		};
 				 		element += parag;
 					};

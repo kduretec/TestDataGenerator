@@ -40,7 +40,7 @@ class LibreTable extends AbstractElementCompiler{
 				if (t.row.get(i-1).cell.get(j-1).elements.size > 0) {					
 				var temp = cState.getVariable("temp") as String
 					temp = temp + "Set oCell = oTable.getCellByPosition(" + (j-1) +"," + (i-1) +")\n"
-					temp = temp + "oCell.setString( "
+					temp = temp + "oCell.setString( \""
 					cState.setVariable("temp", temp)
 					for (Element e: t.row.get(i-1).cell.get(j-1).elements) {
 						switch e {
@@ -48,8 +48,16 @@ class LibreTable extends AbstractElementCompiler{
 						}
 					}
 					temp = cState.getVariable("temp") as String
-					temp = temp + " ) \n"
+					temp = temp + "\") \n"
 					cState.setVariable("temp", temp)
+					
+					var tempF = cState.getVariable("temp") as String
+					if (tempF.length > 40000) {
+						var lC = cState.getVariable("libreCode") as LibreGeneratedCode
+						lC.addCodeElement(tempF);
+						cState.setVariable("temp", "")
+					}
+				
 				}
 			}
 		}

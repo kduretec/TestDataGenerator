@@ -70,6 +70,8 @@ public class LibreDocument extends AbstractElementCompiler {
     _builder.newLineIfNotEmpty();
     _builder.append("oText = oDoc.getText()");
     _builder.newLine();
+    _builder.append("oTable = ThisComponent.createInstance( \"com.sun.star.text.TextTable\" )");
+    _builder.newLine();
     String mainPart = _builder.toString();
     this.cS.setVariable("temp", "");
     Object _variable_3 = this.cS.getVariable("libreCode");

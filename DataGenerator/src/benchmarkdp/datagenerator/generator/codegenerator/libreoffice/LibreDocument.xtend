@@ -36,6 +36,7 @@ class LibreDocument extends AbstractElementCompiler {
 			oMyPageStyle = oPageStyle.getByName("Default Style")
 			oMyPageStyle.BackColor = «colorStr»	
 			oText = oDoc.getText()
+			oTable = ThisComponent.createInstance( "com.sun.star.text.TextTable" )
 		'''
 		cS.setVariable("temp", "")
 		var lC = cS.getVariable("libreCode") as LibreGeneratedCode

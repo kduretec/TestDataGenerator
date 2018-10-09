@@ -31,7 +31,7 @@ class MSWordTable extends AbstractElementCompiler {
 			tableIndex = tableIndex + 1
 			oSelection.EndKey END_OF_STORY
 			oSelection.TypeParagraph()
-			i= i + 1
+			REM i= i + 1
 		'''
 		cState.setVariable("temp", temp)
 		cState.setVariable("inTable", new Boolean(false))
