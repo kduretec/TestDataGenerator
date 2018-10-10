@@ -1,0 +1,52 @@
+import m2m.qvt.oml.ExampleJavaLib;
+
+modeltype PSM uses PSMDocx('http://benchmarkdp.datagenerator.model.PSMDocx');
+
+transformation MutatePlatformTest(inout model:PSM);
+
+main() {
+	var doc := model.objectsOfType(Document);
+	doc->map ChangePlatformWin7Office2007Docx();	
+}
+
+mapping inout Document::ChangePlatformWin7Office2007Docx() {
+	self.documentFormat := "docx";
+	self.documentFormatCode := "16";
+	self.software := "MSWord2007";
+	self.operatingSystem := "Windows7";
+}
+
+mapping inout Document::ChangePlatformWin7Office2007Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFormatCode := "17";
+	self.software := "MSWord2007";
+	self.operatingSystem := "Windows7";
+}
+
+mapping inout Document::ChangePlatformWin7Office2010Docx() {
+	self.documentFormat := "docx";
+	self.documentFormatCode := "16";
+	self.software := "MSWord2010";
+	self.operatingSystem := "Windows7";
+}
+
+mapping inout Document::ChangePlatformWin7Office2010Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFormatCode := "17";
+	self.software := "MSWord2010";
+	self.operatingSystem := "Windows7";
+}
+
+mapping inout Document::ChangePlatformWin8_1Office2013Docx() {
+	self.documentFormat := "docx";
+	self.documentFormatCode := "16";
+	self.software := "MSWord2013";
+	self.operatingSystem := "Windows8_1";
+}
+
+mapping inout Document::ChangePlatformWin8_1Office2013Pdf() {
+	self.documentFormat := "pdf";
+	self.documentFormatCode := "17";
+	self.software := "MSWord2013";
+	self.operatingSystem := "Windows8_1";
+}

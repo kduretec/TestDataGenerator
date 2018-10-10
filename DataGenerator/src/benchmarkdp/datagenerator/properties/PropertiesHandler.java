@@ -30,8 +30,10 @@ public class PropertiesHandler {
 			prop.setExperimentState(es);
 			String tcN = xmlC.getString("testCaseNumber");
 			prop.setTestCaseNumber(Integer.parseInt(tcN));
-			String mutationSettings = xmlC.getString("mutationSettings");
-			prop.setMutationSettings(mutationSettings);
+			String mutationSettings = xmlC.getString("mutationPlatformSettings");
+			prop.setMutationPlatformSettings(mutationSettings);
+			String formatSettings = xmlC.getString("mutationFormatSettings");
+			prop.setMutationPlatformSettings(formatSettings);
 			
 			if (es.compareTo("START") != 0) {
 				prop.setDocumentFolder(xmlC.getString("folderPath.Documents"));

@@ -62,6 +62,9 @@ mapping inout PIM::Page::AddTable(inout i:Integer, inout count:Integer) {
 	};
 
 	var nR:Integer := count.div(nC);
+	if (nR = 0) {
+		nR := nR + 1;
+	};
 	if (count.mod(nC) > 0) {
 		nR := nR + 1;
 	};

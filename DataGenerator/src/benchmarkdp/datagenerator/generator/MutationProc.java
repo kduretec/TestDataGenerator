@@ -72,15 +72,16 @@ public class MutationProc implements Runnable {
 				}
 			}
 		}
-		Random rnd = new Random();
-		for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
-			//MutationOperatorInterface mo = mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
-			MutationOperatorInterface mo = mutationsPIM2PSM.get(1);
-			if (tc.getTestModel().getModelType() == ModelType.PIM && mo.getSourceModel() == ModelType.PIM
-					&& mo.getDestinationModel() != ModelType.PIM) {
-				mo.mutateTestCase(tc);
-			}
+
+		// for (int j = 0; j < mutationsPIM2PSM.size(); j++) {
+		// MutationOperatorInterface mo =
+		// mutationsPIM2PSM.get(rnd.nextInt(mutationsPIM2PSM.size()));
+		MutationOperatorInterface moTran = mutationsPIM2PSM.get(0);
+		if (tc.getTestModel().getModelType() == ModelType.PIM && moTran.getSourceModel() == ModelType.PIM
+				&& moTran.getDestinationModel() != ModelType.PIM) {
+			moTran.mutateTestCase(tc);
 		}
+		// }
 
 		if (tc.getTestModel().getModelType() != ModelType.PIM) {
 			for (int j = 0; j < mutationsPSM.size(); j++) {
@@ -149,23 +150,46 @@ public class MutationProc implements Runnable {
 	}
 
 	private void initializeMutationsPIM2PSM() {
-		mutationsPIM2PSM.add(new MutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
-				Utils.pim2psmTransformation + "PIM2Docx.qvto"));
-		mutationsPIM2PSM.add(new MutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
-				Utils.pim2psmTransformation + "PIM2Libre.qvto"));
+		if (ep.getMutationPlatformSettings().compareTo("ALL_PLATFORMS") == 0) {
+			Random rnd = new Random();
+			int num = rnd.nextInt(2);
+			switch (num) {
+			case 0:
+				mutationsPIM2PSM.add(new MutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+						Utils.pim2psmTransformation + "PIM2Docx.qvto"));
+				break;
+			case 1:
+				mutationsPIM2PSM.add(new MutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
+						Utils.pim2psmTransformation + "PIM2Libre.qvto"));
+				break;
+			default:
+				break;
+			}
+		} else if (ep.getMutationPlatformSettings().compareTo("WORD_PLATFORM") == 0) {
+			mutationsPIM2PSM.add(new MutationOperator("PIM2Docx", ModelType.PIM, ModelType.PSMDocx,
+					Utils.pim2psmTransformation + "PIM2Docx.qvto"));
+		} else if (ep.getMutationPlatformSettings().compareTo("LIBRE_PLATFORM") == 0) {
+			mutationsPIM2PSM.add(new MutationOperator("PIM2Libre", ModelType.PIM, ModelType.PSMLibre,
+					Utils.pim2psmTransformation + "PIM2Libre.qvto"));
+		}
 	}
 
 	private void initializeMutationsPSM() {
-		if (ep.getMutationSettings().compareTo("ALL_FORMATS") == 0) {
+		if (ep.getMutationFormatSettings().compareTo("ALL_FORMATS") == 0) {
 			mutationsPSM.add(new MutationOperator("MutatePlatformDocx", ModelType.PSMDocx, ModelType.PSMDocx,
 					Utils.psmDocxTransformation + "MutatePlatformAll.qvto"));
 			mutationsPSM.add(new MutationOperator("MutatePlatformLibre", ModelType.PSMLibre, ModelType.PSMLibre,
-					Utils.psmLibreTransformation + "MutatePlatformAll.qvto"));			
-		} else {
+					Utils.psmLibreTransformation + "MutatePlatformAll.qvto"));
+		} else if (ep.getMutationFormatSettings().compareTo("PDF_FORMAT") == 0) {
 			mutationsPSM.add(new MutationOperator("MutatePlatformDocx", ModelType.PSMDocx, ModelType.PSMDocx,
 					Utils.psmDocxTransformation + "MutatePlatformPdf.qvto"));
 			mutationsPSM.add(new MutationOperator("MutatePlatformLibre", ModelType.PSMLibre, ModelType.PSMLibre,
 					Utils.psmLibreTransformation + "MutatePlatformPdf.qvto"));
+		} else if (ep.getMutationFormatSettings().compareTo("TEST_FORMAT") == 0) {
+			mutationsPSM.add(new MutationOperator("MutatePlatformDocx", ModelType.PSMDocx, ModelType.PSMDocx,
+					Utils.psmDocxTransformation + "MutatePlatformTest.qvto"));
+			mutationsPSM.add(new MutationOperator("MutatePlatformLibre", ModelType.PSMLibre, ModelType.PSMLibre,
+					Utils.psmLibreTransformation + "MutatePlatformTest.qvto"));
 		}
 
 		mutationsPSM.add(new MutationOperator("MutateFontFamilyDocx", ModelType.PSMDocx, ModelType.PSMDocx,

@@ -34,7 +34,9 @@ public class ExperimentProperties {
 	
 	private String macroFolder = null; 
 	
-	private String mutationSettings = null; 
+	private String mutationPlatformSettings = null; 
+	
+	private String mutationFormatSettings = null;  
 	
 	private int testCaseNumber; 
 	
@@ -174,14 +176,23 @@ public class ExperimentProperties {
 		this.testCaseNumber = testCaseNumber;
 	}
 
-	public String getMutationSettings() {
-		return mutationSettings;
+	public String getMutationPlatformSettings() {
+		return mutationPlatformSettings;
 	}
 
-	public void setMutationSettings(String mutationSettings) {
-		this.mutationSettings = mutationSettings;
+	public void setMutationPlatformSettings(String mutationPlatformSettings) {
+		this.mutationPlatformSettings = mutationPlatformSettings;
 	}
 
+	public String getMutationFormatSettings() {
+		return mutationFormatSettings;
+	}
+
+	public void setMutationFormatSettings(String mutationFormatSettings) {
+		this.mutationFormatSettings = mutationFormatSettings;
+	}
+
+	
 	
 	
 }
