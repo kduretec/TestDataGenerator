@@ -23,6 +23,8 @@ class MSWordDocument extends AbstractElementCompiler {
 			Set objFile = objFSO.CreateTextFile(grFile, True)
 			Set objFileMetadata = objFSO.CreateTextFile(grFileMetadata, True)
 			Set oDoc = objWord.Documents.Add()
+			oDoc.SpellingChecked = True
+			oDoc.GrammarChecked = True
 			oDoc.Background.Fill.Visible = True
 			oDoc.Background.Fill.ForeColor.RGB = '''
 			cState.setVariable("temp", temp)

@@ -33,7 +33,7 @@ public class PropertiesHandler {
 			String mutationSettings = xmlC.getString("mutationPlatformSettings");
 			prop.setMutationPlatformSettings(mutationSettings);
 			String formatSettings = xmlC.getString("mutationFormatSettings");
-			prop.setMutationPlatformSettings(formatSettings);
+			prop.setMutationFormatSettings(formatSettings);
 			
 			if (es.compareTo("START") != 0) {
 				prop.setDocumentFolder(xmlC.getString("folderPath.Documents"));

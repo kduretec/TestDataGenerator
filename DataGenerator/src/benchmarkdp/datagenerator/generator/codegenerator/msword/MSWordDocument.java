@@ -43,6 +43,10 @@ public class MSWordDocument extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("Set oDoc = objWord.Documents.Add()");
     _builder.newLine();
+    _builder.append("oDoc.SpellingChecked = True");
+    _builder.newLine();
+    _builder.append("oDoc.GrammarChecked = True");
+    _builder.newLine();
     _builder.append("oDoc.Background.Fill.Visible = True");
     _builder.newLine();
     _builder.append("oDoc.Background.Fill.ForeColor.RGB = ");

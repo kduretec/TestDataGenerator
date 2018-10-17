@@ -107,8 +107,7 @@ public class Main {
 		options.addOption(time);
 		options.addOption(vis);
 		options.addOption(deamon);
-		options.addOption(mainDeamon);
-
+		options.addOption(mainDeamon);	
 	}
 
 	private CommandLine parseArgs(String[] args) {

@@ -1,7 +1,6 @@
 import m2m.qvt.oml.ExampleJavaLib;
 
 modeltype PIM uses PIM('http://benchmarkdp.datagenerator.model.PIM');
-	
 
 transformation AddBigTable(inout model:PIM);
 configuration property numTables : String;
@@ -80,7 +79,8 @@ mapping inout PIM::Page::AddTable(inout i:Integer, inout count:Integer) {
 			var tmpRow := object Row {
 				while (c <= nC) {
 					var tmpCell := object Cell {
-				 		var parag := object Paragraph {};
+				 		var parag := object Paragraph{};
+				 		var seqPar := Sequence{};
 				 		if (wcount > 0) {
 					 		if (r=1) {
 					 			map AddWord(parag);
