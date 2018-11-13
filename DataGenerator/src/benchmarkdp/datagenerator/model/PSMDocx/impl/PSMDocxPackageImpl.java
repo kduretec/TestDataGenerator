@@ -20,6 +20,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
 import benchmarkdp.datagenerator.model.PSMDocx.SimpleText;
 import benchmarkdp.datagenerator.model.PSMDocx.TableImpl;
+import benchmarkdp.datagenerator.model.PSMDocx.TableType;
 import benchmarkdp.datagenerator.model.PSMDocx.Text;
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
 import benchmarkdp.datagenerator.model.PSMDocx.TextContainer;
@@ -179,6 +180,13 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * @generated
 	 */
 	private EEnum alignmentEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum tableTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -543,6 +551,15 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTableImpl_Type() {
+		return (EAttribute)tableImplEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRow() {
 		return rowEClass;
 	}
@@ -678,6 +695,15 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getTableType() {
+		return tableTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PSMDocxFactory getPSMDocxFactory() {
 		return (PSMDocxFactory)getEFactoryInstance();
 	}
@@ -744,6 +770,7 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		createEReference(tableImplEClass, TABLE_IMPL__ROW);
 		createEAttribute(tableImplEClass, TABLE_IMPL__NUM_ROWS);
 		createEAttribute(tableImplEClass, TABLE_IMPL__NUM_COL);
+		createEAttribute(tableImplEClass, TABLE_IMPL__TYPE);
 
 		rowEClass = createEClass(ROW);
 		createEReference(rowEClass, ROW__CELL);
@@ -767,6 +794,7 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		fontFamilyEEnum = createEEnum(FONT_FAMILY);
 		colorEEnum = createEEnum(COLOR);
 		alignmentEEnum = createEEnum(ALIGNMENT);
+		tableTypeEEnum = createEEnum(TABLE_TYPE);
 	}
 
 	/**
@@ -853,6 +881,7 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		initEReference(getTableImpl_Row(), this.getRow(), null, "row", null, 0, -1, TableImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTableImpl_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, TableImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTableImpl_NumCol(), ecorePackage.getEInt(), "numCol", null, 0, 1, TableImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTableImpl_Type(), this.getTableType(), "type", null, 0, 1, TableImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rowEClass, Row.class, "Row", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRow_Cell(), this.getCell(), null, "cell", null, 0, -1, Row.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -887,6 +916,12 @@ public class PSMDocxPackageImpl extends EPackageImpl implements PSMDocxPackage {
 		addEEnumLiteral(alignmentEEnum, Alignment.LEFT);
 		addEEnumLiteral(alignmentEEnum, Alignment.CENTER);
 		addEEnumLiteral(alignmentEEnum, Alignment.RIGHT);
+
+		initEEnum(tableTypeEEnum, TableType.class, "TableType");
+		addEEnumLiteral(tableTypeEEnum, TableType.SMALLNUMBERTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.ONECOLUMNTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.BIGNUMBERTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.TEXTTABLE);
 
 		// Create resource
 		createResource(eNS_URI);

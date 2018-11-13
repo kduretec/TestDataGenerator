@@ -82,12 +82,18 @@ mapping PIM::Page::PageToPage():PSM::Page {
 		};
 		
 		if (e.oclIsTypeOf(PIM::Table)) {
+		var tmpTable := e.oclAsType(PIM::Table);
 			var temp := getRandomReal();
-			if (temp < percNT) {
-				elements += e.oclAsType(PIM::Table)->map TableToWordTable();
-			} else if (temp < percNT + percET) {
-				elements += e.oclAsType(PIM::Table)->map TableToEmbeddedExcel();
+			if (tmpTable.type = PIM::TableType::SMALLNUMBERTABLE) {
+				if (temp < percNT) {
+					elements += tmpTable->map TableToWordTable();
+				} else if (temp < percNT + percET) {
+					elements += tmpTable->map TableToEmbeddedExcel();
+				}	
+			} else {
+				elements += tmpTable->map TableToWordTable();
 			}
+			
 		};
 		
 		if (e.oclIsTypeOf(PIM::Image)) {
@@ -192,6 +198,7 @@ mapping PIM::Paragraph::ParagraphToControlBox():PSM::ControlBox {
 }
 
 mapping PIM::Table::TableToWordTable():PSM::WordTable {
+	type := mapTableType(self.type);
 	ID := generateUID();
 	parentID := self.ID; 
 	numRows := self.numRows;
@@ -210,6 +217,7 @@ mapping PIM::Cell::CellToCell():PSM::Cell {
 }
 
 mapping PIM::Table::TableToEmbeddedExcel():PSM::EmbeddedExcel {
+	type := mapTableType(self.type);
 	ID := generateUID();
 	parentID := self.ID; 
 	numRows := self.numRows;
@@ -233,5 +241,15 @@ helper mapColor(in col:PIM::Color):PSMDocx::Color {
 		case (col = PIM::Color::BLUE) return PSMDocx::Color::BLUE;
 		case (col = PIM::Color::RED) return PSMDocx::Color::RED;
 		else return null;
+	}
+}
+
+helper mapTableType(in ttype:PIM::TableType):PSMDocx::TableType {
+	switch {
+		case (ttype = PIM::TableType::SMALLNUMBERTABLE) return PSMDocx::TableType::SMALLNUMBERTABLE;
+		case (ttype = PIM::TableType::ONECOLUMNTABLE) return PSMDocx::TableType::ONECOLUMNTABLE;
+		case (ttype = PIM::TableType::BIGNUMBERTABLE) return PSMDocx::TableType::BIGNUMBERTABLE;
+		case (ttype = PIM::TableType::TEXTTABLE) return PSMDocx::TableType::TEXTTABLE;
+		else return null; 
 	}
 }

@@ -934,13 +934,22 @@ public interface PSMDocxPackage extends EPackage {
 	int TABLE_IMPL__NUM_COL = TEXT_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_IMPL__TYPE = TEXT_CONTAINER_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Table Impl</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_IMPL_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 3;
+	int TABLE_IMPL_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Table Impl</em>' class.
@@ -1208,6 +1217,15 @@ public interface PSMDocxPackage extends EPackage {
 	int EMBEDDED_EXCEL__NUM_COL = TABLE_IMPL__NUM_COL;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBEDDED_EXCEL__TYPE = TABLE_IMPL__TYPE;
+
+	/**
 	 * The number of structural features of the '<em>Embedded Excel</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1317,6 +1335,15 @@ public interface PSMDocxPackage extends EPackage {
 	int WORD_TABLE__NUM_COL = TABLE_IMPL__NUM_COL;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORD_TABLE__TYPE = TABLE_IMPL__TYPE;
+
+	/**
 	 * The number of structural features of the '<em>Word Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1363,6 +1390,17 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	int ALIGNMENT = 19;
+
+
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMDocx.TableType <em>Table Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableType
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getTableType()
+	 * @generated
+	 */
+	int TABLE_TYPE = 20;
 
 
 	/**
@@ -1718,6 +1756,17 @@ public interface PSMDocxPackage extends EPackage {
 	EAttribute getTableImpl_NumCol();
 
 	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getType()
+	 * @see #getTableImpl()
+	 * @generated
+	 */
+	EAttribute getTableImpl_Type();
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMDocx.Row <em>Row</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1872,6 +1921,16 @@ public interface PSMDocxPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getAlignment();
+
+	/**
+	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMDocx.TableType <em>Table Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Table Type</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableType
+	 * @generated
+	 */
+	EEnum getTableType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2183,6 +2242,14 @@ public interface PSMDocxPackage extends EPackage {
 		EAttribute TABLE_IMPL__NUM_COL = eINSTANCE.getTableImpl_NumCol();
 
 		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE_IMPL__TYPE = eINSTANCE.getTableImpl_Type();
+
+		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.impl.RowImpl <em>Row</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2319,6 +2386,16 @@ public interface PSMDocxPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ALIGNMENT = eINSTANCE.getAlignment();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMDocx.TableType <em>Table Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.TableType
+		 * @see benchmarkdp.datagenerator.model.PSMDocx.impl.PSMDocxPackageImpl#getTableType()
+		 * @generated
+		 */
+		EEnum TABLE_TYPE = eINSTANCE.getTableType();
 
 	}
 

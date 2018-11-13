@@ -51,6 +51,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numRows" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="numCol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TableType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Row">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cell" upperBound="-1" eType="#//Cell"
@@ -85,5 +86,11 @@
     <eLiterals name="LEFT"/>
     <eLiterals name="CENTER" value="1"/>
     <eLiterals name="RIGHT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TableType">
+    <eLiterals name="SMALLNUMBERTABLE"/>
+    <eLiterals name="ONECOLUMNTABLE" value="1"/>
+    <eLiterals name="BIGNUMBERTABLE" value="2"/>
+    <eLiterals name="TEXTTABLE" value="3"/>
   </eClassifiers>
 </ecore:EPackage>

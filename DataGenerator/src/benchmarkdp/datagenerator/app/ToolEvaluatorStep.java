@@ -17,8 +17,11 @@ public class ToolEvaluatorStep implements IWorkflowStep {
 
 	private static Logger log = LoggerFactory.getLogger(ToolEvaluatorStep.class);
 
-	private static String COM_FOLDER_TO = "/Users/kresimir/Mount/Hephaistos/Experiments/TaskIn";
-	private static String COM_FOLDER_FROM = "/Users/kresimir/Mount/Hephaistos/Experiments/TaskOut";
+	//private static String COM_FOLDER_TO = "/Users/kresimir/Mount/Hephaistos/Experiments/TaskIn";
+	//private static String COM_FOLDER_FROM = "/Users/kresimir/Mount/Hephaistos/Experiments/TaskOut";
+	
+	private static String COM_FOLDER_TO = "/Users/kresimir/Mount/Canada/Experiments/TaskIn";
+	private static String COM_FOLDER_FROM = "/Users/kresimir/Mount/Canada/Experiments/TaskOut";
 
 	@Override
 	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
@@ -28,10 +31,8 @@ public class ToolEvaluatorStep implements IWorkflowStep {
 			copyToEvaluation(ep, tCC);
 			ep.setExperimentState("TEST_CASES_SENT_TO_EVALUATION");
 		} else if (ep.getExperimentState().compareTo("TEST_CASES_SENT_TO_EVALUATION") == 0) {
-			gatherFromEvaluation(ep, tCC);
-			
+			gatherFromEvaluation(ep, tCC);	
 		}
-
 	}
 
 	@Override

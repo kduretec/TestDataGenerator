@@ -6,7 +6,9 @@ import benchmarkdp.datagenerator.model.PSMDocx.Cell;
 import benchmarkdp.datagenerator.model.PSMDocx.Element;
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
+import benchmarkdp.datagenerator.model.PSMDocx.TableType;
 import benchmarkdp.datagenerator.model.PSMDocx.WordTable;
+import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -22,6 +24,8 @@ public class MSWordTable extends AbstractElementCompiler {
     String temp = ((String) _variable);
     Boolean _boolean = new Boolean(true);
     cState.setVariable("inTable", _boolean);
+    TableType _type = t.getType();
+    cState.setVariable("tableType", _type);
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("oSelection.TypeParagraph()");
     _builder.newLine();
@@ -36,6 +40,9 @@ public class MSWordTable extends AbstractElementCompiler {
     _builder.newLine();
     _builder.append("objTable.AutoFormat(16)");
     _builder.newLine();
+    _builder.append("objTable.Range.Font.Size = ");
+    _builder.append(10, "");
+    _builder.newLineIfNotEmpty();
     String _plus = (temp + _builder);
     temp = _plus;
     cState.setVariable("temp", temp);
@@ -56,6 +63,7 @@ public class MSWordTable extends AbstractElementCompiler {
     cState.setVariable("temp", temp);
     Boolean _boolean_1 = new Boolean(false);
     cState.setVariable("inTable", _boolean_1);
+    cState.setVariable("tableType", null);
   }
   
   public void compileTableElements(final WordTable t, final CompilerState cState) {
@@ -64,7 +72,11 @@ public class MSWordTable extends AbstractElementCompiler {
         {
           Object _variable = cState.getVariable("temp");
           String temp = ((String) _variable);
-          temp = (((((temp + "Set oRange = objTable.Cell(") + Integer.valueOf(i)) + ",") + Integer.valueOf(j)) + ").Range\n");
+          if ((Objects.equal(t.getType(), TableType.ONECOLUMNTABLE) || Objects.equal(t.getType(), TableType.TEXTTABLE))) {
+            temp = (((((temp + "objTable.Cell(") + Integer.valueOf(i)) + ",") + Integer.valueOf(j)) + ").Select\n");
+          } else {
+            temp = (((((temp + "Set oRange = objTable.Cell(") + Integer.valueOf(i)) + ",") + Integer.valueOf(j)) + ").Range\n");
+          }
           cState.setVariable("temp", temp);
           EList<Row> _row = t.getRow();
           Row _get = _row.get((i - 1));

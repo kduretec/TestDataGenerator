@@ -6,11 +6,13 @@ transformation AddBigTable(inout model:PIM);
 configuration property numTables : String;
 configuration property numWordTable:String;
 configuration property numParagTable:String;
+configuration property numCells:String;
 
 main() {
 	var pages:= model.objectsOfType(Page);
 	var tc := 0;
-	var twc := 0; 
+	var twc:Integer := 0;
+	var ncells := 0; 
 	if (numTables <> null) {
 		tc := stringToInt(numTables)
 	} else {
@@ -29,48 +31,70 @@ main() {
 	if (numWordTable <> null) {
 		twc := stringToInt(numWordTable)
 	} else {
-		twc := 100
+		twc := 50;
+	};
+	
+	if (numCells <> null) {
+		ncells := stringToInt(numCells)
+	} else {
+		ncells := 50;
 	};
 	
 	while (tc > 0) {
 		var pos := getRandom(pages->size());
 		var page := pages->asSequence()->at(pos);
-		var count := twc;
-		if (tc > 1) {
-			if (twc >= tc) {
-				count := getRandomBetween(1, twc.div(tc))
-			} else {
-				count := twc; 
-			}
-		}; 
-		twc := twc - count;
+		var currentWord:Integer; 
+		var currentCells:Integer; 
+		if (tc = 1) {
+			currentWord := twc; 
+			currentCells := ncells; 
+		} else {
+			currentWord := getRandomBetween(1, (twc/tc).floor() + 1);  		
+			currentCells := getRandomBetween(1, ((ncells/tc).floor()+1).min(currentWord))			
+		};
+		//log("curentWord is ", currentWord);
+		//log("curentCells is ", currentCells);
+		var decision:String := decideTable(currentWord, currentCells);
 		
-		page->map AddTable(tc, count);
+		switch {
+			case (decision="NumberTable") page->map AddNumberTable(currentWord, currentCells);
+			case (decision="ColumnTable") page->map AddOneColumnTable(currentWord, currentCells);
+			case (decision="TextTable") page->map AddTextTable(currentWord, currentCells);
+			else null;
+		};
+		
 		tc := tc - 1;		
+		twc := twc - currentWord;
+		ncells := ncells - currentCells; 
+		
 	}	
 }
 
-
-mapping inout PIM::Page::AddTable(inout i:Integer, inout count:Integer) {
-
-	var nC:Integer := 0;
-	if (count <=20) {
-		 nC := getRandomBetween(1, 4); 
-	} else {
-		nC := getRandomBetween(4, 8);
+mapping inout PIM::Page::AddNumberTable(inout nWords:Integer, inout nCells:Integer) {
+	var nC:Integer := getRandomBetween(4, 8);
+	if (nC > nCells) {
+		nC := nCells;
 	};
-
-	var nR:Integer := count.div(nC);
+	var tmp:Real := nCells / nC; 
+	var nR:Integer := tmp.floor();
+	if (nCells.mod(nC) > 0) {
+		nR := nR + 1;
+	};
+	if (nC = 0) {
+		nC := 1;
+	};
 	if (nR = 0) {
-		nR := nR + 1;
+		nR := 1;
 	};
-	if (count.mod(nC) > 0) {
-		nR := nR + 1;
-	};
-	//log("Number of rows = ", nR);
+	//log("Adding number table");
 	var r:Integer := 1;
-	var wcount:Integer := count;
+	var wcount:Integer := nWords;
 	var tab := object Table {
+		if (nCells <= 50) {
+			type := TableType::SMALLNUMBERTABLE;
+		} else {
+			type := TableType::BIGNUMBERTABLE;
+		};
 		ID := generateUID();
 		numRows := nR;
 		numCol := nC;
@@ -80,12 +104,11 @@ mapping inout PIM::Page::AddTable(inout i:Integer, inout count:Integer) {
 				while (c <= nC) {
 					var tmpCell := object Cell {
 				 		var parag := object Paragraph{};
-				 		var seqPar := Sequence{};
 				 		if (wcount > 0) {
 					 		if (r=1) {
-					 			map AddWord(parag);
+					 			map AddWord(parag, wcount);
 					 		} else {
-					 			map AddNumber(parag);
+					 			map AddNumber(parag, wcount);
 					 		};
 					 		wcount := wcount - 1;				 			
 				 		};
@@ -107,19 +130,160 @@ mapping inout PIM::Page::AddTable(inout i:Integer, inout count:Integer) {
 	} else {
 		ranPos := 1;
 	};
-	self.elements := self.elements->insertAt(ranPos, tab);
+	self.elements := self.elements->insertAt(ranPos, tab);	
 }
 
-mapping AddWord(inout par:PIM::Paragraph) {
+mapping inout PIM::Page::AddOneColumnTable(inout nWords:Integer, inout nCells:Integer) {
+	var nC:Integer := 1;
+	var nR:Integer := nCells;
+	if (nC = 0) {
+		nC := 1;
+	};
+	if (nR = 0) {
+		nR := 1;
+	};
+	var r:Integer := 1;
+	var wcount:Integer := nWords;
+	//log("Adding one column table");
+	var paragsSet:OrderedSet(PIM::Paragraph) := OrderedSet{};
+	var tab := object Table {
+		type := TableType::ONECOLUMNTABLE;
+		ID := generateUID();
+		numRows := nR;
+		numCol := nC;
+		while (r <= nR) {
+			var c:Integer := 1;
+			var tmpRow := object Row {
+				while (c <= nC) {
+					var tmpCell := object Cell {
+				 		var parag := object Paragraph{};
+				 		/*if (wcount > 0) {
+					 		if (r=1) {
+					 			map AddWord(parag);
+					 		} else {
+					 			map AddNumber(parag);
+					 		};
+					 		wcount := wcount - 1;				 			
+				 		};*/
+				 		element += parag;
+				 		paragsSet += parag;
+					};
+					c := c + 1;
+					cell += tmpCell;
+				};
+			};
+			row += tmpRow;
+			r := r + 1;
+		};
+	}; 
+ 	//log("Adding " , wcount);
+ 	while (wcount > 0) {
+		var elSize := paragsSet->size();
+		var ranPos:Integer := getRandomBetween(1,elSize);
+		map AddWord(paragsSet->at(ranPos), wcount);
+		wcount := wcount - 1;
+ 	};
+ 	
+	var ranPos : Integer;
+	var elSize := self.elements->size();
+	if (elSize > 0) {
+		ranPos := getRandomBetween(1,elSize)
+	} else {
+		ranPos := 1;
+	};
+	self.elements := self.elements->insertAt(ranPos, tab);	
+	
+} 
+
+
+mapping inout PIM::Page::AddTextTable(inout nWords:Integer, inout nCells:Integer) {
+	var nC:Integer := getRandomBetween(3,4);
+	if (nC > nCells) {
+		nC := nCells;
+	};
+	var tmp:Real := nCells / nC; 
+	var nR:Integer := tmp.floor();
+	if (nCells.mod(nC) > 0) {
+		nR := nR + 1;
+	};
+	if (nC = 0) {
+		nC := 1;
+	};
+	if (nR = 0) {
+		nR := 1;
+	};
+	//log("Adding text table");
+	var r:Integer := 1;
+	var wcount:Integer := nWords;
+	var paragsSet:OrderedSet(PIM::Paragraph) := OrderedSet{};
+	var tab := object Table {
+		type := TableType::TEXTTABLE;
+		ID := generateUID();
+		numRows := nR;
+		numCol := nC;
+		while (r <= nR) {
+			var c:Integer := 1;
+			var tmpRow := object Row {
+				while (c <= nC) {
+					var tmpCell := object Cell {
+				 		var parag := object Paragraph{};
+				 		if (c >= nC - 1) {
+					 		paragsSet += parag;
+				 		};
+				 		map AddWord(parag, wcount);
+				 		wcount := wcount - 1;				 			
+				 		element += parag;
+					};
+					c := c + 1;
+					cell += tmpCell;
+				};
+			};
+			row += tmpRow;
+			r := r + 1;
+		};
+	}; 
+ 
+ 	while (wcount > 0) {
+		var elSize := paragsSet->size();
+		elSize := 1;
+		if (elSize > 0) {
+			//log("Smaller than or equal to zero ", elSize);
+			var ranPos:Integer := getRandomBetween(1,elSize);
+			map AddWord(paragsSet->at(ranPos), wcount);
+			wcount := wcount - 1;
+		};
+ 	};
+ 	
+	var ranPos : Integer;
+	var elSize := self.elements->size();
+	if (elSize > 0) {
+		ranPos := getRandomBetween(1,elSize)
+	} else {
+		ranPos := 1;
+	};
+	self.elements := self.elements->insertAt(ranPos, tab);	
+}
+
+mapping AddWord(inout par:PIM::Paragraph, in cnt:Integer) {
 	var w := object Word {
 		value := getRandomWord();
 	};
 	par.words += w;
 }
 
-mapping AddNumber(inout par:PIM::Paragraph) {
+mapping AddNumber(inout par:PIM::Paragraph, in cnt:Integer) {
 	var w := object Word {
 		value := getRandom(100).toString();
 	};
 	par.words += w;
+}
+
+helper decideTable(in nWords:Integer, in nCells:Integer):String {
+	if ((nWords-nCells).abs()/nWords < 0.1) {
+		return "NumberTable";
+	};
+	if (nWords/nCells > 100) {
+		return "ColumnTable";
+	};
+	return "TextTable";
 }

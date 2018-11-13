@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getRow <em>Row</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumRows <em>Num Rows</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getNumCol <em>Num Col</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTableImpl()
@@ -90,5 +91,34 @@ public interface TableImpl extends TextContainer {
 	 * @generated
 	 */
 	void setNumCol(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link benchmarkdp.datagenerator.model.PSMDocx.TableType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableType
+	 * @see #setType(TableType)
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage#getTableImpl_Type()
+	 * @model
+	 * @generated
+	 */
+	TableType getType();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PSMDocx.TableImpl#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PSMDocx.TableType
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(TableType value);
 
 } // TableImpl

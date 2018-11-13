@@ -118,6 +118,7 @@ mapping PIM::Paragraph::ParagraphToTextBox():PSM::TextBox
 }
 */
 mapping PIM::Table::TableToTable():PSM::Table {
+	type := mapTableType(self.type);
 	ID := generateUID();
 	parentID := self.ID; 
 	numRows := self.numRows;
@@ -150,5 +151,15 @@ helper mapColor(in col:PIM::Color):PSMLibre::Color {
 		case (col = PIM::Color::BLUE) return PSMLibre::Color::BLUE;
 		case (col = PIM::Color::RED) return PSMLibre::Color::RED;
 		else return null;
+	}
+}
+
+helper mapTableType(in ttype:PIM::TableType):PSMLibre::TableType {
+	switch {
+		case (ttype = PIM::TableType::SMALLNUMBERTABLE) return PSMLibre::TableType::SMALLNUMBERTABLE;
+		case (ttype = PIM::TableType::ONECOLUMNTABLE) return PSMLibre::TableType::ONECOLUMNTABLE;
+		case (ttype = PIM::TableType::BIGNUMBERTABLE) return PSMLibre::TableType::BIGNUMBERTABLE;
+		case (ttype = PIM::TableType::TEXTTABLE) return PSMLibre::TableType::TEXTTABLE;
+		else return null; 
 	}
 }

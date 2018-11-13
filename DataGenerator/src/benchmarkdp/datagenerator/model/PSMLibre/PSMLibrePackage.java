@@ -669,13 +669,22 @@ public interface PSMLibrePackage extends EPackage {
 	int TABLE__ROW = TEXT_CONTAINER_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__TYPE = TEXT_CONTAINER_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Table</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TABLE_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 3;
+	int TABLE_FEATURE_COUNT = TEXT_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Table</em>' class.
@@ -880,6 +889,17 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	int ALIGNMENT = 13;
+
+
+	/**
+	 * The meta object id for the '{@link benchmarkdp.datagenerator.model.PSMLibre.TableType <em>Table Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.TableType
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getTableType()
+	 * @generated
+	 */
+	int TABLE_TYPE = 14;
 
 
 	/**
@@ -1173,6 +1193,17 @@ public interface PSMLibrePackage extends EPackage {
 	EReference getTable_Row();
 
 	/**
+	 * Returns the meta object for the attribute '{@link benchmarkdp.datagenerator.model.PSMLibre.Table#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.Table#getType()
+	 * @see #getTable()
+	 * @generated
+	 */
+	EAttribute getTable_Type();
+
+	/**
 	 * Returns the meta object for class '{@link benchmarkdp.datagenerator.model.PSMLibre.Row <em>Row</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1318,6 +1349,16 @@ public interface PSMLibrePackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getAlignment();
+
+	/**
+	 * Returns the meta object for enum '{@link benchmarkdp.datagenerator.model.PSMLibre.TableType <em>Table Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Table Type</em>'.
+	 * @see benchmarkdp.datagenerator.model.PSMLibre.TableType
+	 * @generated
+	 */
+	EEnum getTableType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1573,6 +1614,14 @@ public interface PSMLibrePackage extends EPackage {
 		EReference TABLE__ROW = eINSTANCE.getTable_Row();
 
 		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TABLE__TYPE = eINSTANCE.getTable_Type();
+
+		/**
 		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.impl.RowImpl <em>Row</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1697,6 +1746,16 @@ public interface PSMLibrePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ALIGNMENT = eINSTANCE.getAlignment();
+
+		/**
+		 * The meta object literal for the '{@link benchmarkdp.datagenerator.model.PSMLibre.TableType <em>Table Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see benchmarkdp.datagenerator.model.PSMLibre.TableType
+		 * @see benchmarkdp.datagenerator.model.PSMLibre.impl.PSMLibrePackageImpl#getTableType()
+		 * @generated
+		 */
+		EEnum TABLE_TYPE = eINSTANCE.getTableType();
 
 	}
 

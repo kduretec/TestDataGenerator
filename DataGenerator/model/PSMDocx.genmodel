@@ -22,6 +22,12 @@
       <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//Alignment/CENTER"/>
       <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//Alignment/RIGHT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="PSMDocx.ecore#//TableType">
+      <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//TableType/SMALLNUMBERTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//TableType/ONECOLUMNTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//TableType/BIGNUMBERTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PSMDocx.ecore#//TableType/TEXTTABLE"/>
+    </genEnums>
     <genClasses ecoreClass="PSMDocx.ecore#//Document">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentBackground"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//Document/documentFormat"/>
@@ -62,6 +68,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//TableImpl/row"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//TableImpl/numRows"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//TableImpl/numCol"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMDocx.ecore#//TableImpl/type"/>
     </genClasses>
     <genClasses ecoreClass="PSMDocx.ecore#//Row">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMDocx.ecore#//Row/cell"/>

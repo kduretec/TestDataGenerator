@@ -16,6 +16,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
 import benchmarkdp.datagenerator.model.PSMLibre.ParagraphImpl;
 import benchmarkdp.datagenerator.model.PSMLibre.Row;
 import benchmarkdp.datagenerator.model.PSMLibre.Table;
+import benchmarkdp.datagenerator.model.PSMLibre.TableType;
 import benchmarkdp.datagenerator.model.PSMLibre.Text;
 import benchmarkdp.datagenerator.model.PSMLibre.TextContainer;
 
@@ -131,6 +132,13 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * @generated
 	 */
 	private EEnum alignmentEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum tableTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -441,6 +449,15 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTable_Type() {
+		return (EAttribute)tableEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getRow() {
 		return rowEClass;
 	}
@@ -567,6 +584,15 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getTableType() {
+		return tableTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PSMLibreFactory getPSMLibreFactory() {
 		return (PSMLibreFactory)getEFactoryInstance();
 	}
@@ -623,6 +649,7 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		createEAttribute(tableEClass, TABLE__NUM_ROWS);
 		createEAttribute(tableEClass, TABLE__NUM_COL);
 		createEReference(tableEClass, TABLE__ROW);
+		createEAttribute(tableEClass, TABLE__TYPE);
 
 		rowEClass = createEClass(ROW);
 		createEReference(rowEClass, ROW__CELL);
@@ -643,6 +670,7 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		fontFamilyEEnum = createEEnum(FONT_FAMILY);
 		colorEEnum = createEEnum(COLOR);
 		alignmentEEnum = createEEnum(ALIGNMENT);
+		tableTypeEEnum = createEEnum(TABLE_TYPE);
 	}
 
 	/**
@@ -713,6 +741,7 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		initEAttribute(getTable_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTable_NumCol(), ecorePackage.getEInt(), "numCol", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTable_Row(), this.getRow(), null, "row", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTable_Type(), this.getTableType(), "type", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rowEClass, Row.class, "Row", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRow_Cell(), this.getCell(), null, "cell", null, 0, -1, Row.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -744,6 +773,12 @@ public class PSMLibrePackageImpl extends EPackageImpl implements PSMLibrePackage
 		addEEnumLiteral(alignmentEEnum, Alignment.LEFT);
 		addEEnumLiteral(alignmentEEnum, Alignment.CENTER);
 		addEEnumLiteral(alignmentEEnum, Alignment.RIGHT);
+
+		initEEnum(tableTypeEEnum, TableType.class, "TableType");
+		addEEnumLiteral(tableTypeEEnum, TableType.SMALLNUMBERTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.ONECOLUMNTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.BIGNUMBERTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.TEXTTABLE);
 
 		// Create resource
 		createResource(eNS_URI);

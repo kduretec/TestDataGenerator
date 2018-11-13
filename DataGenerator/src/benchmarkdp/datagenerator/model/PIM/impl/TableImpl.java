@@ -6,6 +6,7 @@ import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PIM.Row;
 import benchmarkdp.datagenerator.model.PIM.Table;
 
+import benchmarkdp.datagenerator.model.PIM.TableType;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl#getNumRows <em>Num Rows</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl#getNumCol <em>Num Col</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl#getRow <em>Row</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.impl.TableImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -86,6 +88,26 @@ public class TableImpl extends TextContainerImpl implements Table {
 	 * @ordered
 	 */
 	protected EList<Row> row;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TableType TYPE_EDEFAULT = TableType.SMALLNUMBERTABLE;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected TableType type = TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -165,6 +187,27 @@ public class TableImpl extends TextContainerImpl implements Table {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TableType getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(TableType newType) {
+		TableType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, PIMPackage.TABLE__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -188,6 +231,8 @@ public class TableImpl extends TextContainerImpl implements Table {
 				return getNumCol();
 			case PIMPackage.TABLE__ROW:
 				return getRow();
+			case PIMPackage.TABLE__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,6 +256,9 @@ public class TableImpl extends TextContainerImpl implements Table {
 				getRow().clear();
 				getRow().addAll((Collection<? extends Row>)newValue);
 				return;
+			case PIMPackage.TABLE__TYPE:
+				setType((TableType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -232,6 +280,9 @@ public class TableImpl extends TextContainerImpl implements Table {
 			case PIMPackage.TABLE__ROW:
 				getRow().clear();
 				return;
+			case PIMPackage.TABLE__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -250,6 +301,8 @@ public class TableImpl extends TextContainerImpl implements Table {
 				return numCol != NUM_COL_EDEFAULT;
 			case PIMPackage.TABLE__ROW:
 				return row != null && !row.isEmpty();
+			case PIMPackage.TABLE__TYPE:
+				return type != TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -268,6 +321,8 @@ public class TableImpl extends TextContainerImpl implements Table {
 		result.append(numRows);
 		result.append(", numCol: ");
 		result.append(numCol);
+		result.append(", type: ");
+		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

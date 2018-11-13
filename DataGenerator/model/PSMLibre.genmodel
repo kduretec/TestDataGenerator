@@ -22,6 +22,12 @@
       <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//Alignment/CENTER"/>
       <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//Alignment/RIGHT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="PSMLibre.ecore#//TableType">
+      <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//TableType/SMALLNUMBERTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//TableType/ONECOLUMNTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//TableType/BIGNUMBERTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PSMLibre.ecore#//TableType/TEXTTABLE"/>
+    </genEnums>
     <genClasses ecoreClass="PSMLibre.ecore#//Document">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Document/pages"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Document/documentBackground"/>
@@ -55,6 +61,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Table/numRows"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Table/numCol"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Table/row"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PSMLibre.ecore#//Table/type"/>
     </genClasses>
     <genClasses ecoreClass="PSMLibre.ecore#//Row">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PSMLibre.ecore#//Row/cell"/>

@@ -18,6 +18,12 @@
       <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Alignment/CENTER"/>
       <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//Alignment/RIGHT"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="PIM.ecore#//TableType">
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//TableType/SMALLNUMBERTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//TableType/ONECOLUMNTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//TableType/BIGNUMBERTABLE"/>
+      <genEnumLiterals ecoreEnumLiteral="PIM.ecore#//TableType/TEXTTABLE"/>
+    </genEnums>
     <genClasses ecoreClass="PIM.ecore#//Document">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Document/author"/>
@@ -34,6 +40,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Table/numRows"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Table/numCol"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//Table/row"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute PIM.ecore#//Table/type"/>
     </genClasses>
     <genClasses ecoreClass="PIM.ecore#//Paragraph">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference PIM.ecore#//Paragraph/words"/>

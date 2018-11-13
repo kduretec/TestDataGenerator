@@ -82,6 +82,8 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 				return createColorFromString(eDataType, initialValue);
 			case PIMPackage.ALIGNMENT:
 				return createAlignmentFromString(eDataType, initialValue);
+			case PIMPackage.TABLE_TYPE:
+				return createTableTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -99,6 +101,8 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 				return convertColorToString(eDataType, instanceValue);
 			case PIMPackage.ALIGNMENT:
 				return convertAlignmentToString(eDataType, instanceValue);
+			case PIMPackage.TABLE_TYPE:
+				return convertTableTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -221,6 +225,26 @@ public class PIMFactoryImpl extends EFactoryImpl implements PIMFactory {
 	 * @generated
 	 */
 	public String convertAlignmentToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TableType createTableTypeFromString(EDataType eDataType, String initialValue) {
+		TableType result = TableType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTableTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

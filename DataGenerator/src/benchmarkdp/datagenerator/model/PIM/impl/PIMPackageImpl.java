@@ -14,6 +14,7 @@ import benchmarkdp.datagenerator.model.PIM.Page;
 import benchmarkdp.datagenerator.model.PIM.Paragraph;
 import benchmarkdp.datagenerator.model.PIM.Row;
 import benchmarkdp.datagenerator.model.PIM.Table;
+import benchmarkdp.datagenerator.model.PIM.TableType;
 import benchmarkdp.datagenerator.model.PIM.TextContainer;
 import benchmarkdp.datagenerator.model.PIM.Word;
 
@@ -115,6 +116,13 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * @generated
 	 */
 	private EEnum alignmentEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum tableTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -308,6 +316,15 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTable_Type() {
+		return (EAttribute)tableEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getParagraph() {
 		return paragraphEClass;
 	}
@@ -470,6 +487,15 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getTableType() {
+		return tableTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PIMFactory getPIMFactory() {
 		return (PIMFactory)getEFactoryInstance();
 	}
@@ -509,6 +535,7 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		createEAttribute(tableEClass, TABLE__NUM_ROWS);
 		createEAttribute(tableEClass, TABLE__NUM_COL);
 		createEReference(tableEClass, TABLE__ROW);
+		createEAttribute(tableEClass, TABLE__TYPE);
 
 		paragraphEClass = createEClass(PARAGRAPH);
 		createEReference(paragraphEClass, PARAGRAPH__WORDS);
@@ -536,6 +563,7 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		// Create enums
 		colorEEnum = createEEnum(COLOR);
 		alignmentEEnum = createEEnum(ALIGNMENT);
+		tableTypeEEnum = createEEnum(TABLE_TYPE);
 	}
 
 	/**
@@ -588,6 +616,7 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		initEAttribute(getTable_NumRows(), ecorePackage.getEInt(), "numRows", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTable_NumCol(), ecorePackage.getEInt(), "numCol", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTable_Row(), this.getRow(), null, "row", null, 1, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTable_Type(), this.getTableType(), "type", null, 0, 1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(paragraphEClass, Paragraph.class, "Paragraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParagraph_Words(), this.getWord(), null, "words", null, 0, -1, Paragraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -623,6 +652,12 @@ public class PIMPackageImpl extends EPackageImpl implements PIMPackage {
 		addEEnumLiteral(alignmentEEnum, Alignment.LEFT);
 		addEEnumLiteral(alignmentEEnum, Alignment.CENTER);
 		addEEnumLiteral(alignmentEEnum, Alignment.RIGHT);
+
+		initEEnum(tableTypeEEnum, TableType.class, "TableType");
+		addEEnumLiteral(tableTypeEEnum, TableType.SMALLNUMBERTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.ONECOLUMNTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.BIGNUMBERTABLE);
+		addEEnumLiteral(tableTypeEEnum, TableType.TEXTTABLE);
 
 		// Create resource
 		createResource(eNS_URI);

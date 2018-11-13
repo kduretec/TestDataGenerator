@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Table#getNumRows <em>Num Rows</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Table#getNumCol <em>Num Col</em>}</li>
  *   <li>{@link benchmarkdp.datagenerator.model.PIM.Table#getRow <em>Row</em>}</li>
+ *   <li>{@link benchmarkdp.datagenerator.model.PIM.Table#getType <em>Type</em>}</li>
  * </ul>
  *
  * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getTable()
@@ -90,5 +91,34 @@ public interface Table extends TextContainer {
 	 * @generated
 	 */
 	EList<Row> getRow();
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link benchmarkdp.datagenerator.model.PIM.TableType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PIM.TableType
+	 * @see #setType(TableType)
+	 * @see benchmarkdp.datagenerator.model.PIM.PIMPackage#getTable_Type()
+	 * @model
+	 * @generated
+	 */
+	TableType getType();
+
+	/**
+	 * Sets the value of the '{@link benchmarkdp.datagenerator.model.PIM.Table#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see benchmarkdp.datagenerator.model.PIM.TableType
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(TableType value);
 
 } // Table

@@ -17,6 +17,7 @@ import benchmarkdp.datagenerator.model.PSMDocx.Page;
 import benchmarkdp.datagenerator.model.PSMDocx.Paragraph;
 import benchmarkdp.datagenerator.model.PSMDocx.Row;
 import benchmarkdp.datagenerator.model.PSMDocx.SimpleText;
+import benchmarkdp.datagenerator.model.PSMDocx.TableType;
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
 import benchmarkdp.datagenerator.model.PSMDocx.WordTable;
 
@@ -104,6 +105,8 @@ public class PSMDocxFactoryImpl extends EFactoryImpl implements PSMDocxFactory {
 				return createColorFromString(eDataType, initialValue);
 			case PSMDocxPackage.ALIGNMENT:
 				return createAlignmentFromString(eDataType, initialValue);
+			case PSMDocxPackage.TABLE_TYPE:
+				return createTableTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -123,6 +126,8 @@ public class PSMDocxFactoryImpl extends EFactoryImpl implements PSMDocxFactory {
 				return convertColorToString(eDataType, instanceValue);
 			case PSMDocxPackage.ALIGNMENT:
 				return convertAlignmentToString(eDataType, instanceValue);
+			case PSMDocxPackage.TABLE_TYPE:
+				return convertTableTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -305,6 +310,26 @@ public class PSMDocxFactoryImpl extends EFactoryImpl implements PSMDocxFactory {
 	 * @generated
 	 */
 	public String convertAlignmentToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TableType createTableTypeFromString(EDataType eDataType, String initialValue) {
+		TableType result = TableType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTableTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
