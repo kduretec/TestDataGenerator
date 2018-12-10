@@ -6,6 +6,7 @@ import benchmarkdp.datagenerator.model.PSMLibre.Element
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph
 import benchmarkdp.datagenerator.model.PSMLibre.Table
 import org.eclipse.emf.ecore.EObject
+import benchmarkdp.datagenerator.model.PSMLibre.TableType
 
 class LibreTable extends AbstractElementCompiler{
 	
@@ -34,12 +35,24 @@ class LibreTable extends AbstractElementCompiler{
 	}
 	
 	def compileTableElements(Table t, CompilerState cState) {
+		//System.out.println("Adding table");
+		cState.setVariable("tableType", t.type);
+		if (t.type==TableType::BIGNUMBERTABLE || t.type==TableType::SMALLNUMBERTABLE) {
+			compileNumberTableElements(t, cState);	
+		}else {
+			//System.out.println("Adding text table");
+			compileTextTableElements(t, cState);
+		}
+		
+	}
+	
+	def compileNumberTableElements(Table t, CompilerState cState) {
 		
 		for (var i = 1; i <= t.numRows; i++) {
 			for (var j = 1; j <= t.numCol; j++) {				
 				if (t.row.get(i-1).cell.get(j-1).elements.size > 0) {					
 				var temp = cState.getVariable("temp") as String
-					temp = temp + "Set oCell = oTable.getCellByPosition(" + (j-1) +"," + (i-1) +")\n"
+					temp = temp + "Set oCell = oTable.getCellByPosition(" + (j-1) + "," + (i-1) +")\n"
 					temp = temp + "oCell.setString( \""
 					cState.setVariable("temp", temp)
 					for (Element e: t.row.get(i-1).cell.get(j-1).elements) {
@@ -55,13 +68,46 @@ class LibreTable extends AbstractElementCompiler{
 					if (tempF.length > 40000) {
 						var lC = cState.getVariable("libreCode") as LibreGeneratedCode
 						lC.addCodeElement(tempF);
-						cState.setVariable("temp", "")
+						cState.setVariable("temp", "");
 					}
 				
 				}
 			}
 		}
+		
 	}
 	
+	def compileTextTableElements(Table t, CompilerState cState) {
+		
+		for (var i = 1; i <= t.numRows; i++) {
+			for (var j = 1; j <= t.numCol; j++) {				
+				if (t.row.get(i-1).cell.get(j-1).elements.size > 0) {					
+					//var temp = cState.getVariable("temp") as String
+					cState.setVariable("iTablePos", new Integer(i-1));
+					cState.setVariable("jTablePos", new Integer(j-1));
+					//temp = temp + "Set oCell = oTable.getCellByPosition(" + (j-1) + "," + (i-1) +")\n"
+					//temp = temp + "oCell.setString( \""
+					//cState.setVariable("temp", temp)
+					for (Element e: t.row.get(i-1).cell.get(j-1).elements) {
+						switch e {
+								Paragraph : compiler.compile("Paragraph", e)
+						}
+					}
+					//temp = cState.getVariable("temp") as String
+					//temp = temp + "\") \n"	
+					//cState.setVariable("temp", temp)
+					
+					var tempF = cState.getVariable("temp") as String
+					if (tempF.length > 40000) {
+						var lC = cState.getVariable("libreCode") as LibreGeneratedCode
+						lC.addCodeElement(tempF);
+						cState.setVariable("temp", "");
+					}
+				
+				}
+			}
+		}
+		
+	}
 	
 }

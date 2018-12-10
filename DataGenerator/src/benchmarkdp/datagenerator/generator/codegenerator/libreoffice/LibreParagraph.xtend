@@ -3,6 +3,7 @@ package benchmarkdp.datagenerator.generator.codegenerator.libreoffice
 import benchmarkdp.datagenerator.generator.codegenerator.AbstractElementCompiler
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph
+import benchmarkdp.datagenerator.model.PSMLibre.TableType
 import benchmarkdp.datagenerator.model.PSMLibre.Text
 import org.eclipse.emf.ecore.EObject
 
@@ -22,6 +23,7 @@ class LibreParagraph extends AbstractElementCompiler {
 		var inTable = cState.getVariable("inTable") as Boolean;
 		var parag = numPar.intValue
 		var temp = cState.getVariable("temp") as String
+		var tableType = cState.getVariable("tableType") as TableType
 
 		/*if (parag > 1 && !inTable) {
 		 * 	temp = temp + '''
@@ -47,10 +49,22 @@ class LibreParagraph extends AbstractElementCompiler {
 		if (!inTable) {
 			parag = parag + 1
 		}
+		if (inTable && (tableType==TableType::ONECOLUMNTABLE || tableType==TableType::TEXTTABLE)) {
+			temp = cState.getVariable("temp") as String;
+			var iN = cState.getVariable("iTablePos") as Integer
+			var jN = cState.getVariable("jTablePos") as Integer
+			var i = iN.intValue
+			var j = jN.intValue
+			temp = temp + '''Set oCell = oTable.getCellByPosition(«j»,«i»)\n
+						Set oTextTable = oCell.getText() 
+						'''
+			cState.setVariable("temp", temp)
+		}
+
 		cState.setVariable("parag", new Integer(parag))
 		var counter = 0;
 		for (Text txt : par.text) {
-			if (inTable && counter > 0) {
+			if (inTable && counter > 0 && !(tableType==TableType::ONECOLUMNTABLE || tableType==TableType::TEXTTABLE)) {
 				temp = cState.getVariable("temp") as String
 				temp = temp + " + "
 				cState.setVariable("temp", temp)
@@ -59,15 +73,25 @@ class LibreParagraph extends AbstractElementCompiler {
 				Text: compiler.compile("SimpleText", txt)
 			}
 			// make sure that big paragraphs do not cause files > 64kB
-			if (!inTable) {
-				var tempF = cState.getVariable("temp") as String
-				if (tempF.length > 40000) {
-					var lC = cState.getVariable("libreCode") as LibreGeneratedCode
-					lC.addCodeElement(tempF);
-					cState.setVariable("temp", "")
+			// if (!inTable) {
+			var tempF = cState.getVariable("temp") as String
+			if (tempF.length > 40000) {
+				var lC = cState.getVariable("libreCode") as LibreGeneratedCode
+				lC.addCodeElement(tempF);
+				cState.setVariable("temp", "")
+				if (inTable && (tableType==TableType::ONECOLUMNTABLE || tableType==TableType::TEXTTABLE)) {
+					temp = cState.getVariable("temp") as String;
+					var iN = cState.getVariable("iTablePos") as Integer
+					var jN = cState.getVariable("jTablePos") as Integer
+					var i = iN.intValue
+					var j = jN.intValue
+					temp = temp + '''Set oCell = oTable.getCellByPosition(«j»,«i»)\n
+						Set oTextTable = oCell.getText() 
+						'''
+					cState.setVariable("temp", temp)
 				}
 			}
-
+			// }
 			counter = counter + 1
 		}
 		var cl = cState.getVariable("calcLayout") as Boolean

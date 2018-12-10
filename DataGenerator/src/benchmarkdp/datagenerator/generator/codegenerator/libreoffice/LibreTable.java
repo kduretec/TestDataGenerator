@@ -8,6 +8,8 @@ import benchmarkdp.datagenerator.model.PSMLibre.Element;
 import benchmarkdp.datagenerator.model.PSMLibre.Paragraph;
 import benchmarkdp.datagenerator.model.PSMLibre.Row;
 import benchmarkdp.datagenerator.model.PSMLibre.Table;
+import benchmarkdp.datagenerator.model.PSMLibre.TableType;
+import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -51,6 +53,16 @@ public class LibreTable extends AbstractElementCompiler {
   }
   
   public void compileTableElements(final Table t, final CompilerState cState) {
+    TableType _type = t.getType();
+    cState.setVariable("tableType", _type);
+    if ((Objects.equal(t.getType(), TableType.BIGNUMBERTABLE) || Objects.equal(t.getType(), TableType.SMALLNUMBERTABLE))) {
+      this.compileNumberTableElements(t, cState);
+    } else {
+      this.compileTextTableElements(t, cState);
+    }
+  }
+  
+  public void compileNumberTableElements(final Table t, final CompilerState cState) {
     for (int i = 1; (i <= t.getNumRows()); i++) {
       for (int j = 1; (j <= t.getNumCol()); j++) {
         EList<Row> _row = t.getRow();
@@ -89,6 +101,48 @@ public class LibreTable extends AbstractElementCompiler {
           if (_greaterThan_1) {
             Object _variable_3 = cState.getVariable("libreCode");
             LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_3);
+            lC.addCodeElement(tempF);
+            cState.setVariable("temp", "");
+          }
+        }
+      }
+    }
+  }
+  
+  public void compileTextTableElements(final Table t, final CompilerState cState) {
+    for (int i = 1; (i <= t.getNumRows()); i++) {
+      for (int j = 1; (j <= t.getNumCol()); j++) {
+        EList<Row> _row = t.getRow();
+        Row _get = _row.get((i - 1));
+        EList<Cell> _cell = _get.getCell();
+        Cell _get_1 = _cell.get((j - 1));
+        EList<Element> _elements = _get_1.getElements();
+        int _size = _elements.size();
+        boolean _greaterThan = (_size > 0);
+        if (_greaterThan) {
+          Integer _integer = new Integer((i - 1));
+          cState.setVariable("iTablePos", _integer);
+          Integer _integer_1 = new Integer((j - 1));
+          cState.setVariable("jTablePos", _integer_1);
+          EList<Row> _row_1 = t.getRow();
+          Row _get_2 = _row_1.get((i - 1));
+          EList<Cell> _cell_1 = _get_2.getCell();
+          Cell _get_3 = _cell_1.get((j - 1));
+          EList<Element> _elements_1 = _get_3.getElements();
+          for (final Element e : _elements_1) {
+            boolean _matched = false;
+            if (e instanceof Paragraph) {
+              _matched=true;
+              this.compiler.compile("Paragraph", e);
+            }
+          }
+          Object _variable = cState.getVariable("temp");
+          String tempF = ((String) _variable);
+          int _length = tempF.length();
+          boolean _greaterThan_1 = (_length > 40000);
+          if (_greaterThan_1) {
+            Object _variable_1 = cState.getVariable("libreCode");
+            LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_1);
             lC.addCodeElement(tempF);
             cState.setVariable("temp", "");
           }

@@ -61,7 +61,7 @@ public class LibreGeneratedCode implements IGeneratedCode {
 		for (int i = 2; i < codeElements.size(); i++) {
 			String scriptName = "sub_" + testCaseName + "_part_" + (i - 1);
 			fileMain = fileMain + "oTables = ThisComponent.TextTables \n" + "If (oTables.getCount() > 0) Then \n"
-					+ " oTable = oTables(oTables.getCount() - 1) \nEnd If \n" + "fun_" + scriptName
+					+ "oTable = oTables(oTables.getCount() - 1) \nEnd If \n" + "fun_" + scriptName
 					+ "(oDoc, oText, oTable, file)\n";
 			String tempFile = getFileStart(scriptName);
 			tempFile = tempFile + "Sub " + "fun_" + scriptName + "(oDoc, oText, oTable, file)\n";
