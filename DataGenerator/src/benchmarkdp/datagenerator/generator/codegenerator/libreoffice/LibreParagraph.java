@@ -92,7 +92,8 @@ public class LibreParagraph extends AbstractElementCompiler {
     EList<Text> _text = par.getText();
     for (final Text txt : _text) {
       {
-        if ((((inTable).booleanValue() && (counter > 0)) && (!(Objects.equal(tableType, TableType.ONECOLUMNTABLE) || Objects.equal(tableType, TableType.TEXTTABLE))))) {
+        if ((((inTable).booleanValue() && (counter > 0)) && 
+          (!(Objects.equal(tableType, TableType.ONECOLUMNTABLE) || Objects.equal(tableType, TableType.TEXTTABLE))))) {
           Object _variable_9 = cState.getVariable("temp");
           temp = ((String) _variable_9);
           temp = (temp + " + ");
@@ -103,37 +104,39 @@ public class LibreParagraph extends AbstractElementCompiler {
           _matched=true;
           this.compiler.compile("SimpleText", txt);
         }
-        Object _variable_10 = cState.getVariable("temp");
-        String tempF = ((String) _variable_10);
-        int _length = tempF.length();
-        boolean _greaterThan = (_length > 40000);
-        if (_greaterThan) {
-          Object _variable_11 = cState.getVariable("libreCode");
-          LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_11);
-          lC.addCodeElement(tempF);
-          cState.setVariable("temp", "");
-          if (((inTable).booleanValue() && (Objects.equal(tableType, TableType.ONECOLUMNTABLE) || Objects.equal(tableType, TableType.TEXTTABLE)))) {
-            Object _variable_12 = cState.getVariable("temp");
-            temp = ((String) _variable_12);
-            Object _variable_13 = cState.getVariable("iTablePos");
-            Integer iN_1 = ((Integer) _variable_13);
-            Object _variable_14 = cState.getVariable("jTablePos");
-            Integer jN_1 = ((Integer) _variable_14);
-            int i_1 = iN_1.intValue();
-            int j_1 = jN_1.intValue();
-            StringConcatenation _builder_2 = new StringConcatenation();
-            _builder_2.append("Set oCell = oTable.getCellByPosition(");
-            _builder_2.append(j_1, "");
-            _builder_2.append(",");
-            _builder_2.append(i_1, "");
-            _builder_2.append(")\\n");
-            _builder_2.newLineIfNotEmpty();
-            _builder_2.append("\t\t\t\t\t\t");
-            _builder_2.append("Set oTextTable = oCell.getText() ");
-            _builder_2.newLine();
-            String _plus_2 = (temp + _builder_2);
-            temp = _plus_2;
-            cState.setVariable("temp", temp);
+        if (((!(inTable).booleanValue()) || ((inTable).booleanValue() && (Objects.equal(tableType, TableType.ONECOLUMNTABLE) || Objects.equal(tableType, TableType.TEXTTABLE))))) {
+          Object _variable_10 = cState.getVariable("temp");
+          String tempF = ((String) _variable_10);
+          int _length = tempF.length();
+          boolean _greaterThan = (_length > 40000);
+          if (_greaterThan) {
+            Object _variable_11 = cState.getVariable("libreCode");
+            LibreGeneratedCode lC = ((LibreGeneratedCode) _variable_11);
+            lC.addCodeElement(tempF);
+            cState.setVariable("temp", "");
+            if (((inTable).booleanValue() && (Objects.equal(tableType, TableType.ONECOLUMNTABLE) || Objects.equal(tableType, TableType.TEXTTABLE)))) {
+              Object _variable_12 = cState.getVariable("temp");
+              temp = ((String) _variable_12);
+              Object _variable_13 = cState.getVariable("iTablePos");
+              Integer iN_1 = ((Integer) _variable_13);
+              Object _variable_14 = cState.getVariable("jTablePos");
+              Integer jN_1 = ((Integer) _variable_14);
+              int i_1 = iN_1.intValue();
+              int j_1 = jN_1.intValue();
+              StringConcatenation _builder_2 = new StringConcatenation();
+              _builder_2.append("Set oCell = oTable.getCellByPosition(");
+              _builder_2.append(j_1, "");
+              _builder_2.append(",");
+              _builder_2.append(i_1, "");
+              _builder_2.append(")\\n");
+              _builder_2.newLineIfNotEmpty();
+              _builder_2.append("\t\t\t\t\t\t");
+              _builder_2.append("Set oTextTable = oCell.getText() ");
+              _builder_2.newLine();
+              String _plus_2 = (temp + _builder_2);
+              temp = _plus_2;
+              cState.setVariable("temp", temp);
+            }
           }
         }
         counter = (counter + 1);

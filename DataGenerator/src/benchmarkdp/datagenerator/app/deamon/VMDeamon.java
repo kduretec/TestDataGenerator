@@ -26,6 +26,7 @@ public class VMDeamon {
 	}
 
 	public void execute() {
+		
 		log.info("VM Deamon is active");
 		comDevice.waitForCommand("START");
 		// waitForCommad("START", platform);

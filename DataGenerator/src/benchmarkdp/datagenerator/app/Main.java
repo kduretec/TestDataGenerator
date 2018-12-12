@@ -1,6 +1,9 @@
 package benchmarkdp.datagenerator.app;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 import org.apache.commons.cli.CommandLine;
@@ -9,6 +12,10 @@ import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.PatternLayout;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
@@ -36,7 +43,6 @@ public class Main {
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.execute(args);
-
 	}
 
 	public void execute(String[] args) {
@@ -72,7 +78,9 @@ public class Main {
 				mWork.execute(pFile);
 			}
 		} else if (cmd.hasOption("a")) {
+			log.info("Redirecting log output");
 			String vmName = cmd.getOptionValue("a");
+			redirectLogging(vmName);
 			VMDeamon deamon = new VMDeamon(vmName);
 			deamon.execute();
 		}
@@ -107,7 +115,7 @@ public class Main {
 		options.addOption(time);
 		options.addOption(vis);
 		options.addOption(deamon);
-		options.addOption(mainDeamon);	
+		options.addOption(mainDeamon);
 	}
 
 	private CommandLine parseArgs(String[] args) {
@@ -120,5 +128,25 @@ public class Main {
 					+ parseException);
 		}
 		return commandLine;
+	}
+
+	private void redirectLogging(String vmName) {
+		FileAppender fa = new FileAppender();
+		DateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String pathLogs = "/home/kresimir/Dropbox/Work/Projects/BenchmarkDP/publications/"
+				+ "INFSOF/experiments/ComunicationFolder/logs/";
+		if (vmName.contains("Windows")) {
+			pathLogs = "c:\\Users\\" + "Kresimir Duretec\\Dropbox\\Work\\Projects\\BenchmarkDP\\publications\\"
+					+ "INFSOF\\experiments\\ComunicationFolder\\logs\\";
+		}
+		fa.setName("FileLogger");
+		fa.setFile(pathLogs + vmName + "_" + sdf.format(new Date()) + ".log");
+		fa.setLayout(new PatternLayout("%d [%t] %-5p %c %x - %m%n"));
+		fa.setThreshold(Level.INFO);
+		fa.setAppend(true);
+		fa.activateOptions();
+		org.apache.log4j.Logger logger = LogManager.getRootLogger();
+		logger.getLoggerRepository().resetConfiguration();
+		logger.addAppender(fa);
 	}
 }
