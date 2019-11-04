@@ -1,3 +1,5 @@
+sample_test	numPage:1	numWords:30000	numParag:500	numTables:0	numWordTable:0	numParagTable:0	numCells:0	paragraphImpl:allSimpleParagraph
+sample_test2	numPage:395	numWords:22026	numParag:22005	numTables:1	numWordTable:6	numParagTable:4	numCells:1
 sample_2685	numPage:78	numWords:32500	numParag:681	numTables:0	numWordTable:0	numParagTable:0	numCells:0
 sample_3350	numPage:1	numWords:463	numParag:10	numTables:0	numWordTable:0	numParagTable:0	numCells:0
 sample_7634	numPage:58	numWords:3036	numParag:191	numTables:0	numWordTable:0	numParagTable:0	numCells:0

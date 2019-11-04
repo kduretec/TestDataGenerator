@@ -36,6 +36,10 @@ class LibreTable extends AbstractElementCompiler{
 	
 	def compileTableElements(Table t, CompilerState cState) {
 		//System.out.println("Adding table");
+		//System.out.println(t.numRows + " " + t.numCol);
+		if (t.numRows == 0 || t.numCol==0) {
+			System.out.println("ZERO IN A TABLE");
+		}
 		cState.setVariable("tableType", t.type);
 		if (t.type==TableType::BIGNUMBERTABLE || t.type==TableType::SMALLNUMBERTABLE) {
 			compileNumberTableElements(t, cState);	

@@ -13,6 +13,8 @@ class MSWordSimpleText extends AbstractElementCompiler{
 		var t = object as SimpleText
 		var temp = cState.getVariable("temp") as String 
 		var inTable = cState.getVariable("inTable") as Boolean
+		var cl = cState.getVariable("calcLayout") as Boolean
+		
 		//temp = temp + "'oSelection.Font.Color = "
 		//cState.setVariable("temp", temp)
 		//compiler.compile("Color", t.color)
@@ -34,15 +36,29 @@ class MSWordSimpleText extends AbstractElementCompiler{
 			'''
 			}
 		} else {
-			temp = temp + '''
-				oSelection.Font.Size = «11»
-				oSelection.TypeText(" «t.value» ")
-				REM oRange.insertAfter(" «t.value» ")
-			'''
+			if (cl.booleanValue) {
+				temp = temp + '''
+					REM oSelection.Font.Size = «11»
+					oSelection.TypeText(" «t.value» ")
+				'''
+			} else {
+				var oneTexEl = cState.getVariable("oneTextEl") as Boolean;
+				if (oneTexEl.booleanValue) {
+				temp = temp + '''
+					REM oSelection.Font.Size = «11»
+					REM oSelection.TypeText(" «t.value» ")
+					oRange.Text = " «t.value» "
+				'''	
+				} else {
+					temp = temp + '''
+						oSelection.Font.Size = «11»
+						REM oSelection.TypeText(" «t.value» ")
+						oRange.insertAfter(" «t.value» ")
+					'''				
+				}
+	
+			}
 		}
-	
 		cState.setVariable("temp", temp)
-		
 	}
-	
 }

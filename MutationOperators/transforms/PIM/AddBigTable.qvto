@@ -49,8 +49,16 @@ main() {
 			currentWord := twc; 
 			currentCells := ncells; 
 		} else {
-			currentWord := getRandomBetween(1, (twc/tc).floor() + 1);  		
-			currentCells := getRandomBetween(1, ((ncells/tc).floor()+1).min(currentWord))			
+			var up1Tmp := (twc/tc).floor() + 1; 
+			if (up1Tmp < 1 or up1Tmp.oclIsInvalid()) {
+				up1Tmp := 1; 
+			};
+			currentWord := getRandomBetween(1, up1Tmp);  	
+			var up2Tmp := ((ncells/tc).floor()+1).min(currentWord);
+			if (up2Tmp < 1 or up2Tmp.oclIsInvalid()) {
+				up2Tmp := 1; 
+			};	
+			currentCells := getRandomBetween(1, up2Tmp)			
 		};
 		//log("curentWord is ", currentWord);
 		//log("curentCells is ", currentCells);
@@ -80,13 +88,14 @@ mapping inout PIM::Page::AddNumberTable(inout nWords:Integer, inout nCells:Integ
 	if (nCells.mod(nC) > 0) {
 		nR := nR + 1;
 	};
-	if (nC = 0) {
+	if (nC <= 1 or nC->oclIsInvalid()) {
 		nC := 1;
 	};
-	if (nR = 0) {
+	if (nR <= 1 or nR->oclIsInvalid()) {
 		nR := 1;
 	};
-	//log("Adding number table");
+	//log("Adding number table nR", nR);
+	//log("Adding number table nC", nC);
 	var r:Integer := 1;
 	var wcount:Integer := nWords;
 	var tab := object Table {
@@ -136,15 +145,16 @@ mapping inout PIM::Page::AddNumberTable(inout nWords:Integer, inout nCells:Integ
 mapping inout PIM::Page::AddOneColumnTable(inout nWords:Integer, inout nCells:Integer) {
 	var nC:Integer := 1;
 	var nR:Integer := nCells;
-	if (nC = 0) {
+	if (nC <= 1 or nC->oclIsInvalid()) {
 		nC := 1;
 	};
-	if (nR = 0) {
+	if (nR <= 1 or nR->oclIsInvalid()) {
 		nR := 1;
 	};
 	var r:Integer := 1;
 	var wcount:Integer := nWords;
-	//log("Adding one column table");
+	//log("Adding one column table nR ", nR);
+	//log("Adding one column table nC ", nC);
 	var paragsSet:OrderedSet(PIM::Paragraph) := OrderedSet{};
 	var tab := object Table {
 		type := TableType::ONECOLUMNTABLE;
@@ -206,13 +216,15 @@ mapping inout PIM::Page::AddTextTable(inout nWords:Integer, inout nCells:Integer
 	if (nCells.mod(nC) > 0) {
 		nR := nR + 1;
 	};
-	if (nC = 0) {
+	if (nC <= 1) {
 		nC := 1;
 	};
-	if (nR = 0) {
+	if (nR <= 1 or nR->oclIsInvalid()) {
+		//log("IT IS THE ERROR");
 		nR := 1;
 	};
-	//log("Adding text table");
+	//log("Adding text table nR", nR);
+	//log("Adding text table nC", nC);
 	var r:Integer := 1;
 	var wcount:Integer := nWords;
 	var paragsSet:OrderedSet(PIM::Paragraph) := OrderedSet{};
@@ -245,12 +257,14 @@ mapping inout PIM::Page::AddTextTable(inout nWords:Integer, inout nCells:Integer
  
  	while (wcount > 0) {
 		var elSize := paragsSet->size();
-		elSize := 1;
+		//elSize := 1;
 		if (elSize > 0) {
 			//log("Smaller than or equal to zero ", elSize);
 			var ranPos:Integer := getRandomBetween(1,elSize);
 			map AddWord(paragsSet->at(ranPos), wcount);
 			wcount := wcount - 1;
+		} else {
+			wcount := 0; 
 		};
  	};
  	

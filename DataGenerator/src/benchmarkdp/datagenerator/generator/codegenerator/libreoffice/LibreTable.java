@@ -53,6 +53,9 @@ public class LibreTable extends AbstractElementCompiler {
   }
   
   public void compileTableElements(final Table t, final CompilerState cState) {
+    if (((t.getNumRows() == 0) || (t.getNumCol() == 0))) {
+      System.out.println("ZERO IN A TABLE");
+    }
     TableType _type = t.getType();
     cState.setVariable("tableType", _type);
     if ((Objects.equal(t.getType(), TableType.BIGNUMBERTABLE) || Objects.equal(t.getType(), TableType.SMALLNUMBERTABLE))) {

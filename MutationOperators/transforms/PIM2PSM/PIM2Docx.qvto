@@ -123,30 +123,37 @@ mapping PIM::Paragraph::ParagraphToParagraph():PSM::Paragraph
 		indent := 1.0;
 		var i:Integer := 1;
 		var si:Integer := self.words->asSequence()->size(); 
-		while (i <= si) {
-		 var pos:Integer := getRandomBetween(i,si);
-		 if (pos - i > 50) {
-		 	pos := i + 50 
-		 };
-		 var tt := self.words->asSequence()->subSequence(i,pos);
-		 var tSize := tt->size();
-		 i := pos + 1;
-		 var stVal:String := turnSeqToString(tt.value->asList());
-		 var temp:Real := getRandomReal();
-		 var sT:Text := null;
-		 if (temp < 0.98 or tt->size() > 3) {
-		 	sT := object SimpleText {
-		 		value := stVal;
-		 	};
-		 } else {
-		 	sT := object HyperLink {
+		if (si <= 20) {
+		var stVal:String := turnSeqToString(self.words->asSequence().value->asList());
+			var sT:Text := object SimpleText {
 				value := stVal;
-				url := "http://www.google.com"	 		
-		 	}
-		 };
-		 
-		 text += sT;
-		 
+			};
+			text += sT; 
+		} else {
+			while (i <= si) {
+			 var pos:Integer := getRandomBetween(i,si);
+			 if (pos - i > 20) {
+			 	pos := i + 20 
+			 };
+			 var tt := self.words->asSequence()->subSequence(i,pos);
+			 var tSize := tt->size();
+			 i := pos + 1;
+			 var stVal:String := turnSeqToString(tt.value->asList());
+			 var temp:Real := getRandomReal();
+			 var sT:Text := null;
+			 if (temp < 0.98 or tt->size() > 3) {
+			 	sT := object SimpleText {
+			 		value := stVal;
+			 	};
+			 } else {
+			 	sT := object HyperLink {
+					value := stVal;
+					url := "http://www.google.com"	 		
+			 	}
+			 };
+			 text += sT;
+			 
+			}
 		}
 }
 
