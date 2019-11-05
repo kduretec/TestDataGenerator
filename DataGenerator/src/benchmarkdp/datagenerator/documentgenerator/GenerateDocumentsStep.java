@@ -10,10 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -22,9 +20,9 @@ import org.slf4j.LoggerFactory;
 import benchmarkdp.datagenerator.generator.utils.ZipUtil;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.properties.PropertiesHandler;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.TestCaseContainer;
-import benchmarkdp.datagenerator.testcase.TestCaseHandler;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestCaseHandler;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class GenerateDocumentsStep implements IWorkflowStep {

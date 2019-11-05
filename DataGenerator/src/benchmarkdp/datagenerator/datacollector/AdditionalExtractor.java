@@ -1,11 +1,9 @@
 package benchmarkdp.datagenerator.datacollector;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
-import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.core.TestCase;
 
 /**
  * This class is used in case ground truth needs to be extracted again from the models. 
@@ -71,7 +69,7 @@ public class AdditionalExtractor {
 		System.out.println("Evaluation done");
 		
 		for (TestCase tc : testCases) {
-			System.out.println("Saving testcase:" + tc.getTestCaseName());
+			System.out.println("Saving core:" + tc.getTestCaseName());
 			tc.saveTestCaseComponents(Utils.modelMetadataPath, Utils.modelTextPath, true);
 		}
 		

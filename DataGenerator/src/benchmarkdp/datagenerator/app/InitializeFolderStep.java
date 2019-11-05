@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.InitializeTestCasesStep;
-import benchmarkdp.datagenerator.testcase.TestCaseContainer;
+import benchmarkdp.datagenerator.core.InitializeTestCasesStep;
+import benchmarkdp.datagenerator.core.TestCaseContainer;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class InitializeFolderStep implements IWorkflowStep{

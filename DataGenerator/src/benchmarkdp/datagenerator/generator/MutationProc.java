@@ -23,8 +23,8 @@ import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.ModelType;
-import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.core.ModelType;
+import benchmarkdp.datagenerator.core.TestCase;
 
 public class MutationProc implements Runnable {
 

@@ -1,7 +1,7 @@
 package benchmarkdp.datagenerator.generator.codegenerator;
 
-import benchmarkdp.datagenerator.testcase.ModelType;
-import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.core.ModelType;
+import benchmarkdp.datagenerator.core.TestCase;
 
 public interface CodeGeneratorInterface {
 	

@@ -12,8 +12,8 @@ import org.eclipse.ocl.helper.OCLHelper;
 
 import benchmarkdp.datagenerator.model.PSMDocx.Document;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
-import benchmarkdp.datagenerator.testcase.ModelType;
-import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.core.ModelType;
+import benchmarkdp.datagenerator.core.TestCase;
 
 
 

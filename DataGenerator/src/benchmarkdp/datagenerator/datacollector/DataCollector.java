@@ -34,8 +34,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.Text;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.Text;
 
 public class DataCollector {
 

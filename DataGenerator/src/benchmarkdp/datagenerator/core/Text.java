@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.testcase;
+package benchmarkdp.datagenerator.core;
 
 import java.util.ArrayList;
 import java.util.List;

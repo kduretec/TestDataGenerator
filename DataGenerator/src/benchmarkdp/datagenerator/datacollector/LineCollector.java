@@ -5,15 +5,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.Text;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.Text;
 
 public class LineCollector implements TextCollectorInterface {
 

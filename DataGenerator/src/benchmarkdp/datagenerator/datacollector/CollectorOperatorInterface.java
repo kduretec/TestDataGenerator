@@ -3,7 +3,7 @@ package benchmarkdp.datagenerator.datacollector;
 import java.util.Map;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.core.TestCase;
 
 public interface CollectorOperatorInterface {
 

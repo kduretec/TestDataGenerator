@@ -4,8 +4,8 @@ import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler
 import benchmarkdp.datagenerator.model.PSMDocx.Document
-import benchmarkdp.datagenerator.testcase.ModelType
-import benchmarkdp.datagenerator.testcase.TestCase
+import benchmarkdp.datagenerator.core.ModelType
+import benchmarkdp.datagenerator.core.TestCase
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface
 
 class DocxCodeGenerator implements CodeGeneratorInterface {

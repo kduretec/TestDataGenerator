@@ -18,8 +18,8 @@ import org.xml.sax.SAXException;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.Text;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.Text;
 
 public class ModelTextCollector implements TextCollectorInterface {
 

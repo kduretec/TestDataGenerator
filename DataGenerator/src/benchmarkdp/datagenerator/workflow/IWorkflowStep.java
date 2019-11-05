@@ -1,7 +1,7 @@
 package benchmarkdp.datagenerator.workflow;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestCaseContainer;
 
 public interface IWorkflowStep {
 

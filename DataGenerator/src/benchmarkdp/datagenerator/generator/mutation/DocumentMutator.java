@@ -16,7 +16,7 @@ import org.eclipse.m2m.qvt.oml.util.Log;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 
 import benchmarkdp.datagenerator.generator.DocumentHolder;
-import benchmarkdp.datagenerator.testcase.ModelType;
+import benchmarkdp.datagenerator.core.ModelType;
 
 public class DocumentMutator {
 

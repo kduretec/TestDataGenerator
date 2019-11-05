@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.Text;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.Text;
 
 public interface TextCollectorInterface {
 

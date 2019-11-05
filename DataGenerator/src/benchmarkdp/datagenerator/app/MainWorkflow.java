@@ -9,9 +9,9 @@ import benchmarkdp.datagenerator.documentgenerator.GenerateDocumentsStep;
 import benchmarkdp.datagenerator.generator.MutationStep;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.properties.PropertiesHandler;
-import benchmarkdp.datagenerator.testcase.InitializeTestCasesStep;
-import benchmarkdp.datagenerator.testcase.TestCaseContainer;
-import benchmarkdp.datagenerator.testcase.TestCaseHandler;
+import benchmarkdp.datagenerator.core.InitializeTestCasesStep;
+import benchmarkdp.datagenerator.core.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestCaseHandler;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class MainWorkflow {

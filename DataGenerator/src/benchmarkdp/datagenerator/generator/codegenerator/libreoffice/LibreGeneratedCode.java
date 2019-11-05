@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
-import benchmarkdp.datagenerator.testcase.IGeneratedCode;
+import benchmarkdp.datagenerator.core.IGeneratedCode;
 
 public class LibreGeneratedCode implements IGeneratedCode {
 

@@ -7,10 +7,9 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import benchmarkdp.datagenerator.generator.MutationStep;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.TestCaseContainer;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class FitsStep implements IWorkflowStep {

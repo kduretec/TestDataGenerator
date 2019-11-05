@@ -15,10 +15,10 @@ import benchmarkdp.datagenerator.model.PSMDocx.TableImpl;
 import benchmarkdp.datagenerator.model.PSMDocx.TextBox;
 import benchmarkdp.datagenerator.model.PSMDocx.TextContainer;
 import benchmarkdp.datagenerator.model.PSMDocx.WordTable;
-import benchmarkdp.datagenerator.testcase.ModelType;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.TestModel;
-import benchmarkdp.datagenerator.testcase.Text;
+import benchmarkdp.datagenerator.core.ModelType;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.TestModel;
+import benchmarkdp.datagenerator.core.Text;
 import benchmarkdp.datagenerator.model.PSMDocx.ParagraphImpl;
 
 public class OCLMSWordText extends AbstractOCLEvaluator {

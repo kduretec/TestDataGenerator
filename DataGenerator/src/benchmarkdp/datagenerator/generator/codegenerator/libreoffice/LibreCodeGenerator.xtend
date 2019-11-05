@@ -5,8 +5,8 @@ import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverIn
 import benchmarkdp.datagenerator.generator.codegenerator.CompilerState
 import benchmarkdp.datagenerator.generator.codegenerator.ModelElementsCompiler
 import benchmarkdp.datagenerator.model.PSMLibre.Document
-import benchmarkdp.datagenerator.testcase.ModelType
-import benchmarkdp.datagenerator.testcase.TestCase
+import benchmarkdp.datagenerator.core.ModelType
+import benchmarkdp.datagenerator.core.TestCase
  
 class LibreCodeGenerator implements CodeGeneratorInterface {
 

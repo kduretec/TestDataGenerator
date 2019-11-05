@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.testcase;
+package benchmarkdp.datagenerator.core;
 
 public enum ModelType {
 

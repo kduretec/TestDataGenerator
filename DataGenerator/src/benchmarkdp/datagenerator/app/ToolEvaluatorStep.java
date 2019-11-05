@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import benchmarkdp.datagenerator.generator.utils.ZipUtil;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.properties.PropertiesHandler;
-import benchmarkdp.datagenerator.testcase.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestCaseContainer;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class ToolEvaluatorStep implements IWorkflowStep {

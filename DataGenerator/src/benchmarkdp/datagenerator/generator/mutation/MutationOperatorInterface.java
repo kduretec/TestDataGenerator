@@ -1,11 +1,9 @@
 package benchmarkdp.datagenerator.generator.mutation;
 
-import java.util.List;
-
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 
-import benchmarkdp.datagenerator.testcase.ModelType;
-import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.core.ModelType;
+import benchmarkdp.datagenerator.core.TestCase;
 
 public interface MutationOperatorInterface {
 

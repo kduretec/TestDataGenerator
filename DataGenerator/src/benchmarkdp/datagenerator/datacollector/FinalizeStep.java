@@ -9,9 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.TestCaseContainer;
-import benchmarkdp.datagenerator.testcase.Text;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.TestCaseContainer;
+import benchmarkdp.datagenerator.core.Text;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class FinalizeStep implements IWorkflowStep {
@@ -38,7 +38,7 @@ public class FinalizeStep implements IWorkflowStep {
 
 		boolean isOk = true;
 		for (TestCase tc : tCC.getTestCases()) {
-			log.info("Finalizing testcase : " + tc.getTestCaseName());
+			log.info("Finalizing core : " + tc.getTestCaseName());
 			for (CollectorOperatorInterface coi : operators) {
 				Map<String, Object> mValues = coi.collect(ep, tc);
 				tc.getMetadata().add(mValues);

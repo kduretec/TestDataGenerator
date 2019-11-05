@@ -10,8 +10,7 @@ import java.util.Map;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.TestFeature;
+import benchmarkdp.datagenerator.core.TestCase;
 
 public class GeneratedMetadataCollector implements CollectorOperatorInterface {
 

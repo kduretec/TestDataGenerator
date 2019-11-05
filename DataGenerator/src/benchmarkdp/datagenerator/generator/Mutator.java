@@ -17,7 +17,6 @@ import org.eclipse.m2m.qvt.oml.examples.blackbox.UtilitiesLibrary;
 
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
-import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreCodeGenerator;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratorObserver;
 import benchmarkdp.datagenerator.generator.codegenerator.msword.DocxCodeGenerator;
 import benchmarkdp.datagenerator.generator.mutation.MutationOperator;
@@ -30,10 +29,10 @@ import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.model.PIM.PIMPackage;
 import benchmarkdp.datagenerator.model.PSMDocx.PSMDocxPackage;
 import benchmarkdp.datagenerator.model.PSMLibre.PSMLibrePackage;
-import benchmarkdp.datagenerator.testcase.ModelType;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.TestFeature;
-import benchmarkdp.datagenerator.testcase.TestModel;
+import benchmarkdp.datagenerator.core.ModelType;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.TestFeature;
+import benchmarkdp.datagenerator.core.TestModel;
 
 public class Mutator {
 
@@ -177,7 +176,7 @@ public class Mutator {
 
 		System.out.println("Number of test cases: " + testCases.size());
 		for (TestCase tc : testCases) {
-			System.out.println("Saving testcase:" + tc.getTestCaseName());
+			System.out.println("Saving core:" + tc.getTestCaseName());
 			tc.saveTestCaseComponents(Utils.modelMetadataPath, Utils.modelTextPath, true);
 		}
 

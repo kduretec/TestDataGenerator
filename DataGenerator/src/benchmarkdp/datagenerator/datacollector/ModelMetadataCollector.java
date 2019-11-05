@@ -16,7 +16,7 @@ import org.xml.sax.SAXException;
 
 import benchmarkdp.datagenerator.generator.utils.Utils;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
+import benchmarkdp.datagenerator.core.TestCase;
 
 public class ModelMetadataCollector implements CollectorOperatorInterface {
 

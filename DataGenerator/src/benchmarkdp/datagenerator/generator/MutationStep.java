@@ -13,8 +13,8 @@ import benchmarkdp.datagenerator.documentgenerator.GenerateDocumentsStep;
 import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverInterface;
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratorObserver;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.testcase.TestCase;
-import benchmarkdp.datagenerator.testcase.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.TestCaseContainer;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class MutationStep implements IWorkflowStep {
