@@ -8,10 +8,10 @@ import benchmarkdp.datagenerator.datacollector.FitsStep;
 import benchmarkdp.datagenerator.documentgenerator.GenerateDocumentsStep;
 import benchmarkdp.datagenerator.generator.MutationStep;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.properties.PropertiesHandler;
-import benchmarkdp.datagenerator.core.InitializeTestCasesStep;
-import benchmarkdp.datagenerator.core.TestCaseContainer;
-import benchmarkdp.datagenerator.core.TestCaseHandler;
+import benchmarkdp.datagenerator.mappers.PropertiesMapper;
+import benchmarkdp.datagenerator.generator.InitializeTestCasesStep;
+import benchmarkdp.datagenerator.core.TestDataset;
+import benchmarkdp.datagenerator.mappers.TestDatasetMapper;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class MainWorkflow {
@@ -20,7 +20,7 @@ public class MainWorkflow {
 
 	public void execute(String propertiesFile) {
 
-		PropertiesHandler ph = new PropertiesHandler();
+		PropertiesMapper ph = new PropertiesMapper();
 		if (propertiesFile != null) {
 			ExperimentProperties pr = ph.loadProperties(propertiesFile);
 			log.info("Experiment name " + pr.getExperimentName());
@@ -28,8 +28,8 @@ public class MainWorkflow {
 			log.info("Experiment state " + pr.getExperimentState());
 			IWorkflowStep step = null;
 			String state = pr.getExperimentState();
-			TestCaseContainer tCC = null;
-			TestCaseHandler tch = new TestCaseHandler();
+			TestDataset tCC = null;
+			TestDatasetMapper tch = new TestDatasetMapper();
 
 			if (state.compareTo("START") != 0 && state.compareTo("FOLDER_STRUCTURE_INITIALIZED") != 0) {
 				tCC = tch.load(pr, true);
@@ -70,7 +70,7 @@ public class MainWorkflow {
 				break;
 			}
 			if (tCC == null) {
-				tCC = new TestCaseContainer();
+				tCC = new TestDataset();
 			}
 			
 			while (step != null) {

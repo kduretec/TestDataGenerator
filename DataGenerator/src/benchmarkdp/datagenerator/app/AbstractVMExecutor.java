@@ -16,10 +16,10 @@ import org.slf4j.Logger;
 
 import benchmarkdp.datagenerator.generator.utils.ZipUtil;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.properties.PropertiesHandler;
+import benchmarkdp.datagenerator.mappers.PropertiesMapper;
 import benchmarkdp.datagenerator.core.TestCase;
-import benchmarkdp.datagenerator.core.TestCaseContainer;
-import benchmarkdp.datagenerator.core.TestCaseHandler;
+import benchmarkdp.datagenerator.core.TestDataset;
+import benchmarkdp.datagenerator.mappers.TestDatasetMapper;
 
 public abstract class AbstractVMExecutor implements IVMExecutor{
 	
@@ -71,7 +71,7 @@ public abstract class AbstractVMExecutor implements IVMExecutor{
 
 				rootFolder = rootFolder + experiment + "-" + platform;
 				String ePropFile = rootFolder + File.separator + "properties.xml";
-				PropertiesHandler ph = new PropertiesHandler();
+				PropertiesMapper ph = new PropertiesMapper();
 				eProperties = ph.loadProperties(ePropFile);
 
 				String documentsFolder = rootFolder + File.separator + eProperties.getDocumentFolder();
@@ -96,8 +96,8 @@ public abstract class AbstractVMExecutor implements IVMExecutor{
 	}
 
 	private void runDataGeneration(ExperimentProperties ep) {
-		TestCaseHandler th = new TestCaseHandler();
-		TestCaseContainer tCC = th.load(ep, false);
+		TestDatasetMapper th = new TestDatasetMapper();
+		TestDataset tCC = th.load(ep, false);
 		log.info("Loaded testcases");
 		Set<String> toGenerate = loadCasesToGenerate(ep);
 		log.info("Detected " + toGenerate.size() + " testcases to generate");

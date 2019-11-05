@@ -6,8 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.core.InitializeTestCasesStep;
-import benchmarkdp.datagenerator.core.TestCaseContainer;
+import benchmarkdp.datagenerator.generator.InitializeTestCasesStep;
+import benchmarkdp.datagenerator.core.TestDataset;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class InitializeFolderStep implements IWorkflowStep{
@@ -15,7 +15,7 @@ public class InitializeFolderStep implements IWorkflowStep{
 	private static Logger log = LoggerFactory.getLogger(InitializeFolderStep.class);
 	
 	@Override
-	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
+	public void executeStep(ExperimentProperties ep, TestDataset tCC) {
 		log.info("Initializing folder structure");		
 		String eN = ep.getExperimentName();
 		String path = ep.getFullFolderPath();

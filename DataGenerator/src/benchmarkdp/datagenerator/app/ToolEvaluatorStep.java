@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import benchmarkdp.datagenerator.generator.utils.ZipUtil;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.properties.PropertiesHandler;
-import benchmarkdp.datagenerator.core.TestCaseContainer;
+import benchmarkdp.datagenerator.mappers.PropertiesMapper;
+import benchmarkdp.datagenerator.core.TestDataset;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class ToolEvaluatorStep implements IWorkflowStep {
@@ -24,7 +24,7 @@ public class ToolEvaluatorStep implements IWorkflowStep {
 	private static String COM_FOLDER_FROM = "/Users/kresimir/Mount/Canada/Experiments/TaskOut";
 
 	@Override
-	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
+	public void executeStep(ExperimentProperties ep, TestDataset tCC) {
 
 		log.info("Tool Evaluator step");
 		if (ep.getExperimentState().compareTo("TEST_CASES_FINALIZED") == 0) {
@@ -41,7 +41,7 @@ public class ToolEvaluatorStep implements IWorkflowStep {
 		return null;
 	}
 
-	private void copyToEvaluation(ExperimentProperties ep, TestCaseContainer tCC) {
+	private void copyToEvaluation(ExperimentProperties ep, TestDataset tCC) {
 		log.info("Sending documents to evaluation");
 
 		try {
@@ -77,7 +77,7 @@ public class ToolEvaluatorStep implements IWorkflowStep {
 		}
 	}
 
-	private void gatherFromEvaluation(ExperimentProperties ep, TestCaseContainer tCC) {
+	private void gatherFromEvaluation(ExperimentProperties ep, TestDataset tCC) {
 		log.info("Gathering results from evaluation");
 		String experimentName = ep.getExperimentName();
 		String pathZip = COM_FOLDER_FROM + "/" + experimentName + ".zip";
@@ -91,7 +91,7 @@ public class ToolEvaluatorStep implements IWorkflowStep {
 					f.mkdirs();
 				}
 				ZipUtil.unzipFile(pathZip, pathTmp);
-				PropertiesHandler phtmp = new PropertiesHandler();
+				PropertiesMapper phtmp = new PropertiesMapper();
 				ExperimentProperties epTmp = phtmp.loadProperties(pathTmp + experimentName + "/properties.xml");
 				String toolTmpPath = epTmp.getFullFolderPath() + epTmp.getToolOutputFolder();
 				String toolPath = ep.getFullFolderPath() + ep.getExperimentName();

@@ -19,10 +19,10 @@ import org.slf4j.LoggerFactory;
 
 import benchmarkdp.datagenerator.generator.utils.ZipUtil;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.properties.PropertiesHandler;
+import benchmarkdp.datagenerator.mappers.PropertiesMapper;
 import benchmarkdp.datagenerator.core.TestCase;
-import benchmarkdp.datagenerator.core.TestCaseContainer;
-import benchmarkdp.datagenerator.core.TestCaseHandler;
+import benchmarkdp.datagenerator.core.TestDataset;
+import benchmarkdp.datagenerator.mappers.TestDatasetMapper;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class GenerateDocumentsStep implements IWorkflowStep {
@@ -39,7 +39,7 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 	}
 
 	@Override
-	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
+	public void executeStep(ExperimentProperties ep, TestDataset tCC) {
 
 		log.info("Generating step");
 		if (ep.getExperimentState().compareTo("TEST_CASES_MUTATED") == 0) {
@@ -58,7 +58,7 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 		return null;
 	}
 
-	private void distributeTestCases(ExperimentProperties ep, TestCaseContainer tCC) {
+	private void distributeTestCases(ExperimentProperties ep, TestDataset tCC) {
 		log.info("Distributing test cases to VMs");
 		List<TestCase> testCases = tCC.getTestCases();
 		String experimentName = ep.getExperimentName();
@@ -144,7 +144,7 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 
 	}
 
-	private void collectTestCases(ExperimentProperties ep, TestCaseContainer tCC) {
+	private void collectTestCases(ExperimentProperties ep, TestDataset tCC) {
 		log.info("Collecting data");
 		File[] zipFiles = getAllZipFiles(ep);
 
@@ -154,16 +154,16 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 		ep.setExperimentState("TEST_CASES_MUTATED");
 	}
 
-	private void processReturnZip(File f, ExperimentProperties ep, TestCaseContainer tCC) {
+	private void processReturnZip(File f, ExperimentProperties ep, TestDataset tCC) {
 		log.info("Processing and merging " + f.getName());
 		String name = f.getName().substring(0, f.getName().lastIndexOf("."));
 		try {
 			ZipUtil.unzipFile(f.getAbsolutePath(), ep.getFullFolderPath());
 			String unZipFolder = ep.getFullFolderPath() + name;
-			PropertiesHandler ph = new PropertiesHandler();
+			PropertiesMapper ph = new PropertiesMapper();
 			ExperimentProperties epNew = ph.loadProperties(unZipFolder + File.separator + "properties.xml");
-			TestCaseHandler th = new TestCaseHandler();
-			TestCaseContainer tCCNew = th.load(epNew, false);
+			TestDatasetMapper th = new TestDatasetMapper();
+			TestDataset tCCNew = th.load(epNew, false);
 			mergeTestCases(ep, tCC, epNew, tCCNew);
 			FileUtils.deleteDirectory(new File(unZipFolder));
 			f.delete();
@@ -173,8 +173,8 @@ public class GenerateDocumentsStep implements IWorkflowStep {
 		}
 	}
 
-	private void mergeTestCases(ExperimentProperties eOrig, TestCaseContainer tOrig, ExperimentProperties eNew,
-			TestCaseContainer tNew) {
+	private void mergeTestCases(ExperimentProperties eOrig, TestDataset tOrig, ExperimentProperties eNew,
+								TestDataset tNew) {
 		List<String> tcGen = loadCasesToGenerate(eNew);
 
 		for (String tName : tcGen) {

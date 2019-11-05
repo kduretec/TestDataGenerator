@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement(name="TestCases")
-public class TestCaseContainer {
+public class TestDataset {
 	
 	
 	private List<TestCase> testCases;
@@ -18,7 +18,7 @@ public class TestCaseContainer {
 	@XmlTransient
 	private Map<String, TestCase> index; 
 	
-	public TestCaseContainer() {
+	public TestDataset() {
 		testCases = new ArrayList<TestCase>();
 		index = new HashMap<String, TestCase>(); 
 	}
@@ -30,10 +30,6 @@ public class TestCaseContainer {
 	@XmlElement(name="TestCase")
 	public void setTestCases(List<TestCase> testCases) {
 		this.testCases = testCases;
-		/*System.out.println("Adding testcases to index");
-		for (TestCase t : testCases) {
-			index.put(t.getTestCaseName(), t);
-		}*/
 	} 		
 	
 	public void addTestCase(TestCase tc) {

@@ -1,19 +1,20 @@
-package benchmarkdp.datagenerator.properties;
+package benchmarkdp.datagenerator.mappers;
 
 import java.io.File;
 
+import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import org.apache.commons.configuration2.XMLConfiguration;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
-public class PropertiesHandler {
+public class PropertiesMapper {
 
 	// the most recent configuration
 	FileBasedConfigurationBuilder<XMLConfiguration> builder;
 	XMLConfiguration xmlC;
 
-	public PropertiesHandler() {
+	public PropertiesMapper() {
 	}
 
 	public ExperimentProperties loadProperties(String file) {

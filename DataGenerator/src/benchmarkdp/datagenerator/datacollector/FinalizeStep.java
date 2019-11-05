@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.core.TestCase;
-import benchmarkdp.datagenerator.core.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestDataset;
 import benchmarkdp.datagenerator.core.Text;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
@@ -34,7 +34,7 @@ public class FinalizeStep implements IWorkflowStep {
 	}
 
 	@Override
-	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
+	public void executeStep(ExperimentProperties ep, TestDataset tCC) {
 
 		boolean isOk = true;
 		for (TestCase tc : tCC.getTestCases()) {

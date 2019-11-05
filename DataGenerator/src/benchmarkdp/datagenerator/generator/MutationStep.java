@@ -14,7 +14,7 @@ import benchmarkdp.datagenerator.generator.codegenerator.CodeGeneratorObserverIn
 import benchmarkdp.datagenerator.generator.codegenerator.libreoffice.LibreGeneratorObserver;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.core.TestCase;
-import benchmarkdp.datagenerator.core.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestDataset;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class MutationStep implements IWorkflowStep {
@@ -23,7 +23,7 @@ public class MutationStep implements IWorkflowStep {
 	private static Logger log = LoggerFactory.getLogger(MutationStep.class);
 
 	@Override
-	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
+	public void executeStep(ExperimentProperties ep, TestDataset tCC) {
 
 		List<TestCase> testCases = tCC.getTestCases();
 		log.info("Mutation found " + testCases.size() + " testcases to mutate");

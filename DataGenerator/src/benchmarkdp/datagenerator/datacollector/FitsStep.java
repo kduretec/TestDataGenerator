@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.core.TestCase;
-import benchmarkdp.datagenerator.core.TestCaseContainer;
+import benchmarkdp.datagenerator.core.TestDataset;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
 public class FitsStep implements IWorkflowStep {
@@ -18,7 +18,7 @@ public class FitsStep implements IWorkflowStep {
 	private static Logger log = LoggerFactory.getLogger(FitsStep.class);
 
 	@Override
-	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
+	public void executeStep(ExperimentProperties ep, TestDataset tCC) {
 
 		ExecutorService exec = Executors.newFixedThreadPool(NUMBER_OF_PROC);
 		for (TestCase tc : tCC.getTestCases()) {

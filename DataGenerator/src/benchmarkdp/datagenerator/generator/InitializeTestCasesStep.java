@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.core;
+package benchmarkdp.datagenerator.generator;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.TestDataset;
+import benchmarkdp.datagenerator.core.TestFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import benchmarkdp.datagenerator.generator.MutationStep;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 
@@ -20,7 +22,7 @@ public class InitializeTestCasesStep implements IWorkflowStep {
 	private static Logger log = LoggerFactory.getLogger(InitializeTestCasesStep.class);
 	
 	@Override
-	public void executeStep(ExperimentProperties ep, TestCaseContainer tCC) {
+	public void executeStep(ExperimentProperties ep, TestDataset tCC) {
 
 		
 		int numTC = ep.getTestCaseNumber();

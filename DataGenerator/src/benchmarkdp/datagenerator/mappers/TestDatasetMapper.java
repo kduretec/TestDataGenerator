@@ -1,4 +1,4 @@
-package benchmarkdp.datagenerator.core;
+package benchmarkdp.datagenerator.mappers;
 
 import java.io.File;
 
@@ -7,20 +7,22 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import benchmarkdp.datagenerator.core.TestCase;
+import benchmarkdp.datagenerator.core.TestDataset;
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
 
-public class TestCaseHandler {
+public class TestDatasetMapper {
 
-	public TestCaseContainer load(ExperimentProperties ep, boolean loadModels) {
+	public TestDataset load(ExperimentProperties ep, boolean loadModels) {
 		String path = ep.getFullFolderPath() + "/testCases.xml";
 		File f = new File(path);
 		JAXBContext jaxbContext;
-		TestCaseContainer tCC = null;
+		TestDataset tCC = null;
 		try {
-			jaxbContext = JAXBContext.newInstance(TestCaseContainer.class);
+			jaxbContext = JAXBContext.newInstance(TestDataset.class);
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-			tCC = (TestCaseContainer) jaxbUnmarshaller.unmarshal(f);
+			tCC = (TestDataset) jaxbUnmarshaller.unmarshal(f);
 
 			if (loadModels) {
 				for (TestCase tc : tCC.getTestCases()) {
@@ -36,12 +38,12 @@ public class TestCaseHandler {
 		return tCC;
 	}
 
-	public void save(ExperimentProperties ep, TestCaseContainer tCC) {
+	public void save(ExperimentProperties ep, TestDataset tCC) {
 		String path = ep.getFullFolderPath() + File.separator + "testCases.xml";
 		File f = new File(path);
 		JAXBContext jaxbContext;
 		try {
-			jaxbContext = JAXBContext.newInstance(TestCaseContainer.class);
+			jaxbContext = JAXBContext.newInstance(TestDataset.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
 			// output pretty printed

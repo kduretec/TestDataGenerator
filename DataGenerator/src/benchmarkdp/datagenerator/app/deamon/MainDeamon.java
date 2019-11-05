@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import benchmarkdp.datagenerator.properties.ExperimentProperties;
-import benchmarkdp.datagenerator.properties.PropertiesHandler;
+import benchmarkdp.datagenerator.mappers.PropertiesMapper;
 
 public class MainDeamon {
 
@@ -20,7 +20,7 @@ public class MainDeamon {
 			+ "publications/INFSOF/experiments/ComunicationFolder/ToVM/";
 
 	public void execute(String epFile) {
-		PropertiesHandler pHandler = new PropertiesHandler();
+		PropertiesMapper pHandler = new PropertiesMapper();
 		ExperimentProperties ep = pHandler.loadProperties(epFile);
 		String experimentName = ep.getExperimentName();
 		log.info("Experiment name " + experimentName);
