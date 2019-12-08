@@ -1,285 +1,354 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>benchmarkdp.datagenerator</groupId>
-	<artifactId>DataGenerator</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>DataGenerator</name>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>benchmarkdp.datagenerator</groupId>
+    <artifactId>DataGenerator</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>DataGenerator</name>
 
-	<dependencies>
-		<!-- <dependency> <groupId>javax.inject</groupId> <artifactId>javax.inject</artifactId> 
-			<version>1</version> </dependency> -->
-		<dependency>
-			<groupId>lpg.runtime</groupId>
-			<artifactId>java</artifactId>
-			<version>2.0.17-v201004271640</version>
-		</dependency>
-		<!-- <dependency> <groupId>org.eclipse.scout.sdk.deps</groupId> <artifactId>org.eclipse.osgi</artifactId> 
-			<version>3.11.0.v20160603-1336</version> </dependency> -->
-		<!-- <dependency> <groupId>org.eclipse.osgi</groupId> <artifactId>org.eclipse.osgi.cmpatibility.state</artifactId> 
-			<version>1.0.200</version> <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.osgi.compatibility.state_1.0.200.v20160504-1419.jar</systemPath> 
-			<scope>system</scope> </dependency> -->
-		<!-- <dependency> <groupId>org.eclipse.scout.sdk.deps</groupId> <artifactId>org.eclipse.equinox.common</artifactId> 
-			<version>3.8.0.v20160509-1230</version> </dependency> -->
-		<dependency>
-			<groupId>org.eclipse.scout.sdk.deps</groupId>
-			<artifactId>org.eclipse.core.runtime</artifactId>
-			<version>3.12.0.v20160606-1342</version>
-		</dependency>
-		<!-- <dependency> <groupId>org.eclipse.core</groupId> <artifactId>org.eclipse.core.jobs</artifactId> 
-			<version>3.8.0</version> <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.core.jobs_3.8.0.v20160509-0411.jar</systemPath> 
-			<scope>system</scope> </dependency> -->
-		<dependency>
-			<groupId>org.eclipse.birt.runtime</groupId>
-			<artifactId>org.eclipse.emf.ecore</artifactId>
-			<version>2.12.0.v20160420-0247</version>
-		</dependency>
+    <dependencies>
+        <!-- <dependency> <groupId>javax.inject</groupId> <artifactId>javax.inject</artifactId>
+            <version>1</version> </dependency> -->
+        <dependency>
+            <groupId>lpg.runtime</groupId>
+            <artifactId>java</artifactId>
+            <version>2.0.17-v201004271640</version>
+        </dependency>
+        <!-- <dependency> <groupId>org.eclipse.scout.sdk.deps</groupId> <artifactId>org.eclipse.osgi</artifactId>
+            <version>3.11.0.v20160603-1336</version> </dependency> -->
+        <!-- <dependency> <groupId>org.eclipse.osgi</groupId> <artifactId>org.eclipse.osgi.cmpatibility.state</artifactId>
+            <version>1.0.200</version> <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.osgi.compatibility.state_1.0.200.v20160504-1419.jar</systemPath>
+            <scope>system</scope> </dependency> -->
+        <!-- <dependency> <groupId>org.eclipse.scout.sdk.deps</groupId> <artifactId>org.eclipse.equinox.common</artifactId>
+            <version>3.8.0.v20160509-1230</version> </dependency> -->
+        <dependency>
+            <groupId>org.eclipse.scout.sdk.deps</groupId>
+            <artifactId>org.eclipse.core.runtime</artifactId>
+            <version>3.12.0.v20160606-1342</version>
+        </dependency>
+        <!-- <dependency> <groupId>org.eclipse.core</groupId> <artifactId>org.eclipse.core.jobs</artifactId>
+            <version>3.8.0</version> <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.core.jobs_3.8.0.v20160509-0411.jar</systemPath>
+            <scope>system</scope> </dependency> -->
+        <dependency>
+            <groupId>org.eclipse.birt.runtime</groupId>
+            <artifactId>org.eclipse.emf.ecore</artifactId>
+            <version>2.12.0.v20160420-0247</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.birt.runtime</groupId>
-			<artifactId>org.eclipse.emf.common</artifactId>
-			<version>2.12.0.v20160420-0247</version>
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.birt.runtime</groupId>
+            <artifactId>org.eclipse.emf.common</artifactId>
+            <version>2.12.0.v20160420-0247</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.birt.runtime</groupId>
-			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-			<version>2.12.0.v20160420-0247</version>
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.birt.runtime</groupId>
+            <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+            <version>2.12.0.v20160420-0247</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.ocl</groupId>
-			<artifactId>org.eclipse.ocl</artifactId>
-			<version>3.6.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.ocl_3.6.0.v20160523-1914.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.ocl</groupId>
+            <artifactId>org.eclipse.ocl</artifactId>
+            <version>3.6.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.ocl_3.6.0.v20160523-1914.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.ocl</groupId>
-			<artifactId>org.eclipse.ocl.ecore</artifactId>
-			<version>3.6.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.ocl.ecore_3.6.0.v20160523-1914.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.ocl</groupId>
+            <artifactId>org.eclipse.ocl.ecore</artifactId>
+            <version>3.6.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.ocl.ecore_3.6.0.v20160523-1914.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.ocl</groupId>
-			<artifactId>org.eclipse.ocl.common</artifactId>
-			<version>1.4.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.ocl.common_1.4.0.v20160521-2033.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.ocl</groupId>
+            <artifactId>org.eclipse.ocl.common</artifactId>
+            <version>1.4.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.ocl.common_1.4.0.v20160521-2033.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.m2m</groupId>
-			<artifactId>org.eclipse.m2m.qvt.oml</artifactId>
-			<version>3.6.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml_3.6.0.v20160606-1156.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.m2m</groupId>
+            <artifactId>org.eclipse.m2m.qvt.oml</artifactId>
+            <version>3.6.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml_3.6.0.v20160606-1156.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.lib</artifactId>
-			<version>2.10.0</version>
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.xtend</groupId>
+            <artifactId>org.eclipse.xtend.lib</artifactId>
+            <version>2.10.0</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.xtend</groupId>
-			<artifactId>org.eclipse.xtend.lib.macro</artifactId>
-			<version>2.10.0</version>
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.xtend</groupId>
+            <artifactId>org.eclipse.xtend.lib.macro</artifactId>
+            <version>2.10.0</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.xtext</groupId>
-			<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
-			<version>2.10.0</version>
-		</dependency>
-		<!-- <dependency> <groupId>com.google.guava</groupId> <artifactId>com.google.guava</artifactId> 
-			<version>15.0.0</version> <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/com.google.guava_15.0.0.v201403281430.jar</systemPath> 
-			<scope>system</scope> </dependency> -->
-		<dependency>
-			<groupId>org.eclipse.m2m</groupId>
-			<artifactId>org.eclipse.m2m.qvt.oml.examples.blackbox</artifactId>
-			<version>1.0.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.examples.blackbox_1.0.0.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.xtext</groupId>
+            <artifactId>org.eclipse.xtext.xbase.lib</artifactId>
+            <version>2.10.0</version>
+        </dependency>
+        <!-- <dependency> <groupId>com.google.guava</groupId> <artifactId>com.google.guava</artifactId>
+            <version>15.0.0</version> <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/com.google.guava_15.0.0.v201403281430.jar</systemPath>
+            <scope>system</scope> </dependency> -->
+        <dependency>
+            <groupId>org.eclipse.m2m</groupId>
+            <artifactId>org.eclipse.m2m.qvt.oml.examples.blackbox</artifactId>
+            <version>1.0.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.examples.blackbox_1.0.0.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.m2m</groupId>
-			<artifactId>org.eclipse.m2m.qvt.oml.common</artifactId>
-			<version>3.6.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.common_3.6.0.v20160606-1156.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.m2m</groupId>
+            <artifactId>org.eclipse.m2m.qvt.oml.common</artifactId>
+            <version>3.6.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.common_3.6.0.v20160606-1156.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.m2m</groupId>
-			<artifactId>org.eclipse.m2m.qvt.oml.emf.util</artifactId>
-			<version>3.6.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.emf.util_3.6.0.v20160606-1156.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.m2m</groupId>
+            <artifactId>org.eclipse.m2m.qvt.oml.emf.util</artifactId>
+            <version>3.6.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.emf.util_3.6.0.v20160606-1156.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.m2m</groupId>
-			<artifactId>org.eclipse.m2m.qvt.oml.cst.parser</artifactId>
-			<version>3.6.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.cst.parser_3.6.0.v20160606-1156.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.m2m</groupId>
+            <artifactId>org.eclipse.m2m.qvt.oml.cst.parser</artifactId>
+            <version>3.6.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.cst.parser_3.6.0.v20160606-1156.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.eclipse.m2m</groupId>
-			<artifactId>org.eclipse.m2m.qvt.oml.ecore.imperativeocl</artifactId>
-			<version>3.4.0</version>
-			<!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.ecore.imperativeocl_3.4.0.v20160606-1156.jar</systemPath> 
-				<scope>system</scope> -->
-		</dependency>
+        <dependency>
+            <groupId>org.eclipse.m2m</groupId>
+            <artifactId>org.eclipse.m2m.qvt.oml.ecore.imperativeocl</artifactId>
+            <version>3.4.0</version>
+            <!-- <systemPath>/Applications/Eclipse.app/Contents/Eclipse/plugins/org.eclipse.m2m.qvt.oml.ecore.imperativeocl_3.4.0.v20160606-1156.jar</systemPath>
+                <scope>system</scope> -->
+        </dependency>
 
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-configuration2</artifactId>
-			<version>2.3</version>
-		</dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-configuration2</artifactId>
+            <version>2.3</version>
+        </dependency>
 
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.3</version>
-		</dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.8.0-beta2</version>
-		</dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.8.0-beta2</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.8.0-beta2</version>
-		</dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.8.0-beta2</version>
+        </dependency>
 
-		<dependency>
-			<groupId>commons-cli</groupId>
-			<artifactId>commons-cli</artifactId>
-			<version>1.4</version>
-		</dependency>
+        <dependency>
+            <groupId>commons-cli</groupId>
+            <artifactId>commons-cli</artifactId>
+            <version>1.4</version>
+        </dependency>
 
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.6</version>
-		</dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>3.1.0</version>
-			<scope>test</scope>
-		</dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
-	<build>
+    <build>
 
-		<sourceDirectory>src</sourceDirectory>
+        <sourceDirectory>src</sourceDirectory>
 
-		<testSourceDirectory>${basedir}/test</testSourceDirectory>
+        <testSourceDirectory>${basedir}/test</testSourceDirectory>
 
-		<resources>
-			<resource>
-				<directory>resources</directory>
-			</resource>
-			<resource>
-				<directory>PIMs</directory>
-			</resource>
-		</resources>
+        <resources>
+            <resource>
+                <directory>resources</directory>
+            </resource>
+            <resource>
+                <directory>PIMs</directory>
+            </resource>
+        </resources>
 
-		<plugins>
+        <plugins>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<!--<filesets>
-						<fileset>
-							<directory>src</directory>
-						</fileset>
-						<fileset>
-							<directory>xtend-gen</directory>
-						</fileset>
-					</filesets> -->
-				</configuration>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <!--<filesets>
+                        <fileset>
+                            <directory>src</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>xtend-gen</directory>
+                        </fileset>
+                    </filesets> -->
+                </configuration>
+            </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M3</version>
-				<configuration>
-					<testSourceDirectory>${basedir}/test</testSourceDirectory>
-				</configuration>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <testSourceDirectory>${basedir}/test</testSourceDirectory>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
 
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId> 
-				<configuration> <descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> 
-				</descriptorRefs> <archive> <manifest> <addClasspath>true</addClasspath> 
-				<mainClass>benchmarkdp.datagenerator.app.Main</mainClass> </manifest> </archive> 
-				</configuration> <executions> <execution> <id>make-assembly</id> -->
-			<!-- bind to the packaging phase --><!-- <phase>package</phase> <goals> <goal>single</goal> </goals> </execution> 
+            <!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId>
+                <configuration> <descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs> <archive> <manifest> <addClasspath>true</addClasspath>
+                <mainClass>benchmarkdp.datagenerator.app.Main</mainClass> </manifest> </archive>
+                </configuration> <executions> <execution> <id>make-assembly</id> -->
+            <!-- bind to the packaging phase --><!-- <phase>package</phase> <goals> <goal>single</goal> </goals> </execution>
 				</executions> </plugin> -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>3.1.1</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>benchmarkdp.datagenerator.app.Main</mainClass>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-									<resource>plugin.properties</resource>
-								</transformer>
-							</transformers>
-							<filters>
-								<filter>
-									<artifact>*:*</artifact>
-									<excludes>
-										<exclude>META-INF/*.SF</exclude>
-										<exclude>META-INF/*.DSA</exclude>
-										<exclude>META-INF/*.RSA</exclude>
-									</excludes>
-								</filter>
-							</filters>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>benchmarkdp.datagenerator.app.Main</mainClass>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>plugin.properties</resource>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.8.2</version>
+            </plugin>
 
 
-		</plugins>
-	</build>
+        </plugins>
+    </build>
+
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>index</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <configLocation>google_checks.xml</configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <!-- select non-aggregate reports -->
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
 </project>
