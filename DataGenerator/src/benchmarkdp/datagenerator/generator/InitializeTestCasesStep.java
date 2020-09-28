@@ -20,15 +20,15 @@ import benchmarkdp.datagenerator.workflow.IWorkflowStep;
 public class InitializeTestCasesStep implements IWorkflowStep {
 
 	private static Logger log = LoggerFactory.getLogger(InitializeTestCasesStep.class);
-	
+
 	@Override
 	public void executeStep(ExperimentProperties ep, TestDataset tCC) {
 
-		
+
 		int numTC = ep.getTestCaseNumber();
-		
+
 		List<TestFeature> testFeatures = readSpecialCases();
-		
+
 		for (int i = 0; i < numTC; i++) {
 			TestCase tCase = new TestCase();
 			//TestCase tCase = new TestCase(new TestModel("PIMs/Document.xmi", ModelType.PIM));
@@ -45,6 +45,7 @@ public class InitializeTestCasesStep implements IWorkflowStep {
 		}
 		ep.setExperimentState("TEST_CASES_INITIALIZED");
 	}
+
 
 	@Override
 	public IWorkflowStep nextStep() {

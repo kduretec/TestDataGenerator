@@ -60,12 +60,12 @@ public class TestModel {
 		modelObjects = new BasicEList<EObject>(modelExtent.getContents());
 	}
 
-	public TestModel getParent() {
-		return parent;
-	}
-
 	public void setParent(TestModel parent) {
 		this.parent = parent;
+	}
+
+	public TestModel getParent() {
+		return parent;
 	}
 
 	public void saveModelToFile(String filePath, String testCaseName) {
