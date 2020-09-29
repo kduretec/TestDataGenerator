@@ -1,6 +1,8 @@
 package benchmarkdp.datagenerator.app;
 
 import benchmarkdp.datagenerator.app.endpoints.ResourceLoader;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.startup.Tomcat;
@@ -26,7 +28,9 @@ public class MainServer {
     }
 
     private static ServletContainer resourceConfig() {
-        return new ServletContainer(new ResourceConfig(new ResourceLoader().getClasses()));
+        Injector injector = Guice.createInjector(new MainModule());
+        ResourceLoader resourceLoader = injector.getInstance(ResourceLoader.class);
+        return new ServletContainer(new ResourceConfig(resourceLoader.getClasses()));
     }
 
 
