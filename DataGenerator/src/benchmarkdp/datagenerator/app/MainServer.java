@@ -30,7 +30,9 @@ public class MainServer {
     private static ServletContainer resourceConfig() {
         Injector injector = Guice.createInjector(new MainModule());
         ResourceLoader resourceLoader = injector.getInstance(ResourceLoader.class);
-        return new ServletContainer(new ResourceConfig(resourceLoader.getClasses()));
+        ResourceConfig config = new ResourceConfig(resourceLoader.getClasses());
+        config.packages("ca.ulaval.glo4002.trading").register(GuiceFeature.class);
+        return new ServletContainer(config);
     }
 
 

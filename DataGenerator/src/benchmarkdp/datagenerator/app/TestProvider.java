@@ -6,11 +6,11 @@ import benchmarkdp.datagenerator.app.endpoints.RestPoints;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TEstEndPointProvider implements EndpointsProvider {
+public class TestProvider implements EndpointsProvider {
 
     private Set<Class<?>> endpoints;
 
-    public TEstEndPointProvider() {
+    public TestProvider() {
         endpoints = new HashSet<>();
         endpoints.add(RestPoints.class);
     }
