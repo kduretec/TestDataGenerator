@@ -23,6 +23,7 @@ public class MainServer {
         Tomcat.addServlet(context, "jersey-container-servlet", resourceConfig());
         context.addServletMapping("/*", "jersey-container-servlet");
 
+
         tomcat.start();
         tomcat.getServer().await();
     }
