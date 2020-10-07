@@ -7,6 +7,7 @@ import org.eclipse.core.internal.runtime.Product;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -25,9 +26,15 @@ public class RestPoints {
 
     @GET
     @Produces(MediaType.APPLICATION_XML)
-    public Response sayHello() {
-        GenericEntity<DatasetRepository> entity = new GenericEntity<DatasetRepository>(datasetService.getDatasetRepo()) {};
-        Response response = Response.ok(entity).build();
-        return response;
+    public DatasetRepository sayHello() {
+        return datasetService.getDatasetRepo();
+    }
+
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Dataset sayHello(@PathParam("id") int id) {
+        Dataset data = new Dataset("Fiurst test dataset", id);
+        return data;
     }
 }
